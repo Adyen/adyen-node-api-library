@@ -7,10 +7,14 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Forbidden** * **Processed** * **Allowed** * **Proposed** * **Required**
+*/
+
 export enum LoyaltyHandling {
-    Allowed = 'Allowed',
     Forbidden = 'Forbidden',
     Processed = 'Processed',
+    Allowed = 'Allowed',
     Proposed = 'Proposed',
     Required = 'Required'
 }

@@ -7,10 +7,14 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Card** * **Check** * **Mobile** * **StoredValue** * **Cash**
+*/
+
 export enum PaymentInstrumentType {
     Card = 'Card',
-    Cash = 'Cash',
     Check = 'Check',
     Mobile = 'Mobile',
-    StoredValue = 'StoredValue'
+    StoredValue = 'StoredValue',
+    Cash = 'Cash'
 }

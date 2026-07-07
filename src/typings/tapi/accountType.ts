@@ -8,16 +8,16 @@
  */
 
 /**
-* Type of cardholder account used for the transaction. Allows a cardholder to select the type of account used for the transaction. Possible values: * **CardTotals** * **Checking** * **CreditCard** * **Default** * **EpurseCard** * **Investment** * **Savings** * **Universal**
+* Type of cardholder account used for the transaction. Allows a cardholder to select the type of account used for the transaction. Possible values: * **Default** * **Savings** * **Checking** * **CreditCard** * **Universal** * **Investment** * **CardTotals** * **EpurseCard**
 */
 
 export enum AccountType {
-    CardTotals = 'CardTotals',
+    Default = 'Default',
+    Savings = 'Savings',
     Checking = 'Checking',
     CreditCard = 'CreditCard',
-    Default = 'Default',
-    EpurseCard = 'EpurseCard',
+    Universal = 'Universal',
     Investment = 'Investment',
-    Savings = 'Savings',
-    Universal = 'Universal'
+    CardTotals = 'CardTotals',
+    EpurseCard = 'EpurseCard'
 }

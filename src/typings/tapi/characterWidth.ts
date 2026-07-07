@@ -7,7 +7,11 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **SingleWidth** * **DoubleWidth**
+*/
+
 export enum CharacterWidth {
-    DoubleWidth = 'DoubleWidth',
-    SingleWidth = 'SingleWidth'
+    SingleWidth = 'SingleWidth',
+    DoubleWidth = 'DoubleWidth'
 }

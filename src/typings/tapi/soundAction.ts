@@ -7,8 +7,12 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **StartSound** * **StopSound** * **SetDefaultVolume**
+*/
+
 export enum SoundAction {
-    SetDefaultVolume = 'SetDefaultVolume',
     StartSound = 'StartSound',
-    StopSound = 'StopSound'
+    StopSound = 'StopSound',
+    SetDefaultVolume = 'SetDefaultVolume'
 }

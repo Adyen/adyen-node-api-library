@@ -7,8 +7,12 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Request** * **Response** * **Notification**
+*/
+
 export enum MessageType {
-    Notification = 'Notification',
     Request = 'Request',
-    Response = 'Response'
+    Response = 'Response',
+    Notification = 'Notification'
 }

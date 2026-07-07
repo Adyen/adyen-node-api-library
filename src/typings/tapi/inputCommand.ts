@@ -7,14 +7,18 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **GetAnyKey** * **GetConfirmation** * **SiteManager** * **TextString** * **DigitString** * **DecimalString** * **GetFunctionKey** * **GetMenuEntry** * **Password**
+*/
+
 export enum InputCommand {
-    DecimalString = 'DecimalString',
-    DigitString = 'DigitString',
     GetAnyKey = 'GetAnyKey',
     GetConfirmation = 'GetConfirmation',
+    SiteManager = 'SiteManager',
+    TextString = 'TextString',
+    DigitString = 'DigitString',
+    DecimalString = 'DecimalString',
     GetFunctionKey = 'GetFunctionKey',
     GetMenuEntry = 'GetMenuEntry',
-    Password = 'Password',
-    SiteManager = 'SiteManager',
-    TextString = 'TextString'
+    Password = 'Password'
 }

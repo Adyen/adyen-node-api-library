@@ -8,12 +8,12 @@
  */
 
 /**
-* Support of the loyalty account identification. Allows knowing where and how you have found the loyalty account identification. Possible values: * **HybridCard** * **LinkedCard** * **LoyaltyCard** * **NoCard**
+* Support of the loyalty account identification. Allows knowing where and how you have found the loyalty account identification. Possible values: * **NoCard** * **LoyaltyCard** * **HybridCard** * **LinkedCard**
 */
 
 export enum IdentificationSupport {
-    HybridCard = 'HybridCard',
-    LinkedCard = 'LinkedCard',
+    NoCard = 'NoCard',
     LoyaltyCard = 'LoyaltyCard',
-    NoCard = 'NoCard'
+    HybridCard = 'HybridCard',
+    LinkedCard = 'LinkedCard'
 }

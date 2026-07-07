@@ -8,13 +8,13 @@
  */
 
 /**
-* Indicates if the printer is working and usable. Possible values: * **NoPaper** * **OK** * **OutOfOrder** * **PaperJam** * **PaperLow**
+* Indicates if the printer is working and usable. Possible values: * **OK** * **PaperLow** * **NoPaper** * **PaperJam** * **OutOfOrder**
 */
 
 export enum PrinterStatus {
-    NoPaper = 'NoPaper',
     Ok = 'OK',
-    OutOfOrder = 'OutOfOrder',
+    PaperLow = 'PaperLow',
+    NoPaper = 'NoPaper',
     PaperJam = 'PaperJam',
-    PaperLow = 'PaperLow'
+    OutOfOrder = 'OutOfOrder'
 }

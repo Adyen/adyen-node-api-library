@@ -152,9 +152,9 @@ export namespace PaymentResult {
         OfflinePin = 'OfflinePIN',
         OnlinePin = 'OnlinePIN',
         PaperSignature = 'PaperSignature',
+        SecuredChannel = 'SecuredChannel',
         SecureCertificate = 'SecureCertificate',
         SecureNoCertificate = 'SecureNoCertificate',
-        SecuredChannel = 'SecuredChannel',
         SignatureCapture = 'SignatureCapture',
         UnknownMethod = 'UnknownMethod'
     }

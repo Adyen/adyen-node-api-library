@@ -7,8 +7,12 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Success** * **Failure** * **Partial**
+*/
+
 export enum Result {
+    Success = 'Success',
     Failure = 'Failure',
-    Partial = 'Partial',
-    Success = 'Success'
+    Partial = 'Partial'
 }

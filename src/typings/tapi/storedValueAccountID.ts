@@ -94,16 +94,16 @@ export class StoredValueAccountID {
 
 export namespace StoredValueAccountID {
     export enum EntryModeEnum {
-        Contactless = 'Contactless',
-        File = 'File',
-        Icc = 'ICC',
-        Keyed = 'Keyed',
-        MagStripe = 'MagStripe',
-        Manual = 'Manual',
-        Mobile = 'Mobile',
         Rfid = 'RFID',
+        Keyed = 'Keyed',
+        Manual = 'Manual',
+        File = 'File',
         Scanned = 'Scanned',
+        MagStripe = 'MagStripe',
+        Icc = 'ICC',
         SynchronousIcc = 'SynchronousICC',
-        Tapped = 'Tapped'
+        Tapped = 'Tapped',
+        Contactless = 'Contactless',
+        Mobile = 'Mobile'
     }
 }

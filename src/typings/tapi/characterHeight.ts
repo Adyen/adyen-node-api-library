@@ -7,8 +7,12 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **SingleHeight** * **DoubleHeight** * **HalfHeight**
+*/
+
 export enum CharacterHeight {
+    SingleHeight = 'SingleHeight',
     DoubleHeight = 'DoubleHeight',
-    HalfHeight = 'HalfHeight',
-    SingleHeight = 'SingleHeight'
+    HalfHeight = 'HalfHeight'
 }

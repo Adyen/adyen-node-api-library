@@ -7,9 +7,13 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Left** * **Right** * **Centred** * **Justified**
+*/
+
 export enum Alignment {
-    Centred = 'Centred',
-    Justified = 'Justified',
     Left = 'Left',
-    Right = 'Right'
+    Right = 'Right',
+    Centred = 'Centred',
+    Justified = 'Justified'
 }

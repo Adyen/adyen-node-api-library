@@ -7,14 +7,17 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Aborted** * **Busy** * **Cancel** * **DeviceOut** * **InsertedCard** * **InProgress** * **LoggedOut** * **MessageFormat** * **NotAllowed** * **NotFound** * **PaymentRestriction** * **Refusal** * **UnavailableDevice** * **UnavailableService** * **InvalidCard** * **UnreachableHost** * **WrongPIN**
+*/
+
 export enum ErrorCondition {
     Aborted = 'Aborted',
     Busy = 'Busy',
     Cancel = 'Cancel',
     DeviceOut = 'DeviceOut',
-    InProgress = 'InProgress',
     InsertedCard = 'InsertedCard',
-    InvalidCard = 'InvalidCard',
+    InProgress = 'InProgress',
     LoggedOut = 'LoggedOut',
     MessageFormat = 'MessageFormat',
     NotAllowed = 'NotAllowed',
@@ -23,6 +26,7 @@ export enum ErrorCondition {
     Refusal = 'Refusal',
     UnavailableDevice = 'UnavailableDevice',
     UnavailableService = 'UnavailableService',
+    InvalidCard = 'InvalidCard',
     UnreachableHost = 'UnreachableHost',
     WrongPin = 'WrongPIN'
 }

@@ -7,9 +7,13 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **NotRequired** * **Immediate** * **PrintEnd** * **SoundEnd**
+*/
+
 export enum ResponseMode {
-    Immediate = 'Immediate',
     NotRequired = 'NotRequired',
+    Immediate = 'Immediate',
     PrintEnd = 'PrintEnd',
     SoundEnd = 'SoundEnd'
 }

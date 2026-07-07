@@ -7,8 +7,12 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Service** * **Device** * **Event**
+*/
+
 export enum MessageClass {
+    Service = 'Service',
     Device = 'Device',
-    Event = 'Event',
-    Service = 'Service'
+    Event = 'Event'
 }

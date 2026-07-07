@@ -7,15 +7,19 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Status** * **Error** * **Display** * **Sound** * **Input** * **POIReplication** * **CustomerAssistance** * **Receipt** * **Document** * **Voucher**
+*/
+
 export enum InfoQualify {
-    CustomerAssistance = 'CustomerAssistance',
-    Display = 'Display',
-    Document = 'Document',
+    Status = 'Status',
     Error = 'Error',
+    Display = 'Display',
+    Sound = 'Sound',
     Input = 'Input',
     PoiReplication = 'POIReplication',
+    CustomerAssistance = 'CustomerAssistance',
     Receipt = 'Receipt',
-    Sound = 'Sound',
-    Status = 'Status',
+    Document = 'Document',
     Voucher = 'Voucher'
 }

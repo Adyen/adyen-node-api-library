@@ -110,16 +110,16 @@ export class CardAcquisitionTransaction {
 
 export namespace CardAcquisitionTransaction {
     export enum ForceEntryModeEnum {
-        CheckReader = 'CheckReader',
-        Contactless = 'Contactless',
-        File = 'File',
-        Icc = 'ICC',
-        Keyed = 'Keyed',
-        MagStripe = 'MagStripe',
-        Manual = 'Manual',
         Rfid = 'RFID',
+        Keyed = 'Keyed',
+        Manual = 'Manual',
+        File = 'File',
         Scanned = 'Scanned',
+        MagStripe = 'MagStripe',
+        Icc = 'ICC',
         SynchronousIcc = 'SynchronousICC',
-        Tapped = 'Tapped'
+        Tapped = 'Tapped',
+        Contactless = 'Contactless',
+        CheckReader = 'CheckReader'
     }
 }

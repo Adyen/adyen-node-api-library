@@ -8,26 +8,26 @@
  */
 
 /**
-* Event the POI notifies to the Sale System. Possible values: * **Abort** * **BeginMaintenance** * **CardInserted** * **CardRemoved** * **Completed** * **CustomerLanguage** * **EndMaintenance** * **Initialised** * **KeyPressed** * **OutOfOrder** * **Reject** * **SaleAdmin** * **SaleWakeUp** * **ScanBarcodeResult** * **SecurityAlarm** * **Shutdown** * **StopAssistance** * **UseAnotherCardForPreauth**
+* Event the POI notifies to the Sale System. Possible values: * **BeginMaintenance** * **EndMaintenance** * **Shutdown** * **Initialised** * **OutOfOrder** * **Completed** * **Abort** * **SaleWakeUp** * **SaleAdmin** * **CustomerLanguage** * **KeyPressed** * **SecurityAlarm** * **StopAssistance** * **CardInserted** * **CardRemoved** * **Reject** * **UseAnotherCardForPreauth** * **ScanBarcodeResult**
 */
 
 export enum EventToNotify {
-    Abort = 'Abort',
     BeginMaintenance = 'BeginMaintenance',
+    EndMaintenance = 'EndMaintenance',
+    Shutdown = 'Shutdown',
+    Initialised = 'Initialised',
+    OutOfOrder = 'OutOfOrder',
+    Completed = 'Completed',
+    Abort = 'Abort',
+    SaleWakeUp = 'SaleWakeUp',
+    SaleAdmin = 'SaleAdmin',
+    CustomerLanguage = 'CustomerLanguage',
+    KeyPressed = 'KeyPressed',
+    SecurityAlarm = 'SecurityAlarm',
+    StopAssistance = 'StopAssistance',
     CardInserted = 'CardInserted',
     CardRemoved = 'CardRemoved',
-    Completed = 'Completed',
-    CustomerLanguage = 'CustomerLanguage',
-    EndMaintenance = 'EndMaintenance',
-    Initialised = 'Initialised',
-    KeyPressed = 'KeyPressed',
-    OutOfOrder = 'OutOfOrder',
     Reject = 'Reject',
-    SaleAdmin = 'SaleAdmin',
-    SaleWakeUp = 'SaleWakeUp',
-    ScanBarcodeResult = 'ScanBarcodeResult',
-    SecurityAlarm = 'SecurityAlarm',
-    Shutdown = 'Shutdown',
-    StopAssistance = 'StopAssistance',
-    UseAnotherCardForPreauth = 'UseAnotherCardForPreauth'
+    UseAnotherCardForPreauth = 'UseAnotherCardForPreauth',
+    ScanBarcodeResult = 'ScanBarcodeResult'
 }

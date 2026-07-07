@@ -125,8 +125,8 @@ export class LoginRequest {
 
 export namespace LoginRequest {
     export enum CustomerOrderReqEnum {
-        Both = 'Both',
+        Open = 'Open',
         Closed = 'Closed',
-        Open = 'Open'
+        Both = 'Both'
     }
 }

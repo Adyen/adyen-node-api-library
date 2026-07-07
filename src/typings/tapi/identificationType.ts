@@ -7,10 +7,14 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **PAN** * **ISOTrack2** * **BarCode** * **AccountNumber** * **PhoneNumber**
+*/
+
 export enum IdentificationType {
-    AccountNumber = 'AccountNumber',
-    BarCode = 'BarCode',
-    IsoTrack2 = 'ISOTrack2',
     Pan = 'PAN',
+    IsoTrack2 = 'ISOTrack2',
+    BarCode = 'BarCode',
+    AccountNumber = 'AccountNumber',
     PhoneNumber = 'PhoneNumber'
 }

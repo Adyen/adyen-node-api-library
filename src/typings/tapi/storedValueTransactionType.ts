@@ -7,11 +7,15 @@
  * Do not edit this class manually.
  */
 
+/**
+*  Possible values: * **Reserve** * **Activate** * **Load** * **Unload** * **Reverse** * **Duplicate**
+*/
+
 export enum StoredValueTransactionType {
-    Activate = 'Activate',
-    Duplicate = 'Duplicate',
-    Load = 'Load',
     Reserve = 'Reserve',
+    Activate = 'Activate',
+    Load = 'Load',
+    Unload = 'Unload',
     Reverse = 'Reverse',
-    Unload = 'Unload'
+    Duplicate = 'Duplicate'
 }
