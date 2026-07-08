@@ -74,6 +74,36 @@ describe("NexoSecurityManager", () => {
         expect(() => manager.decrypt(encrypted)).toThrow(NexoSecurityException);
     });
 
+    test("tampered ciphertext and tampered HMAC produce an indistinguishable error (no padding oracle)", () => {
+        const manager = new NexoSecurityManager(credentials);
+
+        const captureError = (mutate: (msg: SaleToPOISecuredMessage) => void): string => {
+            const encrypted: SaleToPOISecuredMessage = manager.encrypt(plaintext, messageHeader);
+            mutate(encrypted);
+            try {
+                manager.decrypt(encrypted);
+                throw new Error("decrypt should have thrown");
+            } catch (e) {
+                expect(e).toBeInstanceOf(NexoSecurityException);
+                return (e as NexoSecurityException).message;
+            }
+        };
+
+        // Tamper the ciphertext: likely triggers an invalid-padding failure during decryption.
+        const ciphertextError = captureError((msg) => {
+            const blob = Buffer.from(msg.NexoBlob, "base64");
+            blob[0] = blob[0] ^ 0xff;
+            msg.NexoBlob = blob.toString("base64");
+        });
+
+        // Tamper only the HMAC: decryption succeeds but integrity validation fails.
+        const hmacError = captureError((msg) => {
+            msg.SecurityTrailer.Hmac = Buffer.from("tampered-hmac-value-000000000000").toString("base64");
+        });
+
+        expect(ciphertextError).toBe(hmacError);
+    });
+
     test("encrypt then decrypt is internally self-consistent", () => {
         const manager = new NexoSecurityManager(credentials);
         const encrypted: SaleToPOISecuredMessage = manager.encrypt(plaintext, messageHeader);
