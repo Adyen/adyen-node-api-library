@@ -36,6 +36,8 @@ import { MessageType } from "../../typings/tapi/messageType";
 import paymentSyncEncryptedSuccess from "../../__mocks__/clouddevice/payment-sync-encrypted-success.json";
 import paymentSyncError from "../../__mocks__/clouddevice/payment-sync-error.json";
 import paymentAsyncError from "../../__mocks__/clouddevice/payment-async-error.json";
+import paymentSyncForgedSuccess from "../../__mocks__/clouddevice/payment-sync-forged-success.json";
+import paymentAsyncForgedSuccess from "../../__mocks__/clouddevice/payment-async-forged-success.json";
 
 const BASE_URL = "https://device-api-test.adyen.com/v1";
 const merchantAccount = "TestMerchantAccount";
@@ -213,6 +215,45 @@ describe("EncryptedCloudDeviceApi", () => {
         expect(response.SaleToPOIRequest?.MessageHeader).toBeDefined();
     });
 
+    test("syncRejectsUnencryptedSuccess - throws NexoSecurityException for forged unencrypted success", async () => {
+        scope
+            .post(`/merchants/${merchantAccount}/devices/${deviceId}/sync`)
+            .reply(200, paymentSyncForgedSuccess);
+
+        const api = new EncryptedCloudDeviceApi(client, DEFAULT_CREDENTIALS);
+        const request = createCloudDeviceApiPaymentRequest();
+
+        await expect(api.sync(merchantAccount, deviceId, request)).rejects.toThrow(NexoSecurityException);
+    });
+
+    test("syncRejectsUnencryptedPartial - throws NexoSecurityException for forged unencrypted partial", async () => {
+        const forgedPartial = {
+            SaleToPOIResponse: {
+                MessageHeader: { POIID: deviceId },
+                PaymentResponse: { Response: { Result: "Partial" } },
+            },
+        };
+        scope
+            .post(`/merchants/${merchantAccount}/devices/${deviceId}/sync`)
+            .reply(200, forgedPartial);
+
+        const api = new EncryptedCloudDeviceApi(client, DEFAULT_CREDENTIALS);
+        const request = createCloudDeviceApiPaymentRequest();
+
+        await expect(api.sync(merchantAccount, deviceId, request)).rejects.toThrow(NexoSecurityException);
+    });
+
+    test("asyncRejectsUnencryptedSuccess - throws NexoSecurityException for forged unencrypted success", async () => {
+        scope
+            .post(`/merchants/${merchantAccount}/devices/${deviceId}/async`)
+            .reply(200, paymentAsyncForgedSuccess);
+
+        const api = new EncryptedCloudDeviceApi(client, DEFAULT_CREDENTIALS);
+        const request = createCloudDeviceApiPaymentRequest();
+
+        await expect(api.async(merchantAccount, deviceId, request)).rejects.toThrow(NexoSecurityException);
+    });
+
     test("decryptNotificationInvalidPayload - throws NexoSecurityException", () => {
         const api = new EncryptedCloudDeviceApi(client, {
             adyenCryptoVersion: 1,
@@ -224,7 +265,7 @@ describe("EncryptedCloudDeviceApi", () => {
         expect(() => api.decryptNotification("{...}")).toThrow(NexoSecurityException);
     });
 
-    test.each(["null", "123", "true", '"string"'])(
+    test.each(["null", "123", "true", "\"string\""])(
         "decryptNotification throws NexoSecurityException for non-object JSON payload: %s",
         (payload) => {
             const api = new EncryptedCloudDeviceApi(client, DEFAULT_CREDENTIALS);

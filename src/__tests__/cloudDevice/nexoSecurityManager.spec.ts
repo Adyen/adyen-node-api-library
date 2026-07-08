@@ -43,7 +43,7 @@ const messageHeader: MessageHeader = {
     POIID: "MX915-000000001",
 };
 
-const plaintext = '{"SaleToPOIRequest":{"MessageHeader":{}}}';
+const plaintext = "{\"SaleToPOIRequest\":{\"MessageHeader\":{}}}";
 
 describe("NexoSecurityManager", () => {
     const invalidCredentials: Array<EncryptionCredentialDetails | null> = [

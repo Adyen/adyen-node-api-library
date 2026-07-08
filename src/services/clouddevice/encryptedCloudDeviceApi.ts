@@ -92,7 +92,9 @@ export class EncryptedCloudDeviceApi extends Service {
 
         const encryptedResponse = response.SaleToPOIResponse;
         if (!encryptedResponse?.NexoBlob) {
-            // Terminal returned an unencrypted error response (e.g. terminal unreachable)
+            // Terminal returned an unencrypted error response (e.g. terminal unreachable).
+            // A genuine terminal outcome is always encrypted, so an unencrypted success is forged.
+            rejectUnencryptedSuccess(response);
             return response as unknown as CloudDeviceApiResponse;
         }
 
@@ -154,7 +156,9 @@ export class EncryptedCloudDeviceApi extends Service {
         const encryptedError = response as unknown as CloudDeviceApiSecuredRequest;
         const encryptedErrorRequest = encryptedError?.SaleToPOIRequest;
         if (!encryptedErrorRequest?.NexoBlob) {
-            // Unencrypted error response (e.g. terminal unreachable)
+            // Unencrypted error response (e.g. terminal unreachable).
+            // A genuine terminal outcome is always encrypted, so an unencrypted success is forged.
+            rejectUnencryptedSuccess(response);
             return response as unknown as CloudDeviceApiAsyncResponse;
         }
 
@@ -197,5 +201,42 @@ export class EncryptedCloudDeviceApi extends Service {
         }
 
         throw new NexoSecurityException("Unexpected payload without SaleToPOIResponse or SaleToPOIRequest");
+    }
+}
+
+/**
+ * Rejects an unencrypted response that claims a non-failure outcome.
+ *
+ * A genuine terminal outcome is always encrypted (delivered inside a NexoBlob), so an
+ * unencrypted response carrying a "Success" or "Partial" Result cannot come from the terminal
+ * and must be treated as forged. Legitimate unencrypted responses are gateway-generated errors
+ * (e.g. terminal unreachable, reject event notifications), which always carry "Failure" or no Result.
+ *
+ * @throws NexoSecurityException when a non-failure Result is found in an unencrypted response.
+ */
+function rejectUnencryptedSuccess(response: unknown): void {
+    if (!response || typeof response !== "object") {
+        return;
+    }
+    const envelope = response as Record<string, unknown>;
+    for (const message of Object.values(envelope)) {
+        if (!message || typeof message !== "object") {
+            continue;
+        }
+        for (const body of Object.values(message as Record<string, unknown>)) {
+            if (!body || typeof body !== "object") {
+                continue;
+            }
+            const inner = (body as Record<string, unknown>).Response;
+            if (inner && typeof inner === "object") {
+                const result = (inner as Record<string, unknown>).Result;
+                if (result === "Success" || result === "Partial") {
+                    throw new NexoSecurityException(
+                        "Received an unencrypted response with a non-failure result. " +
+                        "A genuine terminal outcome must be encrypted.",
+                    );
+                }
+            }
+        }
     }
 }
