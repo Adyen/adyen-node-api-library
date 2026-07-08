@@ -44,9 +44,9 @@ const merchantAccount = "TestMerchantAccount";
 const deviceId = "MX915-284251016";
 
 const DEFAULT_CREDENTIALS: EncryptionCredentialDetails = {
-    adyenCryptoVersion: 0,
+    adyenCryptoVersion: 1,
     keyIdentifier: "CryptoKeyIdentifier12345",
-    keyVersion: 0,
+    keyVersion: 1,
     passphrase: "p@ssw0rd123456",
 };
 

@@ -104,6 +104,30 @@ describe("NexoSecurityManager", () => {
         expect(ciphertextError).toBe(hmacError);
     });
 
+    test("decrypt throws a descriptive error when SecurityTrailer key metadata mismatches", () => {
+        const manager = new NexoSecurityManager(credentials);
+        const encrypted: SaleToPOISecuredMessage = manager.encrypt(plaintext, messageHeader);
+
+        // Change only the key metadata label; leave NexoBlob/Nonce/Hmac untouched so the
+        // cryptographic verification still succeeds and the metadata check is reached.
+        encrypted.SecurityTrailer.KeyIdentifier = "different-key-identifier";
+
+        let message = "";
+        try {
+            manager.decrypt(encrypted);
+            throw new Error("decrypt should have thrown");
+        } catch (e) {
+            expect(e).toBeInstanceOf(NexoSecurityException);
+            message = (e as NexoSecurityException).message;
+        }
+
+        expect(message).toMatch(/SecurityTrailer key metadata does not match/);
+        expect(message).toContain("KeyIdentifier differs");
+        // The KeyIdentifier value itself must never be leaked into the error message.
+        expect(message).not.toContain("different-key-identifier");
+        expect(message).not.toContain(credentials.keyIdentifier);
+    });
+
     test("encrypt then decrypt is internally self-consistent", () => {
         const manager = new NexoSecurityManager(credentials);
         const encrypted: SaleToPOISecuredMessage = manager.encrypt(plaintext, messageHeader);
