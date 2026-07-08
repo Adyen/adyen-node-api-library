@@ -54,7 +54,8 @@ ADYEN_TERMINAL_DEVICE_ID=V400m-1234567890
 ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER=
 ADYEN_TERMINAL_DEVICE_PASSPHRASE=
 
-- Run one test at a time with: npx jest cloudDeviceApi.terminal.spec.ts -t "should make a sync payment request"
+- Run one test at a time (i.e. npx jest cloudDeviceApi.terminal.spec.ts -t "should make a sync payment request")
+- Check console output (tests don't have assertions but are meant to display what the Terminal returns)
 - Restore 'enableTerminalTest' value to false
 */
 
