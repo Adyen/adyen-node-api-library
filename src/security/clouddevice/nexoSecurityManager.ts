@@ -78,9 +78,10 @@ export class NexoSecurityManager {
             const receivedHmac = Buffer.from(secured.SecurityTrailer.Hmac, "base64");
             validateHmac(receivedHmac, decryptedBytes, dk);
             return decryptedBytes.toString("utf-8");
-        } catch (e) {
-            if (e instanceof NexoSecurityException) throw e;
-            throw new NexoSecurityException("Cannot decrypt the SaleToPOISecuredMessage", e as Error);
+        } catch {
+            // Emit a single, generic error for every failure mode (padding, HMAC, nonce, decoding).
+            // Distinguishable errors would reintroduce a CBC padding-oracle side channel.
+            throw new NexoSecurityException("Decryption of the SaleToPOISecuredMessage failed");
         }
     }
 
