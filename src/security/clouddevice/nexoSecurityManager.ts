@@ -70,18 +70,40 @@ export class NexoSecurityManager {
      * Decrypts a SaleToPOI secured message and returns the plaintext JSON string.
      */
     public decrypt(secured: SaleToPOISecuredMessage): string {
+        let decryptedBytes: Buffer;
         try {
             const dk = this.getDerivedKey();
             const encryptedBytes = Buffer.from(secured.NexoBlob, "base64");
             const ivNonce = Buffer.from(secured.SecurityTrailer.Nonce, "base64");
-            const decryptedBytes = crypt(encryptedBytes, dk, ivNonce, "decrypt");
+            decryptedBytes = crypt(encryptedBytes, dk, ivNonce, "decrypt");
             const receivedHmac = Buffer.from(secured.SecurityTrailer.Hmac, "base64");
             validateHmac(receivedHmac, decryptedBytes, dk);
-            return decryptedBytes.toString("utf-8");
         } catch {
             // Emit a single, generic error for every failure mode (padding, HMAC, nonce, decoding).
             // Distinguishable errors would reintroduce a CBC padding-oracle side channel.
             throw new NexoSecurityException("Decryption of the SaleToPOISecuredMessage failed");
+        }
+        // Only reachable once the message is cryptographically verified, so a distinct diagnostic
+        // here is safe: a tampered message fails the HMAC check above and never reaches this point.
+        this.validateKeyMetadata(secured);
+        return decryptedBytes.toString("utf-8");
+    }
+
+    private validateKeyMetadata(secured: SaleToPOISecuredMessage): void {
+        const trailer = secured.SecurityTrailer;
+        if (
+            trailer.KeyIdentifier !== this.credentials.keyIdentifier ||
+            trailer.KeyVersion !== this.credentials.keyVersion ||
+            trailer.AdyenCryptoVersion !== this.credentials.adyenCryptoVersion
+        ) {
+            // Do not include the KeyIdentifier value: it is credential material and this message
+            // is likely to end up in logs. Only report the non-sensitive version numbers.
+            throw new NexoSecurityException(
+                "SecurityTrailer key metadata does not match the configured credentials: " +
+                `expected KeyVersion=${this.credentials.keyVersion}, AdyenCryptoVersion=${this.credentials.adyenCryptoVersion} ` +
+                `but received KeyVersion=${trailer.KeyVersion}, AdyenCryptoVersion=${trailer.AdyenCryptoVersion} ` +
+                `(KeyIdentifier ${trailer.KeyIdentifier === this.credentials.keyIdentifier ? "matches" : "differs"})`,
+            );
         }
     }
 
