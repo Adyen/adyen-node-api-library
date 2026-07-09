@@ -48,13 +48,7 @@ class HmacValidator {
      */
     public validateBankingHMAC(hmacKey: string, hmacSign: string, notification: string): boolean {
         const expectedSign = createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, Buffer.from(hmacSign, "hex")).update(notification, "utf8").digest("base64");
-        if(hmacKey?.length === expectedSign.length) {
-            return timingSafeEqual(
-                Buffer.from(expectedSign, "base64"),
-                Buffer.from(hmacKey, "base64")
-            );
-        }
-        return false;
+        return HmacValidator.secureCompare(expectedSign, hmacKey);
     }
 
     /**
@@ -66,13 +60,7 @@ class HmacValidator {
      */
     public validateHMACSignature(hmacKey: string, hmacSignature: string, data: string): boolean {
         const expectedSign = createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, Buffer.from(hmacKey, "hex")).update(data, "utf8").digest("base64");
-        if(hmacSignature?.length === expectedSign.length) {
-            return timingSafeEqual(
-                Buffer.from(expectedSign, "base64"),
-                Buffer.from(hmacSignature, "base64")
-            );
-        }
-        return false;
+        return HmacValidator.secureCompare(expectedSign, hmacSignature);
     }
 
     /**
@@ -85,13 +73,7 @@ class HmacValidator {
         if (notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE]) {
             const expectedSign = this.calculateHmac(notificationRequestItem, key);
             const merchantSign = notificationRequestItem.additionalData?.[ApiConstants.HMAC_SIGNATURE];
-            if(merchantSign?.length === expectedSign.length) {
-                return timingSafeEqual(
-                    Buffer.from(expectedSign, "base64"),
-                    Buffer.from(merchantSign, "base64")
-                );
-            }
-            return false;
+            return HmacValidator.secureCompare(expectedSign, merchantSign);
         }
         throw Error(`Missing ${ApiConstants.HMAC_SIGNATURE}`);
     }
@@ -134,6 +116,21 @@ class HmacValidator {
     public calculateHmacSignature(data: string, key: string): string {
         const rawKey = Buffer.from(key, "hex");
         return createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, rawKey).update(data, "utf8").digest("base64");
+    }
+
+    /**
+     * Constant-time comparison of two base64-encoded signatures. Guards on the
+     * decoded buffer length first: timingSafeEqual throws a TypeError when the
+     * buffers differ in length, and two base64 strings of equal character
+     * length can still decode to different byte lengths.
+     */
+    private static secureCompare(expected: string, received: string | undefined): boolean {
+        if (!received) {
+            return false;
+        }
+        const expectedBuffer = Buffer.from(expected, "base64");
+        const receivedBuffer = Buffer.from(received, "base64");
+        return expectedBuffer.length === receivedBuffer.length && timingSafeEqual(expectedBuffer, receivedBuffer);
     }
     
 }
