@@ -145,4 +145,14 @@ describe("HMAC Validator", function (): void {
         expect(isValid).toBeTruthy;
     });
 
+
+    it("should return false (not throw) when the signature length matches but decodes to a different byte length", function (): void {
+        const key = "DFB1EB5485295588A7DED4CF1BB4CA24C2B41BFC33C5EA6CA05B2A87F98F1F55";
+        const data = "pspReference:originalReference:merchantAccount:reference:1000:EUR:AUTHORISATION:true";
+        // 44 base64 chars, same length as a real SHA-256 HMAC signature, but decodes to 33 bytes.
+        const malformedSignature = "A".repeat(44);
+        expect((): boolean => hmacValidator.validateHMACSignature(key, malformedSignature, data)).not.toThrow();
+        expect(hmacValidator.validateHMACSignature(key, malformedSignature, data)).toBe(false);
+    });
+
 });
