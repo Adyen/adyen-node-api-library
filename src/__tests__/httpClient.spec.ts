@@ -166,7 +166,7 @@ describe("HTTP Client", function (): void {
         const customHeaderKey = "X-Custom-Header";
         const customHeaderValue = "my-custom-value";
 
-        const scope = nock("https://checkout-test.adyen.com/v71", {
+        const scope = nock("https://checkout-test.adyen.com/v72", {
             reqheaders: {
                 [customHeaderKey]: (headerValue) => {
                     expect(headerValue).toBeTruthy();
@@ -193,7 +193,7 @@ describe("HTTP Client", function (): void {
         const expectedLibraryName = LibraryConstants.LIB_NAME;
         const expectedLibraryVersion = LibraryConstants.LIB_VERSION;
 
-        const scope = nock("https://checkout-test.adyen.com/v71", {
+        const scope = nock("https://checkout-test.adyen.com/v72", {
             reqheaders: {
                 "adyen-library-name": (headerValue) => {
                     expect(headerValue).toBeTruthy();
@@ -228,7 +228,7 @@ describe("HTTP Client", function (): void {
         const expectedLibraryName = LibraryConstants.LIB_NAME;
         const expectedLibraryVersion = LibraryConstants.LIB_VERSION;
 
-        const scope = nock("https://checkout-test.adyen.com/v71", {
+        const scope = nock("https://checkout-test.adyen.com/v72", {
             reqheaders: {
                 "adyen-library-name": (headerValue) => {
                     expect(headerValue).toBeTruthy();
