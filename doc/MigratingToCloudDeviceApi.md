@@ -4,7 +4,7 @@
 
 The Adyen Node.js API Library now includes the [Cloud device API](https://docs.adyen.com/api-explorer/cloud-device-api/1/overview), a modern replacement for the [Terminal (Cloud) API](https://docs.adyen.com/api-explorer/terminal-api/1/overview) for In-Person Payments cloud integrations.
 
-The Terminal (Cloud) API (`TerminalCloudAPI`) uses hand-crafted models in the `src/typings/terminal` package. The Cloud device API (`CloudDeviceAPI`) is generated from the [Adyen OpenAPI specification](https://github.com/Adyen/adyen-openapi), just like all other services in this library. This means the models and service classes are always in sync with the API, follow the same patterns as the rest of the library (`ObjectSerializer` serialization, `attributeTypeMap`, etc.), and benefit from the automated update process.
+The Terminal (Cloud) API (`TerminalCloudAPI`) uses hand-crafted models in the `src/typings/terminal` package. The Cloud device API (`CloudDeviceAPI`) is generated from the [Cloud device API OpenAPI specification](https://github.com/Adyen/adyen-openapi/blob/main/yaml/CloudDeviceService-v1.yaml), just like all other services in this library. This means the models and service classes are always in sync with the API, follow the same patterns as the rest of the library (`ObjectSerializer` serialization, `attributeTypeMap`, etc.), and benefit from the automated update process.
 
 Because the Cloud device API models (`src/typings/tapi`) are generated from the spec rather than hand-crafted, there are differences in class names, enum naming conventions, field types, and properties. This guide describes these differences and what to be aware of when adopting the Cloud device API.
 

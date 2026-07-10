@@ -130,7 +130,7 @@ console.log(deviceStatus.status);
 
 The Adyen Node.js library supports encrypting request and response payloads, allowing you to secure communication between your integration and the cloud.
 
-Provide the encryption credentials configured on the Terminal in your Customer Area, and use `EncryptedCloudDeviceApi` instead of `CloudDeviceApi`.
+Provide the encryption credentials configured on the Terminal in your Customer Area, and use `EncryptedCloudDeviceApi` instead of `CloudDeviceApi`. For details on how to set up these credentials (`AdyenCryptoVersion`, `KeyIdentifier`, `KeyVersion`, and `Passphrase`) in the Customer Area, see [Protect communications](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/#protect-communications).
 
 ``` typescript
 import { EncryptedCloudDeviceApi } from "@adyen/api-library/lib/src/services/clouddevice/encryptedCloudDeviceApi";
