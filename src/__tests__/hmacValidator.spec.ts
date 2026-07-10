@@ -155,4 +155,31 @@ describe("HMAC Validator", function (): void {
         expect(hmacValidator.validateHMACSignature(key, malformedSignature, data)).toBe(false);
     });
 
+    it("validateHMAC returns false (not throw) when the item signature length matches but decodes to a different byte length", function (): void {
+        // 44 base64 chars, same length as a real SHA-256 HMAC signature, but decodes to 33 bytes.
+        const malformedSignature = "A".repeat(44);
+        const item = {
+            ...notification.notificationItems![0],
+            additionalData: { [ApiConstants.HMAC_SIGNATURE]: malformedSignature }
+        };
+        expect((): boolean => hmacValidator.validateHMAC(item, key)).not.toThrow();
+        expect(hmacValidator.validateHMAC(item, key)).toBe(false);
+    });
+
+    it("validateBankingHMAC returns false (not throw) when the signature length matches but decodes to a different byte length", function (): void {
+        const hmacKey = "11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB";
+        const data = readFileSync("./src/__mocks__/notification/accountHolderCreated.json", "utf8");
+        // 44 base64 chars, same length as a real SHA-256 HMAC signature, but decodes to 33 bytes.
+        const malformedSignature = "A".repeat(44);
+        expect((): boolean => hmacValidator.validateBankingHMAC(malformedSignature, hmacKey, data)).not.toThrow();
+        expect(hmacValidator.validateBankingHMAC(malformedSignature, hmacKey, data)).toBe(false);
+    });
+
+    it("returns false when the received signature is empty or undefined (secureCompare guard)", function (): void {
+        const hmacKey = "11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB";
+        const data = readFileSync("./src/__mocks__/notification/accountHolderCreated.json", "utf8");
+        expect(hmacValidator.validateHMACSignature(hmacKey, "", data)).toBe(false);
+        expect(hmacValidator.validateHMACSignature(hmacKey, undefined as unknown as string, data)).toBe(false);
+    });
+
 });
