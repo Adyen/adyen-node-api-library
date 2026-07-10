@@ -160,3 +160,33 @@ const payload = "...";
 const decryptedPayload = encryptedCloudDeviceApi.decryptNotification(payload);
 console.log(decryptedPayload);
 ```
+
+## Helper classes
+
+### PredefinedContentHelper
+
+When your integration receives a Display event notification, the terminal sends a `DisplayRequest` with an `OutputContent` that contains a `PredefinedContent.ReferenceID`. This field is a query-string that encodes the event type and transaction context.
+
+`PredefinedContentHelper` parses the `ReferenceID` and exposes typed accessors so you don't have to hand-roll query-string parsing.
+
+``` typescript
+import { Types } from "@adyen/api-library";
+
+const { PredefinedContentHelper, DisplayNotificationEvent } = Types.tapi;
+
+// referenceId comes from DisplayRequest.OutputContent.PredefinedContent.ReferenceID
+const referenceId = "TransactionID=oLkO001517998574000&TimeStamp=2018-02-07T10%3a16%3a14.000Z&event=PIN_ENTERED";
+
+const helper = new PredefinedContentHelper(referenceId);
+
+const event = helper.getEvent(); // DisplayNotificationEvent.PIN_ENTERED or null
+if (event === DisplayNotificationEvent.PIN_ENTERED) {
+    console.log("Customer is entering PIN");
+}
+
+console.log(helper.getTransactionId()); // "oLkO001517998574000"
+console.log(helper.getTimeStamp());     // "2018-02-07T10:16:14.000Z"
+console.log(helper.toObject());         // { TransactionID: "...", TimeStamp: "...", event: "PIN_ENTERED" }
+```
+
+The `DisplayNotificationEvent` enum contains all supported event values, such as `CARD_INSERTED`, `WAIT_FOR_PIN`, `PIN_ENTERED`, `TENDER_FINAL`, and others.
