@@ -389,6 +389,7 @@ let enumsMap: Set<string> = new Set<string>([
     "PayWithGoogleDonations.FundingSourceEnum",
     "PayWithGoogleDonations.TypeEnum",
     "Payment.ResultCodeEnum",
+    "PaymentAmountUpdateRequest.AdjustAuthTypeEnum",
     "PaymentAmountUpdateRequest.IndustryUsageEnum",
     "PaymentAmountUpdateResponse.IndustryUsageEnum",
     "PaymentAmountUpdateResponse.StatusEnum",
