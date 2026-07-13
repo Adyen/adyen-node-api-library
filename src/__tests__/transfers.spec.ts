@@ -1,6 +1,6 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import { transfersSuccess, getTransactionSuccess, listTransactionsSuccess } from "../__mocks__/transfers/responses";
+import { transfersSuccess, cashOutSuccess, getTransactionSuccess, listTransactionsSuccess } from "../__mocks__/transfers/responses";
 import TransfersAPI from "../services/transfers";
 import Client from "../client";
 import {transfers} from "../typings";
@@ -85,6 +85,31 @@ describe("Transfers", (): void => {
         }
     });
 
+
+    test("should initiate a cashout", async (): Promise<void> => {
+        scope.post("/cashouts")
+        .reply(200, cashOutSuccess);
+        const request = new transfers.CashOutInfo();
+        request.instructingBalanceAccountId = "BA00000000000000000000001";
+        request.amount = { currency: "EUR", value: 50000 };
+        request.counterparty = { transferInstrumentId: "SE00000000000000000000001" };
+        request.description = "Cashout to bank account";
+        request.referenceForBeneficiary = "CASHOUT-REF-001";
+        request.fee = { amount: { currency: "EUR", value: 500 } };
+
+        const response: transfers.CashOut = await transfersAPI.CashOutApi.initiateCashout(request);
+
+        expect(response.id).toEqual("CO00000000000000000000001");
+        expect(response.instructingBalanceAccountId).toEqual("BA00000000000000000000001");
+        expect(response.amount).toEqual({ currency: "EUR", value: 50000 });
+        expect(response.counterparty).toEqual({ transferInstrumentId: "SE00000000000000000000001" });
+        expect(response.fee?.amount).toEqual({ currency: "EUR", value: 500 });
+        expect(response.transfers?.length).toEqual(2);
+        expect(response.transfers?.[0].id).toEqual("400F6060JMB1I0AB");
+        expect(response.transfers?.[0].type).toEqual(transfers.CashOutTransfer.TypeEnum.CashoutRepayment);
+        expect(response.transfers?.[1].id).toEqual("400F6060JMB1I0AA");
+        expect(response.transfers?.[1].type).toEqual(transfers.CashOutTransfer.TypeEnum.CashoutFee);
+    });
 
     test("should get transaction", async (): Promise<void> => {
         scope.get("/transactions/123")
