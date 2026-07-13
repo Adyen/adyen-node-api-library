@@ -8,19 +8,15 @@
  */
 
 
-export class IbanAccountIdentification {
+export class UKFpsTracingData {
     /**
-    * The bank\'s 8- or 11-character BIC or SWIFT code.
+    * The FPS trace number. This is a unique identifier assigned to transfers processed by [FPS](https://www.bankofengland.co.uk/payment-systems/services/faster-payments-service).
     */
-    "bic"?: string;
+    "fpid": string;
     /**
-    * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+    * **ukFps**
     */
-    "iban": string;
-    /**
-    * **iban**
-    */
-    "type": IbanAccountIdentification.TypeEnum;
+    "type": UKFpsTracingData.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,34 +24,28 @@ export class IbanAccountIdentification {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "bic",
-            "baseName": "bic",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "iban",
-            "baseName": "iban",
+            "name": "fpid",
+            "baseName": "fpid",
             "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "IbanAccountIdentification.TypeEnum",
+            "type": "UKFpsTracingData.TypeEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return IbanAccountIdentification.attributeTypeMap;
+        return UKFpsTracingData.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace IbanAccountIdentification {
+export namespace UKFpsTracingData {
     export enum TypeEnum {
-        Iban = 'iban'
+        UkFps = 'ukFps'
     }
 }
