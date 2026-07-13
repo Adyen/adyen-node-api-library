@@ -8,19 +8,15 @@
  */
 
 
-export class IbanAccountIdentification {
+export class USAchTracingData {
     /**
-    * The bank\'s 8- or 11-character BIC or SWIFT code.
+    * The ACH trace number. This is a unique 15-digit identifier assigned to transfers processed by [ACH](https://fiscal.treasury.gov/payments-from-government/automated-clearing-house-ach).
     */
-    "bic"?: string;
+    "traceNumber": string;
     /**
-    * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+    * **usAch**
     */
-    "iban": string;
-    /**
-    * **iban**
-    */
-    "type": IbanAccountIdentification.TypeEnum;
+    "type": USAchTracingData.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,34 +24,28 @@ export class IbanAccountIdentification {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "bic",
-            "baseName": "bic",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "iban",
-            "baseName": "iban",
+            "name": "traceNumber",
+            "baseName": "traceNumber",
             "type": "string",
             "format": ""
         },
         {
             "name": "type",
             "baseName": "type",
-            "type": "IbanAccountIdentification.TypeEnum",
+            "type": "USAchTracingData.TypeEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return IbanAccountIdentification.attributeTypeMap;
+        return USAchTracingData.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace IbanAccountIdentification {
+export namespace USAchTracingData {
     export enum TypeEnum {
-        Iban = 'iban'
+        UsAch = 'usAch'
     }
 }

@@ -8,19 +8,19 @@
  */
 
 
-export class IbanAccountIdentification {
+export class GrantCounterparty {
     /**
-    * The bank\'s 8- or 11-character BIC or SWIFT code.
+    * The identifier of the receiving account holder.
     */
-    "bic"?: string;
+    "accountHolderId"?: string;
     /**
-    * The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
+    * The identifier of the balance account that belongs to the receiving account holder.
     */
-    "iban": string;
+    "balanceAccountId"?: string;
     /**
-    * **iban**
+    * The identifier of the transfer instrument that belongs to the legal entity of the account holder.
     */
-    "type": IbanAccountIdentification.TypeEnum;
+    "transferInstrumentId"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,34 +28,29 @@ export class IbanAccountIdentification {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "bic",
-            "baseName": "bic",
+            "name": "accountHolderId",
+            "baseName": "accountHolderId",
             "type": "string",
             "format": ""
         },
         {
-            "name": "iban",
-            "baseName": "iban",
+            "name": "balanceAccountId",
+            "baseName": "balanceAccountId",
             "type": "string",
             "format": ""
         },
         {
-            "name": "type",
-            "baseName": "type",
-            "type": "IbanAccountIdentification.TypeEnum",
+            "name": "transferInstrumentId",
+            "baseName": "transferInstrumentId",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return IbanAccountIdentification.attributeTypeMap;
+        return GrantCounterparty.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace IbanAccountIdentification {
-    export enum TypeEnum {
-        Iban = 'iban'
-    }
-}

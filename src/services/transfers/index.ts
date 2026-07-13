@@ -8,6 +8,7 @@
  */
 
 import { CapitalApi } from "./capitalApi";
+import { CashOutApi } from "./cashOutApi";
 import { TransactionsApi } from "./transactionsApi";
 import { TransfersApi } from "./transfersApi";
 
@@ -22,6 +23,10 @@ export default class TransfersAPI extends Service {
 
     public get CapitalApi() {
         return new CapitalApi(this.client);
+    }
+
+    public get CashOutApi() {
+        return new CashOutApi(this.client);
     }
 
     public get TransactionsApi() {

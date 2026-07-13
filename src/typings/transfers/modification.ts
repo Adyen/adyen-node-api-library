@@ -111,6 +111,7 @@ export namespace Modification {
         Failed = 'failed',
         Fee = 'fee',
         FeePending = 'feePending',
+        InterchangeAdjusted = 'interchangeAdjusted',
         InternalTransfer = 'internalTransfer',
         InternalTransferPending = 'internalTransferPending',
         InvoiceDeduction = 'invoiceDeduction',
@@ -127,6 +128,7 @@ export namespace Modification {
         MiscCostPending = 'miscCostPending',
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
+        Pending = 'pending',
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         Received = 'received',
@@ -140,6 +142,7 @@ export namespace Modification {
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
+        Reversed = 'reversed',
         SecondChargeback = 'secondChargeback',
         SecondChargebackPending = 'secondChargebackPending',
         Undefined = 'undefined'

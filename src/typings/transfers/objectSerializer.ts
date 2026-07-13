@@ -21,11 +21,15 @@ import { CapitalGrantInfo } from "./capitalGrantInfo";
 import { CapitalGrants } from "./capitalGrants";
 import { Card } from "./card";
 import { CardIdentification } from "./cardIdentification";
+import { CashOut } from "./cashOut";
+import { CashOutInfo } from "./cashOutInfo";
+import { CashOutInfoCounterparty } from "./cashOutInfoCounterparty";
+import { CashOutTransfer } from "./cashOutTransfer";
 import { ConfirmationTrackingData } from "./confirmationTrackingData";
-import { Counterparty } from "./counterparty";
 import { CounterpartyInfoV3 } from "./counterpartyInfoV3";
 import { CounterpartyV3 } from "./counterpartyV3";
 import { DKLocalAccountIdentification } from "./dKLocalAccountIdentification";
+import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
 import { DirectDebitInformation } from "./directDebitInformation";
 import { EstimationTrackingData } from "./estimationTrackingData";
 import { ExecutionDate } from "./executionDate";
@@ -33,9 +37,12 @@ import { ExternalReason } from "./externalReason";
 import { Fee } from "./fee";
 import { FindTransfersResponse } from "./findTransfersResponse";
 import { FundingInstrument } from "./fundingInstrument";
+import { GrantCounterparty } from "./grantCounterparty";
+import { GrantInfoCounterparty } from "./grantInfoCounterparty";
 import { HKLocalAccountIdentification } from "./hKLocalAccountIdentification";
 import { HULocalAccountIdentification } from "./hULocalAccountIdentification";
 import { IbanAccountIdentification } from "./ibanAccountIdentification";
+import { InterchangeData } from "./interchangeData";
 import { InternalCategoryData } from "./internalCategoryData";
 import { InternalReviewTrackingData } from "./internalReviewTrackingData";
 import { InvalidField } from "./invalidField";
@@ -51,6 +58,7 @@ import { Modification } from "./modification";
 import { NOLocalAccountIdentification } from "./nOLocalAccountIdentification";
 import { NZLocalAccountIdentification } from "./nZLocalAccountIdentification";
 import { NameLocation } from "./nameLocation";
+import { NetworkReason } from "./networkReason";
 import { NumberAndBicAccountIdentification } from "./numberAndBicAccountIdentification";
 import { PLLocalAccountIdentification } from "./pLLocalAccountIdentification";
 import { PartyIdentification } from "./partyIdentification";
@@ -78,9 +86,11 @@ import { TransactionSearchResponse } from "./transactionSearchResponse";
 import { Transfer } from "./transfer";
 import { TransferCategoryDataClass } from "./transferCategoryData";
 import { TransferData } from "./transferData";
+import { TransferDataTracingClass } from "./transferDataTracing";
 import { TransferDataTrackingClass } from "./transferDataTracking";
 import { TransferEvent } from "./transferEvent";
 import { TransferEventEventsDataInnerClass } from "./transferEventEventsDataInner";
+import { TransferEventTracingDataClass } from "./transferEventTracingData";
 import { TransferEventTrackingDataClass } from "./transferEventTrackingData";
 import { TransferInfo } from "./transferInfo";
 import { TransferNotificationCounterParty } from "./transferNotificationCounterParty";
@@ -90,7 +100,9 @@ import { TransferRequestReview } from "./transferRequestReview";
 import { TransferReview } from "./transferReview";
 import { TransferServiceRestServiceError } from "./transferServiceRestServiceError";
 import { TransferView } from "./transferView";
+import { UKFpsTracingData } from "./uKFpsTracingData";
 import { UKLocalAccountIdentification } from "./uKLocalAccountIdentification";
+import { USAchTracingData } from "./uSAchTracingData";
 import { USLocalAccountIdentification } from "./uSLocalAccountIdentification";
 import { UltimatePartyIdentification } from "./ultimatePartyIdentification";
 
@@ -119,6 +131,7 @@ let enumsMap: Set<string> = new Set<string>([
     "CALocalAccountIdentification.TypeEnum",
     "CZLocalAccountIdentification.TypeEnum",
     "CapitalGrant.StatusEnum",
+    "CashOutTransfer.TypeEnum",
     "ConfirmationTrackingData.StatusEnum",
     "ConfirmationTrackingData.TypeEnum",
     "DKLocalAccountIdentification.TypeEnum",
@@ -127,6 +140,7 @@ let enumsMap: Set<string> = new Set<string>([
     "HKLocalAccountIdentification.TypeEnum",
     "HULocalAccountIdentification.TypeEnum",
     "IbanAccountIdentification.TypeEnum",
+    "InterchangeData.TypeEnum",
     "InternalCategoryData.TypeEnum",
     "InternalReviewTrackingData.ReasonEnum",
     "InternalReviewTrackingData.StatusEnum",
@@ -139,6 +153,7 @@ let enumsMap: Set<string> = new Set<string>([
     "Modification.StatusEnum",
     "NOLocalAccountIdentification.TypeEnum",
     "NZLocalAccountIdentification.TypeEnum",
+    "NetworkReason.NamespaceEnum",
     "NumberAndBicAccountIdentification.TypeEnum",
     "PLLocalAccountIdentification.TypeEnum",
     "PartyIdentification.TypeEnum",
@@ -164,6 +179,7 @@ let enumsMap: Set<string> = new Set<string>([
     "TransferData.ReasonEnum",
     "TransferData.StatusEnum",
     "TransferData.TypeEnum",
+    "TransferDataTracing.TypeEnum",
     "TransferDataTracking.StatusEnum",
     "TransferDataTracking.TypeEnum",
     "TransferDataTracking.ReasonEnum",
@@ -171,6 +187,7 @@ let enumsMap: Set<string> = new Set<string>([
     "TransferEvent.StatusEnum",
     "TransferEvent.TypeEnum",
     "TransferEventEventsDataInner.TypeEnum",
+    "TransferEventTracingData.TypeEnum",
     "TransferEventTrackingData.StatusEnum",
     "TransferEventTrackingData.TypeEnum",
     "TransferEventTrackingData.ReasonEnum",
@@ -179,7 +196,9 @@ let enumsMap: Set<string> = new Set<string>([
     "TransferInfo.PriorityEnum",
     "TransferInfo.TypeEnum",
     "TransferReview.ScaOnApprovalEnum",
+    "UKFpsTracingData.TypeEnum",
     "UKLocalAccountIdentification.TypeEnum",
+    "USAchTracingData.TypeEnum",
     "USLocalAccountIdentification.AccountTypeEnum",
     "USLocalAccountIdentification.TypeEnum",
     "UltimatePartyIdentification.TypeEnum",
@@ -207,11 +226,15 @@ let typeMap: {[index: string]: any} = {
     "CapitalGrants": CapitalGrants,
     "Card": Card,
     "CardIdentification": CardIdentification,
+    "CashOut": CashOut,
+    "CashOutInfo": CashOutInfo,
+    "CashOutInfoCounterparty": CashOutInfoCounterparty,
+    "CashOutTransfer": CashOutTransfer,
     "ConfirmationTrackingData": ConfirmationTrackingData,
-    "Counterparty": Counterparty,
     "CounterpartyInfoV3": CounterpartyInfoV3,
     "CounterpartyV3": CounterpartyV3,
     "DKLocalAccountIdentification": DKLocalAccountIdentification,
+    "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
     "DirectDebitInformation": DirectDebitInformation,
     "EstimationTrackingData": EstimationTrackingData,
     "ExecutionDate": ExecutionDate,
@@ -219,9 +242,12 @@ let typeMap: {[index: string]: any} = {
     "Fee": Fee,
     "FindTransfersResponse": FindTransfersResponse,
     "FundingInstrument": FundingInstrument,
+    "GrantCounterparty": GrantCounterparty,
+    "GrantInfoCounterparty": GrantInfoCounterparty,
     "HKLocalAccountIdentification": HKLocalAccountIdentification,
     "HULocalAccountIdentification": HULocalAccountIdentification,
     "IbanAccountIdentification": IbanAccountIdentification,
+    "InterchangeData": InterchangeData,
     "InternalCategoryData": InternalCategoryData,
     "InternalReviewTrackingData": InternalReviewTrackingData,
     "InvalidField": InvalidField,
@@ -237,6 +263,7 @@ let typeMap: {[index: string]: any} = {
     "NOLocalAccountIdentification": NOLocalAccountIdentification,
     "NZLocalAccountIdentification": NZLocalAccountIdentification,
     "NameLocation": NameLocation,
+    "NetworkReason": NetworkReason,
     "NumberAndBicAccountIdentification": NumberAndBicAccountIdentification,
     "PLLocalAccountIdentification": PLLocalAccountIdentification,
     "PartyIdentification": PartyIdentification,
@@ -264,9 +291,11 @@ let typeMap: {[index: string]: any} = {
     "Transfer": Transfer,
     "TransferCategoryData": TransferCategoryDataClass,
     "TransferData": TransferData,
+    "TransferDataTracing": TransferDataTracingClass,
     "TransferDataTracking": TransferDataTrackingClass,
     "TransferEvent": TransferEvent,
     "TransferEventEventsDataInner": TransferEventEventsDataInnerClass,
+    "TransferEventTracingData": TransferEventTracingDataClass,
     "TransferEventTrackingData": TransferEventTrackingDataClass,
     "TransferInfo": TransferInfo,
     "TransferNotificationCounterParty": TransferNotificationCounterParty,
@@ -276,7 +305,9 @@ let typeMap: {[index: string]: any} = {
     "TransferReview": TransferReview,
     "TransferServiceRestServiceError": TransferServiceRestServiceError,
     "TransferView": TransferView,
+    "UKFpsTracingData": UKFpsTracingData,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
+    "USAchTracingData": USAchTracingData,
     "USLocalAccountIdentification": USLocalAccountIdentification,
     "UltimatePartyIdentification": UltimatePartyIdentification,
 }
@@ -337,6 +368,7 @@ const nullableSuffix = " | null";
 const optionalSuffix = " | undefined";
 const arrayPrefix = "Array<";
 const arraySuffix = ">";
+const setPrefix = "Set<";
 const mapPrefix = "{ [key: string]: ";
 const mapSuffix = "; }";
 
@@ -406,6 +438,13 @@ export class ObjectSerializer {
             let transformedData: any[] = [];
             for (let date of data) {
                 transformedData.push(ObjectSerializer.serialize(date, subType, format));
+            }
+            return transformedData;
+        } else if (type.startsWith(setPrefix)) {
+            let subType: string = type.slice(setPrefix.length, -arraySuffix.length); // Set<Type> => Type
+            let transformedData: any[] = [];
+            for (let item of data) {
+                transformedData.push(ObjectSerializer.serialize(item, subType, format));
             }
             return transformedData;
         } else if (type.startsWith(mapPrefix)) {
@@ -488,6 +527,13 @@ export class ObjectSerializer {
             let transformedData: any[] = [];
             for (let date of data) {
                 transformedData.push(ObjectSerializer.deserialize(date, subType, format));
+            }
+            return transformedData;
+        } else if (type.startsWith(setPrefix)) {
+            let subType: string = type.slice(setPrefix.length, -arraySuffix.length); // Set<Type> => Type
+            let transformedData = new Set<any>();
+            for (let item of data) {
+                transformedData.add(ObjectSerializer.deserialize(item, subType, format));
             }
             return transformedData;
         } else if (type.startsWith(mapPrefix)) {

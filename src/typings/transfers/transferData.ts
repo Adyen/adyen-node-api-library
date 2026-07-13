@@ -12,14 +12,17 @@ import { BalanceMutation } from "./balanceMutation";
 import { DirectDebitInformation } from "./directDebitInformation";
 import { ExecutionDate } from "./executionDate";
 import { ExternalReason } from "./externalReason";
+import { NetworkReason } from "./networkReason";
 import { PaymentInstrument } from "./paymentInstrument";
 import { ResourceReference } from "./resourceReference";
 import { TransactionRulesResult } from "./transactionRulesResult";
 import { TransferCategoryData } from "./transferCategoryData";
+import { TransferDataTracing } from "./transferDataTracing";
 import { TransferDataTracking } from "./transferDataTracking";
 import { TransferEvent } from "./transferEvent";
 import { TransferNotificationCounterParty } from "./transferNotificationCounterParty";
 import { TransferReview } from "./transferReview";
+import { UltimatePartyIdentification } from "./ultimatePartyIdentification";
 
 
 export class TransferData {
@@ -74,6 +77,7 @@ export class TransferData {
     * The ID of the resource.
     */
     "id"?: string;
+    "networkReason"?: NetworkReason | null;
     "paymentInstrument"?: PaymentInstrument | null;
     /**
     * Additional information about the status of the transfer.
@@ -93,15 +97,17 @@ export class TransferData {
     */
     "sequenceNumber"?: number;
     /**
-    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Lack of funds in the balance account.   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
+    * The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **refused**: the transfer request is rejected by Adyen for one of the following reasons:   - Transfer limit exceeded.   - Transaction rule requirements violated. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user\'s balance account.  - **failed**: the transfer is rejected by the counterparty\'s bank. - **returned**: the transfer is returned by the counterparty\'s bank.
     */
     "status": TransferData.StatusEnum;
+    "tracing"?: TransferDataTracing | null;
     "tracking"?: TransferDataTracking | null;
     "transactionRulesResult"?: TransactionRulesResult | null;
     /**
     * The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
     */
     "type"?: TransferData.TypeEnum;
+    "ultimateParty"?: UltimatePartyIdentification | null;
     /**
     * The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
     */
@@ -221,6 +227,12 @@ export class TransferData {
             "format": ""
         },
         {
+            "name": "networkReason",
+            "baseName": "networkReason",
+            "type": "NetworkReason | null",
+            "format": ""
+        },
+        {
             "name": "paymentInstrument",
             "baseName": "paymentInstrument",
             "type": "PaymentInstrument | null",
@@ -263,6 +275,12 @@ export class TransferData {
             "format": ""
         },
         {
+            "name": "tracing",
+            "baseName": "tracing",
+            "type": "TransferDataTracing | null",
+            "format": ""
+        },
+        {
             "name": "tracking",
             "baseName": "tracking",
             "type": "TransferDataTracking | null",
@@ -278,6 +296,12 @@ export class TransferData {
             "name": "type",
             "baseName": "type",
             "type": "TransferData.TypeEnum",
+            "format": ""
+        },
+        {
+            "name": "ultimateParty",
+            "baseName": "ultimateParty",
+            "type": "UltimatePartyIdentification | null",
             "format": ""
         },
         {
@@ -431,6 +455,7 @@ export namespace TransferData {
         Failed = 'failed',
         Fee = 'fee',
         FeePending = 'feePending',
+        InterchangeAdjusted = 'interchangeAdjusted',
         InternalTransfer = 'internalTransfer',
         InternalTransferPending = 'internalTransferPending',
         InvoiceDeduction = 'invoiceDeduction',
@@ -447,6 +472,7 @@ export namespace TransferData {
         MiscCostPending = 'miscCostPending',
         PaymentCost = 'paymentCost',
         PaymentCostPending = 'paymentCostPending',
+        Pending = 'pending',
         PendingApproval = 'pendingApproval',
         PendingExecution = 'pendingExecution',
         Received = 'received',
@@ -460,6 +486,7 @@ export namespace TransferData {
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
+        Reversed = 'reversed',
         SecondChargeback = 'secondChargeback',
         SecondChargebackPending = 'secondChargebackPending',
         Undefined = 'undefined'
