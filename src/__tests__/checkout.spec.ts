@@ -127,7 +127,7 @@ beforeEach((): void => {
         nock.activate();
     }
     client = createClient();
-    scope = nock("https://checkout-test.adyen.com/v71");
+    scope = nock("https://checkout-test.adyen.com/v72");
     checkoutService = new CheckoutAPI(client);
 });
 
@@ -458,7 +458,7 @@ describe("Checkout", (): void => {
         };
 
         nock("https://checkout-test.adyen.com")
-            .post("/v71/originKeys")
+            .post("/v72/originKeys")
             .reply(200, originKeysSuccess);
 
         const originKeysResponse = await checkoutUtility.UtilityApi.originKeys(originKeysRequest);
