@@ -156,6 +156,3 @@ export * from "./uTMCoordinates"
 
 // serializing and deserializing typed objects 
 export * from "./objectSerializer"
-
-// helpers
-export * from "./predefinedContentHelper"
