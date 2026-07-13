@@ -33,6 +33,44 @@ export const transfersSuccess = {
     "status" : "authorised"
 };
 
+export const cashOutSuccess = {
+    "id" : "CO00000000000000000000001",
+    "instructingBalanceAccountId" : "BA00000000000000000000001",
+    "amount" : {
+        "currency" : "EUR",
+        "value" : 50000
+    },
+    "counterparty" : {
+        "transferInstrumentId" : "SE00000000000000000000001"
+    },
+    "description" : "Cashout to bank account",
+    "referenceForBeneficiary" : "CASHOUT-REF-001",
+    "fee" : {
+        "amount" : {
+            "currency" : "EUR",
+            "value" : 500
+        }
+    },
+    "transfers" : [
+        {
+            "id" : "400F6060JMB1I0AB",
+            "type" : "cashoutRepayment",
+            "amount" : {
+                "currency" : "EUR",
+                "value" : 50500
+            }
+        },
+        {
+            "id" : "400F6060JMB1I0AA",
+            "type" : "cashoutFee",
+            "amount" : {
+                "currency" : "EUR",
+                "value" : 500
+            }
+        }
+    ]
+};
+
 export const getTransactionSuccess = {
     "accountHolderId" : "AHA1B2C3D4E5F6G7H8I9J0",
     "amount" : {
