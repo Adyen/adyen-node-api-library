@@ -77,8 +77,14 @@ export function fromKeyValuePairs(keyValuePairs: string): SaleToAcquirerData {
 
     const params = new URLSearchParams(keyValuePairs);
     for (const [key, value] of params) {
+        if (!key) {
+            continue;
+        }
         if (key.startsWith("metadata.")) {
-            metadata[key.substring("metadata.".length)] = value;
+            const subKey = key.substring("metadata.".length);
+            if (subKey) {
+                metadata[subKey] = value;
+            }
             continue;
         }
         switch (key) {
@@ -167,11 +173,8 @@ export function toBase64(data: SaleToAcquirerData): string {
  */
 function tryDecodeBase64Json(raw: string): SaleToAcquirerData | null {
     try {
-        const decoded = Buffer.from(raw, "base64").toString("utf8");
-        // Reject inputs that are not round-trip safe Base64 (e.g. plain key-value strings).
-        if (Buffer.from(decoded, "utf8").toString("base64").replace(/=+$/, "") !== raw.replace(/=+$/, "")) {
-            return null;
-        }
+        const sanitized = raw.replace(/\s/g, "");
+        const decoded = Buffer.from(sanitized, "base64").toString("utf8");
         if (decoded.trim().startsWith("{")) {
             return JSON.parse(decoded) as SaleToAcquirerData;
         }
