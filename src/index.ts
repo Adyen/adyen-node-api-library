@@ -38,6 +38,9 @@ export * from "./webhooks";
 // Export a utility function for HMAC validation
 export { hmacValidator } from "./utils";
 
+// Export TAPI (Cloud device API) helpers
+export { PredefinedContentHelper, DisplayNotificationEvent, SaleDataHelper, SaleToAcquirerData, RecurringProcessingModel, SaleToAcquirerDataParser } from "./utils/tapi";
+
 // Export the HTTP client implementation
 export { default as HttpURLConnectionClient } from "./httpClient/httpURLConnectionClient";
 

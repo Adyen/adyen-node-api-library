@@ -170,9 +170,7 @@ When your integration receives a Display event notification, the terminal sends 
 `PredefinedContentHelper` parses the `ReferenceID` and exposes typed accessors so you don't have to hand-roll query-string parsing.
 
 ``` typescript
-import { Types } from "@adyen/api-library";
-
-const { PredefinedContentHelper, DisplayNotificationEvent } = Types.tapi;
+import { PredefinedContentHelper, DisplayNotificationEvent } from "@adyen/api-library";
 
 // referenceId comes from DisplayRequest.OutputContent.PredefinedContent.ReferenceID
 const referenceId = "TransactionID=oLkO001517998574000&TimeStamp=2018-02-07T10%3a16%3a14.000Z&event=PIN_ENTERED";
@@ -190,3 +188,45 @@ console.log(helper.toObject());         // { TransactionID: "...", TimeStamp: ".
 ```
 
 The `DisplayNotificationEvent` enum contains all supported event values, such as `CARD_INSERTED`, `WAIT_FOR_PIN`, `PIN_ENTERED`, `TENDER_FINAL`, and others.
+
+### SaleDataHelper
+
+The `SaleData.SaleToAcquirerData` field carries sale information intended for the acquirer, encoded either as Base64 JSON or as form-encoded key-value pairs. `SaleDataHelper` wraps a `SaleData` object, auto-detects the format, and decodes it into a typed `SaleToAcquirerData` object.
+
+``` typescript
+import { SaleDataHelper, Types } from "@adyen/api-library";
+
+const saleData = new Types.tapi.SaleData();
+saleData.SaleToAcquirerData = "shopperEmail=foo@bar.com&currency=EUR&metadata.orderId=42";
+
+// returns the parsed SaleToAcquirerData, or null if the field is absent or unparsable
+const acquirerData = new SaleDataHelper(saleData).getSaleToAcquirerData();
+console.log(acquirerData);
+// {
+//   shopperEmail: "foo@bar.com",
+//   currency: "EUR",
+//   metadata: { orderId: "42" }
+// }
+```
+
+### SaleToAcquirerDataParser
+
+Use `SaleToAcquirerDataParser` directly when you have the raw string, or when you want to build and encode a `SaleToAcquirerData` payload yourself. It exposes `parse` (auto-detects the format), the explicit `fromBase64` / `fromKeyValuePairs` decoders, and the `toJson` / `toBase64` serializers.
+
+``` typescript
+import { SaleToAcquirerDataParser, SaleToAcquirerData, RecurringProcessingModel } from "@adyen/api-library";
+
+// Parse a raw value, auto-detecting Base64 JSON vs key-value pairs
+const parsed = SaleToAcquirerDataParser.parse("shopperEmail=foo@bar.com&tenderOption=AskGratuity");
+
+// Build a payload and encode it for SaleData.SaleToAcquirerData
+const data: SaleToAcquirerData = {
+    merchantAccount: "TestMerchant",
+    currency: "EUR",
+    shopperReference: "shopper-123",
+    recurringProcessingModel: RecurringProcessingModel.CardOnFile,
+    metadata: { orderId: "42" },
+};
+
+const encoded = SaleToAcquirerDataParser.toBase64(data); // Base64 string, ready to assign to SaleData.SaleToAcquirerData
+```
