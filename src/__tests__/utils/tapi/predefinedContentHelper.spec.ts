@@ -1,4 +1,4 @@
-import { PredefinedContentHelper, DisplayNotificationEvent } from "../typings/tapi/predefinedContentHelper";
+import { PredefinedContentHelper, DisplayNotificationEvent } from "../../../utils/tapi/predefinedContentHelper";
 
 describe("tapi PredefinedContentHelper", () => {
     it("should extract a valid event", () => {
