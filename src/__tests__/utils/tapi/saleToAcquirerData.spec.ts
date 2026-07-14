@@ -93,6 +93,23 @@ describe("tapi SaleToAcquirerDataParser", () => {
         expect(result.recurringProcessingModel).toBeUndefined();
     });
 
+    it("fromKeyValuePairs should ignore empty keys and empty metadata sub-keys", () => {
+        const raw = "=orphan&shopperEmail=foo@bar.com&metadata.=noKey&metadata.orderId=42";
+        const result = SaleToAcquirerDataParser.fromKeyValuePairs(raw);
+        expect(result).toEqual({
+            shopperEmail: "foo@bar.com",
+            metadata: { orderId: "42" },
+        });
+        expect(result.additionalData).toBeUndefined();
+    });
+
+    it("parse should detect Base64 JSON that contains whitespace/newlines", () => {
+        const base64 = SaleToAcquirerDataParser.toBase64(sample);
+        // Simulate MIME-style line wrapping / stray whitespace in the payload.
+        const wrapped = base64.replace(/(.{8})/g, "$1\n");
+        expect(SaleToAcquirerDataParser.parse(wrapped)).toEqual(sample);
+    });
+
     it("toJson and toBase64 should round-trip", () => {
         const json = SaleToAcquirerDataParser.toJson(sample);
         expect(JSON.parse(json)).toEqual(sample);
