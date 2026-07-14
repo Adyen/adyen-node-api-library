@@ -158,4 +158,4 @@ export * from "./uTMCoordinates"
 export * from "./objectSerializer"
 
 // helpers
-export * from "./predefinedContentHelper"
+export * from "../../utils/tapi/predefinedContentHelper"
