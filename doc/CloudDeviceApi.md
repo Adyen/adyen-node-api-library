@@ -189,6 +189,12 @@ console.log(helper.toObject());         // { TransactionID: "...", TimeStamp: ".
 
 The `DisplayNotificationEvent` enum contains all supported event values, such as `CARD_INSERTED`, `WAIT_FOR_PIN`, `PIN_ENTERED`, `TENDER_FINAL`, and others.
 
+### Working with SaleToAcquirerData
+
+`SaleToAcquirerData` is a field you add to the `SaleData` of your Cloud device API `PaymentRequest` to send extra information to the acquirer, such as shopper details, recurring/tokenization settings, tender options, and custom `metadata`. See [Add information to a payment](https://docs.adyen.com/point-of-sale/add-data). On the wire it is a single string, encoded either as Base64 JSON or as form-encoded key-value pairs.
+
+Use `SaleToAcquirerDataParser.toBase64(...)` to **build and encode** it into an outgoing request. Use `SaleDataHelper` / `SaleToAcquirerDataParser.parse(...)` to **decode** a `SaleData.SaleToAcquirerData` string you already hold (for example when inspecting, logging, or forwarding a request).
+
 ### SaleDataHelper
 
 The `SaleData.SaleToAcquirerData` field carries sale information intended for the acquirer, encoded either as Base64 JSON or as form-encoded key-value pairs. `SaleDataHelper` wraps a `SaleData` object, auto-detects the format, and decodes it into a typed `SaleToAcquirerData` object.
