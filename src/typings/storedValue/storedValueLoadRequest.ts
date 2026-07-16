@@ -13,7 +13,7 @@ import { Amount } from "./amount";
 export class StoredValueLoadRequest {
     "amount": Amount;
     /**
-    * The type of load you are trying to do, when absent we default to \'Load\'
+    * The type of load you are trying to do, when absent we default to \'load\'
     */
     "loadType"?: StoredValueLoadRequest.LoadTypeEnum;
     /**
