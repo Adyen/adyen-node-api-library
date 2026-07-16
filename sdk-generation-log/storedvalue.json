@@ -1,8 +1,8 @@
 {
   "service": "storedvalue",
   "project": "node",
-  "generatedAt": "2026-06-15T16:42:47Z",
-  "openapiCommitSha": "fe790646de44602c0531c3ebd57c966876c7a1c7",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "f6a0015d5e5165d611fa7f39bc2e34dc36dbee9c"
+  "generatedAt": "2026-07-16T13:15:02Z",
+  "openapiCommitSha": "c43ebe2c218116a98ddfa97cd5e4d63f6c427d6e",
+  "automationCommitSha": "a7fa5d57782b5065affe714e9d9caaf5009a1e24",
+  "libraryCommitSha": "99d1a0cf69c8660952baffd1437b00aae2fa4f23"
 }
