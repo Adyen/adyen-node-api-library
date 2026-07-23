@@ -34,6 +34,7 @@ import { ShopperTaxInfo } from "./shopperTaxInfo";
 import { Split } from "./split";
 import { SubMerchantInfo } from "./subMerchantInfo";
 import { Surcharge } from "./surcharge";
+import { ThirdPartyTokenRedundancyInfo } from "./thirdPartyTokenRedundancyInfo";
 import { ThreeDS2RequestFields } from "./threeDS2RequestFields";
 import { ThreeDSecureData } from "./threeDSecureData";
 
@@ -244,6 +245,7 @@ export class PaymentRequest {
     * The shopper\'s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`.
     */
     "telephoneNumber"?: string;
+    "thirdPartyTokenRedundancyInfo"?: ThirdPartyTokenRedundancyInfo | null;
     "threeDS2RequestData"?: ThreeDS2RequestFields | null;
     /**
     * Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorisation.Default: **false**.
@@ -680,6 +682,12 @@ export class PaymentRequest {
             "name": "telephoneNumber",
             "baseName": "telephoneNumber",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "thirdPartyTokenRedundancyInfo",
+            "baseName": "thirdPartyTokenRedundancyInfo",
+            "type": "ThirdPartyTokenRedundancyInfo | null",
             "format": ""
         },
         {

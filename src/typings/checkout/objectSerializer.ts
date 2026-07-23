@@ -35,6 +35,7 @@ import { ApplePayDonations } from "./applePayDonations";
 import { ApplePaySessionRequest } from "./applePaySessionRequest";
 import { ApplePaySessionResponse } from "./applePaySessionResponse";
 import { ApplicationInfo } from "./applicationInfo";
+import { AuPayDetails } from "./auPayDetails";
 import { AuthenticationData } from "./authenticationData";
 import { BacsDirectDebitDetails } from "./bacsDirectDebitDetails";
 import { BalanceCheckRequest } from "./balanceCheckRequest";
@@ -45,6 +46,7 @@ import { BlikDetails } from "./blikDetails";
 import { BrowserInfo } from "./browserInfo";
 import { CancelOrderRequest } from "./cancelOrderRequest";
 import { CancelOrderResponse } from "./cancelOrderResponse";
+import { CarRental } from "./carRental";
 import { CardBrandDetails } from "./cardBrandDetails";
 import { CardDetails } from "./cardDetails";
 import { CardDetailsRequest } from "./cardDetailsRequest";
@@ -56,6 +58,7 @@ import { CheckoutAwaitAction } from "./checkoutAwaitAction";
 import { CheckoutBankAccount } from "./checkoutBankAccount";
 import { CheckoutBankTransferAction } from "./checkoutBankTransferAction";
 import { CheckoutDelegatedAuthenticationAction } from "./checkoutDelegatedAuthenticationAction";
+import { CheckoutErrorResponseEntity } from "./checkoutErrorResponseEntity";
 import { CheckoutForwardRequest } from "./checkoutForwardRequest";
 import { CheckoutForwardRequestCard } from "./checkoutForwardRequestCard";
 import { CheckoutForwardRequestOptions } from "./checkoutForwardRequestOptions";
@@ -79,7 +82,7 @@ import { CreateCheckoutSessionRequest } from "./createCheckoutSessionRequest";
 import { CreateCheckoutSessionResponse } from "./createCheckoutSessionResponse";
 import { CreateOrderRequest } from "./createOrderRequest";
 import { CreateOrderResponse } from "./createOrderResponse";
-import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
+import { DBaraiDetails } from "./dBaraiDetails";
 import { DeliveryAddress } from "./deliveryAddress";
 import { DeliveryMethod } from "./deliveryMethod";
 import { Destination } from "./destination";
@@ -103,6 +106,7 @@ import { EnhancedSchemeData } from "./enhancedSchemeData";
 import { ExternalPlatform } from "./externalPlatform";
 import { ExternalTokenDetails } from "./externalTokenDetails";
 import { FastlaneDetails } from "./fastlaneDetails";
+import { Folio } from "./folio";
 import { ForexQuote } from "./forexQuote";
 import { FraudCheckResult } from "./fraudCheckResult";
 import { FraudResult } from "./fraudResult";
@@ -111,12 +115,12 @@ import { FundRecipient } from "./fundRecipient";
 import { GenericIssuerPaymentMethodDetails } from "./genericIssuerPaymentMethodDetails";
 import { GooglePayDetails } from "./googlePayDetails";
 import { GooglePayDonations } from "./googlePayDonations";
+import { Healthcare } from "./healthcare";
 import { IdealDetails } from "./idealDetails";
 import { IdealDonations } from "./idealDonations";
 import { InputDetail } from "./inputDetail";
 import { InstallmentOption } from "./installmentOption";
 import { Installments } from "./installments";
-import { InvalidField } from "./invalidField";
 import { Item } from "./item";
 import { ItemDetailLine } from "./itemDetailLine";
 import { KlarnaDetails } from "./klarnaDetails";
@@ -125,6 +129,7 @@ import { Leg } from "./leg";
 import { LevelTwoThree } from "./levelTwoThree";
 import { LineItem } from "./lineItem";
 import { ListStoredPaymentMethodsResponse } from "./listStoredPaymentMethodsResponse";
+import { Lodging } from "./lodging";
 import { Mandate } from "./mandate";
 import { MasterpassDetails } from "./masterpassDetails";
 import { MbwayDetails } from "./mbwayDetails";
@@ -181,6 +186,7 @@ import { PaymentValidationsResponse } from "./paymentValidationsResponse";
 import { PaypalUpdateOrderRequest } from "./paypalUpdateOrderRequest";
 import { PaypalUpdateOrderResponse } from "./paypalUpdateOrderResponse";
 import { Phone } from "./phone";
+import { PickupInfo } from "./pickupInfo";
 import { PixDetails } from "./pixDetails";
 import { PixPayByBankDetails } from "./pixPayByBankDetails";
 import { PixPayByBankRiskSignals } from "./pixPayByBankRiskSignals";
@@ -190,6 +196,7 @@ import { PseDetails } from "./pseDetails";
 import { RakutenPayDetails } from "./rakutenPayDetails";
 import { RatepayDetails } from "./ratepayDetails";
 import { Recurring } from "./recurring";
+import { RentalSurcharges } from "./rentalSurcharges";
 import { ResponseAdditionalData3DSecure } from "./responseAdditionalData3DSecure";
 import { ResponseAdditionalDataBillingAddress } from "./responseAdditionalDataBillingAddress";
 import { ResponseAdditionalDataCard } from "./responseAdditionalDataCard";
@@ -201,12 +208,15 @@ import { ResponseAdditionalDataOpi } from "./responseAdditionalDataOpi";
 import { ResponseAdditionalDataSepa } from "./responseAdditionalDataSepa";
 import { ResponseAdditionalDataSwish } from "./responseAdditionalDataSwish";
 import { ResponsePaymentMethod } from "./responsePaymentMethod";
+import { ReturnInfo } from "./returnInfo";
 import { RiskData } from "./riskData";
 import { RivertyDetails } from "./rivertyDetails";
+import { Room } from "./room";
 import { SDKEphemPubKey } from "./sDKEphemPubKey";
 import { SamsungPayDetails } from "./samsungPayDetails";
 import { ScreenDimensions } from "./screenDimensions";
 import { SepaDirectDebitDetails } from "./sepaDirectDebitDetails";
+import { SepaDirectDebitDonations } from "./sepaDirectDebitDonations";
 import { ServiceError } from "./serviceError";
 import { SessionResultResponse } from "./sessionResultResponse";
 import { ShopperIdPaymentMethod } from "./shopperIdPaymentMethod";
@@ -226,6 +236,8 @@ import { SubMerchant } from "./subMerchant";
 import { SubMerchantInfo } from "./subMerchantInfo";
 import { Surcharge } from "./surcharge";
 import { TaxTotal } from "./taxTotal";
+import { TemporaryServices } from "./temporaryServices";
+import { ThirdPartyTokenRedundancyInfo } from "./thirdPartyTokenRedundancyInfo";
 import { ThreeDS2RequestData } from "./threeDS2RequestData";
 import { ThreeDS2RequestFields } from "./threeDS2RequestFields";
 import { ThreeDS2ResponseData } from "./threeDS2ResponseData";
@@ -295,6 +307,7 @@ let enumsMap: Set<string> = new Set<string>([
     "ApplePayDetails.TypeEnum",
     "ApplePayDonations.FundingSourceEnum",
     "ApplePayDonations.TypeEnum",
+    "AuPayDetails.TypeEnum",
     "AuthenticationData.AttemptAuthenticationEnum",
     "BacsDirectDebitDetails.TypeEnum",
     "BalanceCheckRequest.RecurringProcessingModelEnum",
@@ -303,6 +316,7 @@ let enumsMap: Set<string> = new Set<string>([
     "BillDeskDetails.TypeEnum",
     "BlikDetails.TypeEnum",
     "CancelOrderResponse.ResultCodeEnum",
+    "CarRental.RateTypeEnum",
     "CardDetails.FundingSourceEnum",
     "CardDetails.TypeEnum",
     "CardDonations.FundingSourceEnum",
@@ -336,6 +350,7 @@ let enumsMap: Set<string> = new Set<string>([
     "CreateCheckoutSessionResponse.StoreFiltrationModeEnum",
     "CreateCheckoutSessionResponse.StorePaymentMethodModeEnum",
     "CreateOrderResponse.ResultCodeEnum",
+    "DBaraiDetails.TypeEnum",
     "DeliveryMethod.TypeEnum",
     "DeviceRenderOptions.SdkInterfaceEnum",
     "DeviceRenderOptions.SdkUiTypeEnum",
@@ -366,6 +381,7 @@ let enumsMap: Set<string> = new Set<string>([
     "Installments.PlanEnum",
     "KlarnaDetails.TypeEnum",
     "KlarnaNetworkDetails.TypeEnum",
+    "Lodging.LodgingChargeTypeEnum",
     "Mandate.AmountRuleEnum",
     "Mandate.BillingAttemptsRuleEnum",
     "Mandate.FrequencyEnum",
@@ -443,6 +459,7 @@ let enumsMap: Set<string> = new Set<string>([
     "SamsungPayDetails.FundingSourceEnum",
     "SamsungPayDetails.TypeEnum",
     "SepaDirectDebitDetails.TypeEnum",
+    "SepaDirectDebitDonations.TypeEnum",
     "SessionResultResponse.StatusEnum",
     "Split.TypeEnum",
     "StandalonePaymentCancelResponse.StatusEnum",
@@ -525,6 +542,7 @@ let typeMap: {[index: string]: any} = {
     "ApplePaySessionRequest": ApplePaySessionRequest,
     "ApplePaySessionResponse": ApplePaySessionResponse,
     "ApplicationInfo": ApplicationInfo,
+    "AuPayDetails": AuPayDetails,
     "AuthenticationData": AuthenticationData,
     "BacsDirectDebitDetails": BacsDirectDebitDetails,
     "BalanceCheckRequest": BalanceCheckRequest,
@@ -535,6 +553,7 @@ let typeMap: {[index: string]: any} = {
     "BrowserInfo": BrowserInfo,
     "CancelOrderRequest": CancelOrderRequest,
     "CancelOrderResponse": CancelOrderResponse,
+    "CarRental": CarRental,
     "CardBrandDetails": CardBrandDetails,
     "CardDetails": CardDetails,
     "CardDetailsRequest": CardDetailsRequest,
@@ -546,6 +565,7 @@ let typeMap: {[index: string]: any} = {
     "CheckoutBankAccount": CheckoutBankAccount,
     "CheckoutBankTransferAction": CheckoutBankTransferAction,
     "CheckoutDelegatedAuthenticationAction": CheckoutDelegatedAuthenticationAction,
+    "CheckoutErrorResponseEntity": CheckoutErrorResponseEntity,
     "CheckoutForwardRequest": CheckoutForwardRequest,
     "CheckoutForwardRequestCard": CheckoutForwardRequestCard,
     "CheckoutForwardRequestOptions": CheckoutForwardRequestOptions,
@@ -569,7 +589,7 @@ let typeMap: {[index: string]: any} = {
     "CreateCheckoutSessionResponse": CreateCheckoutSessionResponse,
     "CreateOrderRequest": CreateOrderRequest,
     "CreateOrderResponse": CreateOrderResponse,
-    "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
+    "DBaraiDetails": DBaraiDetails,
     "DeliveryAddress": DeliveryAddress,
     "DeliveryMethod": DeliveryMethod,
     "Destination": Destination,
@@ -593,6 +613,7 @@ let typeMap: {[index: string]: any} = {
     "ExternalPlatform": ExternalPlatform,
     "ExternalTokenDetails": ExternalTokenDetails,
     "FastlaneDetails": FastlaneDetails,
+    "Folio": Folio,
     "ForexQuote": ForexQuote,
     "FraudCheckResult": FraudCheckResult,
     "FraudResult": FraudResult,
@@ -601,12 +622,12 @@ let typeMap: {[index: string]: any} = {
     "GenericIssuerPaymentMethodDetails": GenericIssuerPaymentMethodDetails,
     "GooglePayDetails": GooglePayDetails,
     "GooglePayDonations": GooglePayDonations,
+    "Healthcare": Healthcare,
     "IdealDetails": IdealDetails,
     "IdealDonations": IdealDonations,
     "InputDetail": InputDetail,
     "InstallmentOption": InstallmentOption,
     "Installments": Installments,
-    "InvalidField": InvalidField,
     "Item": Item,
     "ItemDetailLine": ItemDetailLine,
     "KlarnaDetails": KlarnaDetails,
@@ -615,6 +636,7 @@ let typeMap: {[index: string]: any} = {
     "LevelTwoThree": LevelTwoThree,
     "LineItem": LineItem,
     "ListStoredPaymentMethodsResponse": ListStoredPaymentMethodsResponse,
+    "Lodging": Lodging,
     "Mandate": Mandate,
     "MasterpassDetails": MasterpassDetails,
     "MbwayDetails": MbwayDetails,
@@ -671,6 +693,7 @@ let typeMap: {[index: string]: any} = {
     "PaypalUpdateOrderRequest": PaypalUpdateOrderRequest,
     "PaypalUpdateOrderResponse": PaypalUpdateOrderResponse,
     "Phone": Phone,
+    "PickupInfo": PickupInfo,
     "PixDetails": PixDetails,
     "PixPayByBankDetails": PixPayByBankDetails,
     "PixPayByBankRiskSignals": PixPayByBankRiskSignals,
@@ -680,6 +703,7 @@ let typeMap: {[index: string]: any} = {
     "RakutenPayDetails": RakutenPayDetails,
     "RatepayDetails": RatepayDetails,
     "Recurring": Recurring,
+    "RentalSurcharges": RentalSurcharges,
     "ResponseAdditionalData3DSecure": ResponseAdditionalData3DSecure,
     "ResponseAdditionalDataBillingAddress": ResponseAdditionalDataBillingAddress,
     "ResponseAdditionalDataCard": ResponseAdditionalDataCard,
@@ -691,12 +715,15 @@ let typeMap: {[index: string]: any} = {
     "ResponseAdditionalDataSepa": ResponseAdditionalDataSepa,
     "ResponseAdditionalDataSwish": ResponseAdditionalDataSwish,
     "ResponsePaymentMethod": ResponsePaymentMethod,
+    "ReturnInfo": ReturnInfo,
     "RiskData": RiskData,
     "RivertyDetails": RivertyDetails,
+    "Room": Room,
     "SDKEphemPubKey": SDKEphemPubKey,
     "SamsungPayDetails": SamsungPayDetails,
     "ScreenDimensions": ScreenDimensions,
     "SepaDirectDebitDetails": SepaDirectDebitDetails,
+    "SepaDirectDebitDonations": SepaDirectDebitDonations,
     "ServiceError": ServiceError,
     "SessionResultResponse": SessionResultResponse,
     "ShopperIdPaymentMethod": ShopperIdPaymentMethod,
@@ -716,6 +743,8 @@ let typeMap: {[index: string]: any} = {
     "SubMerchantInfo": SubMerchantInfo,
     "Surcharge": Surcharge,
     "TaxTotal": TaxTotal,
+    "TemporaryServices": TemporaryServices,
+    "ThirdPartyTokenRedundancyInfo": ThirdPartyTokenRedundancyInfo,
     "ThreeDS2RequestData": ThreeDS2RequestData,
     "ThreeDS2RequestFields": ThreeDS2RequestFields,
     "ThreeDS2ResponseData": ThreeDS2ResponseData,

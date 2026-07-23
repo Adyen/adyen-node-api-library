@@ -10,11 +10,11 @@
 
 export class Agency {
     /**
-    * The reference number for the invoice, issued by the agency. * Encoding: ASCII * minLength: 1 character * maxLength: 6 characters
+    * The reference number for the invoice, issued by the agency. * Encoding: ASCII * minLength: 1 character * maxLength: 6 characters * **additionalData key:** `airline.agency_invoice_number`
     */
     "invoiceNumber"?: string;
     /**
-    * The two-letter agency plan identifier. * Encoding: ASCII * minLength: 2 characters * maxLength: 2 characters
+    * The two-letter agency plan identifier. * Encoding: ASCII * minLength: 2 characters * maxLength: 2 characters * **additionalData key:** `airline.agency_plan_name`
     */
     "planName"?: string;
 

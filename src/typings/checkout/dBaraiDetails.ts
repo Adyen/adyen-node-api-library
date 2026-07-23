@@ -8,27 +8,11 @@
  */
 
 
-export class KlarnaDetails {
-    /**
-    * The address where to send the invoice.
-    */
-    "billingAddress"?: string;
+export class DBaraiDetails {
     /**
     * The checkout attempt identifier.
     */
     "checkoutAttemptId"?: string;
-    /**
-    * The address where the goods should be delivered.
-    */
-    "deliveryAddress"?: string;
-    /**
-    * Base64-encoded merchant metadata (Extra Merchant Data) forwarded to Klarna at authorization.
-    */
-    "merchantData"?: string;
-    /**
-    * Shopper name, date of birth, phone number, and email address.
-    */
-    "personalDetails"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
@@ -45,13 +29,9 @@ export class KlarnaDetails {
     */
     "storedPaymentMethodId"?: string;
     /**
-    * The type of flow to initiate.
+    * **dbarai**
     */
-    "subtype"?: string;
-    /**
-    * **klarna**
-    */
-    "type": KlarnaDetails.TypeEnum;
+    "type"?: DBaraiDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -59,32 +39,8 @@ export class KlarnaDetails {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "billingAddress",
-            "baseName": "billingAddress",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "deliveryAddress",
-            "baseName": "deliveryAddress",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "merchantData",
-            "baseName": "merchantData",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "personalDetails",
-            "baseName": "personalDetails",
             "type": "string",
             "format": ""
         },
@@ -107,34 +63,22 @@ export class KlarnaDetails {
             "format": ""
         },
         {
-            "name": "subtype",
-            "baseName": "subtype",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "type",
             "baseName": "type",
-            "type": "KlarnaDetails.TypeEnum",
+            "type": "DBaraiDetails.TypeEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return KlarnaDetails.attributeTypeMap;
+        return DBaraiDetails.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace KlarnaDetails {
+export namespace DBaraiDetails {
     export enum TypeEnum {
-        Klarna = 'klarna',
-        Klarnapayments = 'klarnapayments',
-        KlarnapaymentsAccount = 'klarnapayments_account',
-        KlarnapaymentsB2b = 'klarnapayments_b2b',
-        KlarnaPaynow = 'klarna_paynow',
-        KlarnaAccount = 'klarna_account',
-        KlarnaB2b = 'klarna_b2b'
+        Dbarai = 'dbarai'
     }
 }

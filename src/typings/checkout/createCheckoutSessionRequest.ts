@@ -24,6 +24,7 @@ import { PlatformChargebackLogic } from "./platformChargebackLogic";
 import { RiskData } from "./riskData";
 import { ShopperName } from "./shopperName";
 import { Split } from "./split";
+import { ThirdPartyTokenRedundancyInfo } from "./thirdPartyTokenRedundancyInfo";
 import { ThreeDSecureData } from "./threeDSecureData";
 
 
@@ -147,6 +148,10 @@ export class CreateCheckoutSessionRequest {
     "returnUrl": string;
     "riskData"?: RiskData | null;
     /**
+    * Use this if you made a `/paymentMethods` request to get the payment methods for the shopper\'s checkout session.  A unique ID to [connect the shopper to a single checkout session](https://docs.adyen.com/online-payments/checkout-settings#checkout-shopper-conversion-id) that uses multiple API requests. You can use this to get insights into conversion rates.
+    */
+    "shopperConversionId"?: string;
+    /**
     * The shopper\'s email address.
     */
     "shopperEmail"?: string;
@@ -215,6 +220,7 @@ export class CreateCheckoutSessionRequest {
     * Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform=Web&integration=Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.
     */
     "themeId"?: string;
+    "thirdPartyTokenRedundancyInfo"?: ThirdPartyTokenRedundancyInfo | null;
     "threeDS2RequestData"?: CheckoutSessionThreeDS2RequestData | null;
     /**
     * Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**.
@@ -474,6 +480,12 @@ export class CreateCheckoutSessionRequest {
             "format": ""
         },
         {
+            "name": "shopperConversionId",
+            "baseName": "shopperConversionId",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "shopperEmail",
             "baseName": "shopperEmail",
             "type": "string",
@@ -579,6 +591,12 @@ export class CreateCheckoutSessionRequest {
             "name": "themeId",
             "baseName": "themeId",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "thirdPartyTokenRedundancyInfo",
+            "baseName": "thirdPartyTokenRedundancyInfo",
+            "type": "ThirdPartyTokenRedundancyInfo | null",
             "format": ""
         },
         {

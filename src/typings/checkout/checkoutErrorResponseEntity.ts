@@ -8,19 +8,12 @@
  */
 
 
-export class InvalidField {
-    /**
-    * Description of the validation error.
-    */
+export class CheckoutErrorResponseEntity {
+    "errorCode": string;
+    "errorType": string;
     "message": string;
-    /**
-    * The field that has an invalid value.
-    */
-    "name": string;
-    /**
-    * The invalid value.
-    */
-    "value": string;
+    "pspReference"?: string;
+    "status"?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +21,38 @@ export class InvalidField {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "errorCode",
+            "baseName": "errorCode",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "errorType",
+            "baseName": "errorType",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "message",
             "baseName": "message",
             "type": "string",
             "format": ""
         },
         {
-            "name": "name",
-            "baseName": "name",
+            "name": "pspReference",
+            "baseName": "pspReference",
             "type": "string",
             "format": ""
         },
         {
-            "name": "value",
-            "baseName": "value",
-            "type": "string",
-            "format": ""
+            "name": "status",
+            "baseName": "status",
+            "type": "number",
+            "format": "int32"
         }    ];
 
     static getAttributeTypeMap() {
-        return InvalidField.attributeTypeMap;
+        return CheckoutErrorResponseEntity.attributeTypeMap;
     }
 
     public constructor() {
