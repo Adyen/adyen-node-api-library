@@ -115,6 +115,7 @@ export namespace PaymentMethodResponse {
         BrSchemes = 'br_schemes',
         Carnet = 'carnet',
         Cartebancaire = 'cartebancaire',
+        Cashapp = 'cashapp',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
         Cooper = 'cooper',

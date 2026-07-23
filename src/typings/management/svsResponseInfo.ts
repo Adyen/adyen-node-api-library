@@ -12,11 +12,11 @@ export class SvsResponseInfo {
     /**
     * The merchant ID (MID) that the acquirer recognizes you by.
     */
-    "authorisationMid": string;
+    "authorisationMid"?: string;
     /**
     * The three-character ISO currency code, example **USD**
     */
-    "currencyCode": string;
+    "currencyCode"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

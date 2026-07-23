@@ -14,6 +14,7 @@ import { AlipayPlusInfo } from "./alipayPlusInfo";
 import { AmexInfo } from "./amexInfo";
 import { ApplePayInfo } from "./applePayInfo";
 import { BcmcInfo } from "./bcmcInfo";
+import { CarnetInfo } from "./carnetInfo";
 import { CartesBancairesInfo } from "./cartesBancairesInfo";
 import { ClearpayInfo } from "./clearpayInfo";
 import { DinersInfo } from "./dinersInfo";
@@ -55,7 +56,7 @@ export class PaymentMethodSetupInfo {
     * The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).
     */
     "businessLineId"?: string;
-    "carnet"?: GenericPmWithTdiInfo | null;
+    "carnet"?: CarnetInfo | null;
     "cartesBancaires"?: CartesBancairesInfo | null;
     "clearpay"?: ClearpayInfo | null;
     /**
@@ -178,7 +179,7 @@ export class PaymentMethodSetupInfo {
         {
             "name": "carnet",
             "baseName": "carnet",
-            "type": "GenericPmWithTdiInfo | null",
+            "type": "CarnetInfo | null",
             "format": ""
         },
         {
@@ -501,6 +502,7 @@ export namespace PaymentMethodSetupInfo {
         BrSchemes = 'br_schemes',
         Carnet = 'carnet',
         Cartebancaire = 'cartebancaire',
+        Cashapp = 'cashapp',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
         Cooper = 'cooper',
