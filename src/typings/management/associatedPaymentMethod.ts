@@ -8,19 +8,19 @@
  */
 
 
-export class PayMeResponseInfo {
+export class AssociatedPaymentMethod {
     /**
-    * Merchant display name
+    * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
     */
-    "displayName"?: string;
+    "enabled": boolean;
     /**
-    * Merchant logo. Format: Base64-encoded string.
+    * The identifier of the payment method.
     */
-    "logo"?: string;
+    "id": string;
     /**
-    * The email address of merchant support.
+    * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
     */
-    "supportEmail"?: string;
+    "type": string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +28,26 @@ export class PayMeResponseInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "displayName",
-            "baseName": "displayName",
+            "name": "enabled",
+            "baseName": "enabled",
+            "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "id",
+            "baseName": "id",
             "type": "string",
             "format": ""
         },
         {
-            "name": "logo",
-            "baseName": "logo",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "supportEmail",
-            "baseName": "supportEmail",
+            "name": "type",
+            "baseName": "type",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return PayMeResponseInfo.attributeTypeMap;
+        return AssociatedPaymentMethod.attributeTypeMap;
     }
 
     public constructor() {

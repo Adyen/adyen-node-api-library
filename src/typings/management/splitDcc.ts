@@ -8,11 +8,8 @@
  */
 
 
-export class SodexoResponseInfo {
-    /**
-    * Sodexo merchantContactPhone
-    */
-    "merchantContactPhone"?: string;
+export class SplitDcc {
+    "accountHolderPercentage"?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -20,14 +17,14 @@ export class SodexoResponseInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "merchantContactPhone",
-            "baseName": "merchantContactPhone",
-            "type": "string",
-            "format": ""
+            "name": "accountHolderPercentage",
+            "baseName": "accountHolderPercentage",
+            "type": "number",
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
-        return SodexoResponseInfo.attributeTypeMap;
+        return SplitDcc.attributeTypeMap;
     }
 
     public constructor() {

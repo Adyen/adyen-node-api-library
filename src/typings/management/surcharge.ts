@@ -20,6 +20,10 @@ export class Surcharge {
     */
     "configurations"?: Array<Configuration>;
     /**
+    * Show the maximum surcharge rate to the shopper on the present card screen before they tap.
+    */
+    "disclosureOnPresentCard"?: boolean;
+    /**
     * Exclude the tip amount from the surcharge calculation.
     */
     "excludeGratuityFromSurcharge"?: boolean;
@@ -39,6 +43,12 @@ export class Surcharge {
             "name": "configurations",
             "baseName": "configurations",
             "type": "Array<Configuration>",
+            "format": ""
+        },
+        {
+            "name": "disclosureOnPresentCard",
+            "baseName": "disclosureOnPresentCard",
+            "type": "boolean",
             "format": ""
         },
         {

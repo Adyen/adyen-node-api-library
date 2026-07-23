@@ -8,19 +8,15 @@
  */
 
 
-export class PayMeResponseInfo {
+export class DonationAmount {
     /**
-    * Merchant display name
+    * The donation amounts in minor units. The list must contain at least one amount and no more than three amounts.
     */
-    "displayName"?: string;
+    "amounts": Array<number>;
     /**
-    * Merchant logo. Format: Base64-encoded string.
+    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
     */
-    "logo"?: string;
-    /**
-    * The email address of merchant support.
-    */
-    "supportEmail"?: string;
+    "currencyCode": string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +24,20 @@ export class PayMeResponseInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "displayName",
-            "baseName": "displayName",
-            "type": "string",
-            "format": ""
+            "name": "amounts",
+            "baseName": "amounts",
+            "type": "Array<number>",
+            "format": "int64"
         },
         {
-            "name": "logo",
-            "baseName": "logo",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "supportEmail",
-            "baseName": "supportEmail",
+            "name": "currencyCode",
+            "baseName": "currencyCode",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return PayMeResponseInfo.attributeTypeMap;
+        return DonationAmount.attributeTypeMap;
     }
 
     public constructor() {

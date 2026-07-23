@@ -11,6 +11,7 @@ import { AccelUpdateInfo } from "./accelUpdateInfo";
 import { AffirmUpdateInfo } from "./affirmUpdateInfo";
 import { BcmcUpdateInfo } from "./bcmcUpdateInfo";
 import { CartesBancairesUpdateInfo } from "./cartesBancairesUpdateInfo";
+import { CashAppUpdateInfo } from "./cashAppUpdateInfo";
 import { GenericPmWithTdiUpdateInfo } from "./genericPmWithTdiUpdateInfo";
 import { NyceUpdateInfo } from "./nyceUpdateInfo";
 import { PayByBankPlaidUpdateInfo } from "./payByBankPlaidUpdateInfo";
@@ -25,6 +26,7 @@ export class UpdatePaymentMethodInfo {
     "bcmc"?: BcmcUpdateInfo | null;
     "carnet"?: GenericPmWithTdiUpdateInfo | null;
     "cartesBancaires"?: CartesBancairesUpdateInfo | null;
+    "cashapp"?: CashAppUpdateInfo | null;
     /**
     * The list of countries where a payment method is available. By default, all countries supported by the payment method.
     */
@@ -104,6 +106,12 @@ export class UpdatePaymentMethodInfo {
             "name": "cartesBancaires",
             "baseName": "cartesBancaires",
             "type": "CartesBancairesUpdateInfo | null",
+            "format": ""
+        },
+        {
+            "name": "cashapp",
+            "baseName": "cashapp",
+            "type": "CashAppUpdateInfo | null",
             "format": ""
         },
         {
