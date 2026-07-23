@@ -8,16 +8,19 @@
  */
 
 import { Amount } from "./amount";
+import { DeliveryAddress } from "./deliveryAddress";
 import { DeliveryMethod } from "./deliveryMethod";
 import { TaxTotal } from "./taxTotal";
 
 
 export class PaypalUpdateOrderRequest {
     "amount"?: Amount | null;
+    "deliveryAddress"?: DeliveryAddress | null;
     /**
     * The list of new delivery methods and the cost of each.
     */
     "deliveryMethods"?: Array<DeliveryMethod>;
+    "discountAmount"?: Amount | null;
     /**
     * The `paymentData` from the client side. This value changes every time you make a `/paypal/updateOrder` request.
     */
@@ -30,6 +33,7 @@ export class PaypalUpdateOrderRequest {
     * The original `sessionId` from the `/sessions` response.
     */
     "sessionId"?: string;
+    "shippingAmount"?: Amount | null;
     "taxTotal"?: TaxTotal | null;
 
     static readonly discriminator: string | undefined = undefined;
@@ -44,9 +48,21 @@ export class PaypalUpdateOrderRequest {
             "format": ""
         },
         {
+            "name": "deliveryAddress",
+            "baseName": "deliveryAddress",
+            "type": "DeliveryAddress | null",
+            "format": ""
+        },
+        {
             "name": "deliveryMethods",
             "baseName": "deliveryMethods",
             "type": "Array<DeliveryMethod>",
+            "format": ""
+        },
+        {
+            "name": "discountAmount",
+            "baseName": "discountAmount",
+            "type": "Amount | null",
             "format": ""
         },
         {
@@ -65,6 +81,12 @@ export class PaypalUpdateOrderRequest {
             "name": "sessionId",
             "baseName": "sessionId",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "shippingAmount",
+            "baseName": "shippingAmount",
+            "type": "Amount | null",
             "format": ""
         },
         {

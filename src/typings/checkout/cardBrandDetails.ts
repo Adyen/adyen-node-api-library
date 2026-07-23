@@ -10,6 +10,10 @@
 
 export class CardBrandDetails {
     /**
+    * Indicates if the card supports FSA/HSA healthcare payments.
+    */
+    "healthcare"?: boolean;
+    /**
     * Indicates if you support the card brand.
     */
     "supported"?: boolean;
@@ -23,6 +27,12 @@ export class CardBrandDetails {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "healthcare",
+            "baseName": "healthcare",
+            "type": "boolean",
+            "format": ""
+        },
         {
             "name": "supported",
             "baseName": "supported",

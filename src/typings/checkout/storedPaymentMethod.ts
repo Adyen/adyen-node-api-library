@@ -34,6 +34,10 @@ export class StoredPaymentMethod {
     */
     "expiryYear"?: string;
     /**
+    * The token issued by an external tokenization service representing the shopper\'s payment method
+    */
+    "externalToken"?: string;
+    /**
     * The name of the payment method holder.
     */
     "holderName"?: string;
@@ -120,6 +124,12 @@ export class StoredPaymentMethod {
         {
             "name": "expiryYear",
             "baseName": "expiryYear",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "externalToken",
+            "baseName": "externalToken",
             "type": "string",
             "format": ""
         },

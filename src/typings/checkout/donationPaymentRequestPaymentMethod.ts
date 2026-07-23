@@ -12,6 +12,7 @@ import { CardDonations } from "./cardDonations";
 import { GooglePayDonations } from "./googlePayDonations";
 import { IdealDonations } from "./idealDonations";
 import { PayWithGoogleDonations } from "./payWithGoogleDonations";
+import { SepaDirectDebitDonations } from "./sepaDirectDebitDonations";
 
 /**
 * The type and required details of a payment method to use.  When `donationToken` is provided, the payment method is derived from the token and this field becomes optional.  If you are [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide), and make donations using raw card details, you must explicitly provide the payment method details.
@@ -23,7 +24,7 @@ import { PayWithGoogleDonations } from "./payWithGoogleDonations";
  * Type
  * @export
  */
-export type DonationPaymentRequestPaymentMethod = ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations;
+export type DonationPaymentRequestPaymentMethod = ApplePayDonations | CardDonations | GooglePayDonations | IdealDonations | PayWithGoogleDonations | SepaDirectDebitDonations;
 
 /**
 * @type DonationPaymentRequestPaymentMethodClass
@@ -32,7 +33,17 @@ export type DonationPaymentRequestPaymentMethod = ApplePayDonations | CardDonati
 */
 export class DonationPaymentRequestPaymentMethodClass {
     
-    static readonly discriminator: string = "type";
+    
+    static readonly discriminator: string | undefined = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    static readonly mapping: {[index: string]: string} | undefined = {
+        "applepay": "ApplePayDonations",
+        "card": "CardDonations",
+        "googlepay": "GooglePayDonations",
+        "ideal": "IdealDonations",
+        "networkToken": "CardDonations",
+        "paywithgoogle": "PayWithGoogleDonations",
+        "scheme": "CardDonations",
+        "sepadirectdebit": "SepaDirectDebitDonations",
+    };
 }

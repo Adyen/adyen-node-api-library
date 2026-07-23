@@ -24,6 +24,7 @@ import { PlatformChargebackLogic } from "./platformChargebackLogic";
 import { RiskData } from "./riskData";
 import { ShopperName } from "./shopperName";
 import { Split } from "./split";
+import { ThirdPartyTokenRedundancyInfo } from "./thirdPartyTokenRedundancyInfo";
 import { ThreeDSecureData } from "./threeDSecureData";
 
 
@@ -223,6 +224,7 @@ export class CreateCheckoutSessionResponse {
     * Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform=Web&integration=Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.
     */
     "themeId"?: string;
+    "thirdPartyTokenRedundancyInfo"?: ThirdPartyTokenRedundancyInfo | null;
     "threeDS2RequestData"?: CheckoutSessionThreeDS2RequestData | null;
     /**
     * Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**.
@@ -603,6 +605,12 @@ export class CreateCheckoutSessionResponse {
             "name": "themeId",
             "baseName": "themeId",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "thirdPartyTokenRedundancyInfo",
+            "baseName": "thirdPartyTokenRedundancyInfo",
+            "type": "ThirdPartyTokenRedundancyInfo | null",
             "format": ""
         },
         {
