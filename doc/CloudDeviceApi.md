@@ -219,6 +219,8 @@ console.log(acquirerData);
 
 Use `SaleToAcquirerDataParser` directly when you have the raw string, or when you want to build and encode a `SaleToAcquirerData` payload yourself. It exposes `parse` (auto-detects the format), the explicit `fromBase64` / `fromKeyValuePairs` decoders, and the `toJson` / `toBase64` serializers.
 
+Values in `additionalData` can be strings, numbers, or booleans. Use the type required by the API for each field. For example, `captureDelayHours` must be a number.
+
 ``` typescript
 import { SaleToAcquirerDataParser, SaleToAcquirerData, RecurringProcessingModel } from "@adyen/api-library";
 
@@ -232,6 +234,10 @@ const data: SaleToAcquirerData = {
     shopperReference: "shopper-123",
     recurringProcessingModel: RecurringProcessingModel.CardOnFile,
     metadata: { orderId: "42" },
+    additionalData: {
+        manualCapture: "true",
+        captureDelayHours: 192,
+    },
 };
 
 const encoded = SaleToAcquirerDataParser.toBase64(data); // Base64 string, ready to assign to SaleData.SaleToAcquirerData

@@ -117,6 +117,20 @@ describe("tapi SaleToAcquirerDataParser", () => {
         const base64 = SaleToAcquirerDataParser.toBase64(sample);
         expect(SaleToAcquirerDataParser.parse(base64)).toEqual(sample);
     });
+
+    it("toBase64 should preserve additionalData value types", () => {
+        const data: SaleToAcquirerData = {
+            additionalData: {
+                manualCapture: "true",
+                captureDelayHours: 192,
+                "taxfree.indicator": false,
+            },
+        };
+
+        const base64 = SaleToAcquirerDataParser.toBase64(data);
+
+        expect(SaleToAcquirerDataParser.fromBase64(base64)).toEqual(data);
+    });
 });
 
 describe("tapi SaleDataHelper", () => {

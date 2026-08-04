@@ -47,7 +47,7 @@ export interface SaleToAcquirerData {
     currency?: string;
     applicationInfo?: Record<string, unknown>;
     tenderOption?: string;
-    additionalData?: Record<string, string>;
+    additionalData?: Record<string, string | number | boolean>;
     authorisationType?: string;
     ssc?: string;
     recurringProcessingModel?: RecurringProcessingModel;
