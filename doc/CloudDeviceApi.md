@@ -232,6 +232,9 @@ const data: SaleToAcquirerData = {
     shopperReference: "shopper-123",
     recurringProcessingModel: RecurringProcessingModel.CardOnFile,
     metadata: { orderId: "42" },
+    additionalData: {
+        captureDelayHours: "4",
+    },
 };
 
 const encoded = SaleToAcquirerDataParser.toBase64(data); // Base64 string, ready to assign to SaleData.SaleToAcquirerData

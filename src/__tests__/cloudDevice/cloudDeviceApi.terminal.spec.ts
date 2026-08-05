@@ -37,6 +37,7 @@ import {
 } from "../../typings/tapi/models";
 import { EncryptedCloudDeviceApi } from "../../services/clouddevice/encryptedCloudDeviceApi";
 import { EncryptionCredentialDetails } from "../../security/clouddevice/encryptionCredentialDetails";
+import { SaleToAcquirerDataParser } from "../../utils/tapi";
 
 /*
 Verify Terminal integration: tests to send API requests to the Cloud Device API and confirm the Terminal responds as expected.
@@ -229,6 +230,12 @@ const hasEncryptedEnv = !!(hasEnv && ADYEN_TERMINAL_DEVICE_KEY_IDENTIFIER && ADY
                 TransactionID: id,
                 TimeStamp: new Date(),
             },
+            SaleToAcquirerData: SaleToAcquirerDataParser.toBase64({
+                additionalData: {
+                    // manualCapture: "true",    // enable manual capture
+                    captureDelayHours: "4",      // enable delayed capture
+                },
+            }),
         };
 
         const saleToPOIRequest: SaleToPOIRequest = new SaleToPOIRequest();
