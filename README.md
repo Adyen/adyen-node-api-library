@@ -337,7 +337,10 @@ if ("accountHolderCode" in genericWebhook) {
 ```
 Verify the authenticity (where you retrieve the hmac key from the CA and the signature from the webhook header);
 ``` typescript
-const isValid = hmacValidator.validateHMACSignature("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString)
+import { hmacValidator } from "@adyen/api-library";
+
+const validator = new hmacValidator();
+const isValid = validator.validateHMACSignature("YOUR_HMAC_KEY", "YOUR_HMAC_SIGNATURE", jsonString);
 ```
 ### Management Webhooks
 Management webhooks are also parsed with the same approach, using `ManagementWebhooksHandler`:
