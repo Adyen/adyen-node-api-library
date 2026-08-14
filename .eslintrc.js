@@ -13,7 +13,7 @@ module.exports = {
     ecmaFeatures: {
       modules: true,
     },
-    project: path.resolve(__dirname, "./tsconfig.json"),
+    project: path.resolve(__dirname, "./tsconfig.eslint.json"),
     tsconfigRootDir: __dirname,
   },
   overrides: [

@@ -395,6 +395,23 @@ We value your input! Help us enhance our API Libraries and improve the integrati
 
 Clone our [Node.js example integration](https://github.com/adyen-examples/adyen-node-online-payments) to see how the Adyen API library for Node.js can be used. The integration includes code comments that highlight key features and concepts.
 
+## Integration tests
+
+Integration tests call Adyen's TEST environment and are kept separate from the unit test suite. Copy `.env.example` to `.env` and provide the variables required by the suites you run:
+
+```text
+ADYEN_API_KEY=your_test_api_key
+ADYEN_MERCHANT_ACCOUNT=your_test_merchant_account
+```
+
+Run the integration tests serially with:
+
+```bash
+npm run test:integration
+```
+
+Each suite fails fast when one of its required variables is missing. Regular `npm test` runs only unit tests and does not make API calls. See the [integration test guide](tests/integration/README.md) for conventions, service-specific runs, and adding suites.
+
 ## Contributing 
 
 We strongly encourage you to contribute to this repository by:

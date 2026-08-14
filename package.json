@@ -25,9 +25,10 @@
   "homepage": "https://github.com/Adyen/adyen-node-api-library#readme",
   "scripts": {
     "build": "tsc",
-    "lint": "eslint 'src/**/*.ts'",
-    "lint:fix": "eslint --fix 'src/**/*.ts'",
+    "lint": "eslint 'src/**/*.ts' 'tests/**/*.ts'",
+    "lint:fix": "eslint --fix 'src/**/*.ts' 'tests/**/*.ts'",
     "test": "jest",
+    "test:integration": "jest --config jest.integration.config.js --runInBand",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
