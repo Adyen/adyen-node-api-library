@@ -4,6 +4,7 @@ import { createCheckoutTestContext } from "./setup";
 describe("Checkout DonationsApi", (): void => {
     const { checkout, merchantAccount } = createCheckoutTestContext();
 
+    // Scenario: Get donation campaigns
     test("donationCampaigns returns active campaigns", async (): Promise<void> => {
         const request: Types.checkout.DonationCampaignsRequest = {
             merchantAccount,

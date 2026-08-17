@@ -5,6 +5,7 @@ import { createCheckoutTestContext } from "./setup";
 describe("Checkout ModificationsApi", (): void => {
     const { checkout, merchantAccount } = createCheckoutTestContext();
 
+    // Scenario: Capture an authorised payment
     test("captureAuthorisedPayment captures an authorised payment", async (): Promise<void> => {
         const paymentRequest: Types.checkout.PaymentRequest = {
             amount: {
@@ -19,7 +20,7 @@ describe("Checkout ModificationsApi", (): void => {
                 encryptedExpiryYear: "test_2030",
                 encryptedSecurityCode: "test_737"
             },
-            returnUrl: "https://your-company.example.com/...",
+            returnUrl: "https://example.com/checkout/return",
             merchantAccount,
             captureDelayHours: 1
         };

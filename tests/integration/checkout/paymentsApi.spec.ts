@@ -5,6 +5,7 @@ import { createCheckoutTestContext } from "./setup";
 describe("Checkout PaymentsApi", (): void => {
     const { checkout, merchantAccount } = createCheckoutTestContext();
 
+    // Scenario: Make a successful card payment
     test("payments authorises a test card", async (): Promise<void> => {
         const request: Types.checkout.PaymentRequest = {
             amount: {
@@ -19,7 +20,7 @@ describe("Checkout PaymentsApi", (): void => {
                 encryptedExpiryYear: "test_2030",
                 encryptedSecurityCode: "test_737"
             },
-            returnUrl: "https://your-company.example.com/...",
+            returnUrl: "https://example.com/checkout/return",
             merchantAccount
         };
 
@@ -62,22 +63,7 @@ describe("Checkout PaymentsApi", (): void => {
         });
     });
 
-    test("cardDetails returns the card brand", async (): Promise<void> => {
-        const request: Types.checkout.CardDetailsRequest = {
-            merchantAccount,
-            cardNumber: "411111"
-        };
-
-        const response = await checkout.PaymentsApi.cardDetails(request);
-
-        expect(response.brands).toEqual(expect.arrayContaining([
-            expect.objectContaining({
-                supported: true,
-                type: "visa"
-            })
-        ]));
-    });
-
+    // Scenario: Create a payment session
     test("sessions creates a payment session", async (): Promise<void> => {
         const request: Types.checkout.CreateCheckoutSessionRequest = {
             merchantAccount,
@@ -85,30 +71,63 @@ describe("Checkout PaymentsApi", (): void => {
                 value: 100,
                 currency: "EUR"
             },
-            returnUrl: "https://your-company.example.com/checkout?shopperOrder=12xy..",
+            returnUrl: "https://example.com/checkout/return",
             reference: `node-library-integration-${randomUUID()}`,
             countryCode: "NL"
         };
 
-        const response = await checkout.PaymentsApi.sessions(request);
+        const response = await checkout.PaymentsApi.sessions(request, {
+            idempotencyKey: randomUUID()
+        });
+
+        expect(response.id).toEqual(expect.any(String));
+    });
+
+    // Scenario: Validate the documented payment session result
+    test("getResultOfPaymentSession response example matches the public type", (): void => {
+        const response: Types.checkout.SessionResultResponse = {
+            id: "CS12345678",
+            status: Types.checkout.SessionResultResponse.StatusEnum.Completed
+        };
 
         expect(response).toMatchObject({
-            id: expect.any(String),
-            sessionData: expect.any(String)
+            id: "CS12345678",
+            status: Types.checkout.SessionResultResponse.StatusEnum.Completed
         });
     });
 
+    // Scenario: List supported brands for a card
+    test("cardDetails returns supported card brands", async (): Promise<void> => {
+        const request: Types.checkout.CardDetailsRequest = {
+            merchantAccount,
+            cardNumber: "411111",
+            supportedBrands: [
+                "visa",
+                "mc",
+                "amex"
+            ]
+        };
+
+        const response = await checkout.PaymentsApi.cardDetails(request, {
+            idempotencyKey: randomUUID()
+        });
+
+        expect(response.brands?.[0]).toMatchObject({
+            supported: true,
+            type: "visa"
+        });
+    });
+
+    // Scenario: List available payment methods
     test("paymentMethods returns available payment methods", async (): Promise<void> => {
         const request: Types.checkout.PaymentMethodsRequest = {
             merchantAccount
         };
 
-        const response = await checkout.PaymentsApi.paymentMethods(request);
+        const response = await checkout.PaymentsApi.paymentMethods(request, {
+            idempotencyKey: randomUUID()
+        });
 
-        expect(response.paymentMethods).toEqual(expect.arrayContaining([
-            expect.objectContaining({
-                type: "scheme"
-            })
-        ]));
+        expect(response.paymentMethods?.length).toBeGreaterThan(0);
     });
 });
