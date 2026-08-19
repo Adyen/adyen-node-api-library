@@ -264,6 +264,10 @@ export class ResponseAdditionalDataCommon {
     */
     "tokenization_storedPaymentMethodId"?: string;
     /**
+    * Returned in the response for Mastercard payments.  This contains the Mastercard Transaction Link Identifier (TLID).
+    */
+    "transactionLinkId"?: string;
+    /**
     * The `visaTransactionId`, has a fixed length of 15 numeric characters.  > Contact Support Team to enable this field.
     */
     "visaTransactionId"?: string;
@@ -646,6 +650,12 @@ export class ResponseAdditionalDataCommon {
         {
             "name": "tokenization_storedPaymentMethodId",
             "baseName": "tokenization.storedPaymentMethodId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "transactionLinkId",
+            "baseName": "transactionLinkId",
             "type": "string",
             "format": ""
         },

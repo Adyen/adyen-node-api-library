@@ -93,6 +93,10 @@ export class AdditionalDataCommon {
     * This field is required if the transaction is performed by a registered payment facilitator. This field must contain the tax ID of the actual merchant. * Format: alpha-numeric. * Fixed length: 11 or 14 characters.
     */
     "subMerchantTaxId"?: string;
+    /**
+    * Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain For Mastercard payments. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from Mastercard.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending `shopperInteraction` **ContAuth** and `recurringProcessingModel` **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.
+    */
+    "transactionLinkId"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -222,6 +226,12 @@ export class AdditionalDataCommon {
         {
             "name": "subMerchantTaxId",
             "baseName": "subMerchantTaxId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "transactionLinkId",
+            "baseName": "transactionLinkId",
             "type": "string",
             "format": ""
         }    ];

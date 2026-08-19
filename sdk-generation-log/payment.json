@@ -1,8 +1,8 @@
 {
   "service": "payment",
   "project": "node",
-  "generatedAt": "2026-06-15T16:42:49Z",
-  "openapiCommitSha": "fe790646de44602c0531c3ebd57c966876c7a1c7",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "f6a0015d5e5165d611fa7f39bc2e34dc36dbee9c"
+  "generatedAt": "2026-08-19T14:39:35Z",
+  "openapiCommitSha": "bee086f2cd666ac7cb5b5ba2813a8b5dc943c2d2",
+  "automationCommitSha": "09e65f31d70416e30f8464ec7cf29e94eda443fc",
+  "libraryCommitSha": "c5f2cb49c47273b61170ddd5c470ee9c7b64c50d"
 }
