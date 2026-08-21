@@ -40,4 +40,4 @@ jobs:
       - name: Run SonarCloud Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: npx --no-install sonar-scanner
+        run: npx --yes --package=sonarqube-scanner@4.4.0 sonar-scanner
