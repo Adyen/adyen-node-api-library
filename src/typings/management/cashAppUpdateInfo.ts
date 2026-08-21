@@ -8,19 +8,15 @@
  */
 
 
-export class PayMeResponseInfo {
+export class CashAppUpdateInfo {
     /**
-    * Merchant display name
+    * The URL of the logo image shown in Cash App checkout next to payments.
     */
-    "displayName"?: string;
+    "logoUrl"?: string;
     /**
-    * Merchant logo. Format: Base64-encoded string.
+    * The merchant display name shown in Cash App checkout.
     */
-    "logo"?: string;
-    /**
-    * The email address of merchant support.
-    */
-    "supportEmail"?: string;
+    "merchantName"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +24,20 @@ export class PayMeResponseInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "displayName",
-            "baseName": "displayName",
+            "name": "logoUrl",
+            "baseName": "logoUrl",
             "type": "string",
             "format": ""
         },
         {
-            "name": "logo",
-            "baseName": "logo",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "supportEmail",
-            "baseName": "supportEmail",
+            "name": "merchantName",
+            "baseName": "merchantName",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return PayMeResponseInfo.attributeTypeMap;
+        return CashAppUpdateInfo.attributeTypeMap;
     }
 
     public constructor() {
