@@ -10,23 +10,23 @@
 
 export class Passenger {
     /**
-    * The passenger\'s date of birth. * Format `yyyy-MM-dd` * minLength: 10 * maxLength: 10
+    * The passenger\'s date of birth. * Format `yyyy-MM-dd` * minLength: 10 * maxLength: 10 * **additionalData key:** `airline.passenger[N].date_of_birth`
     */
     "dateOfBirth"?: string;
     /**
-    * The passenger\'s first name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
+    * The passenger\'s first name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII * **additionalData key:** `airline.passenger[N].first_name`
     */
     "firstName"?: string;
     /**
-    * The passenger\'s last name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
+    * The passenger\'s last name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII * **additionalData key:** `airline.passenger[N].last_name`
     */
     "lastName"?: string;
     /**
-    * The passenger\'s phone number, including country code. This is an alphanumeric field that can include the \'+\' and \'-\' signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
+    * The passenger\'s phone number, including country code. This is an alphanumeric field that can include the \'+\' and \'-\' signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters * **additionalData key:** `airline.passenger[N].phone_number`
     */
     "phoneNumber"?: string;
     /**
-    * The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters
+    * The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters * **additionalData key:** `airline.passenger[N].traveller_type`
     */
     "travellerType"?: string;
 

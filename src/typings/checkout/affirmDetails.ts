@@ -14,6 +14,10 @@ export class AffirmDetails {
     */
     "checkoutAttemptId"?: string;
     /**
+    * The Affirm financing program to apply to this transaction.
+    */
+    "financingProgram"?: string;
+    /**
     * Base64-encoded JSON object containing SDK related parameters required by the SDK
     */
     "sdkData"?: string;
@@ -30,6 +34,12 @@ export class AffirmDetails {
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "financingProgram",
+            "baseName": "financingProgram",
             "type": "string",
             "format": ""
         },
