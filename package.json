@@ -57,7 +57,7 @@
     "https-proxy-agent": "5.0.1"
   },
   "optionalDependencies": {
-    "@types/node": "18.19.69"
+    "@types/node": "18.19.130"
   },
   "overrides": {
     "lodash": "^4.18.0",
