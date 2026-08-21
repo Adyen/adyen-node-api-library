@@ -8,11 +8,11 @@
  */
 
 
-export class SodexoResponseInfo {
+export class ListNonprofitsRequest {
     /**
-    * Sodexo merchantContactPhone
+    * The unique identifiers of the account holders to be included in a donation campaign.
     */
-    "merchantContactPhone"?: string;
+    "accountHolderIds": Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -20,14 +20,14 @@ export class SodexoResponseInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "merchantContactPhone",
-            "baseName": "merchantContactPhone",
-            "type": "string",
+            "name": "accountHolderIds",
+            "baseName": "accountHolderIds",
+            "type": "Array<string>",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return SodexoResponseInfo.attributeTypeMap;
+        return ListNonprofitsRequest.attributeTypeMap;
     }
 
     public constructor() {

@@ -12,7 +12,7 @@ export class VippsResponseInfo {
     /**
     * Vipps logo. Format: Base64-encoded string.
     */
-    "logo": string;
+    "logo"?: string;
     /**
     * Vipps subscription cancel url (required in case of [recurring payments](https://docs.adyen.com/online-payments/tokenization))
     */
