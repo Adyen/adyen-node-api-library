@@ -230,6 +230,259 @@ describe("Checkout", (): void => {
         expect(paymentsResponse.pspReference).toBeTruthy();
     });
 
+    test("should make a payment with nested lodging enhanced scheme data.", async (): Promise<void> => {
+        const paymentsRequest: Types.checkout.PaymentRequest = {
+            amount: createAmountObject("USD", 20000),
+            reference: "YOUR_ORDER_NUMBER",
+            paymentMethod: {
+                type: Types.checkout.CardDetails.TypeEnum.Scheme,
+                cvc: "737",
+                expiryMonth: "03",
+                expiryYear: "2030",
+                holderName: "John Smith",
+                number: "4444333322221111",
+            },
+            returnUrl: "https://your-company.example.com/...",
+            merchantAccount,
+            enhancedSchemeData: {
+                lodging: {
+                    checkInDate: "2023-03-12",
+                    checkOutDate: "2023-03-14",
+                    customerServicePhoneNumber: "8001122334",
+                    fireSafetyCompliance: true,
+                    folio: {
+                        cashAdvances: 100,
+                        number: "AB12345",
+                    },
+                    foodBeverageCharges: 1000,
+                    noShow: true,
+                    prepaidExpenses: 500,
+                    propertyPhoneNumber: "8001122334",
+                    rooms: [{
+                        numberOfNights: 2,
+                        rate: 50,
+                    }],
+                    totalRoomTax: 400,
+                },
+            },
+        };
+        scope.post("/payments", (body) => {
+            expect(body).toEqual(paymentsRequest);
+            return true;
+        })
+            .matchHeader("Idempotency-Key", "YOUR_IDEMPOTENCY_KEY")
+            .reply(200, paymentsSuccess);
+
+        const response = await checkoutService.PaymentsApi.payments(
+            paymentsRequest,
+            {idempotencyKey: "YOUR_IDEMPOTENCY_KEY"},
+        );
+
+        expect(response.pspReference).toBeTruthy();
+    });
+
+    test("should make a payment with nested airline enhanced scheme data.", async (): Promise<void> => {
+        const paymentsRequest: Types.checkout.PaymentRequest = {
+            amount: createAmountObject("USD", 20000),
+            reference: "YOUR_ORDER_NUMBER",
+            paymentMethod: {
+                type: Types.checkout.CardDetails.TypeEnum.Scheme,
+                cvc: "737",
+                expiryMonth: "03",
+                expiryYear: "2030",
+                holderName: "John Smith",
+                number: "4444333322221111",
+            },
+            returnUrl: "https://your-company.example.com/...",
+            merchantAccount,
+            enhancedSchemeData: {
+                airline: {
+                    code: "074",
+                    computerizedReservationSystem: "SABR",
+                    documentType: "01",
+                    flightDate: new Date("2023-03-22T11:00:00.000Z"),
+                    passengerName: "John Smith",
+                    ticket: {
+                        issueAddress: "Amsterdam",
+                        number: "AIRLINE_TICKET_NUMBER",
+                    },
+                    travelAgency: {
+                        code: "12345678",
+                        name: "TRAVEL_AGENCY_NAME",
+                    },
+                    legs: [
+                        {
+                            carrierCode: "KL",
+                            classOfTravel: "F",
+                            dateOfTravel: new Date("2023-03-22T11:00:00.000Z"),
+                            departureAirportCode: "AMS",
+                            departureTax: 100,
+                            destinationAirportCode: "CDG",
+                            fareBasisCode: "F",
+                            flightNumber: "1234",
+                            stopOverCode: "X",
+                        },
+                        {
+                            carrierCode: "AF",
+                            classOfTravel: "Y",
+                            dateOfTravel: new Date("2023-03-24T16:00:00.000Z"),
+                            departureAirportCode: "CDG",
+                            departureTax: 100,
+                            destinationAirportCode: "AMS",
+                            fareBasisCode: "Y",
+                            flightNumber: "4321",
+                            stopOverCode: "X",
+                        },
+                    ],
+                },
+            },
+        };
+        scope.post("/payments", (body) => {
+            expect(body.additionalData).toBeUndefined();
+            expect(body.enhancedSchemeData).toEqual({
+                airline: {
+                    code: "074",
+                    computerizedReservationSystem: "SABR",
+                    documentType: "01",
+                    flightDate: "2023-03-22T11:00:00.000Z",
+                    legs: [
+                        {
+                            carrierCode: "KL",
+                            classOfTravel: "F",
+                            dateOfTravel: "2023-03-22T11:00:00.000Z",
+                            departureAirportCode: "AMS",
+                            departureTax: 100,
+                            destinationAirportCode: "CDG",
+                            fareBasisCode: "F",
+                            flightNumber: "1234",
+                            stopOverCode: "X",
+                        },
+                        {
+                            carrierCode: "AF",
+                            classOfTravel: "Y",
+                            dateOfTravel: "2023-03-24T16:00:00.000Z",
+                            departureAirportCode: "CDG",
+                            departureTax: 100,
+                            destinationAirportCode: "AMS",
+                            fareBasisCode: "Y",
+                            flightNumber: "4321",
+                            stopOverCode: "X",
+                        },
+                    ],
+                    passengerName: "John Smith",
+                    ticket: {
+                        issueAddress: "Amsterdam",
+                        number: "AIRLINE_TICKET_NUMBER",
+                    },
+                    travelAgency: {
+                        code: "12345678",
+                        name: "TRAVEL_AGENCY_NAME",
+                    },
+                },
+            });
+            return true;
+        })
+            .matchHeader("Idempotency-Key", "YOUR_IDEMPOTENCY_KEY")
+            .reply(200, paymentsSuccess);
+
+        const response = await checkoutService.PaymentsApi.payments(
+            paymentsRequest,
+            {idempotencyKey: "YOUR_IDEMPOTENCY_KEY"},
+        );
+
+        expect(response.pspReference).toBeTruthy();
+    });
+
+    test("should make a payment with nested level 2/3 enhanced scheme data.", async (): Promise<void> => {
+        const levelTwoThree: Types.checkout.LevelTwoThree = {
+            customerReferenceNumber: "101",
+            destination: {
+                countryCode: "USA",
+                postalCode: "10003",
+                stateOrProvince: "NYC",
+            },
+            dutyAmount: 5000,
+            freightAmount: 10000,
+            itemDetailLines: [
+                {
+                    commodityCode: "COMMCODE1",
+                    description: "T15 Test products 1",
+                    discountAmount: 5000,
+                    productCode: "TEST120",
+                    quantity: 9,
+                    totalAmount: 85000,
+                    unitOfMeasure: "m",
+                    unitPrice: 10000,
+                },
+                {
+                    commodityCode: "COMMCODE2",
+                    description: "T15 Test products 2",
+                    discountAmount: 5000,
+                    productCode: "TEST120",
+                    quantity: 9,
+                    totalAmount: 85000,
+                    unitOfMeasure: "m",
+                    unitPrice: 10000,
+                },
+            ],
+            orderDate: "2023-01-01",
+            shipFromPostalCode: "1011DJ",
+            totalTaxAmount: 20000,
+        };
+        const paymentsRequest: Types.checkout.PaymentRequest = {
+            amount: createAmountObject("USD", 200000),
+            reference: "YOUR_ORDER_NUMBER",
+            paymentMethod: {
+                type: Types.checkout.CardDetails.TypeEnum.Scheme,
+                cvc: "737",
+                expiryMonth: "03",
+                expiryYear: "2030",
+                holderName: "John Smith",
+                number: "5555555555554444",
+            },
+            returnUrl: "https://your-company.example.com/...",
+            merchantAccount,
+            enhancedSchemeData: {levelTwoThree},
+        };
+        scope.post("/payments", (body) => {
+            expect(body.additionalData).toBeUndefined();
+            expect(body.enhancedSchemeData).toEqual({levelTwoThree});
+            return true;
+        })
+            .matchHeader("Idempotency-Key", "YOUR_IDEMPOTENCY_KEY")
+            .reply(200, {
+                pspReference: "8915844059375211",
+                resultCode: "Authorised",
+                authCode: "506847",
+                additionalData: {
+                    cardSchemeEnhancedDataLevel: "L2",
+                    cardPaymentMethod: "visa",
+                    cardIssuingBank: "Bank of America",
+                    cardIssuingCountry: "US",
+                    cardIssuingCurrency: "USD",
+                    cardBin: "411111",
+                    fundingSource: "CREDIT",
+                },
+            });
+
+        const response = await checkoutService.PaymentsApi.payments(
+            paymentsRequest,
+            {idempotencyKey: "YOUR_IDEMPOTENCY_KEY"},
+        );
+
+        expect(response.pspReference).toBe("8915844059375211");
+        expect(response.resultCode).toBe(Types.checkout.PaymentResponse.ResultCodeEnum.Authorised);
+        expect(response.additionalData).toEqual({
+            cardSchemeEnhancedDataLevel: "L2",
+            cardPaymentMethod: "visa",
+            cardIssuingBank: "Bank of America",
+            cardIssuingCountry: "US",
+            cardIssuingCurrency: "USD",
+            cardBin: "411111",
+            fundingSource: "CREDIT",
+        });
+    });
+
     test("Should properly handle error responses from API", async (): Promise<void> => {
         try {
             scope.post("/payments")
