@@ -8,15 +8,15 @@
  */
 
 
-export class Agency {
+export class SessionAmountUpdate {
     /**
-    * The reference number for the invoice, issued by the agency. * Encoding: ASCII * minLength: 1 character * maxLength: 6 characters * **additionalData key:** `airline.agency_invoice_number`
+    * The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes).
     */
-    "invoiceNumber"?: string;
+    "currency": string;
     /**
-    * The two-letter agency plan identifier. * Encoding: ASCII * minLength: 2 characters * maxLength: 2 characters * **additionalData key:** `airline.agency_plan_name`
+    * The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
     */
-    "planName"?: string;
+    "value": number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -24,20 +24,20 @@ export class Agency {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "invoiceNumber",
-            "baseName": "invoiceNumber",
+            "name": "currency",
+            "baseName": "currency",
             "type": "string",
             "format": ""
         },
         {
-            "name": "planName",
-            "baseName": "planName",
-            "type": "string",
-            "format": ""
+            "name": "value",
+            "baseName": "value",
+            "type": "number",
+            "format": "int64"
         }    ];
 
     static getAttributeTypeMap() {
-        return Agency.attributeTypeMap;
+        return SessionAmountUpdate.attributeTypeMap;
     }
 
     public constructor() {

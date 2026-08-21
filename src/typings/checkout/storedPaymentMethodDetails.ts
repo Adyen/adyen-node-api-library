@@ -108,6 +108,7 @@ export namespace StoredPaymentMethodDetails {
         Dana = 'dana',
         Kakaopay = 'kakaopay',
         Truemoney = 'truemoney',
-        Paysafecard = 'paysafecard'
+        Paysafecard = 'paysafecard',
+        GopayWallet = 'gopay_wallet'
     }
 }

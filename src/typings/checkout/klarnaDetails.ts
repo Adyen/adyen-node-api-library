@@ -22,6 +22,10 @@ export class KlarnaDetails {
     */
     "deliveryAddress"?: string;
     /**
+    * Base64-encoded merchant metadata (Extra Merchant Data) forwarded to Klarna at authorization.
+    */
+    "merchantData"?: string;
+    /**
     * Shopper name, date of birth, phone number, and email address.
     */
     "personalDetails"?: string;
@@ -69,6 +73,12 @@ export class KlarnaDetails {
         {
             "name": "deliveryAddress",
             "baseName": "deliveryAddress",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "merchantData",
+            "baseName": "merchantData",
             "type": "string",
             "format": ""
         },

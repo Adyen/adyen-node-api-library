@@ -8,23 +8,11 @@
  */
 
 
-export class SepaDirectDebitDetails {
+export class DBaraiDetails {
     /**
     * The checkout attempt identifier.
     */
     "checkoutAttemptId"?: string;
-    /**
-    * The date that the the shopper\'s bank account is charged.
-    */
-    "dueDate"?: string;
-    /**
-    * The International Bank Account Number (IBAN).
-    */
-    "iban"?: string;
-    /**
-    * The name of the bank account holder.
-    */
-    "ownerName"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
@@ -41,13 +29,9 @@ export class SepaDirectDebitDetails {
     */
     "storedPaymentMethodId"?: string;
     /**
-    * The unique identifier of your user\'s verified transfer instrument, which you can use to top up their balance accounts.
+    * **dbarai**
     */
-    "transferInstrumentId"?: string;
-    /**
-    * **sepadirectdebit**
-    */
-    "type"?: SepaDirectDebitDetails.TypeEnum;
+    "type"?: DBaraiDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -57,24 +41,6 @@ export class SepaDirectDebitDetails {
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "dueDate",
-            "baseName": "dueDate",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "iban",
-            "baseName": "iban",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "ownerName",
-            "baseName": "ownerName",
             "type": "string",
             "format": ""
         },
@@ -97,29 +63,22 @@ export class SepaDirectDebitDetails {
             "format": ""
         },
         {
-            "name": "transferInstrumentId",
-            "baseName": "transferInstrumentId",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "type",
             "baseName": "type",
-            "type": "SepaDirectDebitDetails.TypeEnum",
+            "type": "DBaraiDetails.TypeEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return SepaDirectDebitDetails.attributeTypeMap;
+        return DBaraiDetails.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace SepaDirectDebitDetails {
+export namespace DBaraiDetails {
     export enum TypeEnum {
-        Sepadirectdebit = 'sepadirectdebit',
-        SepadirectdebitAmazonpay = 'sepadirectdebit_amazonpay'
+        Dbarai = 'dbarai'
     }
 }
