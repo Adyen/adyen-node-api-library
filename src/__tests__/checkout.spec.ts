@@ -558,6 +558,23 @@ describe("Checkout", (): void => {
         expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
     });
 
+    test("should update a session.", async (): Promise<void> => {
+        const updateSessionRequest: Types.checkout.CheckoutSessionPatchSessionRequest = {
+            amount: createAmountObject("USD", 1500),
+            payable: true,
+            sessionData: "encoded-session-data",
+        };
+        scope.patch("/sessions/session%2Fid", (body) => {
+            expect(body).toEqual(updateSessionRequest);
+            return true;
+        })
+            .reply(200, {sessionData: "updated-session-data"});
+
+        const response = await checkoutService.PaymentsApi.updateSession("session/id", updateSessionRequest);
+
+        expect(response.sessionData).toBe("updated-session-data");
+    });
+
     test("should create a session instantiating an object", async (): Promise<void> => {
 
         const expectedPayload = {
