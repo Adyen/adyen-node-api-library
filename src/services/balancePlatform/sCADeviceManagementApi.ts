@@ -56,6 +56,24 @@ export class SCADeviceManagementApi extends Service {
     }
 
     /**
+    * @summary Delete an SCA device
+    * @param deviceId {@link string } The unique identifier of the SCA device to delete.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
+    */
+    public async deleteScaDevice(deviceId: string, requestOptions?: IRequest.Options): Promise<void> {
+        const endpoint = `${this.baseUrl}/scaDevices/{deviceId}`
+            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
+        const resource = new Resource(this, endpoint);
+        
+        await getJsonResponse<string, void>(
+            resource,
+            "",
+            { ...requestOptions, method: "DELETE" }
+        );
+    }
+
+    /**
     * @summary Finish registration process for a SCA device
     * @param deviceId {@link string } The unique identifier of the SCA device that you are associating with a resource.
     * @param finishScaDeviceRegistrationRequest {@link FinishScaDeviceRegistrationRequest } 
