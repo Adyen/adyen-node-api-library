@@ -62,6 +62,26 @@ export class LineItem {
     */
     "receiverEmail"?: string;
     /**
+    * Shipping company handling the return of the item.
+    */
+    "returnShippingCompany"?: string;
+    /**
+    * Tracking number for the return of the item.
+    */
+    "returnTrackingNumber"?: string;
+    /**
+    * Tracking URI for the return of the item.
+    */
+    "returnTrackingUri"?: string;
+    /**
+    * Shipping company handling the delivery of the item.
+    */
+    "shippingCompany"?: string;
+    /**
+    * Shipping method used to deliver the item.
+    */
+    "shippingMethod"?: string;
+    /**
     * Size of the item.
     */
     "size"?: string;
@@ -77,6 +97,14 @@ export class LineItem {
     * Tax percentage, represented as a [basis point](https://en.wikipedia.org/wiki/Basis_point) integer. For example:  - **530** for 5.3% (five point three percent)   - **2100** for 21% (twenty-one percent)
     */
     "taxPercentage"?: number;
+    /**
+    * Tracking number for the delivery of the item.
+    */
+    "trackingNumber"?: string;
+    /**
+    * Tracking URI for the delivery of the item.
+    */
+    "trackingUri"?: string;
     /**
     * Universal Product Code.
     */
@@ -166,6 +194,36 @@ export class LineItem {
             "format": ""
         },
         {
+            "name": "returnShippingCompany",
+            "baseName": "returnShippingCompany",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "returnTrackingNumber",
+            "baseName": "returnTrackingNumber",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "returnTrackingUri",
+            "baseName": "returnTrackingUri",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "shippingCompany",
+            "baseName": "shippingCompany",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "shippingMethod",
+            "baseName": "shippingMethod",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "size",
             "baseName": "size",
             "type": "string",
@@ -188,6 +246,18 @@ export class LineItem {
             "baseName": "taxPercentage",
             "type": "number",
             "format": "int64"
+        },
+        {
+            "name": "trackingNumber",
+            "baseName": "trackingNumber",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "trackingUri",
+            "baseName": "trackingUri",
+            "type": "string",
+            "format": ""
         },
         {
             "name": "upc",

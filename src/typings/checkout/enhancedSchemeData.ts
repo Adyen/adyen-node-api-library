@@ -8,12 +8,20 @@
  */
 
 import { Airline } from "./airline";
+import { CarRental } from "./carRental";
+import { Healthcare } from "./healthcare";
 import { LevelTwoThree } from "./levelTwoThree";
+import { Lodging } from "./lodging";
+import { TemporaryServices } from "./temporaryServices";
 
 
 export class EnhancedSchemeData {
     "airline"?: Airline | null;
+    "carRental"?: CarRental | null;
+    "healthcare"?: Healthcare | null;
     "levelTwoThree"?: LevelTwoThree | null;
+    "lodging"?: Lodging | null;
+    "temporaryServices"?: TemporaryServices | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,9 +35,33 @@ export class EnhancedSchemeData {
             "format": ""
         },
         {
+            "name": "carRental",
+            "baseName": "carRental",
+            "type": "CarRental | null",
+            "format": ""
+        },
+        {
+            "name": "healthcare",
+            "baseName": "healthcare",
+            "type": "Healthcare | null",
+            "format": ""
+        },
+        {
             "name": "levelTwoThree",
             "baseName": "levelTwoThree",
             "type": "LevelTwoThree | null",
+            "format": ""
+        },
+        {
+            "name": "lodging",
+            "baseName": "lodging",
+            "type": "Lodging | null",
+            "format": ""
+        },
+        {
+            "name": "temporaryServices",
+            "baseName": "temporaryServices",
+            "type": "TemporaryServices | null",
             "format": ""
         }    ];
 

@@ -36,7 +36,19 @@ export type PaymentResponseAction = CheckoutAwaitAction | CheckoutBankTransferAc
 */
 export class PaymentResponseActionClass {
     
-    static readonly discriminator: string = "type";
+    
+    static readonly discriminator: string | undefined = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    static readonly mapping: {[index: string]: string} | undefined = {
+        "await": "CheckoutAwaitAction",
+        "bankTransfer": "CheckoutBankTransferAction",
+        "delegatedAuthentication": "CheckoutDelegatedAuthenticationAction",
+        "nativeRedirect": "CheckoutNativeRedirectAction",
+        "qrCode": "CheckoutQrCodeAction",
+        "redirect": "CheckoutRedirectAction",
+        "sdk": "CheckoutSDKAction",
+        "threeDS2": "CheckoutThreeDS2Action",
+        "voucher": "CheckoutVoucherAction",
+        "wechatpaySDK": "CheckoutSDKAction",
+    };
 }

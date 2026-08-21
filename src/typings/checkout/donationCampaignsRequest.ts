@@ -14,6 +14,10 @@ export class DonationCampaignsRequest {
     */
     "currency": string;
     /**
+    * The label that is assigned to the donation campaign.
+    */
+    "label"?: string;
+    /**
     * Locale on the shopper interaction device.
     */
     "locale"?: string;
@@ -34,6 +38,12 @@ export class DonationCampaignsRequest {
         {
             "name": "currency",
             "baseName": "currency",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "label",
+            "baseName": "label",
             "type": "string",
             "format": ""
         },

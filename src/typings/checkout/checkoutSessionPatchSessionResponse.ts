@@ -8,19 +8,8 @@
  */
 
 
-export class InvalidField {
-    /**
-    * Description of the validation error.
-    */
-    "message": string;
-    /**
-    * The field that has an invalid value.
-    */
-    "name": string;
-    /**
-    * The invalid value.
-    */
-    "value": string;
+export class CheckoutSessionPatchSessionResponse {
+    "sessionData"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -28,26 +17,14 @@ export class InvalidField {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
-            "name": "message",
-            "baseName": "message",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "value",
-            "baseName": "value",
+            "name": "sessionData",
+            "baseName": "sessionData",
             "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return InvalidField.attributeTypeMap;
+        return CheckoutSessionPatchSessionResponse.attributeTypeMap;
     }
 
     public constructor() {
