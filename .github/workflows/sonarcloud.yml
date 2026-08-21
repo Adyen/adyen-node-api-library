@@ -40,10 +40,4 @@ jobs:
       - name: Run SonarCloud Analysis
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          npx sonar-scanner \
-            -Dsonar.projectKey=Adyen_adyen-node-api-library \
-            -Dsonar.organization=adyen \
-            -Dsonar.sources=. \
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
-            -Dsonar.host.url=https://sonarcloud.io
+        run: npx --no-install sonar-scanner
