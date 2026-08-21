@@ -17,6 +17,8 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
 import { CardDetailsRequest } from "../../typings/checkout/models";
 import { CardDetailsResponse } from "../../typings/checkout/models";
+import { CheckoutSessionPatchSessionRequest } from "../../typings/checkout/models";
+import { CheckoutSessionPatchSessionResponse } from "../../typings/checkout/models";
 import { CreateCheckoutSessionRequest } from "../../typings/checkout/models";
 import { CreateCheckoutSessionResponse } from "../../typings/checkout/models";
 import { PaymentDetailsRequest } from "../../typings/checkout/models";
@@ -165,6 +167,28 @@ export class PaymentsApi extends Service {
         );
 
         return ObjectSerializer.deserialize(response, "CreateCheckoutSessionResponse");
+    }
+
+    /**
+    * @summary Update a payment session
+    * @param sessionId {@link string } 
+    * @param checkoutSessionPatchSessionRequest {@link CheckoutSessionPatchSessionRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CheckoutSessionPatchSessionResponse }
+    */
+    public async updateSession(sessionId: string, checkoutSessionPatchSessionRequest: CheckoutSessionPatchSessionRequest, requestOptions?: IRequest.Options): Promise<CheckoutSessionPatchSessionResponse> {
+        const endpoint = `${this.baseUrl}/sessions/{sessionId}`
+            .replace("{" + "sessionId" + "}", encodeURIComponent(String(sessionId)));
+        const resource = new Resource(this, endpoint);
+        
+        const request: CheckoutSessionPatchSessionRequest = ObjectSerializer.serialize(checkoutSessionPatchSessionRequest, "CheckoutSessionPatchSessionRequest");
+        const response = await getJsonResponse<CheckoutSessionPatchSessionRequest, CheckoutSessionPatchSessionResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "PATCH" }
+        );
+
+        return ObjectSerializer.deserialize(response, "CheckoutSessionPatchSessionResponse");
     }
 
 }
