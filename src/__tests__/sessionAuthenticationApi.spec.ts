@@ -1,4 +1,5 @@
 import nock from "nock";
+import { Types } from "../index";
 import { createClient } from "../__mocks__/base";
 import SessionAuthenticationApi from "../services/sessionAuthentication";
 import Client from "../client";
@@ -7,6 +8,15 @@ import { AccountHolderResource, AuthenticationSessionRequest, AuthenticationSess
 let client: Client;
 let sessionAuthenticationApi: SessionAuthenticationApi;
 let scope: nock.Scope;
+
+describe("Session Authentication public types", (): void => {
+    test("exports AuthenticationSessionRequest through Types", (): void => {
+        const request: Types.sessionAuthentication.AuthenticationSessionRequest =
+            new Types.sessionAuthentication.AuthenticationSessionRequest();
+
+        expect(request).toBeInstanceOf(Types.sessionAuthentication.AuthenticationSessionRequest);
+    });
+});
 
 beforeEach((): void => {
     if (!nock.isActive()) {
