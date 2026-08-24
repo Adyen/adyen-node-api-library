@@ -15,6 +15,7 @@ export * as binlookup from "./binLookup/models";
 export * as capital from "./capital/models";
 export * as checkout from "./checkout/models";
 export * as dataProtection from "./dataProtection/models";
+export * as documentCollector from "./documentCollector/models";
 export * as legalEntityManagement from "./legalEntityManagement/models";
 export * as management from "./management/models";
 export * as openBanking from "./openBanking/models";
