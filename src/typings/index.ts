@@ -24,6 +24,7 @@ export * as platformsAccount from "./platformsAccount/models";
 export * as platformsFund from "./platformsFund/models";
 export * as platformsHostedOnboardingPage from "./platformsHostedOnboardingPage/models";
 export * as recurring from "./recurring/models";
+export * as sessionAuthentication from "./sessionAuthentication/models";
 export * as storedValue from "./storedValue/models";
 export * as tapi from "./tapi/models";
 export * as terminal from "./terminal/models";
