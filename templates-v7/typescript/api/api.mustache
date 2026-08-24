@@ -1,11 +1,4 @@
 {{>licenseInfo}}
-{{#platforms}}
-{{#node}}
-import {{^supportsES6}}* as{{/supportsES6}} FormData from "form-data";
-import { URLSearchParams } from 'url';
-{{/node}}
-{{/platforms}}
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
@@ -15,6 +8,9 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/{{serviceName}}/objectSerializer";
 {{#imports}}
 import { {{classname}} } from "../../typings/{{serviceName}}/models";
+{{/imports}}
+{{#imports}}
+void {{classname}};
 {{/imports}}
 {{#operations}}
 
@@ -36,14 +32,55 @@ export class {{classname}} extends Service {
 
     {{#operation}}
 {{>api_summary}}
-    public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}{{#queryParams}}{{#required}}{{paramName}}: {{{dataType}}}, {{/required}}{{/queryParams}}{{#queryParams}}{{^required}}{{paramName}}?: {{{dataType}}}, {{/required}}{{/queryParams}}requestOptions?: IRequest.Options): Promise<{{#returnProperty}}{{openApiType}}{{/returnProperty}}{{^returnProperty}}void{{/returnProperty}}> {
+    public async {{#vendorExtensions.x-methodName}}{{.}}{{/vendorExtensions.x-methodName}}{{^vendorExtensions.x-methodName}}{{nickname}}{{/vendorExtensions.x-methodName}}({{#pathParams}}{{paramName}}: {{{dataType}}}, {{/pathParams}}{{#bodyParams}}{{paramName}}: {{{dataType}}}, {{/bodyParams}}{{#formParams}}{{#required}}{{paramName}}: {{#isFile}}import("../../typings/httpFile").HttpFile{{/isFile}}{{^isFile}}{{{dataType}}}{{/isFile}}, {{/required}}{{/formParams}}{{#queryParams}}{{#required}}{{paramName}}: {{{dataType}}}, {{/required}}{{/queryParams}}{{#formParams}}{{^required}}{{paramName}}?: {{#isFile}}import("../../typings/httpFile").HttpFile{{/isFile}}{{^isFile}}{{{dataType}}}{{/isFile}}, {{/required}}{{/formParams}}{{#queryParams}}{{^required}}{{paramName}}?: {{{dataType}}}, {{/required}}{{/queryParams}}requestOptions?: IRequest.Options): Promise<{{#returnProperty}}{{openApiType}}{{/returnProperty}}{{^returnProperty}}void{{/returnProperty}}> {
         const endpoint = `${this.baseUrl}{{{path}}}`{{#pathParams}}
             .replace("{" + "{{baseName}}" + "}", encodeURIComponent(String({{paramName}}))){{/pathParams}};
         const resource = new Resource(this, endpoint);
         
+{{#formParams}}
+{{#required}}
+        if ({{paramName}} === null || {{paramName}} === undefined) {
+            throw new Error("Required parameter {{paramName}} was null or undefined");
+        }
+{{/required}}
+{{/formParams}}
 {{#bodyParam}}
         const request: {{{dataType}}} = ObjectSerializer.serialize({{paramName}}, "{{{dataType}}}");
 {{/bodyParam}}
+{{#hasFormParams}}
+        const contentTypes = [{{#consumes}}"{{{mediaType}}}"{{^-last}}, {{/-last}}{{/consumes}}];
+        const requestForm = await import("../../helpers/requestForm");
+        const form = requestForm.createRequestForm(contentTypes);
+{{#formParams}}
+{{#isArray}}
+        if ({{paramName}} != null) {
+            {{paramName}}.forEach((element) => {
+{{#isFile}}
+                if ("getBuffer" in form) {
+                    form.append("{{baseName}}", element.data, { filename: element.name });
+                }
+{{/isFile}}
+{{^isFile}}
+                form.append("{{baseName}}", String(element));
+{{/isFile}}
+            });
+        }
+{{/isArray}}
+{{^isArray}}
+        if ({{paramName}} != null) {
+{{#isFile}}
+            if ("getBuffer" in form) {
+                form.append("{{baseName}}", {{paramName}}.data, { filename: {{paramName}}.name });
+            }
+{{/isFile}}
+{{^isFile}}
+            form.append("{{baseName}}", String({{paramName}}));
+{{/isFile}}
+        }
+{{/isArray}}
+{{/formParams}}
+        const { request, headers } = requestForm.finalizeRequestForm(form, requestOptions?.headers);
+{{/hasFormParams}}
 {{#hasQueryParams}}
         const hasDefinedQueryParams = {{#queryParams}}{{paramName}}{{^-last}} ?? {{/-last}}{{/queryParams}};
         if(hasDefinedQueryParams) {
@@ -54,10 +91,10 @@ export class {{classname}} extends Service {
 {{/queryParams}}
         }
 {{/hasQueryParams}}
-        {{#returnProperty}}const response = {{/returnProperty}}await getJsonResponse<{{#bodyParam}}{{{dataType}}}{{/bodyParam}}{{^bodyParam}}string{{/bodyParam}}, {{#returnProperty}}{{openApiType}}{{/returnProperty}}{{^returnProperty}}void{{/returnProperty}}>(
+        {{#returnProperty}}const response = {{/returnProperty}}await getJsonResponse<{{#bodyParam}}{{{dataType}}}{{/bodyParam}}{{#hasFormParams}}string | Buffer{{/hasFormParams}}{{^bodyParam}}{{^hasFormParams}}string{{/hasFormParams}}{{/bodyParam}}, {{#returnProperty}}{{openApiType}}{{/returnProperty}}{{^returnProperty}}void{{/returnProperty}}>(
             resource,
-            {{#bodyParam}}request{{/bodyParam}}{{^bodyParam}}""{{/bodyParam}},
-            { ...requestOptions, method: "{{httpMethod}}" }
+            {{#bodyParam}}request{{/bodyParam}}{{#hasFormParams}}request{{/hasFormParams}}{{^bodyParam}}{{^hasFormParams}}""{{/hasFormParams}}{{/bodyParam}},
+            { ...requestOptions, {{#hasFormParams}}headers, {{/hasFormParams}}method: "{{httpMethod}}" }
         );
         {{#returnProperty}}
 

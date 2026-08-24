@@ -12,19 +12,13 @@
  *                               #############
  *                               ############
  * Adyen NodeJS API Library
- * Copyright (c) 2020 Adyen B.V.
+ * Copyright (c) 2026 Adyen B.V.
  * This file is open source and available under the MIT license.
  * See the LICENSE file for more info.
  */
-import { AgentOptions } from "https";
-import { Config } from "../index";
-import { IRequest } from "../typings/requestOptions";
 
-interface ClientInterface {
-    request(
-        endpoint: string, json: string | Buffer, config: Config, isApiKeyRequired: boolean, requestOptions?: IRequest.Options,
-    ): Promise<string>;
-    proxy?: AgentOptions;
+// Represents a file uploaded as part of a multipart request.
+export interface HttpFile {
+    data: Buffer;
+    name: string;
 }
-
-export default ClientInterface;

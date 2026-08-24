@@ -47,7 +47,7 @@ class HttpURLConnectionClient implements ClientInterface {
      * Throws an ApiException when an error occurs (invalid API key, API error response, etc.).
      *
      * @param endpoint - The URL to which the request will be sent.
-     * @param json - The JSON string to be sent as the request body.
+     * @param json - The string or Buffer to be sent as the request body.
      * @param config - The configuration object containing authentication, timeout, and certificate details.
      * @param isApiRequired - Indicates whether an API key is required for this request.
      * @param requestOptions - Additional options for the HTTP request, such as headers and timeout.
@@ -56,10 +56,10 @@ class HttpURLConnectionClient implements ClientInterface {
      */
     public request(
         endpoint: string,
-        json: string,
+        json: string | Buffer,
         config: Config,
         isApiRequired: boolean,
-        requestOptions: IRequest.Options,
+        requestOptions: IRequest.Options = {},
     ): Promise<string> {
         requestOptions.headers ??= {};
         requestOptions.timeout = config.connectionTimeoutMillis;
@@ -83,7 +83,12 @@ class HttpURLConnectionClient implements ClientInterface {
             requestOptions.headers.Authorization = `Basic ${authStringEnc}`;
         }
 
-        requestOptions.headers[ApiConstants.CONTENT_TYPE] = ApiConstants.APPLICATION_JSON_TYPE;
+        // Preserve caller-provided content types, including multipart boundaries.
+        const hasContentType = Object.keys(requestOptions.headers)
+            .some((headerName) => headerName.toLowerCase() === ApiConstants.CONTENT_TYPE.toLowerCase());
+        if (!hasContentType) {
+            requestOptions.headers[ApiConstants.CONTENT_TYPE] = ApiConstants.APPLICATION_JSON_TYPE;
+        }
 
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
 
@@ -150,7 +155,7 @@ class HttpURLConnectionClient implements ClientInterface {
      * @param allowRedirect Whether to allow redirect upon 308 response status code
      * @returns Promise with the API response
      */
-    private doRequest(connectionRequest: ClientRequest, json: string, allowRedirect: boolean): Promise<string> {
+    private doRequest(connectionRequest: ClientRequest, json: string | Buffer, allowRedirect: boolean): Promise<string> {
 
         return new Promise((resolve, reject): void => {
             connectionRequest.flushHeaders();
@@ -259,7 +264,7 @@ class HttpURLConnectionClient implements ClientInterface {
                 connectionRequest.abort();
             });
             connectionRequest.on("error", (e) => reject(new ApiException(e.message)));
-            connectionRequest.write(Buffer.from(json));
+            connectionRequest.write(json);
             connectionRequest.end();
         });
     }
