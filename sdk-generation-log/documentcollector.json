@@ -1,0 +1,8 @@
+{
+  "service": "documentcollector",
+  "project": "node",
+  "generatedAt": "2026-08-24T12:33:07Z",
+  "openapiCommitSha": "bee086f2cd666ac7cb5b5ba2813a8b5dc943c2d2",
+  "automationCommitSha": "2f180b958babc6bbd6f0b6b73d7e4c6feefe256e",
+  "libraryCommitSha": "180c4d182001a6bc5cef8110cde7d34691cb6023"
+}
