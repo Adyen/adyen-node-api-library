@@ -47,4 +47,5 @@ export * as transactionWebhooks from "./transactionWebhooks/models";
 export * as transferWebhooks from "./transferWebhooks/models";
 
 // shared
+export * from "./httpFile";
 export * as requestOptions from "./requestOptions";

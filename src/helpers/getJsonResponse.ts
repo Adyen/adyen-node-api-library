@@ -27,14 +27,14 @@ import { TerminalApiResponse } from "../typings/terminal/models";
  * 
  * @template T The request type (usually a model or plain object).
  * @param {Resource} resource - The API resource to which the request is sent.
- * @param {T | string} jsonRequest - The request payload, either as an object or raw JSON string.
+ * @param {T | string | Buffer} jsonRequest - The request payload, either as an object, raw JSON string, or Buffer.
  * @param {IRequest.Options} [requestOptions] - Optional HTTP request options.
  * @returns {Promise<string | TerminalApiResponse>} A promise resolving to either a raw response string or a `TerminalApiResponse` object.
  *
  * @example
  * const response = await getJsonResponse<TerminalApiRequest>(terminalApiResource, request);
  */
-async function getJsonResponse<T>(resource: Resource, jsonRequest: T | string, requestOptions?: IRequest.Options): Promise<string | TerminalApiResponse>;
+async function getJsonResponse<T>(resource: Resource, jsonRequest: T | string | Buffer, requestOptions?: IRequest.Options): Promise<string | TerminalApiResponse>;
 /**
  * Sends a JSON request to the given resource and returns a deserialized response of the expected type.
  * Used by all APIs and Terminal API sync method 
@@ -42,14 +42,14 @@ async function getJsonResponse<T>(resource: Resource, jsonRequest: T | string, r
  * @template T The request type.
  * @template R The expected deserialized response type.
  * @param {Resource} resource - The API resource to which the request is sent.
- * @param {T | string} jsonRequest - The request payload, either as an object or raw JSON string.
+ * @param {T | string | Buffer} jsonRequest - The request payload, either as an object, raw JSON string, or Buffer.
  * @param {IRequest.Options} [requestOptions] - Optional HTTP request options.
  * @returns {Promise<R>} A promise resolving to the deserialized response object.
  *
  * @example
  * const response = await getJsonResponse<MyRequestType, MyResponseType>(resource, request);
  */
-async function getJsonResponse<T, R>(resource: Resource, jsonRequest: T | string, requestOptions?: IRequest.Options): Promise<R>;
+async function getJsonResponse<T, R>(resource: Resource, jsonRequest: T | string | Buffer, requestOptions?: IRequest.Options): Promise<R>;
 
 /**
  * Makes the API call and returns the parsed JSON response.
@@ -57,16 +57,18 @@ async function getJsonResponse<T, R>(resource: Resource, jsonRequest: T | string
  * @template T - The type of the request payload.
  * @template R - The expected type of the parsed JSON response.
  * @param resource - The API resource responsible for handling the request.
- * @param jsonRequest - The request payload, either as an object or a JSON string.
+ * @param jsonRequest - The request payload, either as an object, a JSON string, or a Buffer.
  * @param requestOptions - Optional request options to customize the request.
  * @returns A promise that resolves to the parsed JSON response of type `R`, or the string "ok" for TerminalAPI responses.
  */
 async function getJsonResponse<T, R>(
     resource: Resource,
-    jsonRequest: T | string,
+    jsonRequest: T | string | Buffer,
     requestOptions: IRequest.Options = {},
 ): Promise<R | string> {
-    const request = typeof jsonRequest === "string" ? jsonRequest : JSON.stringify(jsonRequest);
+    const request = typeof jsonRequest === "string" || Buffer.isBuffer(jsonRequest)
+        ? jsonRequest
+        : JSON.stringify(jsonRequest);
     const response = await resource.request(request, requestOptions);
 
     if (!response) {
