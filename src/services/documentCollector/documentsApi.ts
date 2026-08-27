@@ -14,12 +14,8 @@ import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
 
 import { ObjectSerializer } from "../../typings/documentCollector/objectSerializer";
-import { DefaultErrorResponseEntity } from "../../typings/documentCollector/models";
 import { DocumentContext } from "../../typings/documentCollector/models";
 import { DocumentUploadResponse } from "../../typings/documentCollector/models";
-void DefaultErrorResponseEntity;
-void DocumentContext;
-void DocumentUploadResponse;
 
 /**
  * API handler for DocumentsApi
