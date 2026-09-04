@@ -12,11 +12,11 @@ export class WeChatPayPosResponseInfo {
     /**
     * The name of the contact person from merchant support.
     */
-    "contactPersonName": string;
+    "contactPersonName"?: string;
     /**
     * The email address of merchant support.
     */
-    "email": string;
+    "email"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -16,11 +16,11 @@ export class PayPalResponseInfo {
     /**
     * PayPal Merchant ID. Character length and limitations: 13 single-byte alphanumeric characters.
     */
-    "payerId": string;
+    "payerId"?: string;
     /**
     * Your business email address.
     */
-    "subject": string;
+    "subject"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
