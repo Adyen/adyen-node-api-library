@@ -8,7 +8,7 @@
  */
 
 /**
-* The document context indicating the type of document being uploaded
+* The document context indicating the type of document being uploaded.  Possible values: **paCbInvoice**.
 */
 
 export enum DocumentContext {
