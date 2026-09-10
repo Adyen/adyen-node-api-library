@@ -13,6 +13,7 @@ import { AfterpayTouchResponseInfo } from "./afterpayTouchResponseInfo";
 import { AlipayPlusResponseInfo } from "./alipayPlusResponseInfo";
 import { AmexResponseInfo } from "./amexResponseInfo";
 import { ApplePayResponseInfo } from "./applePayResponseInfo";
+import { AssociatedPaymentMethod } from "./associatedPaymentMethod";
 import { BcmcResponseInfo } from "./bcmcResponseInfo";
 import { CarnetResponseInfo } from "./carnetResponseInfo";
 import { CartesBancairesResponseInfo } from "./cartesBancairesResponseInfo";
@@ -65,6 +66,10 @@ export class PaymentMethod {
     "allowed"?: boolean;
     "amex"?: AmexResponseInfo | null;
     "applePay"?: ApplePayResponseInfo | null;
+    /**
+    * Payment methods that were also updated as part of an associated transition.
+    */
+    "associatedPaymentMethods"?: Array<AssociatedPaymentMethod>;
     "bcmc"?: BcmcResponseInfo | null;
     /**
     * The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).
@@ -194,6 +199,12 @@ export class PaymentMethod {
             "name": "applePay",
             "baseName": "applePay",
             "type": "ApplePayResponseInfo | null",
+            "format": ""
+        },
+        {
+            "name": "associatedPaymentMethods",
+            "baseName": "associatedPaymentMethods",
+            "type": "Array<AssociatedPaymentMethod>",
             "format": ""
         },
         {

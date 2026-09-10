@@ -12,11 +12,11 @@ export class ValuelinkResponseInfo {
     /**
     * Authorisation Mid
     */
-    "authorisationMid": string;
+    "authorisationMid"?: string;
     /**
     * PIN Support. For ecommerce, PIN is required.
     */
-    "pinSupport": ValuelinkResponseInfo.PinSupportEnum;
+    "pinSupport"?: ValuelinkResponseInfo.PinSupportEnum;
     /**
     * Submitter ID
     */
