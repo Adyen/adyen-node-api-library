@@ -28,16 +28,19 @@ import { ApiCredential } from "./apiCredential";
 import { ApiCredentialLinks } from "./apiCredentialLinks";
 import { ApplePayInfo } from "./applePayInfo";
 import { ApplePayResponseInfo } from "./applePayResponseInfo";
+import { AssociatedPaymentMethod } from "./associatedPaymentMethod";
 import { BcmcInfo } from "./bcmcInfo";
 import { BcmcResponseInfo } from "./bcmcResponseInfo";
 import { BcmcUpdateInfo } from "./bcmcUpdateInfo";
 import { BillingEntitiesResponse } from "./billingEntitiesResponse";
 import { BillingEntity } from "./billingEntity";
 import { CardholderReceipt } from "./cardholderReceipt";
+import { CarnetInfo } from "./carnetInfo";
 import { CarnetResponseInfo } from "./carnetResponseInfo";
 import { CartesBancairesInfo } from "./cartesBancairesInfo";
 import { CartesBancairesResponseInfo } from "./cartesBancairesResponseInfo";
 import { CartesBancairesUpdateInfo } from "./cartesBancairesUpdateInfo";
+import { CashAppUpdateInfo } from "./cashAppUpdateInfo";
 import { ClearpayInfo } from "./clearpayInfo";
 import { ClearpayResponseInfo } from "./clearpayResponseInfo";
 import { Commission } from "./commission";
@@ -66,9 +69,16 @@ import { Currency } from "./currency";
 import { CustomNotification } from "./customNotification";
 import { DataCenter } from "./dataCenter";
 import { Dcc } from "./dcc";
+import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
 import { DinersInfo } from "./dinersInfo";
 import { DinersResponseInfo } from "./dinersResponseInfo";
 import { DiscoverResponseInfo } from "./discoverResponseInfo";
+import { DonationAmount } from "./donationAmount";
+import { DonationAmountUpdate } from "./donationAmountUpdate";
+import { DonationCampaign } from "./donationCampaign";
+import { DonationCampaignNonprofitCause } from "./donationCampaignNonprofitCause";
+import { DonationCampaignRequest } from "./donationCampaignRequest";
+import { DonationCampaignUpdate } from "./donationCampaignUpdate";
 import { EFTDirectDebitCAResponseInfo } from "./eFTDirectDebitCAResponseInfo";
 import { EftPosAustraliaResponseInfo } from "./eftPosAustraliaResponseInfo";
 import { EventUrl } from "./eventUrl";
@@ -89,6 +99,9 @@ import { Hardware } from "./hardware";
 import { HomeScreenSettings } from "./homeScreenSettings";
 import { IdName } from "./idName";
 import { IdealResponseInfo } from "./idealResponseInfo";
+import { InPersonDonationSettings } from "./inPersonDonationSettings";
+import { InPersonDonationSettingsResponse } from "./inPersonDonationSettingsResponse";
+import { InPersonDonationSettingsUpdate } from "./inPersonDonationSettingsUpdate";
 import { InstallAndroidAppDetails } from "./installAndroidAppDetails";
 import { InstallAndroidCertificateDetails } from "./installAndroidCertificateDetails";
 import { InstalledAPKs } from "./installedAPKs";
@@ -105,10 +118,13 @@ import { LinksElement } from "./linksElement";
 import { ListCompanyApiCredentialsResponse } from "./listCompanyApiCredentialsResponse";
 import { ListCompanyResponse } from "./listCompanyResponse";
 import { ListCompanyUsersResponse } from "./listCompanyUsersResponse";
+import { ListDonationCampaignsResponse } from "./listDonationCampaignsResponse";
 import { ListExternalTerminalActionsResponse } from "./listExternalTerminalActionsResponse";
 import { ListMerchantApiCredentialsResponse } from "./listMerchantApiCredentialsResponse";
 import { ListMerchantResponse } from "./listMerchantResponse";
 import { ListMerchantUsersResponse } from "./listMerchantUsersResponse";
+import { ListNonprofitsRequest } from "./listNonprofitsRequest";
+import { ListNonprofitsResponse } from "./listNonprofitsResponse";
 import { ListStoresResponse } from "./listStoresResponse";
 import { ListTerminalsResponse } from "./listTerminalsResponse";
 import { ListWebhooksResponse } from "./listWebhooksResponse";
@@ -130,12 +146,17 @@ import { Moto } from "./moto";
 import { Name } from "./name";
 import { Name2 } from "./name2";
 import { Nexo } from "./nexo";
+import { Nonprofit } from "./nonprofit";
+import { NonprofitCause } from "./nonprofitCause";
 import { Notification } from "./notification";
 import { NotificationUrl } from "./notificationUrl";
 import { NyceInfo } from "./nyceInfo";
 import { NyceResponseInfo } from "./nyceResponseInfo";
 import { NyceUpdateInfo } from "./nyceUpdateInfo";
 import { OfflineProcessing } from "./offlineProcessing";
+import { OnlineDonationSettings } from "./onlineDonationSettings";
+import { OnlineDonationSettingsResponse } from "./onlineDonationSettingsResponse";
+import { OnlineDonationSettingsUpdate } from "./onlineDonationSettingsUpdate";
 import { Opi } from "./opi";
 import { OrderItem } from "./orderItem";
 import { PaginationLinks } from "./paginationLinks";
@@ -187,6 +208,7 @@ import { SplitConfiguration } from "./splitConfiguration";
 import { SplitConfigurationList } from "./splitConfigurationList";
 import { SplitConfigurationLogic } from "./splitConfigurationLogic";
 import { SplitConfigurationRule } from "./splitConfigurationRule";
+import { SplitDcc } from "./splitDcc";
 import { Standalone } from "./standalone";
 import { StarInfo } from "./starInfo";
 import { StarResponseInfo } from "./starResponseInfo";
@@ -285,6 +307,7 @@ let enumsMap: Set<string> = new Set<string>([
     "AccelResponseInfo.ProcessingTypeEnum",
     "AmexInfo.ServiceLevelEnum",
     "AndroidApp.StatusEnum",
+    "CampaignStatusTransition",
     "Connectivity.SimcardStatusEnum",
     "CreateCompanyWebhookRequest.CommunicationFormatEnum",
     "CreateCompanyWebhookRequest.EncryptionProtocolEnum",
@@ -294,6 +317,10 @@ let enumsMap: Set<string> = new Set<string>([
     "CreateMerchantWebhookRequest.EncryptionProtocolEnum",
     "CreateMerchantWebhookRequest.NetworkTypeEnum",
     "DinersInfo.ServiceLevelEnum",
+    "DisplayTextField",
+    "DonationCampaignStatus",
+    "DonationFlow",
+    "DonationType",
     "ForceRebootDetails.TypeEnum",
     "GivexInfo.PaymentFlowEnum",
     "InstallAndroidAppDetails.TypeEnum",
@@ -401,16 +428,19 @@ let typeMap: {[index: string]: any} = {
     "ApiCredentialLinks": ApiCredentialLinks,
     "ApplePayInfo": ApplePayInfo,
     "ApplePayResponseInfo": ApplePayResponseInfo,
+    "AssociatedPaymentMethod": AssociatedPaymentMethod,
     "BcmcInfo": BcmcInfo,
     "BcmcResponseInfo": BcmcResponseInfo,
     "BcmcUpdateInfo": BcmcUpdateInfo,
     "BillingEntitiesResponse": BillingEntitiesResponse,
     "BillingEntity": BillingEntity,
     "CardholderReceipt": CardholderReceipt,
+    "CarnetInfo": CarnetInfo,
     "CarnetResponseInfo": CarnetResponseInfo,
     "CartesBancairesInfo": CartesBancairesInfo,
     "CartesBancairesResponseInfo": CartesBancairesResponseInfo,
     "CartesBancairesUpdateInfo": CartesBancairesUpdateInfo,
+    "CashAppUpdateInfo": CashAppUpdateInfo,
     "ClearpayInfo": ClearpayInfo,
     "ClearpayResponseInfo": ClearpayResponseInfo,
     "Commission": Commission,
@@ -439,9 +469,16 @@ let typeMap: {[index: string]: any} = {
     "CustomNotification": CustomNotification,
     "DataCenter": DataCenter,
     "Dcc": Dcc,
+    "DefaultErrorResponseEntity": DefaultErrorResponseEntity,
     "DinersInfo": DinersInfo,
     "DinersResponseInfo": DinersResponseInfo,
     "DiscoverResponseInfo": DiscoverResponseInfo,
+    "DonationAmount": DonationAmount,
+    "DonationAmountUpdate": DonationAmountUpdate,
+    "DonationCampaign": DonationCampaign,
+    "DonationCampaignNonprofitCause": DonationCampaignNonprofitCause,
+    "DonationCampaignRequest": DonationCampaignRequest,
+    "DonationCampaignUpdate": DonationCampaignUpdate,
     "EFTDirectDebitCAResponseInfo": EFTDirectDebitCAResponseInfo,
     "EftPosAustraliaResponseInfo": EftPosAustraliaResponseInfo,
     "EventUrl": EventUrl,
@@ -462,6 +499,9 @@ let typeMap: {[index: string]: any} = {
     "HomeScreenSettings": HomeScreenSettings,
     "IdName": IdName,
     "IdealResponseInfo": IdealResponseInfo,
+    "InPersonDonationSettings": InPersonDonationSettings,
+    "InPersonDonationSettingsResponse": InPersonDonationSettingsResponse,
+    "InPersonDonationSettingsUpdate": InPersonDonationSettingsUpdate,
     "InstallAndroidAppDetails": InstallAndroidAppDetails,
     "InstallAndroidCertificateDetails": InstallAndroidCertificateDetails,
     "InstalledAPKs": InstalledAPKs,
@@ -478,10 +518,13 @@ let typeMap: {[index: string]: any} = {
     "ListCompanyApiCredentialsResponse": ListCompanyApiCredentialsResponse,
     "ListCompanyResponse": ListCompanyResponse,
     "ListCompanyUsersResponse": ListCompanyUsersResponse,
+    "ListDonationCampaignsResponse": ListDonationCampaignsResponse,
     "ListExternalTerminalActionsResponse": ListExternalTerminalActionsResponse,
     "ListMerchantApiCredentialsResponse": ListMerchantApiCredentialsResponse,
     "ListMerchantResponse": ListMerchantResponse,
     "ListMerchantUsersResponse": ListMerchantUsersResponse,
+    "ListNonprofitsRequest": ListNonprofitsRequest,
+    "ListNonprofitsResponse": ListNonprofitsResponse,
     "ListStoresResponse": ListStoresResponse,
     "ListTerminalsResponse": ListTerminalsResponse,
     "ListWebhooksResponse": ListWebhooksResponse,
@@ -503,12 +546,17 @@ let typeMap: {[index: string]: any} = {
     "Name": Name,
     "Name2": Name2,
     "Nexo": Nexo,
+    "Nonprofit": Nonprofit,
+    "NonprofitCause": NonprofitCause,
     "Notification": Notification,
     "NotificationUrl": NotificationUrl,
     "NyceInfo": NyceInfo,
     "NyceResponseInfo": NyceResponseInfo,
     "NyceUpdateInfo": NyceUpdateInfo,
     "OfflineProcessing": OfflineProcessing,
+    "OnlineDonationSettings": OnlineDonationSettings,
+    "OnlineDonationSettingsResponse": OnlineDonationSettingsResponse,
+    "OnlineDonationSettingsUpdate": OnlineDonationSettingsUpdate,
     "Opi": Opi,
     "OrderItem": OrderItem,
     "PaginationLinks": PaginationLinks,
@@ -560,6 +608,7 @@ let typeMap: {[index: string]: any} = {
     "SplitConfigurationList": SplitConfigurationList,
     "SplitConfigurationLogic": SplitConfigurationLogic,
     "SplitConfigurationRule": SplitConfigurationRule,
+    "SplitDcc": SplitDcc,
     "Standalone": Standalone,
     "StarInfo": StarInfo,
     "StarResponseInfo": StarResponseInfo,

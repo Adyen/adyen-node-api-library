@@ -12,15 +12,15 @@ export class PayMeResponseInfo {
     /**
     * Merchant display name
     */
-    "displayName": string;
+    "displayName"?: string;
     /**
     * Merchant logo. Format: Base64-encoded string.
     */
-    "logo": string;
+    "logo"?: string;
     /**
     * The email address of merchant support.
     */
-    "supportEmail": string;
+    "supportEmail"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
