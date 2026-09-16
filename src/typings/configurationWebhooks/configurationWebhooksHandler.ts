@@ -25,7 +25,9 @@ export type GenericWebhook =
     | configurationWebhooks.PayoutScheduleBPNotificationRequest
     | configurationWebhooks.PayoutScheduleStateNotificationRequest
     | configurationWebhooks.ScoreNotificationRequest
-    | configurationWebhooks.SweepConfigurationNotificationRequest;
+    | configurationWebhooks.SweepConfigurationNotificationRequest
+    | configurationWebhooks.TopUpConfigurationEventRequest
+    | configurationWebhooks.TopUpConfigurationUpdatedEventRequest;
 
 /**
  * Handler for processing ConfigurationWebhooks.
@@ -96,6 +98,14 @@ export class ConfigurationWebhooksHandler {
         
         if(Object.values(configurationWebhooks.SweepConfigurationNotificationRequest.TypeEnum).includes(type)) {
             return this.getSweepConfigurationNotificationRequest();
+        }
+        
+        if(Object.values(configurationWebhooks.TopUpConfigurationEventRequest.TypeEnum).includes(type)) {
+            return this.getTopUpConfigurationEventRequest();
+        }
+        
+        if(Object.values(configurationWebhooks.TopUpConfigurationUpdatedEventRequest.TypeEnum).includes(type)) {
+            return this.getTopUpConfigurationUpdatedEventRequest();
         }
         
         throw new Error("Could not parse the json payload: " + this.payload);
@@ -208,6 +218,24 @@ export class ConfigurationWebhooksHandler {
      */
     public getSweepConfigurationNotificationRequest(): configurationWebhooks.SweepConfigurationNotificationRequest {
         return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "SweepConfigurationNotificationRequest");
+    }
+
+    /**
+     * Deserialize the webhook payload into a TopUpConfigurationEventRequest
+     *
+     * @returns Deserialized TopUpConfigurationEventRequest object.
+     */
+    public getTopUpConfigurationEventRequest(): configurationWebhooks.TopUpConfigurationEventRequest {
+        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "TopUpConfigurationEventRequest");
+    }
+
+    /**
+     * Deserialize the webhook payload into a TopUpConfigurationUpdatedEventRequest
+     *
+     * @returns Deserialized TopUpConfigurationUpdatedEventRequest object.
+     */
+    public getTopUpConfigurationUpdatedEventRequest(): configurationWebhooks.TopUpConfigurationUpdatedEventRequest {
+        return configurationWebhooks.ObjectSerializer.deserialize(this.payload, "TopUpConfigurationUpdatedEventRequest");
     }
 
 }
