@@ -17,7 +17,7 @@
  * See the LICENSE file for more info.
  */
 
-import { ClientRequest, IncomingHttpHeaders, IncomingMessage, request as httpRequest } from "http";
+import { Agent as HttpAgent, ClientRequest, IncomingHttpHeaders, IncomingMessage, request as httpRequest } from "http";
 import { Agent, AgentOptions, request as httpsRequest } from "https";
 import { HttpsProxyAgent } from "https-proxy-agent";
 
@@ -37,7 +37,16 @@ import checkServerIdentity from "../helpers/checkServerIdentity";
 class HttpURLConnectionClient implements ClientInterface {
     private static CHARSET = "utf-8";
     public proxy?: AgentOptions;
-    private agentOptions!: AgentOptions;
+    private readonly initialAgentOptions: AgentOptions;
+    private agentOptions: AgentOptions;
+    private agent?: Agent;
+    private certificatePath?: string;
+
+    public constructor(agentOptions: AgentOptions = {}) {
+        // Snapshot options used by agents created after construction.
+        this.initialAgentOptions = {...agentOptions};
+        this.agentOptions = {...agentOptions};
+    }
 
     /**
      * Sends an HTTP request to the specified endpoint with the provided JSON payload and configuration.
@@ -65,7 +74,11 @@ class HttpURLConnectionClient implements ClientInterface {
         requestOptions.timeout = config.connectionTimeoutMillis;
 
         if (config.certificatePath) {
-            this.installCertificateVerifier(config.certificatePath);
+            try {
+                this.installCertificateVerifier(config.certificatePath);
+            } catch (error) {
+                return Promise.reject(error);
+            }
         }
 
         const apiKey = config.apiKey;
@@ -92,7 +105,8 @@ class HttpURLConnectionClient implements ClientInterface {
 
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
 
-        return this.doRequest(httpConnection, json, config.enable308Redirect ?? true);
+        const requestAgent = typeof requestOptions.agent === "boolean" ? undefined : requestOptions.agent;
+        return this.doRequest(httpConnection, json, config.enable308Redirect ?? true, requestAgent);
     }
 
     // create Request object
@@ -120,7 +134,8 @@ class HttpURLConnectionClient implements ClientInterface {
             const { host, port, ...options } = this.proxy;
             requestOptions.agent = new HttpsProxyAgent({ host, port: port || 443, ...options });
         } else {
-            requestOptions.agent = new Agent(this.agentOptions);
+            this.agent ??= new Agent(this.agentOptions);
+            requestOptions.agent = this.agent;
         }
 
         requestOptions.headers["Cache-Control"] = "no-cache";
@@ -153,9 +168,15 @@ class HttpURLConnectionClient implements ClientInterface {
      * @param connectionRequest The request
      * @param json The payload
      * @param allowRedirect Whether to allow redirect upon 308 response status code
+     * @param requestAgent The agent used for the request, preserved across HTTPS redirects
      * @returns Promise with the API response
      */
-    private doRequest(connectionRequest: ClientRequest, json: string | Buffer, allowRedirect: boolean): Promise<string> {
+    private doRequest(
+        connectionRequest: ClientRequest,
+        json: string | Buffer,
+        allowRedirect: boolean,
+        requestAgent?: HttpAgent,
+    ): Promise<string> {
 
         return new Promise((resolve, reject): void => {
             connectionRequest.flushHeaders();
@@ -205,11 +226,12 @@ class HttpURLConnectionClient implements ClientInterface {
                                     method: connectionRequest.method,
                                     headers: connectionRequest.getHeaders(),
                                     protocol: url.protocol,
+                                    agent: url.protocol === "https:" ? requestAgent : undefined,
                                 };
                                 const clientRequestFn = url.protocol === "https:" ? httpsRequest : httpRequest;
                                 const redirectedRequest: ClientRequest = clientRequestFn(newRequestOptions);
                                 // To prevent potential redirect loops, disable further redirects for this new request.
-                                const redirectResponse = this.doRequest(redirectedRequest, json, false as boolean);
+                                const redirectResponse = this.doRequest(redirectedRequest, json, false, requestAgent);
                                 return resolve(redirectResponse);
                             } catch (err) {
                                 return reject(err);
@@ -269,23 +291,32 @@ class HttpURLConnectionClient implements ClientInterface {
         });
     }
 
-    private installCertificateVerifier(terminalCertificatePath: string): void | Promise<HttpClientException> {
+    private installCertificateVerifier(terminalCertificatePath: string): void {
+        if (this.certificatePath === terminalCertificatePath) {
+            return;
+        }
+
         try {
-            if (terminalCertificatePath == "unencrypted") {
+            if (terminalCertificatePath === "unencrypted") {
                 this.agentOptions = {
+                    ...this.initialAgentOptions,
                     rejectUnauthorized: false
                 };
             } else {
                 const certificateInput = fs.readFileSync(terminalCertificatePath);
                 this.agentOptions = {
+                    ...this.initialAgentOptions,
                     ca: certificateInput,
                     checkServerIdentity,
                 };
             }
 
+            this.agent = undefined;
+            this.certificatePath = terminalCertificatePath;
+
         } catch (e) {
             const message = e instanceof Error ? e.message : "undefined";
-            return Promise.reject(new HttpClientException({ message: `Error loading certificate from path: ${message}` }));
+            throw new HttpClientException({ message: `Error loading certificate from path: ${message}` });
         }
 
     }

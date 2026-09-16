@@ -1,6 +1,6 @@
-import HttpURLConnectionClient from "../httpClient/httpURLConnectionClient";
 import nock from "nock";
 import Config, { EnvironmentEnum } from "../config";
+import HttpURLConnectionClient from "../httpClient/httpURLConnectionClient";
 
 const toRequestBuffer = (body: unknown): Buffer => {
     if (Buffer.isBuffer(body)) {
@@ -106,6 +106,18 @@ describe("HttpURLConnectionClient", () => {
         expect(redirectedBody.equals(body)).toBe(true);
     });
 
+    test("rejects when the certificate cannot be loaded", async () => {
+        await expect(client.request(
+            "https://checkout-test.adyen.com",
+            "{}",
+            new Config({
+                certificatePath: "/does-not-exist/terminal.pem",
+                environment: EnvironmentEnum.TEST,
+            }),
+            false,
+        )).rejects.toThrow("Error loading certificate from path");
+    });
+
     describe("verifyLocation", () => {
         test.each([
             "https://example.adyen.com/path",
@@ -157,6 +169,79 @@ describe("HttpURLConnectionClient", () => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore - testing a private method
             expect(client.verifyLocation(location)).toBe(false);
+        });
+    });
+
+    describe("agent configuration", () => {
+        test("passes agent options to the reusable agent", () => {
+            const configuredClient = new HttpURLConnectionClient({keepAlive: true});
+            const requestOptions = {headers: {}};
+            const scope = nock("https://checkout-test.adyen.com").post("/").reply(200, "{}");
+
+            return configuredClient.request(
+                "https://checkout-test.adyen.com",
+                "{}",
+                new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+                true,
+                requestOptions,
+            ).then(() => {
+                const agent = (requestOptions as unknown as {agent: {options: {keepAlive?: boolean}}}).agent;
+                expect(agent.options.keepAlive).toBe(true);
+                expect(scope.isDone()).toBe(true);
+            });
+        });
+
+        test("does not use mutations to the original agent options", async () => {
+            const agentOptions = {keepAlive: true};
+            const configuredClient = new HttpURLConnectionClient(agentOptions);
+            agentOptions.keepAlive = false;
+            const requestOptions = {headers: {}};
+            const scope = nock("https://checkout-test.adyen.com").post("/").reply(200, "{}");
+
+            await configuredClient.request(
+                "https://checkout-test.adyen.com",
+                "{}",
+                new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+                true,
+                requestOptions,
+            );
+
+            const agent = (requestOptions as unknown as {agent: {options: {keepAlive?: boolean}}}).agent;
+            expect(agent.options.keepAlive).toBe(true);
+            expect(scope.isDone()).toBe(true);
+        });
+
+        test("reuses the same agent for multiple requests", async () => {
+            const requestOptions = {headers: {}};
+            const configuredClient = new HttpURLConnectionClient({keepAlive: true});
+            const scope = nock("https://checkout-test.adyen.com").post("/").times(3).reply(200, "{}");
+
+            await configuredClient.request(
+                "https://checkout-test.adyen.com",
+                "{}",
+                new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+                true,
+                requestOptions,
+            );
+            const firstAgent = (requestOptions as unknown as {agent: object}).agent;
+
+            await configuredClient.request(
+                "https://checkout-test.adyen.com",
+                "{}",
+                new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+                true,
+                requestOptions,
+            );
+            await configuredClient.request(
+                "https://checkout-test.adyen.com",
+                "{}",
+                new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+                true,
+                requestOptions,
+            );
+
+            expect((requestOptions as unknown as {agent: object}).agent).toBe(firstAgent);
+            expect(scope.isDone()).toBe(true);
         });
     });
 });
