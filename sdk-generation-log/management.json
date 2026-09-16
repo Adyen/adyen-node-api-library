@@ -1,8 +1,8 @@
 {
   "service": "management",
   "project": "node",
-  "generatedAt": "2026-06-15T16:42:50Z",
-  "openapiCommitSha": "fe790646de44602c0531c3ebd57c966876c7a1c7",
-  "automationCommitSha": "6f06b47d0661f0891defe6b85461d2c367fbd284",
-  "libraryCommitSha": "f6a0015d5e5165d611fa7f39bc2e34dc36dbee9c"
+  "generatedAt": "2026-09-16T12:56:58Z",
+  "openapiCommitSha": "da8325981e81e122d15036c36c00f395488d3131",
+  "automationCommitSha": "a049dfca47eb70f3e45ee5d7eba406fc17fde1aa",
+  "libraryCommitSha": "afd3bb485d84d861324a183b99839431bafa4e68"
 }
