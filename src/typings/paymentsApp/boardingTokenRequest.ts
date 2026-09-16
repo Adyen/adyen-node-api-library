@@ -7,12 +7,15 @@
  * Do not edit this class manually.
  */
 
+import { SubMerchantData } from "./subMerchantData";
+
 
 export class BoardingTokenRequest {
     /**
     * The boardingToken request token.
     */
     "boardingRequestToken": string;
+    "subMerchantData"?: SubMerchantData | null;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -23,6 +26,12 @@ export class BoardingTokenRequest {
             "name": "boardingRequestToken",
             "baseName": "boardingRequestToken",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "subMerchantData",
+            "baseName": "subMerchantData",
+            "type": "SubMerchantData | null",
             "format": ""
         }    ];
 
