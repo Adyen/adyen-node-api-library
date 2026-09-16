@@ -19,6 +19,7 @@ import { AllowedOriginsMerchantLevelApi } from "./allowedOriginsMerchantLevelApi
 import { AndroidFilesCompanyLevelApi } from "./androidFilesCompanyLevelApi";
 import { ClientKeyCompanyLevelApi } from "./clientKeyCompanyLevelApi";
 import { ClientKeyMerchantLevelApi } from "./clientKeyMerchantLevelApi";
+import { DonationCampaignsApi } from "./donationCampaignsApi";
 import { MyAPICredentialApi } from "./myAPICredentialApi";
 import { PaymentMethodsMerchantLevelApi } from "./paymentMethodsMerchantLevelApi";
 import { PayoutSettingsMerchantLevelApi } from "./payoutSettingsMerchantLevelApi";
@@ -92,6 +93,10 @@ export default class ManagementAPI extends Service {
 
     public get ClientKeyMerchantLevelApi() {
         return new ClientKeyMerchantLevelApi(this.client);
+    }
+
+    public get DonationCampaignsApi() {
+        return new DonationCampaignsApi(this.client);
     }
 
     public get MyAPICredentialApi() {
