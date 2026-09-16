@@ -6,6 +6,7 @@ import { DefaultErrorResponseEntity } from "./defaultErrorResponseEntity";
 import { InvalidField } from "./invalidField";
 import { PaymentsAppDto } from "./paymentsAppDto";
 import { PaymentsAppResponse } from "./paymentsAppResponse";
+import { SubMerchantData } from "./subMerchantData";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -29,6 +30,7 @@ let typeMap: {[index: string]: any} = {
     "InvalidField": InvalidField,
     "PaymentsAppDto": PaymentsAppDto,
     "PaymentsAppResponse": PaymentsAppResponse,
+    "SubMerchantData": SubMerchantData,
 }
 
 type MimeTypeDescriptor = {
