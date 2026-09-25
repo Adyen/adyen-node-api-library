@@ -1,8 +1,8 @@
 {
   "service": "transfers",
   "project": "node",
-  "generatedAt": "2026-08-27T12:21:13Z",
-  "openapiCommitSha": "2d9a60ee236f2930d9629100900995b99fffd590",
-  "automationCommitSha": "2f180b958babc6bbd6f0b6b73d7e4c6feefe256e",
-  "libraryCommitSha": "2ec9f87e54e78a88b251f6761fa0a7200f91bfcd"
+  "generatedAt": "2026-09-25T11:05:36Z",
+  "openapiCommitSha": "e96f4b3de219e3d82330dfd5864e621ffec3f86f",
+  "automationCommitSha": "db93bc35548c7c9d6aff97d76a513634967fd304",
+  "libraryCommitSha": "134f50078ca8889ff21e6c76f71c6377ddcb2120"
 }

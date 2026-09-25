@@ -486,6 +486,7 @@ export namespace TransferData {
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
+        ReversalReceived = 'reversalReceived',
         Reversed = 'reversed',
         SecondChargeback = 'secondChargeback',
         SecondChargebackPending = 'secondChargebackPending',
@@ -529,6 +530,8 @@ export namespace TransferData {
         InstallmentReversal = 'installmentReversal',
         BalanceAdjustment = 'balanceAdjustment',
         BalanceRollover = 'balanceRollover',
-        BalanceMigration = 'balanceMigration'
+        BalanceMigration = 'balanceMigration',
+        FxSell = 'fxSell',
+        FxBuy = 'fxBuy'
     }
 }
