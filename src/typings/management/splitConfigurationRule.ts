@@ -12,9 +12,13 @@ import { SplitConfigurationLogic } from "./splitConfigurationLogic";
 
 export class SplitConfigurationRule {
     /**
-    * The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  > This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **intraEEA**: The card issuer and the store where the transaction is processed are registered in different countries, but in the European Economic Area (EEA). * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.
+    * The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **intraEEA**: The card issuer and the store where the transaction is processed are registered in different countries, but in the European Economic Area (EEA). * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.
     */
     "cardRegion"?: SplitConfigurationRule.CardRegionEnum;
+    /**
+    * The card usage type condition that determines whether the split logic applies to commercial cards, consumer cards, or all cards.  * **ANY** (default): The split logic applies to all cards, regardless of its usage type. * **commercial**: The split logic applies to commercial cards only. * **consumer**: The split logic applies to consumer cards only.
+    */
+    "cardUsageType"?: SplitConfigurationRule.CardUsageTypeEnum;
     /**
     * The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
     */
@@ -46,6 +50,12 @@ export class SplitConfigurationRule {
             "name": "cardRegion",
             "baseName": "cardRegion",
             "type": "SplitConfigurationRule.CardRegionEnum",
+            "format": ""
+        },
+        {
+            "name": "cardUsageType",
+            "baseName": "cardUsageType",
+            "type": "SplitConfigurationRule.CardUsageTypeEnum",
             "format": ""
         },
         {
@@ -100,6 +110,11 @@ export namespace SplitConfigurationRule {
         IntraRegional = 'intraRegional',
         InterRegional = 'interRegional',
         Domestic = 'domestic',
+        Any = 'ANY'
+    }
+    export enum CardUsageTypeEnum {
+        Commercial = 'commercial',
+        Consumer = 'consumer',
         Any = 'ANY'
     }
     export enum FundingSourceEnum {

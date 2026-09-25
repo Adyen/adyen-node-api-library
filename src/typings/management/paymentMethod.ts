@@ -12,7 +12,9 @@ import { AffirmResponseInfo } from "./affirmResponseInfo";
 import { AfterpayTouchResponseInfo } from "./afterpayTouchResponseInfo";
 import { AlipayPlusResponseInfo } from "./alipayPlusResponseInfo";
 import { AmexResponseInfo } from "./amexResponseInfo";
+import { AncvResponseInfo } from "./ancvResponseInfo";
 import { ApplePayResponseInfo } from "./applePayResponseInfo";
+import { AssociatedPaymentMethod } from "./associatedPaymentMethod";
 import { BcmcResponseInfo } from "./bcmcResponseInfo";
 import { CarnetResponseInfo } from "./carnetResponseInfo";
 import { CartesBancairesResponseInfo } from "./cartesBancairesResponseInfo";
@@ -21,6 +23,7 @@ import { CupResponseInfo } from "./cupResponseInfo";
 import { DinersResponseInfo } from "./dinersResponseInfo";
 import { DiscoverResponseInfo } from "./discoverResponseInfo";
 import { EFTDirectDebitCAResponseInfo } from "./eFTDirectDebitCAResponseInfo";
+import { EbtResponseInfo } from "./ebtResponseInfo";
 import { EftPosAustraliaResponseInfo } from "./eftPosAustraliaResponseInfo";
 import { GirocardResponseInfo } from "./girocardResponseInfo";
 import { GivexResponseInfo } from "./givexResponseInfo";
@@ -64,7 +67,12 @@ export class PaymentMethod {
     */
     "allowed"?: boolean;
     "amex"?: AmexResponseInfo | null;
+    "ancv"?: AncvResponseInfo | null;
     "applePay"?: ApplePayResponseInfo | null;
+    /**
+    * Payment methods that were also updated as part of an associated transition.
+    */
+    "associatedPaymentMethods"?: Array<AssociatedPaymentMethod>;
     "bcmc"?: BcmcResponseInfo | null;
     /**
     * The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).
@@ -88,6 +96,7 @@ export class PaymentMethod {
     "customRoutingFlags"?: Array<string>;
     "diners"?: DinersResponseInfo | null;
     "discover"?: DiscoverResponseInfo | null;
+    "ebt"?: EbtResponseInfo | null;
     "eft_directdebit_CA"?: EFTDirectDebitCAResponseInfo | null;
     "eftpos_australia"?: EftPosAustraliaResponseInfo | null;
     /**
@@ -109,6 +118,14 @@ export class PaymentMethod {
     "maestro_usa"?: MaestroUSAResponseInfo | null;
     "mc"?: MCResponseInfo | null;
     "mealVoucher_FR"?: MealVoucherFRResponseInfo | null;
+    /**
+    * The Merchant Category Code (MCC) associated with the payment method.
+    */
+    "merchantCategoryCode"?: string;
+    /**
+    * The Merchant Identifier (MID) associated with the payment method.
+    */
+    "mid"?: string;
     "nyce"?: NyceResponseInfo | null;
     "paybybank_plaid"?: PayByBankPlaidResponseInfo | null;
     "payme"?: PayMeResponseInfo | null;
@@ -136,7 +153,7 @@ export class PaymentMethod {
     "ticket"?: TicketResponseInfo | null;
     "twint"?: TwintResponseInfo | null;
     /**
-    * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+    * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object.
     */
     "type"?: string;
     "valuelink"?: ValuelinkResponseInfo | null;
@@ -191,9 +208,21 @@ export class PaymentMethod {
             "format": ""
         },
         {
+            "name": "ancv",
+            "baseName": "ancv",
+            "type": "AncvResponseInfo | null",
+            "format": ""
+        },
+        {
             "name": "applePay",
             "baseName": "applePay",
             "type": "ApplePayResponseInfo | null",
+            "format": ""
+        },
+        {
+            "name": "associatedPaymentMethods",
+            "baseName": "associatedPaymentMethods",
+            "type": "Array<AssociatedPaymentMethod>",
             "format": ""
         },
         {
@@ -260,6 +289,12 @@ export class PaymentMethod {
             "name": "discover",
             "baseName": "discover",
             "type": "DiscoverResponseInfo | null",
+            "format": ""
+        },
+        {
+            "name": "ebt",
+            "baseName": "ebt",
+            "type": "EbtResponseInfo | null",
             "format": ""
         },
         {
@@ -350,6 +385,18 @@ export class PaymentMethod {
             "name": "mealVoucher_FR",
             "baseName": "mealVoucher_FR",
             "type": "MealVoucherFRResponseInfo | null",
+            "format": ""
+        },
+        {
+            "name": "merchantCategoryCode",
+            "baseName": "merchantCategoryCode",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "mid",
+            "baseName": "mid",
+            "type": "string",
             "format": ""
         },
         {

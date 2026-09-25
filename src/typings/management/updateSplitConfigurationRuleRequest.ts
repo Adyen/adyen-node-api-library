@@ -10,6 +10,10 @@
 
 export class UpdateSplitConfigurationRuleRequest {
     /**
+    * The card usage type condition that determines whether the split logic applies to commercial cards, consumer cards, or all cards.  * **ANY** (default): The split logic applies to all cards, regardless of its usage type. * **commercial**: The split logic applies to commercial cards only. * **consumer**: The split logic applies to consumer cards only.
+    */
+    "cardUsageType"?: UpdateSplitConfigurationRuleRequest.CardUsageTypeEnum;
+    /**
     * The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217).
     */
     "currency": string;
@@ -31,6 +35,12 @@ export class UpdateSplitConfigurationRuleRequest {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "cardUsageType",
+            "baseName": "cardUsageType",
+            "type": "UpdateSplitConfigurationRuleRequest.CardUsageTypeEnum",
+            "format": ""
+        },
         {
             "name": "currency",
             "baseName": "currency",
@@ -64,3 +74,10 @@ export class UpdateSplitConfigurationRuleRequest {
     }
 }
 
+export namespace UpdateSplitConfigurationRuleRequest {
+    export enum CardUsageTypeEnum {
+        Commercial = 'commercial',
+        Consumer = 'consumer',
+        Any = 'ANY'
+    }
+}
