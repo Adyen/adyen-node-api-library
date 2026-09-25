@@ -360,6 +360,7 @@ export namespace TransferEvent {
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
+        ReversalReceived = 'reversalReceived',
         Reversed = 'reversed',
         SecondChargeback = 'secondChargeback',
         SecondChargebackPending = 'secondChargebackPending',
