@@ -42,7 +42,7 @@ export { hmacValidator } from "./utils";
 export { PredefinedContentHelper, DisplayNotificationEvent, SaleDataHelper, SaleToAcquirerData, RecurringProcessingModel, SaleToAcquirerDataParser } from "./utils/tapi";
 
 // Export the HTTP client implementation
-export { default as HttpURLConnectionClient } from "./httpClient/httpURLConnectionClient";
+export { default as HttpURLConnectionClient, HttpURLConnectionClientOptions } from "./httpClient/httpURLConnectionClient";
 
 // Export a custom exception for HTTP client errors
 export { default as HttpClientException } from "./httpClient/httpClientException";
@@ -52,5 +52,3 @@ export { default as NexoCrypto } from "./security/nexoCrypto";
 
 // Export all the typings under the `Types` namespace
 export * as Types from "./typings";
-
-

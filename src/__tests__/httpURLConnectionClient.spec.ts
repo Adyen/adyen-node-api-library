@@ -1,3 +1,5 @@
+import { EventEmitter } from "events";
+import { IncomingMessage } from "http";
 import nock from "nock";
 import Config, { EnvironmentEnum } from "../config";
 import HttpURLConnectionClient from "../httpClient/httpURLConnectionClient";
@@ -104,6 +106,154 @@ describe("HttpURLConnectionClient", () => {
         expect(redirectScope.isDone()).toBe(true);
         expect(targetScope.isDone()).toBe(true);
         expect(redirectedBody.equals(body)).toBe(true);
+    });
+
+    test.each([
+        ["ECONNRESET", {code: "ECONNRESET"}],
+        ["socket hang up", {message: "socket hang up"}],
+    ])("retries %s before receiving response headers", async (_errorName, networkError) => {
+        const scope = nock("https://checkout-test.adyen.com", {
+            reqheaders: {"idempotency-key": "retry-key"},
+        })
+            .post("/")
+            .replyWithError(networkError)
+            .post("/")
+            .reply(200, "{}");
+        const configuredClient = new HttpURLConnectionClient({maxRetries: 1});
+
+        await expect(configuredClient.request(
+            "https://checkout-test.adyen.com",
+            "{}",
+            new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+            true,
+            {idempotencyKey: "retry-key"},
+        )).resolves.toBe("{}");
+
+        expect(scope.isDone()).toBe(true);
+    });
+
+    test("does not retry errors after response headers have been received", async () => {
+        class FakeRequest extends EventEmitter {
+            public method = "POST";
+            public flushHeaders(): void { /* no-op */ }
+            public write(): void { /* no-op */ }
+            public end(): void { /* no-op */ }
+            public abort(): void { /* no-op */ }
+        }
+
+        const request = new FakeRequest();
+        const response = new EventEmitter() as IncomingMessage;
+        response.statusCode = 200;
+        response.headers = {};
+        response.complete = true;
+        const createRetryRequest = jest.fn(() => new FakeRequest());
+        const requestPromise = (client as unknown as {
+            doRequest: (request: FakeRequest, body: string, allowRedirect: boolean, requestAgent: undefined,
+                createRequest: () => FakeRequest) => Promise<string>;
+        }).doRequest(request, "{}", true, undefined, createRetryRequest);
+
+        await new Promise<void>((resolve) => setImmediate(resolve));
+        request.emit("response", response);
+        await new Promise<void>((resolve) => setImmediate(resolve));
+        request.emit("error", new Error("socket hang up"));
+
+        await expect(requestPromise).rejects.toMatchObject({message: "socket hang up"});
+        expect(createRetryRequest).not.toHaveBeenCalled();
+    });
+
+    test("does not retry HTTP API errors", async () => {
+        const scope = nock("https://checkout-test.adyen.com")
+            .post("/")
+            .reply(500, {status: 500, message: "server error"});
+        const configuredClient = new HttpURLConnectionClient({maxRetries: 2});
+
+        await expect(configuredClient.request(
+            "https://checkout-test.adyen.com",
+            "{}",
+            new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+            true,
+        )).rejects.toThrow("server error");
+
+        expect(scope.isDone()).toBe(true);
+    });
+
+    test("does not retry a keyless POST", async () => {
+        const scope = nock("https://checkout-test.adyen.com")
+            .post("/")
+            .replyWithError({code: "ECONNRESET"});
+        const configuredClient = new HttpURLConnectionClient({maxRetries: 2});
+
+        await expect(configuredClient.request(
+            "https://checkout-test.adyen.com",
+            "{}",
+            new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+            true,
+        )).rejects.toBeDefined();
+
+        expect(scope.isDone()).toBe(true);
+    });
+
+    test.each(["PUT", "DELETE"])("retries a keyless %s", async (method) => {
+        const scope = nock("https://checkout-test.adyen.com")
+            .intercept("/", method)
+            .replyWithError({code: "ECONNRESET"})
+            .intercept("/", method)
+            .reply(200, "{}");
+        const configuredClient = new HttpURLConnectionClient({maxRetries: 1});
+
+        await expect(configuredClient.request(
+            "https://checkout-test.adyen.com",
+            "{}",
+            new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+            true,
+            {method},
+        )).resolves.toBe("{}");
+
+        expect(scope.isDone()).toBe(true);
+    });
+
+    test("stops after maxRetries is exhausted", async () => {
+        const scope = nock("https://checkout-test.adyen.com")
+            .post("/")
+            .replyWithError({code: "ECONNRESET"})
+            .post("/")
+            .replyWithError({code: "ECONNRESET"});
+        const configuredClient = new HttpURLConnectionClient({maxRetries: 1});
+
+        await expect(configuredClient.request(
+            "https://checkout-test.adyen.com",
+            "{}",
+            new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+            true,
+            {idempotencyKey: "retry-key"},
+        )).rejects.toBeDefined();
+
+        expect(scope.isDone()).toBe(true);
+    });
+
+    test("caps an excessive maxRetries value", async () => {
+        const scope = nock("https://checkout-test.adyen.com")
+            .post("/")
+            .replyWithError({code: "ECONNRESET"})
+            .post("/")
+            .replyWithError({code: "ECONNRESET"})
+            .post("/")
+            .replyWithError({code: "ECONNRESET"})
+            .post("/")
+            .replyWithError({code: "ECONNRESET"})
+            .post("/")
+            .reply(200, "{}");
+        const configuredClient = new HttpURLConnectionClient({maxRetries: 100000});
+
+        await expect(configuredClient.request(
+            "https://checkout-test.adyen.com",
+            "{}",
+            new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST}),
+            true,
+            {idempotencyKey: "retry-key"},
+        )).rejects.toBeDefined();
+
+        expect(scope.isDone()).toBe(false);
     });
 
     test("rejects when the certificate cannot be loaded", async () => {
