@@ -34,41 +34,18 @@ import { ApiConstants } from "../constants/apiConstants";
 import { IRequest } from "../typings/requestOptions";
 import checkServerIdentity from "../helpers/checkServerIdentity";
 
-const RETRYABLE_NETWORK_ERRORS = new Set([
-    "ECONNRESET",
-    "EPIPE",
-    "ETIMEDOUT",
-]);
-const IDEMPOTENT_HTTP_METHODS = new Set(["GET", "HEAD", "OPTIONS", "PUT", "DELETE"]);
-const MAX_RETRIES_LIMIT = 3;
-
-export interface HttpURLConnectionClientOptions extends AgentOptions {
-    maxRetries?: number;
-}
-
-class RequestFailure extends Error {
-    public constructor(public readonly cause: Error, public readonly responseStarted: boolean) {
-        super(cause.message);
-    }
-}
-
 class HttpURLConnectionClient implements ClientInterface {
     private static CHARSET = "utf-8";
     public proxy?: AgentOptions;
     private readonly initialAgentOptions: AgentOptions;
     private agentOptions: AgentOptions;
-    private readonly maxRetries: number;
     private agent?: Agent;
     private certificatePath?: string;
 
-    public constructor(agentOptions: HttpURLConnectionClientOptions = {}) {
+    public constructor(agentOptions: AgentOptions = {}) {
         // Snapshot options used by agents created after construction.
-        const {maxRetries = 0, ...httpAgentOptions} = agentOptions;
-        this.initialAgentOptions = {...httpAgentOptions};
-        this.agentOptions = {...httpAgentOptions};
-        this.maxRetries = Number.isFinite(maxRetries)
-            ? Math.min(MAX_RETRIES_LIMIT, Math.max(0, Math.floor(maxRetries)))
-            : 0;
+        this.initialAgentOptions = {...agentOptions};
+        this.agentOptions = {...agentOptions};
     }
 
     /**
@@ -129,17 +106,7 @@ class HttpURLConnectionClient implements ClientInterface {
         const httpConnection: ClientRequest = this.createRequest(endpoint, requestOptions, config.applicationName);
 
         const requestAgent = typeof requestOptions.agent === "boolean" ? undefined : requestOptions.agent;
-        const createConnectionRequest = (): ClientRequest => this.createRequest(endpoint, {
-            ...requestOptions,
-            headers: {...requestOptions.headers},
-        }, config.applicationName);
-        return this.doRequest(
-            httpConnection,
-            json,
-            config.enable308Redirect ?? true,
-            requestAgent,
-            createConnectionRequest,
-        );
+        return this.doRequest(httpConnection, json, config.enable308Redirect ?? true, requestAgent);
     }
 
     // create Request object
@@ -204,70 +171,17 @@ class HttpURLConnectionClient implements ClientInterface {
      * @param requestAgent The agent used for the request, preserved across HTTPS redirects
      * @returns Promise with the API response
      */
-    private async doRequest(
-        connectionRequest: ClientRequest,
-        json: string | Buffer,
-        allowRedirect: boolean,
-        requestAgent?: HttpAgent,
-        createConnectionRequest?: () => ClientRequest,
-    ): Promise<string> {
-        for (let retryCount = 0; ; retryCount++) {
-            try {
-                const response = await this.requestAttempt(
-                    connectionRequest,
-                    json,
-                    allowRedirect,
-                    requestAgent,
-                );
-                this.cleanupRequest(connectionRequest);
-                return response;
-            } catch (error) {
-                this.cleanupRequest(connectionRequest);
-                if (!(error instanceof RequestFailure)) {
-                    throw error;
-                }
-
-                if (
-                    !error.responseStarted
-                    && retryCount < this.maxRetries
-                    && this.isRetryableNetworkError(error.cause)
-                    && this.isRetryableRequest(connectionRequest)
-                ) {
-                    if (!createConnectionRequest) {
-                        throw new Error("Cannot retry request without a request factory");
-                    }
-                    connectionRequest.abort();
-                    // This short fixed delay targets stale pooled sockets, not server overload.
-                    await new Promise<void>((resolve) => setTimeout(resolve, 100));
-                    connectionRequest = createConnectionRequest();
-                    continue;
-                }
-
-                throw new ApiException(error.cause.message);
-            }
-        }
-    }
-
-    private cleanupRequest(connectionRequest: ClientRequest): void {
-        connectionRequest.removeAllListeners("response");
-        connectionRequest.removeAllListeners("error");
-        connectionRequest.removeAllListeners("timeout");
-        connectionRequest.on("error", () => undefined);
-    }
-
-    private requestAttempt(
+    private doRequest(
         connectionRequest: ClientRequest,
         json: string | Buffer,
         allowRedirect: boolean,
         requestAgent?: HttpAgent,
     ): Promise<string> {
+
         return new Promise((resolve, reject): void => {
-            let responseStarted = false;
-
             connectionRequest.flushHeaders();
 
             connectionRequest.on("response", (res: IncomingMessage): void => {
-                responseStarted = true;
                 const response: { headers: IncomingHttpHeaders; body: string; statusCode: number | undefined } = {
                     statusCode: res.statusCode,
                     headers: res.headers,
@@ -291,7 +205,6 @@ class HttpURLConnectionClient implements ClientInterface {
                 res.on("end", (): void => {
                     if (!res.complete) {
                         reject(new Error("The connection was terminated while the message was still being sent"));
-                        return;
                     }
 
                     // Handle 308 redirect (when enabled)
@@ -317,19 +230,9 @@ class HttpURLConnectionClient implements ClientInterface {
                                 };
                                 const clientRequestFn = url.protocol === "https:" ? httpsRequest : httpRequest;
                                 const redirectedRequest: ClientRequest = clientRequestFn(newRequestOptions);
-                                const createRedirectedRequest = (): ClientRequest => clientRequestFn({
-                                    ...newRequestOptions,
-                                    headers: {...newRequestOptions.headers},
-                                });
                                 // To prevent potential redirect loops, disable further redirects for this new request.
-                                this.doRequest(
-                                    redirectedRequest,
-                                    json,
-                                    false,
-                                    requestAgent,
-                                    createRedirectedRequest,
-                                ).then(resolve, reject);
-                                return;
+                                const redirectResponse = this.doRequest(redirectedRequest, json, false, requestAgent);
+                                return resolve(redirectResponse);
                             } catch (err) {
                                 return reject(err);
                             }
@@ -373,7 +276,7 @@ class HttpURLConnectionClient implements ClientInterface {
                         return reject(exception);
                     }
 
-                    resolve(response.body);
+                    resolve(response.body as string);
                 });
 
                 res.on("error", reject);
@@ -382,28 +285,10 @@ class HttpURLConnectionClient implements ClientInterface {
             connectionRequest.on("timeout", (): void => {
                 connectionRequest.abort();
             });
-            connectionRequest.on("error", (e: NodeJS.ErrnoException): void => {
-                reject(new RequestFailure(e, responseStarted));
-            });
+            connectionRequest.on("error", (e) => reject(new ApiException(e.message)));
             connectionRequest.write(json);
             connectionRequest.end();
         });
-    }
-
-    private isRetryableNetworkError(error: NodeJS.ErrnoException): boolean {
-        // Some socket hang up errors omit error.code depending on the Node.js version or OS.
-        return RETRYABLE_NETWORK_ERRORS.has(error.code ?? "")
-            || (error.message?.includes("socket hang up") ?? false);
-    }
-
-    private isRetryableRequest(connectionRequest: ClientRequest): boolean {
-        const method = (connectionRequest.method ?? ApiConstants.METHOD_POST).toUpperCase();
-        if (IDEMPOTENT_HTTP_METHODS.has(method)) {
-            return true;
-        }
-
-        const idempotencyKey = connectionRequest.getHeader(ApiConstants.IDEMPOTENCY_KEY);
-        return idempotencyKey !== undefined && idempotencyKey !== null && idempotencyKey !== "";
     }
 
     private installCertificateVerifier(terminalCertificatePath: string): void {
