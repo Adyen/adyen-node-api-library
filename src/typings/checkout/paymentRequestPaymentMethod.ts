@@ -42,6 +42,7 @@ import { MobilePayDetails } from "./mobilePayDetails";
 import { MolPayDetails } from "./molPayDetails";
 import { OpenInvoiceDetails } from "./openInvoiceDetails";
 import { PayByBankAISDirectDebitDetails } from "./payByBankAISDirectDebitDetails";
+import { PayByBankCADirectDebitDetails } from "./payByBankCADirectDebitDetails";
 import { PayByBankDetails } from "./payByBankDetails";
 import { PayPalDetails } from "./payPalDetails";
 import { PayPayDetails } from "./payPayDetails";
@@ -78,7 +79,7 @@ import { ZipDetails } from "./zipDetails";
  * Type
  * @export
  */
-export type PaymentRequestPaymentMethod = AchDetails | AffirmDetails | AfterpayDetails | AlmaDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | AuPayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DBaraiDetails | DirectDebitAuDetails | DokuDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | ExternalTokenDetails | FastlaneDetails | GenericIssuerPaymentMethodDetails | GooglePayDetails | IdealDetails | KlarnaDetails | KlarnaNetworkDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PixDetails | PixPayByBankDetails | PseDetails | RakutenPayDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | UpiQrDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
+export type PaymentRequestPaymentMethod = AchDetails | AffirmDetails | AfterpayDetails | AlmaDetails | AmazonPayDetails | AncvDetails | AndroidPayDetails | ApplePayDetails | AuPayDetails | BacsDirectDebitDetails | BillDeskDetails | BlikDetails | CardDetails | CashAppDetails | CellulantDetails | DBaraiDetails | DirectDebitAuDetails | DokuDetails | DragonpayDetails | EBankingFinlandDetails | EcontextVoucherDetails | EftDetails | ExternalTokenDetails | FastlaneDetails | GenericIssuerPaymentMethodDetails | GooglePayDetails | IdealDetails | KlarnaDetails | KlarnaNetworkDetails | MasterpassDetails | MbwayDetails | MobilePayDetails | MolPayDetails | OpenInvoiceDetails | PayByBankAISDirectDebitDetails | PayByBankCADirectDebitDetails | PayByBankDetails | PayPalDetails | PayPayDetails | PayToDetails | PayUUpiDetails | PayWithGoogleDetails | PaymentDetails | PixDetails | PixPayByBankDetails | PseDetails | RakutenPayDetails | RatepayDetails | RivertyDetails | SamsungPayDetails | SepaDirectDebitDetails | StoredPaymentMethodDetails | TwintDetails | UpiCollectDetails | UpiIntentDetails | UpiQrDetails | VippsDetails | VisaCheckoutDetails | WeChatPayDetails | WeChatPayMiniProgramDetails | ZipDetails;
 
 /**
 * @type PaymentRequestPaymentMethodClass
@@ -273,6 +274,7 @@ export class PaymentRequestPaymentMethodClass {
         "oxxo": "StoredPaymentMethodDetails",
         "paybybank": "PayByBankDetails",
         "paybybank_AIS_DD": "PayByBankAISDirectDebitDetails",
+        "paybybank_ca": "PayByBankCADirectDebitDetails",
         "paybybank_pix": "PixPayByBankDetails",
         "paymaya_wallet": "StoredPaymentMethodDetails",
         "payme": "PaymentDetails",
@@ -299,6 +301,7 @@ export class PaymentRequestPaymentMethodClass {
         "riverty_account": "RivertyDetails",
         "riverty_installments": "RivertyDetails",
         "samsungpay": "SamsungPayDetails",
+        "satispay": "PaymentDetails",
         "scalapay": "PaymentDetails",
         "scalapay_3x": "PaymentDetails",
         "scalapay_4x": "PaymentDetails",

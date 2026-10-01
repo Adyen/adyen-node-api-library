@@ -8,23 +8,11 @@
  */
 
 
-export class KlarnaNetworkDetails {
+export class PayByBankCADirectDebitDetails {
     /**
     * The checkout attempt identifier.
     */
     "checkoutAttemptId"?: string;
-    /**
-    * A string containing a structured JSON object. This is a passthrough field used to enable custom features or data exchange with Klarna.
-    */
-    "klarnaNetworkData"?: string;
-    /**
-    * The Klarna Network Payment Account identifier to use for the transaction. Required when `klarnaNetworkSessionToken` is provided.
-    */
-    "klarnaNetworkPaymentAccountId"?: string;
-    /**
-    * The token obtained from the Klarna SDK during an Express Checkout flow.
-    */
-    "klarnaNetworkSessionToken"?: string;
     /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     *
@@ -41,9 +29,9 @@ export class KlarnaNetworkDetails {
     */
     "storedPaymentMethodId"?: string;
     /**
-    * **klarna_network**
+    * The type of payment method
     */
-    "type": KlarnaNetworkDetails.TypeEnum;
+    "type": PayByBankCADirectDebitDetails.TypeEnum;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -53,24 +41,6 @@ export class KlarnaNetworkDetails {
         {
             "name": "checkoutAttemptId",
             "baseName": "checkoutAttemptId",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "klarnaNetworkData",
-            "baseName": "klarnaNetworkData",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "klarnaNetworkPaymentAccountId",
-            "baseName": "klarnaNetworkPaymentAccountId",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "klarnaNetworkSessionToken",
-            "baseName": "klarnaNetworkSessionToken",
             "type": "string",
             "format": ""
         },
@@ -95,20 +65,20 @@ export class KlarnaNetworkDetails {
         {
             "name": "type",
             "baseName": "type",
-            "type": "KlarnaNetworkDetails.TypeEnum",
+            "type": "PayByBankCADirectDebitDetails.TypeEnum",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return KlarnaNetworkDetails.attributeTypeMap;
+        return PayByBankCADirectDebitDetails.attributeTypeMap;
     }
 
     public constructor() {
     }
 }
 
-export namespace KlarnaNetworkDetails {
+export namespace PayByBankCADirectDebitDetails {
     export enum TypeEnum {
-        KlarnaNetwork = 'klarna_network'
+        PaybybankCa = 'paybybank_ca'
     }
 }
