@@ -24,6 +24,7 @@ import { NetworkTokensApi } from "./networkTokensApi";
 import { PaymentInstrumentGroupsApi } from "./paymentInstrumentGroupsApi";
 import { PaymentInstrumentsApi } from "./paymentInstrumentsApi";
 import { PlatformApi } from "./platformApi";
+import { RecurringTopUpsApi } from "./recurringTopUpsApi";
 import { SCAAssociationManagementApi } from "./sCAAssociationManagementApi";
 import { SCADeviceManagementApi } from "./sCADeviceManagementApi";
 import { TransactionRulesApi } from "./transactionRulesApi";
@@ -106,6 +107,10 @@ export default class BalancePlatformAPI extends Service {
 
     public get PlatformApi() {
         return new PlatformApi(this.client);
+    }
+
+    public get RecurringTopUpsApi() {
+        return new RecurringTopUpsApi(this.client);
     }
 
     public get SCAAssociationManagementApi() {
