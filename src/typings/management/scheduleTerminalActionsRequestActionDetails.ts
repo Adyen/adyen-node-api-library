@@ -33,7 +33,15 @@ export type ScheduleTerminalActionsRequestActionDetails = ForceRebootDetails | I
 */
 export class ScheduleTerminalActionsRequestActionDetailsClass {
     
-    static readonly discriminator: string = "type";
+    
+    static readonly discriminator: string | undefined = "type";
 
-    static readonly mapping: {[index: string]: string} | undefined = undefined;
+    static readonly mapping: {[index: string]: string} | undefined = {
+        "ForceReboot": "ForceRebootDetails",
+        "InstallAndroidApp": "InstallAndroidAppDetails",
+        "InstallAndroidCertificate": "InstallAndroidCertificateDetails",
+        "ReleaseUpdate": "ReleaseUpdateDetails",
+        "UninstallAndroidApp": "UninstallAndroidAppDetails",
+        "UninstallAndroidCertificate": "UninstallAndroidCertificateDetails",
+    };
 }
