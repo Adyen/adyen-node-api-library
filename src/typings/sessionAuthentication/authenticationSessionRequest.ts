@@ -13,9 +13,9 @@ import { ProductType } from "./productType";
 
 export class AuthenticationSessionRequest {
     /**
-    * The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with `https://`.
+    * The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with `https://`.  Required for creating a session for Platform Experience and Onboarding components. Omitting this parameter results in an unusable session token.
     */
-    "allowOrigin": string;
+    "allowOrigin"?: string;
     "policy": Policy;
     "product": ProductType;
 
