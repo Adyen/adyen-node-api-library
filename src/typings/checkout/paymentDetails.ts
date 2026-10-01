@@ -93,6 +93,7 @@ export namespace PaymentDetails {
         Walley = 'walley',
         WalleyB2b = 'walley_b2b',
         Paypo = 'paypo',
+        Satispay = 'satispay',
         Scalapay = 'scalapay',
         Scalapay3x = 'scalapay_3x',
         Scalapay4x = 'scalapay_4x',

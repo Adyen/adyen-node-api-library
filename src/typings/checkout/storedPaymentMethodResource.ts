@@ -8,6 +8,7 @@
  */
 
 import { Address } from "./address";
+import { OpiResponse } from "./opiResponse";
 import { TokenMandate } from "./tokenMandate";
 
 
@@ -82,6 +83,7 @@ export class StoredPaymentMethodResource {
     * Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID.
     */
     "networkTxReference"?: string;
+    "opi"?: OpiResponse | null;
     /**
     * The name of the bank account holder.
     */
@@ -220,6 +222,12 @@ export class StoredPaymentMethodResource {
             "name": "networkTxReference",
             "baseName": "networkTxReference",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "opi",
+            "baseName": "opi",
+            "type": "OpiResponse | null",
             "format": ""
         },
         {

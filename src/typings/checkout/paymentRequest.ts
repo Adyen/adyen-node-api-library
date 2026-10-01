@@ -25,6 +25,7 @@ import { Installments } from "./installments";
 import { LineItem } from "./lineItem";
 import { Mandate } from "./mandate";
 import { MerchantRiskIndicator } from "./merchantRiskIndicator";
+import { OpiRequest } from "./opiRequest";
 import { PaymentRequestPaymentMethod } from "./paymentRequestPaymentMethod";
 import { PaymentValidations } from "./paymentValidations";
 import { PlatformChargebackLogic } from "./platformChargebackLogic";
@@ -136,7 +137,7 @@ export class PaymentRequest {
     */
     "merchantAccount": string;
     /**
-    * You can use this reference to link multiple transactions to one another (for example, to track order authorization rate).For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the `additionalData` object: [`retry.orderAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [`retry.chainAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [`retry.skipRetry`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)
+    * You can use this reference to link multiple transactions to one another (for example, to track order authorization rate). For each billing cycle, this reference should be unique. After the first authorized payment attempt, do not reuse the reference. If you use this parameter, include it in all of the payment requests that you make.   We strongly recommend that you: * Always include this parameter, so that you can benefit from linking payment requests to one another, in case of authorization retries.  * Additionally include the following parameters in the `additionalData` object: [`retry.orderAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-orderAttemptNumber), [`retry.chainAttemptNumber`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-chainAttemptNumber), and [`retry.skipRetry`](https://docs.adyen.com/api-explorer/Checkout/latest/post/sessions#request-additionalData-AdditionalDataRetry-retry-skipRetry)
     */
     "merchantOrderReference"?: string;
     "merchantRiskIndicator"?: MerchantRiskIndicator | null;
@@ -145,6 +146,7 @@ export class PaymentRequest {
     */
     "metadata"?: { [key: string]: string; };
     "mpiData"?: ThreeDSecureData | null;
+    "opi"?: OpiRequest | null;
     "order"?: EncryptedOrderData | null;
     /**
     * When you are doing multiple partial (gift card) payments, this is the `pspReference` of the first payment. We use this to link the multiple payments to each other. As your own reference for linking multiple payments, use the `merchantOrderReference`instead.
@@ -178,7 +180,7 @@ export class PaymentRequest {
     */
     "redirectToIssuerMethod"?: string;
     /**
-    * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (`-`) character.We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.
+    * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. To provide multiple references for one transaction, separate the reference values with the hyphen (`-`) character. We strongly recommend that you use a unique value for each transaction. Maximum length: 80 characters.
     */
     "reference": string;
     /**
@@ -496,6 +498,12 @@ export class PaymentRequest {
             "name": "mpiData",
             "baseName": "mpiData",
             "type": "ThreeDSecureData | null",
+            "format": ""
+        },
+        {
+            "name": "opi",
+            "baseName": "opi",
+            "type": "OpiRequest | null",
             "format": ""
         },
         {
