@@ -18,6 +18,10 @@ export class IssuedCard {
     */
     "authorisationType"?: string;
     /**
+    * The card variant associated with the payment network used to route or process the transaction. For single-network cards, this matches the `brandVariant`. For US dual-network cards routed over an alternate network, this value reflects the specific tier or sub-type under that processing network.
+    */
+    "networkVariant"?: IssuedCard.NetworkVariantEnum;
+    /**
     * Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**.
     */
     "panEntryMode"?: IssuedCard.PanEntryModeEnum;
@@ -53,6 +57,12 @@ export class IssuedCard {
             "name": "authorisationType",
             "baseName": "authorisationType",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "networkVariant",
+            "baseName": "networkVariant",
+            "type": "IssuedCard.NetworkVariantEnum",
             "format": ""
         },
         {
@@ -113,6 +123,11 @@ export class IssuedCard {
 }
 
 export namespace IssuedCard {
+    export enum NetworkVariantEnum {
+        MaestroUs = 'maestro_us',
+        Mastercard = 'mastercard',
+        Visa = 'visa'
+    }
     export enum PanEntryModeEnum {
         Chip = 'chip',
         Cof = 'cof',
