@@ -65,7 +65,7 @@ export class TransferEvent {
     */
     "transactionId"?: string;
     /**
-    * The type of the transfer event. Possible values: **accounting**, **tracking**.
+    * The type of the transfer event. Possible values: **accounting**, **tracing**, **tracking**.
     */
     "type"?: TransferEvent.TypeEnum;
     /**
@@ -360,6 +360,7 @@ export namespace TransferEvent {
         ReserveAdjustment = 'reserveAdjustment',
         ReserveAdjustmentPending = 'reserveAdjustmentPending',
         Returned = 'returned',
+        ReversalReceived = 'reversalReceived',
         Reversed = 'reversed',
         SecondChargeback = 'secondChargeback',
         SecondChargebackPending = 'secondChargebackPending',
