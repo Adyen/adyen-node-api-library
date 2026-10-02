@@ -285,7 +285,7 @@ class HttpURLConnectionClient implements ClientInterface {
             connectionRequest.on("timeout", (): void => {
                 connectionRequest.abort();
             });
-            connectionRequest.on("error", (e) => reject(new ApiException(e.message)));
+            connectionRequest.on("error", (e: NodeJS.ErrnoException) => reject(new ApiException(e.message, 500, e.code)));
             connectionRequest.write(json);
             connectionRequest.end();
         });
