@@ -104,6 +104,21 @@ describe("API Client", function (): void {
     expect(client.config.terminalApiCloudEndpoint).toBe("https://terminal-api-live-us.adyen.com");
   });
 
+  test("should default terminalApiCloudEndpoint to EU for LIVE environment when region is not provided", () => {
+    const config = new Config({
+      apiKey: "ADYEN_API_KEY",
+      environment: EnvironmentEnum.LIVE,
+      liveEndpointUrlPrefix: "prefix"
+    });
+    const client = new Client(config);
+    expect(client.config.terminalApiCloudEndpoint).toBeDefined();
+    expect(client.config.terminalApiCloudEndpoint).toBe("https://terminal-api-live.adyen.com");
+  });
+
+  test("should return EU endpoint when region is not provided in getTerminalApiEndpoint", () => {
+    expect(Config.getTerminalApiEndpoint()).toBe("https://terminal-api-live.adyen.com");
+  });
+
   test("should set and get custom http client", () => {
     const config = new Config({
       apiKey: "ADYEN_API_KEY",
