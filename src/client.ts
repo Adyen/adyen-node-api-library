@@ -1,5 +1,4 @@
-import Config, { EnvironmentEnum } from "./config";
-import { TERMINAL_API_ENDPOINT_TEST } from "./config";
+import Config, { EnvironmentEnum, RegionEnum, TERMINAL_API_ENDPOINT_TEST } from "./config";
 
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
 import ClientInterface from "./httpClient/clientInterface";
@@ -51,6 +50,8 @@ class Client {
                     throw new Error(`Invalid region provided: ${this.config.region}`);
                 }
                 this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(this.config.region);  
+            } else {
+                this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(RegionEnum.EU);
             }
         }
 
