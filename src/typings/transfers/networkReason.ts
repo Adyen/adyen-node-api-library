@@ -18,7 +18,7 @@ export class NetworkReason {
     */
     "description"?: string;
     /**
-    * The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **iso8583ResponseCode**  
+    * The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  
     */
     "namespace"?: NetworkReason.NamespaceEnum;
 
@@ -59,6 +59,7 @@ export namespace NetworkReason {
         Iso8583ResponseCode = 'iso8583ResponseCode',
         UkFpsRejectionCode = 'ukFpsRejectionCode',
         UkFpsReturnReasonCode = 'ukFpsReturnReasonCode',
-        UsAchReturnReasonCode = 'usAchReturnReasonCode'
+        UsAchReturnReasonCode = 'usAchReturnReasonCode',
+        UsAchCorrectionReasonCode = 'usAchCorrectionReasonCode'
     }
 }
