@@ -38,7 +38,7 @@ export class MidServiceNotificationData {
     */
     "storeId"?: string;
     /**
-    * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+    * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.
     */
     "type": string;
     /**
