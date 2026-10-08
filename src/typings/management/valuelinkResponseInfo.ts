@@ -10,17 +10,17 @@
 
 export class ValuelinkResponseInfo {
     /**
+    * Alternate Merchant Number
+    */
+    "alternateMerchantNumber"?: string;
+    /**
     * Authorisation Mid
     */
-    "authorisationMid": string;
+    "authorisationMid"?: string;
     /**
     * PIN Support. For ecommerce, PIN is required.
     */
-    "pinSupport": ValuelinkResponseInfo.PinSupportEnum;
-    /**
-    * Submitter ID
-    */
-    "submitterId"?: string;
+    "pinSupport"?: ValuelinkResponseInfo.PinSupportEnum;
     /**
     * Terminal ID
     */
@@ -32,6 +32,12 @@ export class ValuelinkResponseInfo {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "alternateMerchantNumber",
+            "baseName": "alternateMerchantNumber",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "authorisationMid",
             "baseName": "authorisationMid",
             "type": "string",
@@ -41,12 +47,6 @@ export class ValuelinkResponseInfo {
             "name": "pinSupport",
             "baseName": "pinSupport",
             "type": "ValuelinkResponseInfo.PinSupportEnum",
-            "format": ""
-        },
-        {
-            "name": "submitterId",
-            "baseName": "submitterId",
-            "type": "string",
             "format": ""
         },
         {

@@ -12,11 +12,14 @@ import { AffirmInfo } from "./affirmInfo";
 import { AfterpayTouchInfo } from "./afterpayTouchInfo";
 import { AlipayPlusInfo } from "./alipayPlusInfo";
 import { AmexInfo } from "./amexInfo";
+import { AncvInfo } from "./ancvInfo";
 import { ApplePayInfo } from "./applePayInfo";
 import { BcmcInfo } from "./bcmcInfo";
+import { CarnetInfo } from "./carnetInfo";
 import { CartesBancairesInfo } from "./cartesBancairesInfo";
 import { ClearpayInfo } from "./clearpayInfo";
 import { DinersInfo } from "./dinersInfo";
+import { EbtInfo } from "./ebtInfo";
 import { GenericPmWithTdiInfo } from "./genericPmWithTdiInfo";
 import { GivexInfo } from "./givexInfo";
 import { GooglePayInfo } from "./googlePayInfo";
@@ -49,13 +52,14 @@ export class PaymentMethodSetupInfo {
     "afterpayTouch"?: AfterpayTouchInfo | null;
     "alipayPlus"?: AlipayPlusInfo | null;
     "amex"?: AmexInfo | null;
+    "ancv"?: AncvInfo | null;
     "applePay"?: ApplePayInfo | null;
     "bcmc"?: BcmcInfo | null;
     /**
     * The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).
     */
     "businessLineId"?: string;
-    "carnet"?: GenericPmWithTdiInfo | null;
+    "carnet"?: CarnetInfo | null;
     "cartesBancaires"?: CartesBancairesInfo | null;
     "clearpay"?: ClearpayInfo | null;
     /**
@@ -73,6 +77,7 @@ export class PaymentMethodSetupInfo {
     "customRoutingFlags"?: Array<string>;
     "diners"?: DinersInfo | null;
     "discover"?: GenericPmWithTdiInfo | null;
+    "ebt"?: EbtInfo | null;
     "eft_directdebit_CA"?: GenericPmWithTdiInfo | null;
     "eftpos_australia"?: GenericPmWithTdiInfo | null;
     "girocard"?: GenericPmWithTdiInfo | null;
@@ -113,7 +118,7 @@ export class PaymentMethodSetupInfo {
     "ticket"?: TicketInfo | null;
     "twint"?: TwintInfo | null;
     /**
-    * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+    * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.
     */
     "type": PaymentMethodSetupInfo.TypeEnum;
     "valuelink"?: ValuelinkInfo | null;
@@ -158,6 +163,12 @@ export class PaymentMethodSetupInfo {
             "format": ""
         },
         {
+            "name": "ancv",
+            "baseName": "ancv",
+            "type": "AncvInfo | null",
+            "format": ""
+        },
+        {
             "name": "applePay",
             "baseName": "applePay",
             "type": "ApplePayInfo | null",
@@ -178,7 +189,7 @@ export class PaymentMethodSetupInfo {
         {
             "name": "carnet",
             "baseName": "carnet",
-            "type": "GenericPmWithTdiInfo | null",
+            "type": "CarnetInfo | null",
             "format": ""
         },
         {
@@ -227,6 +238,12 @@ export class PaymentMethodSetupInfo {
             "name": "discover",
             "baseName": "discover",
             "type": "GenericPmWithTdiInfo | null",
+            "format": ""
+        },
+        {
+            "name": "ebt",
+            "baseName": "ebt",
+            "type": "EbtInfo | null",
             "format": ""
         },
         {
@@ -487,6 +504,7 @@ export namespace PaymentMethodSetupInfo {
         AlipayPlusTruemoney = 'alipay_plus_truemoney',
         AlipayWap = 'alipay_wap',
         Amex = 'amex',
+        Ancv = 'ancv',
         Applepay = 'applepay',
         Avancard = 'avancard',
         AvancardCredit = 'avancard_credit',
@@ -501,6 +519,7 @@ export namespace PaymentMethodSetupInfo {
         BrSchemes = 'br_schemes',
         Carnet = 'carnet',
         Cartebancaire = 'cartebancaire',
+        Cashapp = 'cashapp',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
         Cooper = 'cooper',
@@ -519,6 +538,7 @@ export namespace PaymentMethodSetupInfo {
         DirectdebitGb = 'directdebit_GB',
         Discover = 'discover',
         EbankingFi = 'ebanking_FI',
+        Ebt = 'ebt',
         EftDirectdebitCa = 'eft_directdebit_CA',
         EftposAustralia = 'eftpos_australia',
         Elo = 'elo',
@@ -608,6 +628,7 @@ export namespace PaymentMethodSetupInfo {
         Visadebit = 'visadebit',
         Vpay = 'vpay',
         Wechatpay = 'wechatpay',
-        WechatpayPos = 'wechatpay_pos'
+        WechatpayPos = 'wechatpay_pos',
+        Wero = 'wero'
     }
 }
