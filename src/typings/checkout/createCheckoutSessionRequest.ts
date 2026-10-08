@@ -117,6 +117,10 @@ export class CreateCheckoutSessionRequest {
     */
     "mode"?: CreateCheckoutSessionRequest.ModeEnum;
     "mpiData"?: ThreeDSecureData | null;
+    /**
+    * Indicates if the session is payable. If the payment amount is final, set this to **true** to indicate that the session is payable, so that the shopper can proceed to submit the payment. When you set this to **true**, you can no longer update the session.  If you set this to **false**, you must make another request to update the session and set this to **true** before the shopper can submit the payment.  If not specified, this defaults to **true**. 
+    */
+    "payable"?: boolean;
     "platformChargebackLogic"?: PlatformChargebackLogic | null;
     /**
     * Date after which no further authorisations shall be performed. Only for 3D Secure 2.
@@ -423,6 +427,12 @@ export class CreateCheckoutSessionRequest {
             "name": "mpiData",
             "baseName": "mpiData",
             "type": "ThreeDSecureData | null",
+            "format": ""
+        },
+        {
+            "name": "payable",
+            "baseName": "payable",
+            "type": "boolean",
             "format": ""
         },
         {

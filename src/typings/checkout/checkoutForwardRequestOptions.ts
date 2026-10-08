@@ -12,7 +12,7 @@ import { CheckoutNetworkTokenOption } from "./checkoutNetworkTokenOption";
 
 export class CheckoutForwardRequestOptions {
     /**
-    * Whether to check for a card account update (true) or not (false)
+    * Set to **true** to check if the account tied to the card has been updated.
     */
     "accountUpdate"?: boolean;
     /**
@@ -21,15 +21,15 @@ export class CheckoutForwardRequestOptions {
     "dryRun"?: boolean;
     "networkToken"?: CheckoutNetworkTokenOption | null;
     /**
-    * Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of networkTxReference in the incoming 3rd party response
+    * Only include when `tokenize` is set to **true**.<br><br>A list of addresses to possible location(s) of the `networkTxReference` that will be returned in the third party response.
     */
     "networkTxReferencePaths"?: Array<string>;
     /**
-    * Set to **true**, the payment details are [tokenized](https://docs.adyen.com/online-payments/tokenization).
+    * Set to **true** to [tokenize](https://docs.adyen.com/online-payments/tokenization) the payment details.
     */
     "tokenize"?: boolean;
     /**
-    * Set in tokenize:true case when forwarding PAN. Addresses to the possible location(s) of transactionLinkId in the incoming 3rd party response
+    * Only include when `tokenize` is set to **true**.<br><br>A list of addresses to possible location(s) of the `transactionLinkId` that will be returned in the third party response.
     */
     "transactionLinkIdPaths"?: Array<string>;
 

@@ -18,6 +18,10 @@ export class KlarnaNetworkDetails {
     */
     "klarnaNetworkData"?: string;
     /**
+    * The Klarna Network Payment Account identifier to use for the transaction. Required when `klarnaNetworkSessionToken` is provided.
+    */
+    "klarnaNetworkPaymentAccountId"?: string;
+    /**
     * The token obtained from the Klarna SDK during an Express Checkout flow.
     */
     "klarnaNetworkSessionToken"?: string;
@@ -55,6 +59,12 @@ export class KlarnaNetworkDetails {
         {
             "name": "klarnaNetworkData",
             "baseName": "klarnaNetworkData",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "klarnaNetworkPaymentAccountId",
+            "baseName": "klarnaNetworkPaymentAccountId",
             "type": "string",
             "format": ""
         },

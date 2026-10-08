@@ -1,8 +1,8 @@
 {
   "service": "checkout",
   "project": "node",
-  "generatedAt": "2026-08-27T12:21:25Z",
-  "openapiCommitSha": "2d9a60ee236f2930d9629100900995b99fffd590",
-  "automationCommitSha": "2f180b958babc6bbd6f0b6b73d7e4c6feefe256e",
-  "libraryCommitSha": "2ec9f87e54e78a88b251f6761fa0a7200f91bfcd"
+  "generatedAt": "2026-10-08T14:23:21Z",
+  "openapiCommitSha": "45520ee6246d7e3d8074c3c5c5e991e65c2c02d6",
+  "automationCommitSha": "82147244fd717b50362f88a20e4436e693d0aed6",
+  "libraryCommitSha": "c4544a4b375f191db5350a3f2c3960989652be8c"
 }

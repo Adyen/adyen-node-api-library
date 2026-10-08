@@ -74,6 +74,10 @@ export class LineItem {
     */
     "returnTrackingUri"?: string;
     /**
+    * An optional, free-text category for the item to be used in the risk evaluation. When provided, Protect uses this value to evaluate custom risk rules.
+    */
+    "riskCategory"?: string;
+    /**
     * Shipping company handling the delivery of the item.
     */
     "shippingCompany"?: string;
@@ -208,6 +212,12 @@ export class LineItem {
         {
             "name": "returnTrackingUri",
             "baseName": "returnTrackingUri",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "riskCategory",
+            "baseName": "riskCategory",
             "type": "string",
             "format": ""
         },

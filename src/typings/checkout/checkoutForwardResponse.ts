@@ -7,14 +7,18 @@
  * Do not edit this class manually.
  */
 
+import { CheckoutForwardAccountUpdateResult } from "./checkoutForwardAccountUpdateResult";
+import { CheckoutForwardNetworkTokenResult } from "./checkoutForwardNetworkTokenResult";
 import { CheckoutForwardResponseFromUrl } from "./checkoutForwardResponseFromUrl";
 
 
 export class CheckoutForwardResponse {
+    "accountUpdate"?: CheckoutForwardAccountUpdateResult | null;
     /**
     * Merchant defined payment reference.
     */
     "merchantReference"?: string;
+    "networkToken"?: CheckoutForwardNetworkTokenResult | null;
     /**
     * Adyen\'s 16-character reference associated with the transaction/request. This value is globally unique. Use this reference when you communicate with us about this request.
     */
@@ -31,9 +35,21 @@ export class CheckoutForwardResponse {
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
+            "name": "accountUpdate",
+            "baseName": "accountUpdate",
+            "type": "CheckoutForwardAccountUpdateResult | null",
+            "format": ""
+        },
+        {
             "name": "merchantReference",
             "baseName": "merchantReference",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "networkToken",
+            "baseName": "networkToken",
+            "type": "CheckoutForwardNetworkTokenResult | null",
             "format": ""
         },
         {

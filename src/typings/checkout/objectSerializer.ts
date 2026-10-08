@@ -59,6 +59,8 @@ import { CheckoutBankAccount } from "./checkoutBankAccount";
 import { CheckoutBankTransferAction } from "./checkoutBankTransferAction";
 import { CheckoutDelegatedAuthenticationAction } from "./checkoutDelegatedAuthenticationAction";
 import { CheckoutErrorResponseEntity } from "./checkoutErrorResponseEntity";
+import { CheckoutForwardAccountUpdateResult } from "./checkoutForwardAccountUpdateResult";
+import { CheckoutForwardNetworkTokenResult } from "./checkoutForwardNetworkTokenResult";
 import { CheckoutForwardRequest } from "./checkoutForwardRequest";
 import { CheckoutForwardRequestCard } from "./checkoutForwardRequestCard";
 import { CheckoutForwardRequestOptions } from "./checkoutForwardRequestOptions";
@@ -141,8 +143,11 @@ import { MobilePayDetails } from "./mobilePayDetails";
 import { MolPayDetails } from "./molPayDetails";
 import { Name } from "./name";
 import { OpenInvoiceDetails } from "./openInvoiceDetails";
+import { OpiRequest } from "./opiRequest";
+import { OpiResponse } from "./opiResponse";
 import { Passenger } from "./passenger";
 import { PayByBankAISDirectDebitDetails } from "./payByBankAISDirectDebitDetails";
+import { PayByBankCADirectDebitDetails } from "./payByBankCADirectDebitDetails";
 import { PayByBankDetails } from "./payByBankDetails";
 import { PayPalDetails } from "./payPalDetails";
 import { PayPayDetails } from "./payPayDetails";
@@ -330,6 +335,7 @@ let enumsMap: Set<string> = new Set<string>([
     "CheckoutBankAccount.AccountTypeEnum",
     "CheckoutBankTransferAction.TypeEnum",
     "CheckoutDelegatedAuthenticationAction.TypeEnum",
+    "CheckoutForwardAccountUpdateResult.ResultEnum",
     "CheckoutForwardRequestCard.TypeEnum",
     "CheckoutNativeRedirectAction.TypeEnum",
     "CheckoutOutgoingForwardRequest.HttpMethodEnum",
@@ -397,6 +403,7 @@ let enumsMap: Set<string> = new Set<string>([
     "MolPayDetails.TypeEnum",
     "OpenInvoiceDetails.TypeEnum",
     "PayByBankAISDirectDebitDetails.TypeEnum",
+    "PayByBankCADirectDebitDetails.TypeEnum",
     "PayByBankDetails.TypeEnum",
     "PayPalDetails.SubtypeEnum",
     "PayPalDetails.TypeEnum",
@@ -569,6 +576,8 @@ let typeMap: {[index: string]: any} = {
     "CheckoutBankTransferAction": CheckoutBankTransferAction,
     "CheckoutDelegatedAuthenticationAction": CheckoutDelegatedAuthenticationAction,
     "CheckoutErrorResponseEntity": CheckoutErrorResponseEntity,
+    "CheckoutForwardAccountUpdateResult": CheckoutForwardAccountUpdateResult,
+    "CheckoutForwardNetworkTokenResult": CheckoutForwardNetworkTokenResult,
     "CheckoutForwardRequest": CheckoutForwardRequest,
     "CheckoutForwardRequestCard": CheckoutForwardRequestCard,
     "CheckoutForwardRequestOptions": CheckoutForwardRequestOptions,
@@ -651,8 +660,11 @@ let typeMap: {[index: string]: any} = {
     "MolPayDetails": MolPayDetails,
     "Name": Name,
     "OpenInvoiceDetails": OpenInvoiceDetails,
+    "OpiRequest": OpiRequest,
+    "OpiResponse": OpiResponse,
     "Passenger": Passenger,
     "PayByBankAISDirectDebitDetails": PayByBankAISDirectDebitDetails,
+    "PayByBankCADirectDebitDetails": PayByBankCADirectDebitDetails,
     "PayByBankDetails": PayByBankDetails,
     "PayPalDetails": PayPalDetails,
     "PayPayDetails": PayPayDetails,

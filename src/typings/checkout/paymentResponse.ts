@@ -10,6 +10,7 @@
 import { Amount } from "./amount";
 import { CheckoutOrderResponse } from "./checkoutOrderResponse";
 import { FraudResult } from "./fraudResult";
+import { OpiResponse } from "./opiResponse";
 import { PaymentResponseAction } from "./paymentResponseAction";
 import { PaymentValidationsResponse } from "./paymentValidationsResponse";
 import { ResponsePaymentMethod } from "./responsePaymentMethod";
@@ -33,6 +34,7 @@ export class PaymentResponse {
     * The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.
     */
     "merchantReference"?: string;
+    "opi"?: OpiResponse | null;
     "order"?: CheckoutOrderResponse | null;
     "paymentMethod"?: ResponsePaymentMethod | null;
     "paymentValidations"?: PaymentValidationsResponse | null;
@@ -98,6 +100,12 @@ export class PaymentResponse {
             "name": "merchantReference",
             "baseName": "merchantReference",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "opi",
+            "baseName": "opi",
+            "type": "OpiResponse | null",
             "format": ""
         },
         {
