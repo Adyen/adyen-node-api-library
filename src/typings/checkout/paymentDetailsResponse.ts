@@ -11,6 +11,7 @@ import { Amount } from "./amount";
 import { CheckoutOrderResponse } from "./checkoutOrderResponse";
 import { CheckoutThreeDS2Action } from "./checkoutThreeDS2Action";
 import { FraudResult } from "./fraudResult";
+import { OpiResponse } from "./opiResponse";
 import { PaymentValidationsResponse } from "./paymentValidationsResponse";
 import { ResponsePaymentMethod } from "./responsePaymentMethod";
 import { ThreeDS2ResponseData } from "./threeDS2ResponseData";
@@ -33,6 +34,7 @@ export class PaymentDetailsResponse {
     * The reference used during the /payments request.
     */
     "merchantReference"?: string;
+    "opi"?: OpiResponse | null;
     "order"?: CheckoutOrderResponse | null;
     "paymentMethod"?: ResponsePaymentMethod | null;
     "paymentValidations"?: PaymentValidationsResponse | null;
@@ -102,6 +104,12 @@ export class PaymentDetailsResponse {
             "name": "merchantReference",
             "baseName": "merchantReference",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "opi",
+            "baseName": "opi",
+            "type": "OpiResponse | null",
             "format": ""
         },
         {
