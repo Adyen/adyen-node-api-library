@@ -10,7 +10,7 @@
 
 export class CheckoutSessionInstallmentOption {
     /**
-    * Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving** * **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**
+    * Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving** * **bonus**
     */
     "plans"?: Array<CheckoutSessionInstallmentOption.PlansEnum>;
     /**
@@ -18,7 +18,7 @@ export class CheckoutSessionInstallmentOption {
     */
     "preselectedValue"?: number;
     /**
-    * An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`.
+    * An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**.
     */
     "values"?: Array<number>;
 
