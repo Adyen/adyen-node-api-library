@@ -7,7 +7,6 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
@@ -53,6 +52,24 @@ export class SCADeviceManagementApi extends Service {
         );
 
         return ObjectSerializer.deserialize(response, "BeginScaDeviceRegistrationResponse");
+    }
+
+    /**
+    * @summary Delete an SCA device
+    * @param deviceId {@link string } The unique identifier of the SCA device to delete.
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link void }
+    */
+    public async deleteScaDevice(deviceId: string, requestOptions?: IRequest.Options): Promise<void> {
+        const endpoint = `${this.baseUrl}/scaDevices/{deviceId}`
+            .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
+        const resource = new Resource(this, endpoint);
+        
+        await getJsonResponse<string, void>(
+            resource,
+            "",
+            { ...requestOptions, method: "DELETE" }
+        );
     }
 
     /**
