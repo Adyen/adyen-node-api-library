@@ -2,6 +2,9 @@ import nock from "nock";
 import {createClient} from "../__mocks__/base";
 import {paymentMethodsSuccess} from "../__mocks__/checkout/paymentMethodsSuccess";
 import {paymentsSuccess} from "../__mocks__/checkout/paymentsSuccess";
+import {paymentsOpiSuccess} from "../__mocks__/checkout/paymentsOpiSuccess";
+import {paymentRequestPayByBankCa} from "../__mocks__/checkout/paymentRequestPayByBankCa";
+import {paymentRequestSatispay} from "../__mocks__/checkout/paymentRequestSatispay";
 import {paymentsRedirectAction} from "../__mocks__/checkout/paymentsRedirectAction";
 import {paymentDetailsSuccess} from "../__mocks__/checkout/paymentsDetailsSuccess";
 import {originKeysSuccess} from "../__mocks__/checkout/originkeysSuccess";
@@ -809,6 +812,7 @@ describe("Checkout", (): void => {
         expect(sessionsResponse.sessionData).toBeTruthy();
         expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
         expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
+        expect(sessionsResponse.payable).toBe(true);
     });
 
     test("should update a session.", async (): Promise<void> => {
@@ -997,5 +1001,149 @@ describe("Checkout", (): void => {
         expect(response.response).toBeDefined();
         expect(response.response.status).toEqual(200);
         expect(response.response.body).toContain("PAYMENT_METHOD_ID");
+        expect(response.accountUpdate).toBeDefined();
+        expect(response.accountUpdate?.result).toEqual(Types.checkout.CheckoutForwardAccountUpdateResult.ResultEnum.CardChanged);
+        expect(response.networkToken).toBeDefined();
+        expect(response.networkToken?.swapped).toBe(true);
+    });
+
+    test("should deserialize paybybank_ca payment method details", async (): Promise<void> => {
+        const requestJson: JSON = JSON.parse(paymentRequestPayByBankCa);
+        const paymentRequest: Types.checkout.PaymentRequest = Types.checkout.ObjectSerializer.deserialize(requestJson, "PaymentRequest", "");
+        const paymentMethodDetails: Types.checkout.PayByBankCADirectDebitDetails = paymentRequest.paymentMethod as Types.checkout.PayByBankCADirectDebitDetails;
+        expect(paymentMethodDetails.type).toEqual(Types.checkout.PayByBankCADirectDebitDetails.TypeEnum.PaybybankCa);
+        expect(paymentMethodDetails.checkoutAttemptId).toEqual("1");
+        expect(paymentMethodDetails.storedPaymentMethodId).toEqual("M5N7TQ4TG5PFWR50");
+    });
+
+    test("should round-trip paybybank_ca payment method", async (): Promise<void> => {
+        const paymentMethod: Types.checkout.PaymentRequestPaymentMethod = {
+            type: Types.checkout.PayByBankCADirectDebitDetails.TypeEnum.PaybybankCa,
+            checkoutAttemptId: "1",
+            storedPaymentMethodId: "M5N7TQ4TG5PFWR50",
+        };
+
+        const paymentRequest: Types.checkout.PaymentRequest = {
+            amount: createAmountObject("USD", 1000),
+            merchantAccount,
+            paymentMethod,
+            reference,
+            returnUrl: "https://your-company.com/...",
+        };
+
+        const serialized = Types.checkout.ObjectSerializer.serialize(paymentRequest, "PaymentRequest");
+        expect(serialized.paymentMethod).toHaveProperty("type", "paybybank_ca");
+
+        const deserialized: Types.checkout.PaymentRequest = Types.checkout.ObjectSerializer.deserialize(serialized, "PaymentRequest", "");
+        const deserializedDetails: Types.checkout.PayByBankCADirectDebitDetails = deserialized.paymentMethod as Types.checkout.PayByBankCADirectDebitDetails;
+        expect(deserializedDetails.type).toEqual(Types.checkout.PayByBankCADirectDebitDetails.TypeEnum.PaybybankCa);
+        expect(deserializedDetails.checkoutAttemptId).toEqual("1");
+        expect(deserializedDetails.storedPaymentMethodId).toEqual("M5N7TQ4TG5PFWR50");
+    });
+
+    test("should serialize and deserialize OpiRequest and OpiResponse", async (): Promise<void> => {
+        const paymentRequest: Types.checkout.PaymentRequest = {
+            amount: createAmountObject("EUR", 1000),
+            merchantAccount,
+            paymentMethod: {
+                type: Types.checkout.CardDetails.TypeEnum.Scheme,
+            },
+            reference,
+            returnUrl: "https://your-company.com/...",
+            opi: {
+                includeIssuerId: true,
+                includeTransToken: true,
+            },
+        };
+
+        const serialized = Types.checkout.ObjectSerializer.serialize(paymentRequest, "PaymentRequest");
+        expect(serialized).toHaveProperty("opi");
+        expect(serialized.opi).toEqual({includeIssuerId: true, includeTransToken: true});
+
+        const deserialized: Types.checkout.PaymentRequest = Types.checkout.ObjectSerializer.deserialize(serialized, "PaymentRequest", "");
+        expect(deserialized.opi?.includeIssuerId).toBe(true);
+        expect(deserialized.opi?.includeTransToken).toBe(true);
+
+        const opiResponse: Types.checkout.OpiResponse = {
+            issuerId: "ISSUER_ID",
+            transToken: "TRANS_TOKEN",
+        };
+        const serializedOpiResponse = Types.checkout.ObjectSerializer.serialize(opiResponse, "OpiResponse");
+        const deserializedOpiResponse: Types.checkout.OpiResponse = Types.checkout.ObjectSerializer.deserialize(serializedOpiResponse, "OpiResponse", "");
+        expect(deserializedOpiResponse.issuerId).toEqual("ISSUER_ID");
+        expect(deserializedOpiResponse.transToken).toEqual("TRANS_TOKEN");
+
+        const storedPaymentMethodRequest: Types.checkout.StoredPaymentMethodRequest = {
+            merchantAccount,
+            shopperReference: "YOUR_SHOPPER_REFERENCE",
+            paymentMethod: {},
+            recurringProcessingModel: Types.checkout.StoredPaymentMethodRequest.RecurringProcessingModelEnum.CardOnFile,
+            opi: {includeTransToken: true},
+        };
+        const serializedStored = Types.checkout.ObjectSerializer.serialize(storedPaymentMethodRequest, "StoredPaymentMethodRequest");
+        const deserializedStored: Types.checkout.StoredPaymentMethodRequest = Types.checkout.ObjectSerializer.deserialize(serializedStored, "StoredPaymentMethodRequest", "");
+        expect(deserializedStored.opi?.includeTransToken).toBe(true);
+    });
+
+    test("should make a payment with OPI.", async (): Promise<void> => {
+        scope.post("/payments")
+            .reply(200, paymentsOpiSuccess);
+
+        const paymentsRequest: Types.checkout.PaymentRequest = createPaymentsCheckoutRequest();
+        paymentsRequest.opi = {includeIssuerId: true};
+        const paymentsResponse: Types.checkout.PaymentResponse = await checkoutService.PaymentsApi.payments(paymentsRequest);
+
+        expect(paymentsResponse.resultCode).toEqual(Types.checkout.PaymentResponse.ResultCodeEnum.Authorised);
+        expect(paymentsResponse.opi).toBeDefined();
+        expect(paymentsResponse.opi?.issuerId).toEqual("ISSUER_ID");
+        expect(paymentsResponse.opi?.transToken).toEqual("TRANS_TOKEN");
+    });
+
+    test("should create a session with payable.", async (): Promise<void> => {
+        const sessionsRequest: Types.checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        sessionsRequest.payable = true;
+
+        const serialized = Types.checkout.ObjectSerializer.serialize(sessionsRequest, "CreateCheckoutSessionRequest");
+        expect(serialized).toHaveProperty("payable", true);
+
+        const deserialized: Types.checkout.CreateCheckoutSessionRequest = Types.checkout.ObjectSerializer.deserialize(serialized, "CreateCheckoutSessionRequest", "");
+        expect(deserialized.payable).toBe(true);
+    });
+
+    test("should round-trip KlarnaNetworkDetails with klarnaNetworkPaymentAccountId.", async (): Promise<void> => {
+        const klarnaNetworkDetails: Types.checkout.KlarnaNetworkDetails = {
+            type: Types.checkout.KlarnaNetworkDetails.TypeEnum.KlarnaNetwork,
+            klarnaNetworkSessionToken: "SESSION_TOKEN",
+            klarnaNetworkPaymentAccountId: "KLARNA_NETWORK_PAYMENT_ACCOUNT_ID",
+        };
+
+        const serialized = Types.checkout.ObjectSerializer.serialize(klarnaNetworkDetails, "KlarnaNetworkDetails");
+        const deserialized: Types.checkout.KlarnaNetworkDetails = Types.checkout.ObjectSerializer.deserialize(serialized, "KlarnaNetworkDetails", "");
+
+        expect(deserialized.klarnaNetworkSessionToken).toEqual("SESSION_TOKEN");
+        expect(deserialized.klarnaNetworkPaymentAccountId).toEqual("KLARNA_NETWORK_PAYMENT_ACCOUNT_ID");
+    });
+
+    test("should round-trip LineItem with riskCategory.", async (): Promise<void> => {
+        const lineItem: Types.checkout.LineItem = {
+            quantity: 1,
+            amountIncludingTax: 1000,
+            riskCategory: "electronics",
+        };
+
+        const serialized = Types.checkout.ObjectSerializer.serialize(lineItem, "LineItem");
+        const deserialized: Types.checkout.LineItem = Types.checkout.ObjectSerializer.deserialize(serialized, "LineItem");
+
+        expect(deserialized.quantity).toBe(1);
+        expect(deserialized.riskCategory).toEqual("electronics");
+    });
+
+    test("should deserialize satispay payment details.", async (): Promise<void> => {
+        expect(Types.checkout.PaymentDetails.TypeEnum.Satispay).toEqual("satispay");
+
+        const requestJson: JSON = JSON.parse(paymentRequestSatispay);
+        const paymentRequest: Types.checkout.PaymentRequest = Types.checkout.ObjectSerializer.deserialize(requestJson, "PaymentRequest", "");
+        const paymentMethodDetails: Types.checkout.PaymentDetails = paymentRequest.paymentMethod as Types.checkout.PaymentDetails;
+        expect(paymentMethodDetails.type).toEqual(Types.checkout.PaymentDetails.TypeEnum.Satispay);
     });
 });
