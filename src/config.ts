@@ -113,8 +113,8 @@ class Config {
      * @param region - The region to get the endpoint for.
      * @returns The Terminal API endpoint URL.
      */
-    public static getTerminalApiEndpoint(region?: RegionEnum): string {
-        return (region && TERMINAL_API_ENDPOINTS_MAP[region]) || TERMINAL_API_ENDPOINTS_MAP[RegionEnum.EU];
+    public static getTerminalApiEndpoint(region: RegionEnum): string {
+        return TERMINAL_API_ENDPOINTS_MAP[region] || TERMINAL_API_ENDPOINTS_MAP[RegionEnum.EU];
     }
 
 }

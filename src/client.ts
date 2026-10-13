@@ -42,13 +42,19 @@ class Client {
         // set Terminal API endpoints 
         if (this.config.environment === EnvironmentEnum.TEST) {
             // one TEST endpoint for all regions
-            this.config.terminalApiCloudEndpoint = TERMINAL_API_ENDPOINT_TEST;
+            if (!this.config.terminalApiCloudEndpoint) {
+                this.config.terminalApiCloudEndpoint = TERMINAL_API_ENDPOINT_TEST;
+            }
         } else if (this.config.environment === EnvironmentEnum.LIVE) {
             // region-based LIVE endpoints
-            if (this.config.region && !Config.isRegionValid(this.config.region)) {
-                throw new Error(`Invalid region provided: ${this.config.region}`);
+            if (this.config.region) {
+                if (!Config.isRegionValid(this.config.region)) {
+                    throw new Error(`Invalid region provided: ${this.config.region}`);
+                }
+                if (!this.config.terminalApiCloudEndpoint) {
+                    this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(this.config.region);
+                }
             }
-            this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(this.config.region);
         }
 
         // legacy support for marketPayEndpoint
