@@ -5,7 +5,7 @@ import { syncRefund, syncRes, syncResEventNotification, syncResEventNotification
 import Client from "../client";
 import TerminalCloudAPI from "../services/terminalCloudAPI";
 import { terminal } from "../typings";
-import { EnvironmentEnum } from "../config";
+import { EnvironmentEnum, RegionEnum } from "../config";
 import HttpClientException from "../httpClient/httpClientException";
 
 let client: Client;
@@ -231,6 +231,34 @@ describe("Terminal Cloud API", (): void => {
         expect(e.statusCode).toBe(308);
       } 
     }
+  });
+  test("should throw an error when neither region nor terminalApiCloudEndpoint is provided in LIVE environment", () => {
+    const liveClient = new Client({
+      apiKey: "YOUR_API_KEY",
+      environment: EnvironmentEnum.LIVE,
+    });
+    expect(() => new TerminalCloudAPI(liveClient)).toThrow(
+      "Terminal API endpoint is not configured. Please provide a valid region or an explicit terminalApiCloudEndpoint in your configuration."
+    );
+  });
+
+  test("should initialize successfully when region is provided in LIVE environment", () => {
+    const liveClient = new Client({
+      apiKey: "YOUR_API_KEY",
+      environment: EnvironmentEnum.LIVE,
+      region: RegionEnum.EU,
+    });
+    expect(() => new TerminalCloudAPI(liveClient)).not.toThrow();
+  });
+
+  test("should initialize successfully when terminalApiCloudEndpoint is explicitly provided in LIVE environment", () => {
+    const liveClient = new Client({
+      apiKey: "YOUR_API_KEY",
+      environment: EnvironmentEnum.LIVE,
+      terminalApiCloudEndpoint: "https://custom-terminal-api.adyen.com",
+    });
+    const api = new TerminalCloudAPI(liveClient);
+    expect(api).toBeDefined();
   });
 
 });

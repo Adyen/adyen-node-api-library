@@ -32,6 +32,11 @@ class TerminalCloudAPI extends Service {
 
     public constructor(client: Client) {
         super(client);
+        if (!client.config.terminalApiCloudEndpoint) {
+            throw new Error(
+                "Terminal API endpoint is not configured. Please provide a valid region or an explicit terminalApiCloudEndpoint in your configuration."
+            );
+        }
         this.apiKeyRequired = true;
         this.terminalApiAsync = new Async(this);
         this.terminalApiSync = new Sync(this);
