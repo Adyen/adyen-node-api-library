@@ -1,4 +1,5 @@
-import Config, { EnvironmentEnum, TERMINAL_API_ENDPOINT_TEST } from "./config";
+import Config, { EnvironmentEnum } from "./config";
+import { TERMINAL_API_ENDPOINT_TEST } from "./config";
 
 import HttpURLConnectionClient from "./httpClient/httpURLConnectionClient";
 import ClientInterface from "./httpClient/clientInterface";
@@ -42,18 +43,14 @@ class Client {
         // set Terminal API endpoints 
         if (this.config.environment === EnvironmentEnum.TEST) {
             // one TEST endpoint for all regions
-            if (!this.config.terminalApiCloudEndpoint) {
-                this.config.terminalApiCloudEndpoint = TERMINAL_API_ENDPOINT_TEST;
-            }
+            this.config.terminalApiCloudEndpoint = TERMINAL_API_ENDPOINT_TEST;
         } else if (this.config.environment === EnvironmentEnum.LIVE) {
             // region-based LIVE endpoints
-            if (this.config.region) {
+            if(this.config.region) {
                 if (!Config.isRegionValid(this.config.region)) {
                     throw new Error(`Invalid region provided: ${this.config.region}`);
                 }
-                if (!this.config.terminalApiCloudEndpoint) {
-                    this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(this.config.region);
-                }
+                this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(this.config.region);  
             }
         }
 
