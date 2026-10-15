@@ -109,7 +109,7 @@ class Config {
 
     /**
      * Returns the Terminal API endpoint for the given region.
-     * If the region is not valid or not provided, returns the EU endpoint.
+     * If the region is not valid, returns the EU endpoint.
      * @param region - The region to get the endpoint for.
      * @returns The Terminal API endpoint URL.
      */
