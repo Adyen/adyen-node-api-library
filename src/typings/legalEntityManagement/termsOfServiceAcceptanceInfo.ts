@@ -26,7 +26,7 @@ export class TermsOfServiceAcceptanceInfo {
     */
     "id"?: string;
     /**
-    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  
+    * The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenCapitalCashAdvance** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite** *  **directDebit**  
     */
     "type"?: TermsOfServiceAcceptanceInfo.TypeEnum;
     /**
@@ -88,6 +88,7 @@ export namespace TermsOfServiceAcceptanceInfo {
     export enum TypeEnum {
         AdyenAccount = 'adyenAccount',
         AdyenCapital = 'adyenCapital',
+        AdyenCapitalCashAdvance = 'adyenCapitalCashAdvance',
         AdyenCard = 'adyenCard',
         AdyenChargeCard = 'adyenChargeCard',
         AdyenForPlatformsAdvanced = 'adyenForPlatformsAdvanced',
@@ -95,6 +96,7 @@ export namespace TermsOfServiceAcceptanceInfo {
         AdyenFranchisee = 'adyenFranchisee',
         AdyenIssuing = 'adyenIssuing',
         AdyenPccr = 'adyenPccr',
+        DirectDebit = 'directDebit',
         KycOnInvite = 'kycOnInvite'
     }
 }

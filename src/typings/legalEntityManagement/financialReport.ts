@@ -18,7 +18,7 @@ export class FinancialReport {
     */
     "balanceSheetTotal"?: string;
     /**
-    * The currency used for the annual turnover, balance sheet total, and net assets.
+    * The currency used for the financial data.
     */
     "currencyOfFinancialData"?: string;
     /**
