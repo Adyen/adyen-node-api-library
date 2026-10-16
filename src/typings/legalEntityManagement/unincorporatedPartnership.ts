@@ -33,7 +33,7 @@ export class UnincorporatedPartnership {
     */
     "doingBusinessAsAbsent"?: boolean | null;
     /**
-    * The legal name.
+    * The legal name. Must be at least 3 characters.  Only the following special characters are allowed: **,**, **-**, **—**, **.**, **;**, **:**, **&**, **?**, **@**, **(**, **)**, **\"**, **\'**, **!**, **\\**, **+**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
     */
     "name": string;
     "principalPlaceOfBusiness"?: Address | null;
@@ -42,6 +42,10 @@ export class UnincorporatedPartnership {
     * The registration number.
     */
     "registrationNumber"?: string;
+    /**
+    * Indicates if the `registeredAddress` is a place of residence, instead of a business address.  Set to **true** if the address is a place of residence. The default value is **false**.
+    */
+    "residentialAddressIndicator"?: boolean | null;
     /**
     * The tax information of the entity.
     */
@@ -116,6 +120,12 @@ export class UnincorporatedPartnership {
             "name": "registrationNumber",
             "baseName": "registrationNumber",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "residentialAddressIndicator",
+            "baseName": "residentialAddressIndicator",
+            "type": "boolean | null",
             "format": ""
         },
         {
