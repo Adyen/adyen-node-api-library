@@ -12,6 +12,7 @@ import { AdditionalBankIdentificationRequirement } from "./additionalBankIdentif
 import { Address } from "./address";
 import { AddressRequirement } from "./addressRequirement";
 import { Amount } from "./amount";
+import { AmountDTO } from "./amountDTO";
 import { AmountMinMaxRequirement } from "./amountMinMaxRequirement";
 import { AmountNonZeroDecimalsRequirement } from "./amountNonZeroDecimalsRequirement";
 import { ApproveAssociationRequest } from "./approveAssociationRequest";
@@ -75,6 +76,7 @@ import { Counterparty } from "./counterparty";
 import { CounterpartyBankRestriction } from "./counterpartyBankRestriction";
 import { CounterpartyTypesRestriction } from "./counterpartyTypesRestriction";
 import { CountriesRestriction } from "./countriesRestriction";
+import { CreateRecurringTopUp } from "./createRecurringTopUp";
 import { CreateScaInformation } from "./createScaInformation";
 import { CreateSweepConfigurationV2 } from "./createSweepConfigurationV2";
 import { CreateTransferLimitRequest } from "./createTransferLimitRequest";
@@ -135,6 +137,11 @@ import { PaginatedBalanceAccountsResponse } from "./paginatedBalanceAccountsResp
 import { PaginatedGetCardOrderItemResponse } from "./paginatedGetCardOrderItemResponse";
 import { PaginatedGetCardOrderResponse } from "./paginatedGetCardOrderResponse";
 import { PaginatedPaymentInstrumentsResponse } from "./paginatedPaymentInstrumentsResponse";
+import { PatchableAmountDTO } from "./patchableAmountDTO";
+import { PatchableCreateRecurringTopUp } from "./patchableCreateRecurringTopUp";
+import { PatchableSchedule } from "./patchableSchedule";
+import { PatchableTopUpAmount } from "./patchableTopUpAmount";
+import { PatchableTrigger } from "./patchableTrigger";
 import { PaymentInstrument } from "./paymentInstrument";
 import { PaymentInstrumentAdditionalBankAccountIdentificationsInnerClass } from "./paymentInstrumentAdditionalBankAccountIdentificationsInner";
 import { PaymentInstrumentGroup } from "./paymentInstrumentGroup";
@@ -156,6 +163,8 @@ import { PinChangeResponse } from "./pinChangeResponse";
 import { PlatformPaymentConfiguration } from "./platformPaymentConfiguration";
 import { ProcessingTypesRestriction } from "./processingTypesRestriction";
 import { PublicKeyResponse } from "./publicKeyResponse";
+import { RecurringTopUp } from "./recurringTopUp";
+import { RecurringTopUpsResult } from "./recurringTopUpsResult";
 import { RegisterSCAFinalResponse } from "./registerSCAFinalResponse";
 import { RegisterSCARequest } from "./registerSCARequest";
 import { RegisterSCAResponse } from "./registerSCAResponse";
@@ -175,6 +184,7 @@ import { SameCounterpartyRestriction } from "./sameCounterpartyRestriction";
 import { ScaDevice } from "./scaDevice";
 import { ScaEntity } from "./scaEntity";
 import { ScaInformation } from "./scaInformation";
+import { Schedule } from "./schedule";
 import { SearchRegisteredDevicesResponse } from "./searchRegisteredDevicesResponse";
 import { SourceAccountTypesRestriction } from "./sourceAccountTypesRestriction";
 import { StringMatch } from "./stringMatch";
@@ -191,6 +201,8 @@ import { ThresholdRepayment } from "./thresholdRepayment";
 import { TimeOfDay } from "./timeOfDay";
 import { TimeOfDayRestriction } from "./timeOfDayRestriction";
 import { TokenRequestorsRestriction } from "./tokenRequestorsRestriction";
+import { TopUpAmount } from "./topUpAmount";
+import { TopUpCounterparty } from "./topUpCounterparty";
 import { TotalAmountRestriction } from "./totalAmountRestriction";
 import { TransactionRule } from "./transactionRule";
 import { TransactionRuleEntityKey } from "./transactionRuleEntityKey";
@@ -205,6 +217,7 @@ import { TransferRoute } from "./transferRoute";
 import { TransferRouteRequest } from "./transferRouteRequest";
 import { TransferRouteRequirementsInnerClass } from "./transferRouteRequirementsInner";
 import { TransferRouteResponse } from "./transferRouteResponse";
+import { Trigger } from "./trigger";
 import { UKLocalAccountIdentification } from "./uKLocalAccountIdentification";
 import { UKLocalMandateAccountIdentification } from "./uKLocalMandateAccountIdentification";
 import { USInstantPayoutAddressRequirement } from "./uSInstantPayoutAddressRequirement";
@@ -288,6 +301,7 @@ let enumsMap: Set<string> = new Set<string>([
     "Condition.BalanceTypeEnum",
     "Condition.ConditionTypeEnum",
     "CounterpartyTypesRestriction.ValueEnum",
+    "CreateRecurringTopUp.StatusEnum",
     "CreateSweepConfigurationV2.CategoryEnum",
     "CreateSweepConfigurationV2.PrioritiesEnum",
     "CreateSweepConfigurationV2.ReasonEnum",
@@ -314,6 +328,7 @@ let enumsMap: Set<string> = new Set<string>([
     "NetworkToken.StatusEnum",
     "NumberAndBicAccountIdentification.TypeEnum",
     "PLLocalAccountIdentification.TypeEnum",
+    "PatchableCreateRecurringTopUp.StatusEnum",
     "PaymentInstrument.StatusEnum",
     "PaymentInstrument.StatusReasonEnum",
     "PaymentInstrument.TypeEnum",
@@ -329,12 +344,14 @@ let enumsMap: Set<string> = new Set<string>([
     "PhoneNumber.PhoneTypeEnum",
     "PinChangeResponse.StatusEnum",
     "ProcessingTypesRestriction.ValueEnum",
+    "RecurringTopUp.StatusEnum",
     "SELocalAccountIdentification.TypeEnum",
     "SGLocalAccountIdentification.TypeEnum",
     "ScaDeviceType",
     "ScaEntityType",
     "ScaExemption",
     "ScaStatus",
+    "ScheduleType",
     "Scope",
     "SettingType",
     "SourceAccountTypesRestriction.ValueEnum",
@@ -405,6 +422,7 @@ let typeMap: {[index: string]: any} = {
     "Address": Address,
     "AddressRequirement": AddressRequirement,
     "Amount": Amount,
+    "AmountDTO": AmountDTO,
     "AmountMinMaxRequirement": AmountMinMaxRequirement,
     "AmountNonZeroDecimalsRequirement": AmountNonZeroDecimalsRequirement,
     "ApproveAssociationRequest": ApproveAssociationRequest,
@@ -468,6 +486,7 @@ let typeMap: {[index: string]: any} = {
     "CounterpartyBankRestriction": CounterpartyBankRestriction,
     "CounterpartyTypesRestriction": CounterpartyTypesRestriction,
     "CountriesRestriction": CountriesRestriction,
+    "CreateRecurringTopUp": CreateRecurringTopUp,
     "CreateScaInformation": CreateScaInformation,
     "CreateSweepConfigurationV2": CreateSweepConfigurationV2,
     "CreateTransferLimitRequest": CreateTransferLimitRequest,
@@ -528,6 +547,11 @@ let typeMap: {[index: string]: any} = {
     "PaginatedGetCardOrderItemResponse": PaginatedGetCardOrderItemResponse,
     "PaginatedGetCardOrderResponse": PaginatedGetCardOrderResponse,
     "PaginatedPaymentInstrumentsResponse": PaginatedPaymentInstrumentsResponse,
+    "PatchableAmountDTO": PatchableAmountDTO,
+    "PatchableCreateRecurringTopUp": PatchableCreateRecurringTopUp,
+    "PatchableSchedule": PatchableSchedule,
+    "PatchableTopUpAmount": PatchableTopUpAmount,
+    "PatchableTrigger": PatchableTrigger,
     "PaymentInstrument": PaymentInstrument,
     "PaymentInstrumentAdditionalBankAccountIdentificationsInner": PaymentInstrumentAdditionalBankAccountIdentificationsInnerClass,
     "PaymentInstrumentGroup": PaymentInstrumentGroup,
@@ -549,6 +573,8 @@ let typeMap: {[index: string]: any} = {
     "PlatformPaymentConfiguration": PlatformPaymentConfiguration,
     "ProcessingTypesRestriction": ProcessingTypesRestriction,
     "PublicKeyResponse": PublicKeyResponse,
+    "RecurringTopUp": RecurringTopUp,
+    "RecurringTopUpsResult": RecurringTopUpsResult,
     "RegisterSCAFinalResponse": RegisterSCAFinalResponse,
     "RegisterSCARequest": RegisterSCARequest,
     "RegisterSCAResponse": RegisterSCAResponse,
@@ -568,6 +594,7 @@ let typeMap: {[index: string]: any} = {
     "ScaDevice": ScaDevice,
     "ScaEntity": ScaEntity,
     "ScaInformation": ScaInformation,
+    "Schedule": Schedule,
     "SearchRegisteredDevicesResponse": SearchRegisteredDevicesResponse,
     "SourceAccountTypesRestriction": SourceAccountTypesRestriction,
     "StringMatch": StringMatch,
@@ -584,6 +611,8 @@ let typeMap: {[index: string]: any} = {
     "TimeOfDay": TimeOfDay,
     "TimeOfDayRestriction": TimeOfDayRestriction,
     "TokenRequestorsRestriction": TokenRequestorsRestriction,
+    "TopUpAmount": TopUpAmount,
+    "TopUpCounterparty": TopUpCounterparty,
     "TotalAmountRestriction": TotalAmountRestriction,
     "TransactionRule": TransactionRule,
     "TransactionRuleEntityKey": TransactionRuleEntityKey,
@@ -598,6 +627,7 @@ let typeMap: {[index: string]: any} = {
     "TransferRouteRequest": TransferRouteRequest,
     "TransferRouteRequirementsInner": TransferRouteRequirementsInnerClass,
     "TransferRouteResponse": TransferRouteResponse,
+    "Trigger": Trigger,
     "UKLocalAccountIdentification": UKLocalAccountIdentification,
     "UKLocalMandateAccountIdentification": UKLocalMandateAccountIdentification,
     "USInstantPayoutAddressRequirement": USInstantPayoutAddressRequirement,
