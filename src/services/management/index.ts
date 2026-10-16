@@ -17,8 +17,10 @@ import { AccountStoreLevelApi } from "./accountStoreLevelApi";
 import { AllowedOriginsCompanyLevelApi } from "./allowedOriginsCompanyLevelApi";
 import { AllowedOriginsMerchantLevelApi } from "./allowedOriginsMerchantLevelApi";
 import { AndroidFilesCompanyLevelApi } from "./androidFilesCompanyLevelApi";
+import { ClientCertificatesCompanyLevelApi } from "./clientCertificatesCompanyLevelApi";
 import { ClientKeyCompanyLevelApi } from "./clientKeyCompanyLevelApi";
 import { ClientKeyMerchantLevelApi } from "./clientKeyMerchantLevelApi";
+import { DonationCampaignsApi } from "./donationCampaignsApi";
 import { MyAPICredentialApi } from "./myAPICredentialApi";
 import { PaymentMethodsMerchantLevelApi } from "./paymentMethodsMerchantLevelApi";
 import { PayoutSettingsMerchantLevelApi } from "./payoutSettingsMerchantLevelApi";
@@ -31,6 +33,10 @@ import { TerminalSettingsCompanyLevelApi } from "./terminalSettingsCompanyLevelA
 import { TerminalSettingsMerchantLevelApi } from "./terminalSettingsMerchantLevelApi";
 import { TerminalSettingsStoreLevelApi } from "./terminalSettingsStoreLevelApi";
 import { TerminalSettingsTerminalLevelApi } from "./terminalSettingsTerminalLevelApi";
+import { TerminalThemesCompanyLevelApi } from "./terminalThemesCompanyLevelApi";
+import { TerminalThemesMerchantLevelApi } from "./terminalThemesMerchantLevelApi";
+import { TerminalThemesStoreLevelApi } from "./terminalThemesStoreLevelApi";
+import { TerminalThemesTerminalLevelApi } from "./terminalThemesTerminalLevelApi";
 import { TerminalsTerminalLevelApi } from "./terminalsTerminalLevelApi";
 import { UsersCompanyLevelApi } from "./usersCompanyLevelApi";
 import { UsersMerchantLevelApi } from "./usersMerchantLevelApi";
@@ -86,12 +92,20 @@ export default class ManagementAPI extends Service {
         return new AndroidFilesCompanyLevelApi(this.client);
     }
 
+    public get ClientCertificatesCompanyLevelApi() {
+        return new ClientCertificatesCompanyLevelApi(this.client);
+    }
+
     public get ClientKeyCompanyLevelApi() {
         return new ClientKeyCompanyLevelApi(this.client);
     }
 
     public get ClientKeyMerchantLevelApi() {
         return new ClientKeyMerchantLevelApi(this.client);
+    }
+
+    public get DonationCampaignsApi() {
+        return new DonationCampaignsApi(this.client);
     }
 
     public get MyAPICredentialApi() {
@@ -140,6 +154,22 @@ export default class ManagementAPI extends Service {
 
     public get TerminalSettingsTerminalLevelApi() {
         return new TerminalSettingsTerminalLevelApi(this.client);
+    }
+
+    public get TerminalThemesCompanyLevelApi() {
+        return new TerminalThemesCompanyLevelApi(this.client);
+    }
+
+    public get TerminalThemesMerchantLevelApi() {
+        return new TerminalThemesMerchantLevelApi(this.client);
+    }
+
+    public get TerminalThemesStoreLevelApi() {
+        return new TerminalThemesStoreLevelApi(this.client);
+    }
+
+    public get TerminalThemesTerminalLevelApi() {
+        return new TerminalThemesTerminalLevelApi(this.client);
     }
 
     public get TerminalsTerminalLevelApi() {
