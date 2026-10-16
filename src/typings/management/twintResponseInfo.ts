@@ -12,7 +12,7 @@ export class TwintResponseInfo {
     /**
     * Twint logo. Format: Base64-encoded string.
     */
-    "logo": string;
+    "logo"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
