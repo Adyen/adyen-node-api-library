@@ -10,15 +10,15 @@
 
 export class Name {
     /**
-    * The individual\'s first name. Must not be blank.
+    * The individual\'s first name. Must not be blank.  The combined length of `firstName` and `lastName` must be at least 3 characters. For example, a `firstName` of N and `lastName` of Ha is accepted.  Only the following special characters are allowed: **-**, **—**, **.**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
     */
     "firstName": string;
     /**
-    * The infix in the individual\'s name, if any.
+    * The infix in the individual\'s name, if any.  Only the following special characters are allowed: **-**, **—**, **.**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only symbols, only numbers, or only spaces.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
     */
     "infix"?: string;
     /**
-    * The individual\'s last name. Must not be blank.
+    * The individual\'s last name. Must not be blank.  The combined length of `firstName` and `lastName` must be at least 3 characters.  Only the following special characters are allowed: **-**, **—**, **.**, **_/_**. Accents and non-Latin scripts are allowed.  The field cannot contain emojis, only one repeated character (unless two characters long), only symbols, only numbers, only spaces, or **fictitious names** such as **John Doe** or **N/A**.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
     */
     "lastName": string;
 

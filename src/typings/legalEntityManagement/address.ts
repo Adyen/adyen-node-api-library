@@ -10,7 +10,7 @@
 
 export class Address {
     /**
-    * The name of the city. Required if `stateOrProvince` is provided.  If you specify the city, you must also send `postalCode` and `street`.
+    * The name of the city. Required if `stateOrProvince` is provided.  If you specify the city, you must also send `postalCode` and `street`.  The city name must be at least 3 characters. If the city name contains only repeated characters, the minimum length is two characters. For example, Aa is accepted, but Aaaa is not.  For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
     */
     "city"?: string;
     /**
@@ -26,7 +26,7 @@ export class Address {
     */
     "stateOrProvince"?: string;
     /**
-    * The name of the street, and the house or building number. Required if `stateOrProvince` and/or `city` is provided.
+    * The name of the street, and the house or building number. Must be at least 3 characters. Required if `stateOrProvince` and/or `city` is provided. For more information, see [validations on fields](https://docs.adyen.com/platforms/onboard-users/onboarding-versions/onboarding-v4/#validations).
     */
     "street"?: string;
     /**

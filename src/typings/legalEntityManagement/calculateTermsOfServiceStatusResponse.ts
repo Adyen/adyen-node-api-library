@@ -38,6 +38,7 @@ export namespace CalculateTermsOfServiceStatusResponse {
     export enum TermsOfServiceTypesEnum {
         AdyenAccount = 'adyenAccount',
         AdyenCapital = 'adyenCapital',
+        AdyenCapitalCashAdvance = 'adyenCapitalCashAdvance',
         AdyenCard = 'adyenCard',
         AdyenChargeCard = 'adyenChargeCard',
         AdyenForPlatformsAdvanced = 'adyenForPlatformsAdvanced',
@@ -45,6 +46,7 @@ export namespace CalculateTermsOfServiceStatusResponse {
         AdyenFranchisee = 'adyenFranchisee',
         AdyenIssuing = 'adyenIssuing',
         AdyenPccr = 'adyenPccr',
+        DirectDebit = 'directDebit',
         KycOnInvite = 'kycOnInvite'
     }
 }
