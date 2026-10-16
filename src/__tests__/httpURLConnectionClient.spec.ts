@@ -1,5 +1,7 @@
 import nock from "nock";
+import { Readable } from "stream";
 import Config, { EnvironmentEnum } from "../config";
+import HttpClientException from "../httpClient/httpClientException";
 import HttpURLConnectionClient from "../httpClient/httpURLConnectionClient";
 
 const toRequestBuffer = (body: unknown): Buffer => {
@@ -104,6 +106,38 @@ describe("HttpURLConnectionClient", () => {
         expect(redirectScope.isDone()).toBe(true);
         expect(targetScope.isDone()).toBe(true);
         expect(redirectedBody.equals(body)).toBe(true);
+    });
+
+    describe("multi-byte characters split across response chunks", () => {
+        const name = "José Müller 北京 😀";
+        const config = new Config({apiKey: "test-api-key", environment: EnvironmentEnum.TEST});
+
+        const splitEverywhere = (text: string): Readable => {
+            const bytes = Buffer.from(text, "utf8");
+            return Readable.from(Array.from(bytes, (byte) => Buffer.from([byte])));
+        };
+
+        test("decodes a successful response", async () => {
+            const body = JSON.stringify({resultCode: "Authorised", additionalData: {cardHolderName: name}});
+            nock("https://checkout-test.adyen.com").post("/payments").reply(200, () => splitEverywhere(body));
+
+            const response = await client.request("https://checkout-test.adyen.com/payments", "{}", config, true);
+
+            expect(response).toBe(body);
+        });
+
+        test.each([422, 500])("decodes an error response with status %d", async (status) => {
+            const message = `Invalid shopper name: ${name}`;
+            const body = JSON.stringify({status, errorCode: "000", message, errorType: "validation"});
+            nock("https://checkout-test.adyen.com").post("/payments").reply(status, () => splitEverywhere(body));
+
+            const error = await client.request("https://checkout-test.adyen.com/payments", "{}", config, true)
+                .catch((e: HttpClientException) => e);
+
+            expect(error).toBeInstanceOf(HttpClientException);
+            expect((error as HttpClientException).responseBody).toBe(body);
+            expect((error as HttpClientException).apiError?.message).toBe(message);
+        });
     });
 
     test("rejects when the certificate cannot be loaded", async () => {
