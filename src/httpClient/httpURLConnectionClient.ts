@@ -198,6 +198,7 @@ class HttpURLConnectionClient implements ClientInterface {
                 });
                 let exception: HttpClientException | Error = getException(response.body);
 
+                res.setEncoding("utf8");
                 res.on("data", (chunk: string): void => {
                     response.body += chunk;
                 });
