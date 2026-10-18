@@ -17,11 +17,12 @@
  * See the LICENSE file for more info.
  */
 
-import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
+import getJsonResponse from "../../helpers/getJsonResponse";
 import { IRequest } from "../../typings/requestOptions";
 import Resource from "../resource";
+import requestWithRetries from "./requestWithRetries";
 import { CloudDeviceApiAsyncResponse } from "../../typings/clouddevice/models";
 import { CloudDeviceApiRequest } from "../../typings/clouddevice/models";
 import { CloudDeviceApiResponse } from "../../typings/clouddevice/models";
@@ -54,10 +55,10 @@ export class CloudDeviceApi extends Service {
             .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
             .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<CloudDeviceApiRequest, CloudDeviceApiResponse>(
+        const response = await requestWithRetries<CloudDeviceApiRequest, CloudDeviceApiResponse>(
             resource,
-            cloudDeviceApiRequest,
-            { ...requestOptions, method: "POST" }
+            JSON.stringify(cloudDeviceApiRequest),
+            { ...requestOptions, method: "POST" },
         );
         return response;
     }
@@ -75,10 +76,10 @@ export class CloudDeviceApi extends Service {
             .replace("{" + "merchantAccount" + "}", encodeURIComponent(String(merchantAccount)))
             .replace("{" + "deviceId" + "}", encodeURIComponent(String(deviceId)));
         const resource = new Resource(this, endpoint);
-        const response = await getJsonResponse<CloudDeviceApiRequest, string>(
+        const response = await requestWithRetries<CloudDeviceApiRequest, string>(
             resource,
-            cloudDeviceApiRequest,
-            { ...requestOptions, method: "POST" }
+            JSON.stringify(cloudDeviceApiRequest),
+            { ...requestOptions, method: "POST" },
         );
         const result = new CloudDeviceApiAsyncResponse();
         if (typeof response === "string" && response.toLowerCase().trim() === "ok") {

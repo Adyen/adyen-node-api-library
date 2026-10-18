@@ -28,6 +28,6 @@ export namespace IRequest {
     export type Options = https.RequestOptions & {
         idempotencyKey?: string;
         params?: QueryString;
+        retries?: number;
     };
 }
-
