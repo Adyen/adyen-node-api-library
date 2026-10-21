@@ -1,6 +1,6 @@
 import nock from "nock";
 import { createClient } from "../__mocks__/base";
-import { transfersSuccess, cashOutSuccess, getTransactionSuccess, listTransactionsSuccess } from "../__mocks__/transfers/responses";
+import { transfersSuccess, cashOutSuccess, getTransactionSuccess, listTransactionsSuccess, transferReversalReceivedSuccess } from "../__mocks__/transfers/responses";
 import TransfersAPI from "../services/transfers";
 import Client from "../client";
 import {transfers} from "../typings";
@@ -52,6 +52,17 @@ describe("Transfers", (): void => {
         .reply(200, transfersSuccess);
         const response: transfers.TransferData = await transfersAPI.TransfersApi.getTransfer("123",);
         expect(response.id).toEqual("1W1UG35U8A9J5ZLG");
+    });
+
+    test("should get transfer with reversalReceived status, fxSell type, and usAchCorrectionReasonCode networkReason", async (): Promise<void> => {
+        scope.get("/transfers/123")
+        .reply(200, transferReversalReceivedSuccess);
+        const response: transfers.TransferData = await transfersAPI.TransfersApi.getTransfer("123",);
+        expect(response.status).toEqual(transfers.TransferData.StatusEnum.ReversalReceived);
+        expect(response.type).toEqual(transfers.TransferData.TypeEnum.FxSell);
+        expect(response.networkReason?.namespace).toEqual(transfers.NetworkReason.NamespaceEnum.UsAchCorrectionReasonCode);
+        expect(response.events?.[0].status).toEqual(transfers.TransferEvent.StatusEnum.ReversalReceived);
+        expect(response.events?.[0].modification?.status).toEqual(transfers.Modification.StatusEnum.ReversalReceived);
     });
 
     test("should list transfers", async (): Promise<void> => {
