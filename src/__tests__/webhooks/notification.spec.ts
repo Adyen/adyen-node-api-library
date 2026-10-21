@@ -3,6 +3,7 @@ import captureTrue from "../../__mocks__/notification/captureTrue.json";
 import captureFalse from "../../__mocks__/notification/captureFalse.json";
 import refundTrue from "../../__mocks__/notification/refundTrue.json";
 import refundFalse from "../../__mocks__/notification/refundFalse.json";
+import reversalTrue from "../../__mocks__/notification/reversalTrue.json";
 
 // requests
 import NotificationRequest from "../../notification/notificationRequest";
@@ -85,6 +86,28 @@ describe("Notification Tests", function (): void {
             expect(notificationRequestItem.success === SuccessEnum.True).toBeFalsy();
             expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
             expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");
+            expect(notificationRequestItem.eventDate).toBeDefined();
+        } else {
+            fail();
+        }
+    });
+
+    it("should return reversal success", function (): void {
+        const notificationRequest = new NotificationRequest(reversalTrue as unknown as Notification);
+        expect(notificationRequest.notificationItems).toHaveLength(1);
+
+        if (notificationRequest.notificationItems) {
+            const notificationRequestItem = notificationRequest.notificationItems[0];
+            expect(NotificationEnum.Reversal).toEqual(notificationRequestItem.eventCode);
+            expect(notificationRequestItem.success === SuccessEnum.True).toBeTruthy();
+            expect(notificationRequestItem.pspReference).toEqual("PSP_REFERENCE");
+            expect(notificationRequestItem.originalReference).toEqual("ORIGINAL_PSP");
+            expect(notificationRequestItem.amount.currency).toEqual("EUR");
+            expect(notificationRequestItem.amount.value).toEqual(1500);
+            expect(notificationRequestItem.additionalData?.["modification.action"]).toEqual("refund");
+            expect(notificationRequestItem.additionalData?.["modification.status"]).toEqual("authorised");
+            expect(notificationRequestItem.additionalData?.cancellableUntil).toEqual("2024-05-21T14:32:00Z");
+            expect(notificationRequestItem.additionalData?.refundPspReference).toEqual("REFUND_PSP_REFERENCE");
             expect(notificationRequestItem.eventDate).toBeDefined();
         } else {
             fail();
