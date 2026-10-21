@@ -186,6 +186,7 @@ export namespace NotificationRequestItem {
         RefundWithData = 'REFUND_WITH_DATA',
         ReportAvailable = 'REPORT_AVAILABLE',
         RequestForInformation = 'REQUEST_FOR_INFORMATION',
+        Reversal = 'REVERSAL',
         SecondChargeback = 'SECOND_CHARGEBACK',
         TechnicalCancel = 'TECHNICAL_CANCEL',
         VoidPendingRefund = 'VOID_PENDING_REFUND'
