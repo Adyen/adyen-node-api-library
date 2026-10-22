@@ -7,7 +7,9 @@ import {paymentRequestPayByBankCa} from "../__mocks__/checkout/paymentRequestPay
 import {paymentRequestSatispay} from "../__mocks__/checkout/paymentRequestSatispay";
 import {paymentsRedirectAction} from "../__mocks__/checkout/paymentsRedirectAction";
 import {paymentDetailsSuccess} from "../__mocks__/checkout/paymentsDetailsSuccess";
+import {calculateTaxSuccess} from "../__mocks__/checkout/calculateTaxSuccess";
 import {originKeysSuccess} from "../__mocks__/checkout/originkeysSuccess";
+import {verifyShopperTaxIdentificationSuccess} from "../__mocks__/checkout/verifyShopperTaxIdentificationSuccess";
 import {paymentsResultMultibancoSuccess} from "../__mocks__/checkout/paymentsResultMultibancoSuccess";
 import {sessionsSuccess} from "../__mocks__/checkout/sessionsSuccess";
 import Client from "../client";
@@ -121,6 +123,36 @@ function createSessionRequest(): Types.checkout.CreateCheckoutSessionRequest {
     };
 }
 
+function createCalculateTaxRequest(): Types.checkout.CalculateTaxRequest {
+    return {
+        merchantAccount,
+        taxCalculationContext: {
+            calculationType: Types.checkout.CalculationType.LrsTcs,
+            taxCountryCode: "IN",
+            lrs: {
+                remittancePurpose: Types.checkout.RemittancePurpose.TourProgramme,
+                sublimitStatus: Types.checkout.SublimitStatus.NotExceeded,
+            },
+        },
+        taxableAmount: {
+            currency: "INR",
+            value: 10000,
+        },
+    };
+}
+
+function createVerifyShopperTaxIdentificationRequest(): Types.checkout.VerifyShopperTaxIdentificationRequest {
+    return {
+        merchantAccount,
+        shopperReference: "YOUR_SHOPPER_REFERENCE",
+        shopperTaxIdentification: {
+            taxCountryCode: "IN",
+            taxIdentificationNumber: "ABCDE1234F",
+            taxIdentificationType: Types.checkout.TaxIdentificationType.Pan,
+        },
+    };
+}
+
 let client: Client;
 let checkoutService: CheckoutAPI;
 let scope: nock.Scope;
@@ -221,6 +253,16 @@ describe("Checkout", (): void => {
 
         const sessionsRequest: Types.checkout.CreateCheckoutSessionRequest = createSessionRequest();
         await checkoutService.PaymentsApi.sessions(sessionsRequest, {idempotencyKey: "testKey"});
+
+        scope.post("/calculateTax")
+            .matchHeader("Idempotency-Key", "testKey")
+            .reply(200, calculateTaxSuccess);
+        await checkoutService.UtilityApi.calculateTax(createCalculateTaxRequest(), {idempotencyKey: "testKey"});
+
+        scope.post("/verifyShopperTaxIdentification")
+            .matchHeader("Idempotency-Key", "testKey")
+            .reply(200, verifyShopperTaxIdentificationSuccess);
+        await checkoutService.UtilityApi.verifyShopperTaxIdentification(createVerifyShopperTaxIdentificationRequest(), {idempotencyKey: "testKey"});
 
     });
 
@@ -813,6 +855,8 @@ describe("Checkout", (): void => {
         expect(sessionsResponse.expiresAt).toBeInstanceOf(Date);
         expect(sessionsResponse.expiresAt.getFullYear()).toBeGreaterThan(0);
         expect(sessionsResponse.payable).toBe(true);
+        expect(sessionsResponse.enhancedSchemeData?.levelTwoThree?.customerReferenceNumber).toBe("CRN123456");
+        expect(sessionsResponse.enhancedSchemeData?.levelTwoThree?.totalTaxAmount).toBe(1000);
     });
 
     test("should update a session.", async (): Promise<void> => {
@@ -1145,5 +1189,201 @@ describe("Checkout", (): void => {
         const paymentRequest: Types.checkout.PaymentRequest = Types.checkout.ObjectSerializer.deserialize(requestJson, "PaymentRequest", "");
         const paymentMethodDetails: Types.checkout.PaymentDetails = paymentRequest.paymentMethod as Types.checkout.PaymentDetails;
         expect(paymentMethodDetails.type).toEqual(Types.checkout.PaymentDetails.TypeEnum.Satispay);
+    });
+
+    test("should calculate tax.", async (): Promise<void> => {
+        const calculateTaxRequest: Types.checkout.CalculateTaxRequest = createCalculateTaxRequest();
+        scope.post("/calculateTax", (body) => {
+            expect(body).toEqual(calculateTaxRequest);
+            const deserializedRequest: Types.checkout.CalculateTaxRequest = Types.checkout.ObjectSerializer.deserialize(body, "CalculateTaxRequest");
+            expect(deserializedRequest).toBeInstanceOf(Types.checkout.CalculateTaxRequest);
+            expect(deserializedRequest.taxCalculationContext).toBeInstanceOf(Types.checkout.TaxCalculationContext);
+            expect(deserializedRequest.taxCalculationContext.lrs).toBeInstanceOf(Types.checkout.LrsContext);
+            expect(deserializedRequest.taxableAmount).toBeInstanceOf(Types.checkout.TaxableAmount);
+            return true;
+        })
+            .reply(200, calculateTaxSuccess);
+
+        const calculateTaxResponse: Types.checkout.CalculateTaxResponse = await checkoutService.UtilityApi.calculateTax(calculateTaxRequest);
+
+        expect(calculateTaxResponse).toBeInstanceOf(Types.checkout.CalculateTaxResponse);
+        expect(calculateTaxResponse.taxCalculation).toBeInstanceOf(Types.checkout.TaxCalculation);
+        expect(calculateTaxResponse.taxCalculation?.totalTaxAmount).toBeInstanceOf(Types.checkout.TaxAmount);
+        expect(calculateTaxResponse.taxCalculation?.taxCalculations?.[0]).toBeInstanceOf(Types.checkout.TaxCalculationComponent);
+        expect(calculateTaxResponse.taxCalculation?.taxCalculationContext?.lrs).toBeInstanceOf(Types.checkout.LrsContext);
+        expect(calculateTaxResponse.taxCalculationReference).toEqual("2111234567890000");
+        expect(calculateTaxResponse.taxCalculationToken).toEqual("TAX_CALCULATION_TOKEN");
+        expect(calculateTaxResponse.taxCalculation?.totalTaxAmount?.value).toBe(100);
+        expect(calculateTaxResponse.taxCalculation?.taxCalculations?.[0].type).toBe(Types.checkout.CalculationType.LrsTcs);
+        expect(calculateTaxResponse.taxCalculation?.taxCalculationContext?.lrs.remittancePurpose).toBe(Types.checkout.RemittancePurpose.TourProgramme);
+        expect(calculateTaxResponse.taxCalculation?.taxCalculationContext?.lrs.sublimitStatus).toBe(Types.checkout.SublimitStatus.NotExceeded);
+    });
+
+    test("should verify shopper tax identification.", async (): Promise<void> => {
+        const verifyShopperTaxIdentificationRequest: Types.checkout.VerifyShopperTaxIdentificationRequest = createVerifyShopperTaxIdentificationRequest();
+        scope.post("/verifyShopperTaxIdentification", (body) => {
+            expect(body).toEqual(verifyShopperTaxIdentificationRequest);
+            const deserializedRequest: Types.checkout.VerifyShopperTaxIdentificationRequest = Types.checkout.ObjectSerializer.deserialize(body, "VerifyShopperTaxIdentificationRequest");
+            expect(deserializedRequest).toBeInstanceOf(Types.checkout.VerifyShopperTaxIdentificationRequest);
+            expect(deserializedRequest.shopperTaxIdentification).toBeInstanceOf(Types.checkout.ShopperTaxIdentification);
+            return true;
+        })
+            .reply(200, verifyShopperTaxIdentificationSuccess);
+
+        const verifyResponse: Types.checkout.VerifyShopperTaxIdentificationResponse = await checkoutService.UtilityApi.verifyShopperTaxIdentification(verifyShopperTaxIdentificationRequest);
+
+        expect(verifyResponse).toBeInstanceOf(Types.checkout.VerifyShopperTaxIdentificationResponse);
+        expect(verifyResponse.verifiedShopperTaxIdentification).toBeInstanceOf(Types.checkout.VerifiedShopperTaxIdentification);
+        expect(verifyResponse.result).toBe(Types.checkout.Result.Valid);
+        expect(verifyResponse.taxVerificationReference).toEqual("2111298765430000");
+        expect(verifyResponse.verifiedShopperTaxIdentification?.maskedName).toEqual("A*** K***");
+        expect(verifyResponse.verifiedShopperTaxIdentification?.taxCountryCode).toEqual("IN");
+        expect(verifyResponse.verifiedShopperTaxIdentification?.taxIdentificationType).toBe(Types.checkout.TaxIdentificationType.Pan);
+        expect(verifyResponse.verifiedShopperTaxIdentificationToken).toEqual("VERIFIED_SHOPPER_TAX_IDENTIFICATION_TOKEN");
+    });
+
+    test("should handle unsuccessful shopper tax identification verification.", async (): Promise<void> => {
+        scope.post("/verifyShopperTaxIdentification")
+            .reply(200, {
+                "result": "INVALID",
+                "reason": "The tax identification number does not match the shopper name.",
+                "reasonCode": "123",
+                "taxVerificationReference": "2111298765430000",
+            });
+
+        const verifyResponse: Types.checkout.VerifyShopperTaxIdentificationResponse = await checkoutService.UtilityApi.verifyShopperTaxIdentification(createVerifyShopperTaxIdentificationRequest());
+
+        expect(verifyResponse.result).toBe(Types.checkout.Result.Invalid);
+        expect(verifyResponse.reason).toEqual("The tax identification number does not match the shopper name.");
+        expect(verifyResponse.reasonCode).toEqual("123");
+        expect(verifyResponse.verifiedShopperTaxIdentification).toBeUndefined();
+        expect(verifyResponse.verifiedShopperTaxIdentificationToken).toBeUndefined();
+    });
+
+    test("should propagate HTTP errors from calculateTax.", async (): Promise<void> => {
+        try {
+            scope.post("/calculateTax")
+                .reply(422, {
+                    "status": 422,
+                    "errorCode": "200",
+                    "message": "Field 'taxCountryCode' is not valid.",
+                    "errorType": "validation",
+                    "pspReference": "DMB552CV6JHKGK82",
+                });
+
+            await checkoutService.UtilityApi.calculateTax(createCalculateTaxRequest());
+            fail("No exception was thrown");
+        } catch (error) {
+            expect(error instanceof HttpClientException).toBeTruthy();
+            if (error instanceof HttpClientException && error.responseBody && error.stack) {
+                expect(error.statusCode).toBe(422);
+                expect(error.errorCode).toBe("200");
+                expect(error.apiError?.pspReference).toBe("DMB552CV6JHKGK82");
+            } else {
+                fail("Error did not contain the expected data");
+            }
+        }
+    });
+
+    test("should map afterpaytouch_US payment method details to AfterpayDetails.", async (): Promise<void> => {
+        const paymentRequest: Types.checkout.PaymentRequest = {
+            ...createPaymentsCheckoutRequest(),
+            paymentMethod: {
+                type: Types.checkout.AfterpayDetails.TypeEnum.AfterpaytouchUs,
+            },
+        };
+
+        const serialized = Types.checkout.ObjectSerializer.serialize(paymentRequest, "PaymentRequest");
+        expect(serialized.paymentMethod).toHaveProperty("type", "afterpaytouch_US");
+
+        const deserialized: Types.checkout.PaymentRequest = Types.checkout.ObjectSerializer.deserialize(serialized, "PaymentRequest", "");
+        expect(deserialized.paymentMethod).toBeInstanceOf(Types.checkout.AfterpayDetails);
+        const afterpayDetails = deserialized.paymentMethod as Types.checkout.AfterpayDetails;
+        expect(afterpayDetails.type).toBe(Types.checkout.AfterpayDetails.TypeEnum.AfterpaytouchUs);
+    });
+
+    test("should map revolutpay payment method details to StoredPaymentMethodDetails.", async (): Promise<void> => {
+        const paymentRequest: Types.checkout.PaymentRequest = {
+            ...createPaymentsCheckoutRequest(),
+            paymentMethod: {
+                type: Types.checkout.StoredPaymentMethodDetails.TypeEnum.Revolutpay,
+                storedPaymentMethodId: "M5N7TQ4TG5PFWR50",
+            },
+        };
+
+        const serialized = Types.checkout.ObjectSerializer.serialize(paymentRequest, "PaymentRequest");
+        expect(serialized.paymentMethod).toHaveProperty("type", "revolutpay");
+
+        const deserialized: Types.checkout.PaymentRequest = Types.checkout.ObjectSerializer.deserialize(serialized, "PaymentRequest", "");
+        expect(deserialized.paymentMethod).toBeInstanceOf(Types.checkout.StoredPaymentMethodDetails);
+        const storedPaymentMethodDetails = deserialized.paymentMethod as Types.checkout.StoredPaymentMethodDetails;
+        expect(storedPaymentMethodDetails.type).toBe(Types.checkout.StoredPaymentMethodDetails.TypeEnum.Revolutpay);
+        expect(storedPaymentMethodDetails.storedPaymentMethodId).toEqual("M5N7TQ4TG5PFWR50");
+    });
+
+    test("should round-trip KlarnaNetworkDetails with subtype.", async (): Promise<void> => {
+        const subtypes = [
+            Types.checkout.KlarnaNetworkDetails.SubtypeEnum.Redirect,
+            Types.checkout.KlarnaNetworkDetails.SubtypeEnum.Sdk,
+        ];
+        for (const subtype of subtypes) {
+            const klarnaNetworkDetails: Types.checkout.KlarnaNetworkDetails = {
+                type: Types.checkout.KlarnaNetworkDetails.TypeEnum.KlarnaNetwork,
+                klarnaNetworkSessionToken: "SESSION_TOKEN",
+                subtype,
+            };
+
+            const serialized = Types.checkout.ObjectSerializer.serialize(klarnaNetworkDetails, "KlarnaNetworkDetails");
+            expect(serialized).toHaveProperty("subtype", subtype);
+
+            const deserialized: Types.checkout.KlarnaNetworkDetails = Types.checkout.ObjectSerializer.deserialize(serialized, "KlarnaNetworkDetails", "");
+            expect(deserialized.subtype).toBe(subtype);
+        }
+    });
+
+    test("should round-trip TokenMandate migration fields.", async (): Promise<void> => {
+        const tokenMandate: Types.checkout.TokenMandate = {
+            amount: "1000",
+            currency: "INR",
+            endsAt: "2026-12-31",
+            frequency: Types.checkout.TokenMandate.FrequencyEnum.Monthly,
+            mandateId: "123456789012",
+            providerId: "PROVIDER_ID",
+            previousMandateId: "987654321098",
+            purposeCode: "AZ",
+            startsAt: "2026-01-01",
+            status: "active",
+            txVariant: "upi",
+        };
+
+        const serialized = Types.checkout.ObjectSerializer.serialize(tokenMandate, "TokenMandate");
+        expect(serialized).toHaveProperty("previousMandateId", "987654321098");
+        expect(serialized).toHaveProperty("purposeCode", "AZ");
+
+        const deserialized: Types.checkout.TokenMandate = Types.checkout.ObjectSerializer.deserialize(serialized, "TokenMandate", "");
+        expect(deserialized.previousMandateId).toEqual("987654321098");
+        expect(deserialized.purposeCode).toEqual("AZ");
+    });
+
+    test("should round-trip enhancedSchemeData on session requests.", async (): Promise<void> => {
+        const sessionsRequest: Types.checkout.CreateCheckoutSessionRequest = createSessionRequest();
+        sessionsRequest.enhancedSchemeData = {
+            levelTwoThree: {
+                customerReferenceNumber: "CRN123456",
+                totalTaxAmount: 1000,
+            },
+        };
+
+        const serialized = Types.checkout.ObjectSerializer.serialize(sessionsRequest, "CreateCheckoutSessionRequest");
+        expect(serialized.enhancedSchemeData).toEqual({
+            levelTwoThree: {
+                customerReferenceNumber: "CRN123456",
+                totalTaxAmount: 1000,
+            },
+        });
+
+        const deserialized: Types.checkout.CreateCheckoutSessionRequest = Types.checkout.ObjectSerializer.deserialize(serialized, "CreateCheckoutSessionRequest", "");
+        expect(deserialized.enhancedSchemeData?.levelTwoThree?.customerReferenceNumber).toBe("CRN123456");
+        expect(deserialized.enhancedSchemeData?.levelTwoThree?.totalTaxAmount).toBe(1000);
     });
 });
