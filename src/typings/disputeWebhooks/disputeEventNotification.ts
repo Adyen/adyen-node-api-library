@@ -128,6 +128,8 @@ export namespace DisputeEventNotification {
         Fraud = 'fraud',
         NotDelivered = 'notDelivered',
         Duplicate = 'duplicate',
+        NotAsDescribed = 'notAsDescribed',
+        Cancelled = 'cancelled',
         Other = 'other'
     }
 }
