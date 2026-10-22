@@ -68,14 +68,28 @@ import { SweepConfigurationNotificationData } from "./sweepConfigurationNotifica
 import { SweepConfigurationNotificationRequest } from "./sweepConfigurationNotificationRequest";
 import { SweepConfigurationV2 } from "./sweepConfigurationV2";
 import { SweepCounterparty } from "./sweepCounterparty";
+import { SweepExecutionNotificationData } from "./sweepExecutionNotificationData";
+import { SweepExecutionNotificationRequest } from "./sweepExecutionNotificationRequest";
+import { SweepResultDetails } from "./sweepResultDetails";
 import { SweepSchedule } from "./sweepSchedule";
 import { TokenAuthentication } from "./tokenAuthentication";
+import { TopUpConfigurationEventRequest } from "./topUpConfigurationEventRequest";
+import { TopUpConfigurationUpdatedEventRequest } from "./topUpConfigurationUpdatedEventRequest";
+import { TopUpUpdatedWebhookData } from "./topUpUpdatedWebhookData";
+import { TopUpWebhookData } from "./topUpWebhookData";
 import { UKLocalMandateAccountIdentification } from "./uKLocalMandateAccountIdentification";
 import { ValidationFacts } from "./validationFacts";
 import { VerificationDeadline } from "./verificationDeadline";
 import { VerificationError } from "./verificationError";
 import { VerificationErrorRecursive } from "./verificationErrorRecursive";
 import { Wallet } from "./wallet";
+import { WebhookAmount } from "./webhookAmount";
+import { WebhookTopUpAmount } from "./webhookTopUpAmount";
+import { WebhookTopUpConfiguration } from "./webhookTopUpConfiguration";
+import { WebhookTopUpConfigurationUpdated } from "./webhookTopUpConfigurationUpdated";
+import { WebhookTopUpCounterparty } from "./webhookTopUpCounterparty";
+import { WebhookTopUpMandate } from "./webhookTopUpMandate";
+import { WebhookTopUpTrigger } from "./webhookTopUpTrigger";
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -131,7 +145,11 @@ let enumsMap: Set<string> = new Set<string>([
     "SweepConfigurationV2.ReasonEnum",
     "SweepConfigurationV2.StatusEnum",
     "SweepConfigurationV2.TypeEnum",
+    "SweepExecutionNotificationData.ResultEnum",
+    "SweepExecutionNotificationRequest.TypeEnum",
     "SweepSchedule.TypeEnum",
+    "TopUpConfigurationEventRequest.TypeEnum",
+    "TopUpConfigurationUpdatedEventRequest.TypeEnum",
     "UKLocalMandateAccountIdentification.TypeEnum",
     "ValidationFacts.ResultEnum",
     "VerificationDeadline.CapabilitiesEnum",
@@ -140,6 +158,9 @@ let enumsMap: Set<string> = new Set<string>([
     "VerificationErrorRecursive.CapabilitiesEnum",
     "VerificationErrorRecursive.TypeEnum",
     "Wallet.RecommendationReasonsEnum",
+    "WebhookTopUpConfiguration.StatusEnum",
+    "WebhookTopUpConfigurationUpdated.StatusEnum",
+    "WebhookTopUpTrigger.ScheduleEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
@@ -211,14 +232,28 @@ let typeMap: {[index: string]: any} = {
     "SweepConfigurationNotificationRequest": SweepConfigurationNotificationRequest,
     "SweepConfigurationV2": SweepConfigurationV2,
     "SweepCounterparty": SweepCounterparty,
+    "SweepExecutionNotificationData": SweepExecutionNotificationData,
+    "SweepExecutionNotificationRequest": SweepExecutionNotificationRequest,
+    "SweepResultDetails": SweepResultDetails,
     "SweepSchedule": SweepSchedule,
     "TokenAuthentication": TokenAuthentication,
+    "TopUpConfigurationEventRequest": TopUpConfigurationEventRequest,
+    "TopUpConfigurationUpdatedEventRequest": TopUpConfigurationUpdatedEventRequest,
+    "TopUpUpdatedWebhookData": TopUpUpdatedWebhookData,
+    "TopUpWebhookData": TopUpWebhookData,
     "UKLocalMandateAccountIdentification": UKLocalMandateAccountIdentification,
     "ValidationFacts": ValidationFacts,
     "VerificationDeadline": VerificationDeadline,
     "VerificationError": VerificationError,
     "VerificationErrorRecursive": VerificationErrorRecursive,
     "Wallet": Wallet,
+    "WebhookAmount": WebhookAmount,
+    "WebhookTopUpAmount": WebhookTopUpAmount,
+    "WebhookTopUpConfiguration": WebhookTopUpConfiguration,
+    "WebhookTopUpConfigurationUpdated": WebhookTopUpConfigurationUpdated,
+    "WebhookTopUpCounterparty": WebhookTopUpCounterparty,
+    "WebhookTopUpMandate": WebhookTopUpMandate,
+    "WebhookTopUpTrigger": WebhookTopUpTrigger,
 }
 
 type MimeTypeDescriptor = {
