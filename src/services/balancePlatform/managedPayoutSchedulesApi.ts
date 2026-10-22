@@ -7,7 +7,6 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
@@ -21,7 +20,6 @@ import { BalanceAccountConfigurationUpdate } from "../../typings/balancePlatform
 import { BalanceAccountConfigurations } from "../../typings/balancePlatform/models";
 import { BalancePlatformConfiguration } from "../../typings/balancePlatform/models";
 import { BalancePlatformConfigurations } from "../../typings/balancePlatform/models";
-import { ExecutionResult } from "../../typings/balancePlatform/models";
 import { PayoutScheduleExecutions } from "../../typings/balancePlatform/models";
 
 /**
@@ -189,11 +187,11 @@ export class ManagedPayoutSchedulesApi extends Service {
     * @param id {@link string } The unique identifier of the payout schedule on the balance account.
     * @param requestOptions {@link IRequest.Options }
     * @param offset {@link number } (Required) The page number to be returned.  Default: **1**
-    * @param results {@link Array&lt;ExecutionResult&gt; } Contains a list of payout statuses. If included, the response returns only executed payouts that currently have one of the specified statuses.  Possible statuses: - **succeeded**: The payout was sent successfully. - **failed**: The payout was not sent due to an error. - **skipped**: The payout was not triggered as expected.
+    * @param results {@link string } Contains a comma-separated list of payout statuses. If included, the response returns only executed payouts that currently have one of the specified statuses.  Possible statuses: - **succeeded**: The payout was sent successfully. - **failed**: The payout was not sent due to an error. - **skipped**: The payout was not triggered as expected.  Examples: &#x60;results&#x3D;succeeded&#x60;, &#x60;results&#x3D;failed,skipped&#x60;
     * @param limit {@link number } The number of items returned per page.  Default: **10**
     * @return {@link PayoutScheduleExecutions }
     */
-    public async getPayoutScheduleExecutions(balanceAccountId: string, id: string, offset: number, results?: Array<ExecutionResult>, limit?: number, requestOptions?: IRequest.Options): Promise<PayoutScheduleExecutions> {
+    public async getPayoutScheduleExecutions(balanceAccountId: string, id: string, offset: number, results?: string, limit?: number, requestOptions?: IRequest.Options): Promise<PayoutScheduleExecutions> {
         const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/payoutSchedules/{id}/executions`
             .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)))
             .replace("{" + "id" + "}", encodeURIComponent(String(id)));
