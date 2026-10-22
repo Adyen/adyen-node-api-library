@@ -24,6 +24,12 @@ export const sessionsSuccess = JSON.stringify({
         "value": 100
     },
     "countryCode": "NL",
+    "enhancedSchemeData": {
+        "levelTwoThree": {
+            "customerReferenceNumber": "CRN123456",
+            "totalTaxAmount": 1000
+        }
+    },
     "expiresAt": "2021-10-08T17:28:56+02:00",
     "id": "CS841C62BF399F968C",
     "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
