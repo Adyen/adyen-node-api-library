@@ -7,7 +7,6 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
@@ -164,7 +163,7 @@ export class AndroidFilesCompanyLevelApi extends Service {
     }
 
     /**
-    * @summary Upload Android Certificate
+    * @summary Upload Android certificate
     * @param companyId {@link string } The unique identifier of the company account.
     * @param requestOptions {@link IRequest.Options }
     * @return {@link UploadAndroidCertificateResponse }
