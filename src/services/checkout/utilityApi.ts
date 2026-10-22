@@ -16,12 +16,16 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/checkout/objectSerializer";
 import { ApplePaySessionRequest } from "../../typings/checkout/models";
 import { ApplePaySessionResponse } from "../../typings/checkout/models";
+import { CalculateTaxRequest } from "../../typings/checkout/models";
+import { CalculateTaxResponse } from "../../typings/checkout/models";
 import { PaypalUpdateOrderRequest } from "../../typings/checkout/models";
 import { PaypalUpdateOrderResponse } from "../../typings/checkout/models";
 import { UtilityRequest } from "../../typings/checkout/models";
 import { UtilityResponse } from "../../typings/checkout/models";
 import { ValidateShopperIdRequest } from "../../typings/checkout/models";
 import { ValidateShopperIdResponse } from "../../typings/checkout/models";
+import { VerifyShopperTaxIdentificationRequest } from "../../typings/checkout/models";
+import { VerifyShopperTaxIdentificationResponse } from "../../typings/checkout/models";
 
 /**
  * API handler for UtilityApi
@@ -34,6 +38,26 @@ export class UtilityApi extends Service {
     public constructor(client: Client){
         super(client);
         this.baseUrl = this.createBaseUrl(this.API_BASEPATH);
+    }
+
+    /**
+    * @summary Calculate the tax for a transaction.
+    * @param calculateTaxRequest {@link CalculateTaxRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link CalculateTaxResponse }
+    */
+    public async calculateTax(calculateTaxRequest: CalculateTaxRequest, requestOptions?: IRequest.Options): Promise<CalculateTaxResponse> {
+        const endpoint = `${this.baseUrl}/calculateTax`;
+        const resource = new Resource(this, endpoint);
+        
+        const request: CalculateTaxRequest = ObjectSerializer.serialize(calculateTaxRequest, "CalculateTaxRequest");
+        const response = await getJsonResponse<CalculateTaxRequest, CalculateTaxResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+
+        return ObjectSerializer.deserialize(response, "CalculateTaxResponse");
     }
 
     /**
@@ -116,6 +140,26 @@ export class UtilityApi extends Service {
         );
 
         return ObjectSerializer.deserialize(response, "ValidateShopperIdResponse");
+    }
+
+    /**
+    * @summary Verify the shopper\'s tax identification.
+    * @param verifyShopperTaxIdentificationRequest {@link VerifyShopperTaxIdentificationRequest } 
+    * @param requestOptions {@link IRequest.Options }
+    * @return {@link VerifyShopperTaxIdentificationResponse }
+    */
+    public async verifyShopperTaxIdentification(verifyShopperTaxIdentificationRequest: VerifyShopperTaxIdentificationRequest, requestOptions?: IRequest.Options): Promise<VerifyShopperTaxIdentificationResponse> {
+        const endpoint = `${this.baseUrl}/verifyShopperTaxIdentification`;
+        const resource = new Resource(this, endpoint);
+        
+        const request: VerifyShopperTaxIdentificationRequest = ObjectSerializer.serialize(verifyShopperTaxIdentificationRequest, "VerifyShopperTaxIdentificationRequest");
+        const response = await getJsonResponse<VerifyShopperTaxIdentificationRequest, VerifyShopperTaxIdentificationResponse>(
+            resource,
+            request,
+            { ...requestOptions, method: "POST" }
+        );
+
+        return ObjectSerializer.deserialize(response, "VerifyShopperTaxIdentificationResponse");
     }
 
 }

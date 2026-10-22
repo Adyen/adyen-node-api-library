@@ -111,6 +111,7 @@ export namespace AfterpayDetails {
     export enum TypeEnum {
         AfterpayDefault = 'afterpay_default',
         Afterpaytouch = 'afterpaytouch',
+        AfterpaytouchUs = 'afterpaytouch_US',
         AfterpayB2b = 'afterpay_b2b',
         Clearpay = 'clearpay'
     }

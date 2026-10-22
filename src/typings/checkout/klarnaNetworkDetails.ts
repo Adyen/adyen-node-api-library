@@ -41,6 +41,10 @@ export class KlarnaNetworkDetails {
     */
     "storedPaymentMethodId"?: string;
     /**
+    * The type of flow to initiate. Defaults to redirect when omitted.
+    */
+    "subtype"?: KlarnaNetworkDetails.SubtypeEnum;
+    /**
     * **klarna_network**
     */
     "type": KlarnaNetworkDetails.TypeEnum;
@@ -93,6 +97,12 @@ export class KlarnaNetworkDetails {
             "format": ""
         },
         {
+            "name": "subtype",
+            "baseName": "subtype",
+            "type": "KlarnaNetworkDetails.SubtypeEnum",
+            "format": ""
+        },
+        {
             "name": "type",
             "baseName": "type",
             "type": "KlarnaNetworkDetails.TypeEnum",
@@ -108,6 +118,10 @@ export class KlarnaNetworkDetails {
 }
 
 export namespace KlarnaNetworkDetails {
+    export enum SubtypeEnum {
+        Redirect = 'redirect',
+        Sdk = 'sdk'
+    }
     export enum TypeEnum {
         KlarnaNetwork = 'klarna_network'
     }

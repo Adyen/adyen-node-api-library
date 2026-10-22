@@ -96,6 +96,7 @@ export namespace StoredPaymentMethodDetails {
         BcmcMobileApp = 'bcmc_mobile_app',
         MomoWallet = 'momo_wallet',
         MomoWalletApp = 'momo_wallet_app',
+        Revolutpay = 'revolutpay',
         PaymayaWallet = 'paymaya_wallet',
         GrabpaySg = 'grabpay_SG',
         GrabpayMy = 'grabpay_MY',
