@@ -58,9 +58,17 @@ export class TokenMandate {
     */
     "minAmount"?: string;
     /**
+    * The previous value of the `mandateId`, if the scheme has replaced it.  For UPI mandates, the `mandateId` is the Unique Mandate Number (UMN), which the scheme replaces when the mandate moves to another payment provider. In that case, this field holds the UMN the mandate was registered with before the move.
+    */
+    "previousMandateId"?: string;
+    /**
     * The provider-specific identifier for this mandate.
     */
     "providerId": string;
+    /**
+    * The purpose code the mandate is registered with at the scheme.  Possible values for UPI mandates:   * **14**: The mandate can only be debited by the payment provider that registered it.   * **AZ**: The mandate can be debited by any payment provider.  
+    */
+    "purposeCode"?: string;
     /**
     * For a billing plan where the payment amount is fixed, the amount the shopper will be charged for each recurring payment.
     */
@@ -168,8 +176,20 @@ export class TokenMandate {
             "format": ""
         },
         {
+            "name": "previousMandateId",
+            "baseName": "previousMandateId",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "providerId",
             "baseName": "providerId",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "purposeCode",
+            "baseName": "purposeCode",
             "type": "string",
             "format": ""
         },

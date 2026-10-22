@@ -16,6 +16,7 @@ import { CheckoutSessionInstallmentOption } from "./checkoutSessionInstallmentOp
 import { CheckoutSessionThreeDS2RequestData } from "./checkoutSessionThreeDS2RequestData";
 import { Company } from "./company";
 import { DeliveryAddress } from "./deliveryAddress";
+import { EnhancedSchemeData } from "./enhancedSchemeData";
 import { FundOrigin } from "./fundOrigin";
 import { FundRecipient } from "./fundRecipient";
 import { LineItem } from "./lineItem";
@@ -81,6 +82,7 @@ export class CreateCheckoutSessionRequest {
     * When true and `shopperReference` is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.
     */
     "enableRecurring"?: boolean;
+    "enhancedSchemeData"?: EnhancedSchemeData | null;
     /**
     * The date the session expires in [ISO8601](https://www.iso.org/iso-8601-date-and-time-format.html) format. When not specified, the expiry date is set to 1 hour after session creation. You cannot set the session expiry to more than 24 hours after session creation.
     */
@@ -355,6 +357,12 @@ export class CreateCheckoutSessionRequest {
             "name": "enableRecurring",
             "baseName": "enableRecurring",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "enhancedSchemeData",
+            "baseName": "enhancedSchemeData",
+            "type": "EnhancedSchemeData | null",
             "format": ""
         },
         {

@@ -44,6 +44,8 @@ import { BillDeskDetails } from "./billDeskDetails";
 import { BillingAddress } from "./billingAddress";
 import { BlikDetails } from "./blikDetails";
 import { BrowserInfo } from "./browserInfo";
+import { CalculateTaxRequest } from "./calculateTaxRequest";
+import { CalculateTaxResponse } from "./calculateTaxResponse";
 import { CancelOrderRequest } from "./cancelOrderRequest";
 import { CancelOrderResponse } from "./cancelOrderResponse";
 import { CarRental } from "./carRental";
@@ -134,6 +136,7 @@ import { LevelTwoThree } from "./levelTwoThree";
 import { LineItem } from "./lineItem";
 import { ListStoredPaymentMethodsResponse } from "./listStoredPaymentMethodsResponse";
 import { Lodging } from "./lodging";
+import { LrsContext } from "./lrsContext";
 import { Mandate } from "./mandate";
 import { MasterpassDetails } from "./masterpassDetails";
 import { MbwayDetails } from "./mbwayDetails";
@@ -230,6 +233,7 @@ import { SessionResultResponse } from "./sessionResultResponse";
 import { ShopperIdPaymentMethod } from "./shopperIdPaymentMethod";
 import { ShopperInteractionDevice } from "./shopperInteractionDevice";
 import { ShopperName } from "./shopperName";
+import { ShopperTaxIdentification } from "./shopperTaxIdentification";
 import { ShopperTaxInfo } from "./shopperTaxInfo";
 import { Split } from "./split";
 import { SplitAmount } from "./splitAmount";
@@ -243,7 +247,12 @@ import { SubInputDetail } from "./subInputDetail";
 import { SubMerchant } from "./subMerchant";
 import { SubMerchantInfo } from "./subMerchantInfo";
 import { Surcharge } from "./surcharge";
+import { TaxAmount } from "./taxAmount";
+import { TaxCalculation } from "./taxCalculation";
+import { TaxCalculationComponent } from "./taxCalculationComponent";
+import { TaxCalculationContext } from "./taxCalculationContext";
 import { TaxTotal } from "./taxTotal";
+import { TaxableAmount } from "./taxableAmount";
 import { TemporaryServices } from "./temporaryServices";
 import { ThirdPartyTokenRedundancyInfo } from "./thirdPartyTokenRedundancyInfo";
 import { ThreeDS2RequestData } from "./threeDS2RequestData";
@@ -267,6 +276,9 @@ import { UtilityRequest } from "./utilityRequest";
 import { UtilityResponse } from "./utilityResponse";
 import { ValidateShopperIdRequest } from "./validateShopperIdRequest";
 import { ValidateShopperIdResponse } from "./validateShopperIdResponse";
+import { VerifiedShopperTaxIdentification } from "./verifiedShopperTaxIdentification";
+import { VerifyShopperTaxIdentificationRequest } from "./verifyShopperTaxIdentificationRequest";
+import { VerifyShopperTaxIdentificationResponse } from "./verifyShopperTaxIdentificationResponse";
 import { VippsDetails } from "./vippsDetails";
 import { VisaCheckoutDetails } from "./visaCheckoutDetails";
 import { WeChatPayDetails } from "./weChatPayDetails";
@@ -323,6 +335,7 @@ let enumsMap: Set<string> = new Set<string>([
     "BalanceCheckResponse.ResultCodeEnum",
     "BillDeskDetails.TypeEnum",
     "BlikDetails.TypeEnum",
+    "CalculationType",
     "CancelOrderResponse.ResultCodeEnum",
     "CarRental.RateTypeEnum",
     "CardDetails.FundingSourceEnum",
@@ -389,6 +402,7 @@ let enumsMap: Set<string> = new Set<string>([
     "InstallmentOption.PlansEnum",
     "Installments.PlanEnum",
     "KlarnaDetails.TypeEnum",
+    "KlarnaNetworkDetails.SubtypeEnum",
     "KlarnaNetworkDetails.TypeEnum",
     "Lodging.LodgingChargeTypeEnum",
     "Mandate.AmountRuleEnum",
@@ -460,6 +474,7 @@ let enumsMap: Set<string> = new Set<string>([
     "RatepayDetails.TypeEnum",
     "Recurring.ContractEnum",
     "Recurring.TokenServiceEnum",
+    "RemittancePurpose",
     "ResponseAdditionalDataCommon.FraudResultTypeEnum",
     "ResponseAdditionalDataCommon.FraudRiskLevelEnum",
     "ResponseAdditionalDataCommon.RecurringProcessingModelEnum",
@@ -475,6 +490,8 @@ let enumsMap: Set<string> = new Set<string>([
     "StandalonePaymentCancelResponse.StatusEnum",
     "StoredPaymentMethodDetails.TypeEnum",
     "StoredPaymentMethodRequest.RecurringProcessingModelEnum",
+    "SublimitStatus",
+    "TaxIdentificationType",
     "ThreeDS2RequestData.AcctTypeEnum",
     "ThreeDS2RequestData.AddrMatchEnum",
     "ThreeDS2RequestData.ChallengeIndicatorEnum",
@@ -561,6 +578,8 @@ let typeMap: {[index: string]: any} = {
     "BillingAddress": BillingAddress,
     "BlikDetails": BlikDetails,
     "BrowserInfo": BrowserInfo,
+    "CalculateTaxRequest": CalculateTaxRequest,
+    "CalculateTaxResponse": CalculateTaxResponse,
     "CancelOrderRequest": CancelOrderRequest,
     "CancelOrderResponse": CancelOrderResponse,
     "CarRental": CarRental,
@@ -651,6 +670,7 @@ let typeMap: {[index: string]: any} = {
     "LineItem": LineItem,
     "ListStoredPaymentMethodsResponse": ListStoredPaymentMethodsResponse,
     "Lodging": Lodging,
+    "LrsContext": LrsContext,
     "Mandate": Mandate,
     "MasterpassDetails": MasterpassDetails,
     "MbwayDetails": MbwayDetails,
@@ -747,6 +767,7 @@ let typeMap: {[index: string]: any} = {
     "ShopperIdPaymentMethod": ShopperIdPaymentMethod,
     "ShopperInteractionDevice": ShopperInteractionDevice,
     "ShopperName": ShopperName,
+    "ShopperTaxIdentification": ShopperTaxIdentification,
     "ShopperTaxInfo": ShopperTaxInfo,
     "Split": Split,
     "SplitAmount": SplitAmount,
@@ -760,7 +781,12 @@ let typeMap: {[index: string]: any} = {
     "SubMerchant": SubMerchant,
     "SubMerchantInfo": SubMerchantInfo,
     "Surcharge": Surcharge,
+    "TaxAmount": TaxAmount,
+    "TaxCalculation": TaxCalculation,
+    "TaxCalculationComponent": TaxCalculationComponent,
+    "TaxCalculationContext": TaxCalculationContext,
     "TaxTotal": TaxTotal,
+    "TaxableAmount": TaxableAmount,
     "TemporaryServices": TemporaryServices,
     "ThirdPartyTokenRedundancyInfo": ThirdPartyTokenRedundancyInfo,
     "ThreeDS2RequestData": ThreeDS2RequestData,
@@ -784,6 +810,9 @@ let typeMap: {[index: string]: any} = {
     "UtilityResponse": UtilityResponse,
     "ValidateShopperIdRequest": ValidateShopperIdRequest,
     "ValidateShopperIdResponse": ValidateShopperIdResponse,
+    "VerifiedShopperTaxIdentification": VerifiedShopperTaxIdentification,
+    "VerifyShopperTaxIdentificationRequest": VerifyShopperTaxIdentificationRequest,
+    "VerifyShopperTaxIdentificationResponse": VerifyShopperTaxIdentificationResponse,
     "VippsDetails": VippsDetails,
     "VisaCheckoutDetails": VisaCheckoutDetails,
     "WeChatPayDetails": WeChatPayDetails,
