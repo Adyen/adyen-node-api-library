@@ -10,15 +10,15 @@
 
 export class NetworkReason {
     /**
-    * The reason code provided by the network.
+    * The network-specific reason code. Use `namespace` to identify the code set.
     */
     "code"?: string;
     /**
-    * The description of the reason code.
+    * A human-readable description of the reason code.
     */
     "description"?: string;
     /**
-    * The namespace that corresponds to the reason code.  Possible values: *  **ukFpsRejectionCode** *  **ukFpsReturnReasonCode** *  **usAchReturnReasonCode** *  **usAchCorrectionReasonCode** *  **iso8583ResponseCode**  
+    * The category of codes that `code` belongs to. The `namespace` identifies the payment network and the type of reason  Possible values: *  **ukFpsRejectionCode** : Reason code for a rejected Faster Payments transfer. *  **ukFpsReturnReasonCode** : Reason code for a returned Faster Payments transfer. *  **usAchReturnReasonCode** : Reason code for a returned ACH transfer. *  **usAchCorrectionReasonCode** : Reason code for an ACH Notification of Change. *  **iso8583ResponseCode** : ISO 8583 response code for a card transfer.  
     */
     "namespace"?: NetworkReason.NamespaceEnum;
 
@@ -59,7 +59,7 @@ export namespace NetworkReason {
         Iso8583ResponseCode = 'iso8583ResponseCode',
         UkFpsRejectionCode = 'ukFpsRejectionCode',
         UkFpsReturnReasonCode = 'ukFpsReturnReasonCode',
-        UsAchReturnReasonCode = 'usAchReturnReasonCode',
-        UsAchCorrectionReasonCode = 'usAchCorrectionReasonCode'
+        UsAchCorrectionReasonCode = 'usAchCorrectionReasonCode',
+        UsAchReturnReasonCode = 'usAchReturnReasonCode'
     }
 }
