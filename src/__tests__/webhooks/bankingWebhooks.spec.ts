@@ -562,6 +562,33 @@ describe("BankingWebhooks Tests", function (): void {
         expect(genericWebhook.type).toEqual("balancePlatform.dispute.created");
     });
 
+    describe("DisputeEventNotification.TypeEnum", function (): void {
+        it("should expose exactly the dispute type wire values", function (): void {
+            expect(Object.values(DisputeEventNotification.TypeEnum).sort()).toEqual(
+                ["cancelled", "duplicate", "fraud", "notAsDescribed", "notDelivered", "other"]
+            );
+        });
+
+        it("should not recognize unknown wire values", function (): void {
+            expect(Object.values(DisputeEventNotification.TypeEnum)).not.toContain("some_future_dispute_type");
+        });
+
+        it("should pass unknown dispute types through as raw strings", function (): void {
+            const json = {
+                "type": "balancePlatform.dispute.created",
+                "data": {
+                    "id": "DS00000000000000000001",
+                    "type": "some_future_dispute_type"
+                }
+            };
+            const jsonString = JSON.stringify(json);
+            const disputeWebhooksHandler = new DisputeWebhooksHandler(jsonString);
+            const disputeNotificationRequest: DisputeNotificationRequest = disputeWebhooksHandler.getDisputeNotificationRequest();
+
+            expect(disputeNotificationRequest.data.type).toBe("some_future_dispute_type");
+        });
+    });
+
     it("should deserialize RelayedAuthorisationRequest webhook", function (): void {
         const json = {
             "accountHolder": {
