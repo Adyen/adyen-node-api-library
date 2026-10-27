@@ -1,5 +1,7 @@
 
-// Test endpoint for Terminal API
+/**
+ * Test endpoint for Terminal API.
+ */
 export const TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
 
 // Live endpoints for Terminal API
@@ -27,7 +29,9 @@ export enum RegionEnum {
     APSE = "APSE"
 }
 
-// Terminal API Endpoints Map
+/**
+ * Maps each region to its Terminal API live endpoint.
+ */
 export const TERMINAL_API_ENDPOINTS_MAP: Record<RegionEnum, string> = {
     [RegionEnum.EU]: TERMINAL_API_ENDPOINT_LIVE,
     [RegionEnum.AU]: TERMINAL_API_ENDPOINT_AU_LIVE,
@@ -47,9 +51,21 @@ interface ConfigConstructor {
     certificatePath?: string;
     terminalApiCloudEndpoint?: string;
     terminalApiLocalEndpoint?: string;
-    liveEndpointUrlPrefix?: string; // must be provided for LIVE integration
-    region?: RegionEnum; // must be provided for Terminal API integration
-    enable308Redirect?: boolean; // enabling redirect upon 308 response status
+    /**
+     * The prefix of the live endpoint URL.
+     * Must be provided for LIVE integration.
+     */
+    liveEndpointUrlPrefix?: string;
+    /**
+     * The region used to determine the Terminal API live endpoint.
+     * Must be provided for Terminal API integration.
+     */
+    region?: RegionEnum;
+    /**
+     * Whether to redirect upon a 308 response status.
+     * Enabled by default.
+     */
+    enable308Redirect?: boolean;
 }
 
 const DEFAULT_TIMEOUT = 30000; // Default timeout value (30 sec)
@@ -66,8 +82,20 @@ class Config {
     public certificatePath?: string;
     public terminalApiCloudEndpoint?: string;
     public terminalApiLocalEndpoint?: string;
+    /**
+     * The prefix of the live endpoint URL.
+     * Must be provided for LIVE integration.
+     */
     public liveEndpointUrlPrefix?: string;
+    /**
+     * The region used to determine the Terminal API live endpoint.
+     * Must be provided for Terminal API integration.
+     */
     public region?: RegionEnum;
+    /**
+     * Whether to redirect upon a 308 response status.
+     * Enabled by default.
+     */
     public enable308Redirect?: boolean;
 
 
