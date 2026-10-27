@@ -6,6 +6,7 @@ import { Mandate } from "../../typings/configurationWebhooks/models";
 import { PaymentNotificationRequest } from "../../typings/configurationWebhooks/models";
 import { IbanAccountIdentification } from "../../typings/configurationWebhooks/models";
 import { AuthenticationNotificationRequest } from "../../typings/acsWebhooks/models";
+import { ChallengeInfo } from "../../typings/acsWebhooks/challengeInfo";
 import { TransferNotificationRequest } from "../../typings/transferWebhooks/models";
 import { NegativeBalanceCompensationWarningNotificationRequest } from "../../typings/negativeBalanceWarningWebhooks/models";
 import { BalanceAccountBalanceNotificationRequest } from "../../typings/balanceWebhooks/models";
@@ -144,7 +145,7 @@ describe("BankingWebhooks Tests", function (): void {
               "authentication": {
                 "acsTransId": "6a4c1709-a42e-4c7f-96c7-1043adacfc97",
                 "challenge": {
-                  "flow": "OOB",
+                  "flow": "OOB_TRIGGER_FL",
                   "lastInteraction": "2022-12-22T15:49:03+01:00"
                 },
                 "challengeIndicator": "01",
@@ -219,7 +220,7 @@ describe("BankingWebhooks Tests", function (): void {
               "authentication": {
                 "acsTransId": "6a4c1709-a42e-4c7f-96c7-1043adacfc97",
                 "challenge": {
-                  "flow": "OOB",
+                  "flow": "OOB_TRIGGER_FL",
                   "lastInteraction": "2022-12-22T15:49:03+01:00"
                 },
                 "challengeIndicator": "01",
@@ -256,6 +257,40 @@ describe("BankingWebhooks Tests", function (): void {
         const acsWebhooksHandler = new AcsWebhooksHandler(jsonString);
         const genericWebhook = acsWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof AuthenticationNotificationRequest).toBe(true);
+    });
+
+    describe("ChallengeInfo.FlowEnum", function (): void {
+        it("should expose exactly the challenge flow wire values", function (): void {
+            expect(Object.values(ChallengeInfo.FlowEnum).sort()).toEqual(
+                ["OOB_TRIGGER_FL", "OTP_PHONE_FL", "PASSKEY_TRIGGER_FL", "PWD_OTP_EMAIL_FL", "PWD_OTP_PHONE_FL"]
+            );
+        });
+
+        it("should not recognize unknown wire values", function (): void {
+            expect(Object.values(ChallengeInfo.FlowEnum)).not.toContain("some_future_flow");
+        });
+
+        it("should pass unknown challenge flows through as raw strings", function (): void {
+            const json = {
+                "type": "balancePlatform.authentication.created",
+                "data": {
+                    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                    "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+                    "paymentInstrumentId": "PI3227C223222B5BPCMFXD2XG",
+                    "authentication": {
+                        "acsTransId": "6a4c1709-a42e-4c7f-96c7-1043adacfc97",
+                        "challenge": {
+                            "flow": "some_future_flow"
+                        }
+                    }
+                }
+            };
+            const jsonString = JSON.stringify(json);
+            const acsWebhooksHandler = new AcsWebhooksHandler(jsonString);
+            const authenticationNotificationRequest: AuthenticationNotificationRequest = acsWebhooksHandler.getAuthenticationNotificationRequest();
+
+            expect(authenticationNotificationRequest.data.authentication.challenge?.flow).toBe("some_future_flow");
+        });
     });
 
 
