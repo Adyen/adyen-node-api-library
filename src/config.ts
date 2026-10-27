@@ -58,7 +58,7 @@ interface ConfigConstructor {
     liveEndpointUrlPrefix?: string;
     /**
      * The region used to determine the Terminal API live endpoint.
-     * Must be provided for Terminal API integration.
+     * Must be provided for LIVE Terminal API integration.
      */
     region?: RegionEnum;
     /**
@@ -89,7 +89,7 @@ class Config {
     public liveEndpointUrlPrefix?: string;
     /**
      * The region used to determine the Terminal API live endpoint.
-     * Must be provided for Terminal API integration.
+     * Must be provided for LIVE Terminal API integration.
      */
     public region?: RegionEnum;
     /**
