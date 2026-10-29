@@ -183,6 +183,19 @@ describe("HMAC Validator", function (): void {
         expect(hmacValidator.validateHMACSignature(hmacKey, undefined as unknown as string, data)).toBe(false);
     });
 
+    it("returns false (not throw) when the received signature is not a string", function (): void {
+        const hmacKey = "11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB";
+        const data = readFileSync("./src/__mocks__/notification/accountHolderCreated.json", "utf8");
+        for (const signature of [123, {}, ["UVBzHbDayhfT1XgaRGAkuKvxwoxrLoVCBdfi3WZU8lI="]]) {
+            expect(hmacValidator.validateHMACSignature(hmacKey, signature as unknown as string, data)).toBe(false);
+            const item = {
+                ...notification.notificationItems![0],
+                additionalData: { [ApiConstants.HMAC_SIGNATURE]: signature as unknown as string }
+            };
+            expect(hmacValidator.validateHMAC(item, key)).toBe(false);
+        }
+    });
+
 
     describe("malformed HMAC keys", function (): void {
         const bankingKey = "11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB";
