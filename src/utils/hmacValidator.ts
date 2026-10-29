@@ -138,7 +138,7 @@ class HmacValidator {
      * buffers differ in length, so the length is checked first.
      */
     private static secureCompare(expected: string, received: string | undefined): boolean {
-        if (!received) {
+        if (typeof received !== "string") {
             return false;
         }
         const expectedBuffer = Buffer.from(expected, "utf8");
