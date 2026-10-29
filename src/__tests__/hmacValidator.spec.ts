@@ -3,6 +3,7 @@ import {NotificationItem, NotificationRequestItem } from "../typings/notificatio
 import { ApiConstants } from "../constants/apiConstants";
 import NotificationRequestService from "../notification/notificationRequest";
 import { readFileSync } from "fs";
+import { createHmac } from "crypto";
 
 const key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
 const expectedSign = "ZNBPtI+oDyyRrLyD1XirkKnQgIAlFc07Vj27TeHsDRE=";
@@ -180,6 +181,85 @@ describe("HMAC Validator", function (): void {
         const data = readFileSync("./src/__mocks__/notification/accountHolderCreated.json", "utf8");
         expect(hmacValidator.validateHMACSignature(hmacKey, "", data)).toBe(false);
         expect(hmacValidator.validateHMACSignature(hmacKey, undefined as unknown as string, data)).toBe(false);
+    });
+
+
+    describe("malformed HMAC keys", function (): void {
+        const bankingKey = "11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB";
+        const bankingSignature = "UVBzHbDayhfT1XgaRGAkuKvxwoxrLoVCBdfi3WZU8lI=";
+        const data = readFileSync("./src/__mocks__/notification/accountHolderCreated.json", "utf8");
+        // Each of these decodes to an empty or truncated key with Buffer.from(key, "hex").
+        const malformedKeys = [
+            ["an empty key", ""],
+            ["a quoted key", `"${bankingKey}"`],
+            ["a key with a leading space", ` ${bankingKey}`],
+            ["a key with a trailing newline", `${bankingKey}\n`],
+            ["an odd-length key", bankingKey.slice(0, -1)],
+            ["a key with non-hex characters", `${bankingKey.slice(0, -2)}ZZ`],
+        ];
+
+        it.each(malformedKeys)("validateHMACSignature throws for %s", function (_, badKey): void {
+            expect(() => hmacValidator.validateHMACSignature(badKey, bankingSignature, data)).toThrow("Invalid HMAC key");
+        });
+
+        it.each(malformedKeys)("validateBankingHMAC throws for %s", function (_, badKey): void {
+            expect(() => hmacValidator.validateBankingHMAC(bankingSignature, badKey, data)).toThrow("Invalid HMAC key");
+        });
+
+        it.each(malformedKeys)("validateHMAC throws for %s", function (_, badKey): void {
+            expect(() => hmacValidator.validateHMAC(notification.notificationItems![0], badKey)).toThrow("Invalid HMAC key");
+        });
+
+        it.each(malformedKeys)("calculateHmac throws for %s", function (_, badKey): void {
+            expect(() => hmacValidator.calculateHmac(data, badKey)).toThrow("Invalid HMAC key");
+        });
+
+        it("does not include the key in the error message", function (): void {
+            expect(() => hmacValidator.validateHMACSignature(`"${bankingKey}"`, bankingSignature, data)).toThrow(
+                expect.objectContaining({ message: expect.not.stringContaining(bankingKey) })
+            );
+        });
+
+        it("rejects a signature made with an empty key when the configured key is quoted", function (): void {
+            const forged = createHmac("sha256", Buffer.alloc(0)).update(data, "utf8").digest("base64");
+            expect(() => hmacValidator.validateHMACSignature(`"${bankingKey}"`, forged, data)).toThrow("Invalid HMAC key");
+        });
+
+        it("accepts lower-case hex keys", function (): void {
+            expect(hmacValidator.validateHMACSignature(bankingKey.toLowerCase(), bankingSignature, data)).toBe(true);
+        });
+    });
+
+    describe("signature comparison", function (): void {
+        const bankingKey = "11223344D785FBAE710E7F943F307971BB61B21281C98C9129B3D4018A57B2EB";
+        const bankingSignature = "UVBzHbDayhfT1XgaRGAkuKvxwoxrLoVCBdfi3WZU8lI=";
+        const data = readFileSync("./src/__mocks__/notification/accountHolderCreated.json", "utf8");
+        // Node's base64 decoding maps each of these to the same bytes as the real signature.
+        const variants = [
+            ["data appended after the padding", `${bankingSignature}AAAA`],
+            ["invalid characters appended", `${bankingSignature}!!`],
+            ["the padding removed", bankingSignature.replace(/=+$/, "")],
+        ];
+
+        it("accepts the exact signature", function (): void {
+            expect(hmacValidator.validateHMACSignature(bankingKey, bankingSignature, data)).toBe(true);
+            expect(hmacValidator.validateBankingHMAC(bankingSignature, bankingKey, data)).toBe(true);
+        });
+
+        it.each(variants)("rejects the signature with %s", function (_, variant): void {
+            expect(hmacValidator.validateHMACSignature(bankingKey, variant, data)).toBe(false);
+            expect(hmacValidator.validateBankingHMAC(variant, bankingKey, data)).toBe(false);
+        });
+
+        it("validateHMAC rejects altered item signatures", function (): void {
+            for (const variant of [`${expectedSign}AAAA`, `${expectedSign}!!`, expectedSign.replace(/=+$/, "")]) {
+                const item = {
+                    ...notification.notificationItems![0],
+                    additionalData: { [ApiConstants.HMAC_SIGNATURE]: variant }
+                };
+                expect(hmacValidator.validateHMAC(item, key)).toBe(false);
+            }
+        });
     });
 
 });
