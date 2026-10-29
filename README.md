@@ -234,6 +234,22 @@ const { Client, EnvironmentEnum } = require('@adyen/api-library');
 const client = new Client({apiKey: "YOUR_API_KEY", environment: EnvironmentEnum.LIVE, liveEndpointUrlPrefix: "YOUR_LIVE_URL_PREFIX"}); 
 ```
 
+For a location-based LIVE Checkout or PAL endpoint, set `liveEndpointRegion`
+to the region provisioned for your account (for example, `RegionEnum.AU`).
+This setting is independent of `region`, which configures Terminal/Cloud Device
+APIs. Omitting it, or selecting `RegionEnum.EU`, keeps the default live hostname.
+TEST endpoints are unchanged.
+
+```typescript
+const { Client, EnvironmentEnum, RegionEnum } = require("@adyen/api-library");
+const client = new Client({
+  apiKey: "YOUR_API_KEY",
+  environment: EnvironmentEnum.LIVE,
+  liveEndpointUrlPrefix: "YOUR_LIVE_URL_PREFIX",
+  liveEndpointRegion: RegionEnum.AU
+});
+```
+
 ### Usage in TypeScript
 
 Alternatively, you can use the `Types` included in this module for Typescript and `async` syntax.
