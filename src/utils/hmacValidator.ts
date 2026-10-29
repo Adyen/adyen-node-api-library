@@ -47,7 +47,7 @@ class HmacValidator {
      * @returns 
      */
     public validateBankingHMAC(hmacKey: string, hmacSign: string, notification: string): boolean {
-        const expectedSign = createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, Buffer.from(hmacSign, "hex")).update(notification, "utf8").digest("base64");
+        const expectedSign = createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, HmacValidator.keyFromHex(hmacSign)).update(notification, "utf8").digest("base64");
         return HmacValidator.secureCompare(expectedSign, hmacKey);
     }
 
@@ -59,7 +59,7 @@ class HmacValidator {
      * @returns true when HMAC signature is valid
      */
     public validateHMACSignature(hmacKey: string, hmacSignature: string, data: string): boolean {
-        const expectedSign = createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, Buffer.from(hmacKey, "hex")).update(data, "utf8").digest("base64");
+        const expectedSign = createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, HmacValidator.keyFromHex(hmacKey)).update(data, "utf8").digest("base64");
         return HmacValidator.secureCompare(expectedSign, hmacSignature);
     }
 
@@ -114,22 +114,35 @@ class HmacValidator {
     }
 
     public calculateHmacSignature(data: string, key: string): string {
-        const rawKey = Buffer.from(key, "hex");
+        const rawKey = HmacValidator.keyFromHex(key);
         return createHmac(HmacValidator.HMAC_SHA256_ALGORITHM, rawKey).update(data, "utf8").digest("base64");
     }
 
     /**
-     * Constant-time comparison of two base64-encoded signatures. Guards on the
-     * decoded buffer length first: timingSafeEqual throws a TypeError when the
-     * buffers differ in length, and two base64 strings of equal character
-     * length can still decode to different byte lengths.
+     * Decode a hex HMAC key. Buffer.from(key, "hex") stops at the first
+     * character that is not hex, so a malformed key would silently become a
+     * shorter or empty key. Throw instead, without echoing the key.
+     */
+    private static keyFromHex(key: string): Buffer {
+        if (typeof key !== "string" || !/^(?:[0-9a-fA-F]{2})+$/.test(key)) {
+            throw new Error("Invalid HMAC key: expected a non-empty hex string with an even number of characters");
+        }
+        return Buffer.from(key, "hex");
+    }
+
+    /**
+     * Constant-time comparison of two base64-encoded signatures. Compares the
+     * strings rather than the decoded bytes: Node's base64 decoding ignores
+     * invalid characters and anything after the padding, so different strings
+     * can decode to the same bytes. timingSafeEqual throws a TypeError when the
+     * buffers differ in length, so the length is checked first.
      */
     private static secureCompare(expected: string, received: string | undefined): boolean {
-        if (!received) {
+        if (typeof received !== "string") {
             return false;
         }
-        const expectedBuffer = Buffer.from(expected, "base64");
-        const receivedBuffer = Buffer.from(received, "base64");
+        const expectedBuffer = Buffer.from(expected, "utf8");
+        const receivedBuffer = Buffer.from(received, "utf8");
         return expectedBuffer.length === receivedBuffer.length && timingSafeEqual(expectedBuffer, receivedBuffer);
     }
     
