@@ -5,6 +5,9 @@ import { MandateNotificationRequest } from "../../typings/configurationWebhooks/
 import { Mandate } from "../../typings/configurationWebhooks/models";
 import { PaymentNotificationRequest } from "../../typings/configurationWebhooks/models";
 import { IbanAccountIdentification } from "../../typings/configurationWebhooks/models";
+import { SweepExecutionNotificationRequest } from "../../typings/configurationWebhooks/models";
+import { SweepExecutionNotificationData } from "../../typings/configurationWebhooks/models";
+import { SweepResultDetails } from "../../typings/configurationWebhooks/models";
 import { AuthenticationNotificationRequest } from "../../typings/acsWebhooks/models";
 import { ChallengeInfo } from "../../typings/acsWebhooks/challengeInfo";
 import { TransferNotificationRequest } from "../../typings/transferWebhooks/models";
@@ -901,6 +904,93 @@ describe("BankingWebhooks Tests", function (): void {
         const genericWebhook = configurationWebhooksHandler.getGenericWebhook();
         expect(genericWebhook instanceof MandateNotificationRequest).toBe(true);
         expect(genericWebhook.type).toEqual("balancePlatform.mandate.created");
+    });
+
+    it("should deserialize SweepExecutionNotificationRequest webhook", function (): void {
+        const json = {
+            "data": {
+                "balanceAccountId": "BA00000000000000000001",
+                "balanceAccountSweepId": "SWP00000000000000000001",
+                "balancePlatform": "YOUR_BALANCE_PLATFORM",
+                "id": "SE00000000000000000001",
+                "result": "failed",
+                "resultDetails": {
+                    "reason": "Insufficient funds",
+                    "reasonCode": "INSUFFICIENT_FUNDS",
+                    "sweepConfigurationDisabled": true,
+                    "transferId": "TR00000000000000000001"
+                },
+                "triggeredAt": "2026-10-28T10:15:30+01:00"
+            },
+            "environment": "test",
+            "timestamp": "2026-10-28T10:15:31+01:00",
+            "type": "balancePlatform.balanceAccountSweepExecution.failed"
+        };
+        const jsonString = JSON.stringify(json);
+        const configurationWebhooksHandler = new ConfigurationWebhooksHandler(jsonString);
+        const request = configurationWebhooksHandler.getSweepExecutionNotificationRequest();
+
+        expect(request instanceof SweepExecutionNotificationRequest).toBe(true);
+        expect(request.type).toEqual(
+            SweepExecutionNotificationRequest.TypeEnum.BalancePlatformBalanceAccountSweepExecutionFailed
+        );
+        expect(request.environment).toEqual("test");
+        expect(request.timestamp?.toISOString()).toBe(new Date("2026-10-28T10:15:31+01:00").toISOString());
+
+        const data = request.data;
+        expect(data instanceof SweepExecutionNotificationData).toBe(true);
+        expect(data.id).toEqual("SE00000000000000000001");
+        expect(data.balanceAccountId).toEqual("BA00000000000000000001");
+        expect(data.balanceAccountSweepId).toEqual("SWP00000000000000000001");
+        expect(data.balancePlatform).toEqual("YOUR_BALANCE_PLATFORM");
+        expect(data.result).toEqual(SweepExecutionNotificationData.ResultEnum.Failed);
+        expect(data.triggeredAt?.toISOString()).toBe(new Date("2026-10-28T10:15:30+01:00").toISOString());
+
+        const resultDetails = data.resultDetails;
+        expect(resultDetails instanceof SweepResultDetails).toBe(true);
+        expect(resultDetails!.reason).toEqual("Insufficient funds");
+        expect(resultDetails!.reasonCode).toEqual("INSUFFICIENT_FUNDS");
+        expect(resultDetails!.sweepConfigurationDisabled).toBe(true);
+        expect(resultDetails!.transferId).toEqual("TR00000000000000000001");
+
+        // test getGenericWebhook
+        const genericWebhook = configurationWebhooksHandler.getGenericWebhook();
+        expect(genericWebhook instanceof SweepExecutionNotificationRequest).toBe(true);
+        expect(genericWebhook.type).toEqual("balancePlatform.balanceAccountSweepExecution.failed");
+    });
+
+    it.each([
+        "balancePlatform.balanceAccountSweepExecution.succeeded",
+        "balancePlatform.balanceAccountSweepExecution.skipped",
+        "balancePlatform.balanceAccountSweepExecution.failed",
+    ])("should dispatch %s to SweepExecutionNotificationRequest via getGenericWebhook", function (type: string): void {
+        const json = {
+            "data": {
+                "balancePlatform": "YOUR_BALANCE_PLATFORM"
+            },
+            "environment": "test",
+            "type": type
+        };
+        const configurationWebhooksHandler = new ConfigurationWebhooksHandler(JSON.stringify(json));
+        const genericWebhook = configurationWebhooksHandler.getGenericWebhook();
+
+        expect(genericWebhook instanceof SweepExecutionNotificationRequest).toBe(true);
+        expect(genericWebhook.type).toEqual(type);
+    });
+
+    it("should throw when getGenericWebhook receives an unknown sweep execution event type", function (): void {
+        const json = {
+            "data": {
+                "balancePlatform": "YOUR_BALANCE_PLATFORM"
+            },
+            "environment": "test",
+            "type": "balancePlatform.balanceAccountSweepExecution.unknown"
+        };
+        const configurationWebhooksHandler = new ConfigurationWebhooksHandler(JSON.stringify(json));
+
+        expect(() => configurationWebhooksHandler.getGenericWebhook()).toThrow(
+            "Could not parse the json payload"
+        );
     });
 
     it("should throw SyntaxError when JSON is invalid", function (): void {
