@@ -101,6 +101,7 @@ export namespace PaymentMethodResponse {
         AlipayPlusTruemoney = 'alipay_plus_truemoney',
         AlipayWap = 'alipay_wap',
         Amex = 'amex',
+        Ancv = 'ancv',
         Applepay = 'applepay',
         Avancard = 'avancard',
         AvancardCredit = 'avancard_credit',
@@ -115,6 +116,7 @@ export namespace PaymentMethodResponse {
         BrSchemes = 'br_schemes',
         Carnet = 'carnet',
         Cartebancaire = 'cartebancaire',
+        Cashapp = 'cashapp',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
         Cooper = 'cooper',
@@ -133,6 +135,7 @@ export namespace PaymentMethodResponse {
         DirectdebitGb = 'directdebit_GB',
         Discover = 'discover',
         EbankingFi = 'ebanking_FI',
+        Ebt = 'ebt',
         EftDirectdebitCa = 'eft_directdebit_CA',
         EftposAustralia = 'eftpos_australia',
         Elo = 'elo',
@@ -222,6 +225,7 @@ export namespace PaymentMethodResponse {
         Visadebit = 'visadebit',
         Vpay = 'vpay',
         Wechatpay = 'wechatpay',
-        WechatpayPos = 'wechatpay_pos'
+        WechatpayPos = 'wechatpay_pos',
+        Wero = 'wero'
     }
 }
