@@ -1,4 +1,5 @@
 import { EstimationTrackingData } from "../../typings/transferWebhooks/estimationTrackingData";
+import { TransferData } from "../../typings/transferWebhooks/transferData";
 import { TransferWebhooksHandler } from "../../typings/transferWebhooks/transferWebhooksHandler";
 import { USAchTracingData } from "../../typings/transferWebhooks/uSAchTracingData";
 
@@ -63,5 +64,29 @@ describe("Transfer Webhook Serialization", (): void => {
         "123456789012345"
       );
     }
+  });
+
+  test("should deserialize transfer webhook with interest category and interestPayout type", () => {
+    const webhookData = {
+      data: {
+        id: "test-transfer-id",
+        category: "interest",
+        type: "interestPayout",
+      },
+      type: "balancePlatform.transfer.created",
+    };
+
+    const transferWebhooksHandler = new TransferWebhooksHandler(
+      JSON.stringify(webhookData)
+    );
+    const transferNotification =
+      transferWebhooksHandler.getTransferNotificationRequest();
+
+    expect(transferNotification.data.category).toBe(
+      TransferData.CategoryEnum.Interest
+    );
+    expect(transferNotification.data.type).toBe(
+      TransferData.TypeEnum.InterestPayout
+    );
   });
 });
