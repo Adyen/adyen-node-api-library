@@ -149,4 +149,18 @@ describe("Transfers", (): void => {
         }
     });
 
+    test("should round-trip Transfer and TransferData with interest category and interestPayout type", (): void => {
+        const json = { category: "interest", type: "interestPayout" };
+
+        const transfer: transfers.Transfer = transfers.ObjectSerializer.deserialize(json, "Transfer");
+        expect(transfer.category).toEqual(transfers.Transfer.CategoryEnum.Interest);
+        expect(transfer.type).toEqual(transfers.Transfer.TypeEnum.InterestPayout);
+        expect(transfers.ObjectSerializer.serialize(transfer, "Transfer")).toEqual(json);
+
+        const transferData: transfers.TransferData = transfers.ObjectSerializer.deserialize(json, "TransferData");
+        expect(transferData.category).toEqual(transfers.TransferData.CategoryEnum.Interest);
+        expect(transferData.type).toEqual(transfers.TransferData.TypeEnum.InterestPayout);
+        expect(transfers.ObjectSerializer.serialize(transferData, "TransferData")).toEqual(json);
+    });
+
 });
