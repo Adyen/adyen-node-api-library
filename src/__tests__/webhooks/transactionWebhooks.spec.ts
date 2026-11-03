@@ -149,6 +149,45 @@ describe("TransactionWebhooks Tests", function (): void {
         expect((categoryData as IssuedCard).schemeUniqueTransactionId).toBe("ABCDEFU2B1305");
     });
 
+    it("should deserialize categoryData as IssuedCard with networkVariant", function (): void {
+        const json = {
+            "data": {
+                "id": "EVJN00000000000000000000000003EUR",
+                "amount": { "value": -2700, "currency": "EUR" },
+                "status": "booked",
+                "transfer": {
+                    "categoryData": {
+                        "type": "issuedCard",
+                        "networkVariant": "maestro_us",
+                        "panEntryMode": "contactless",
+                        "processingType": "pos",
+                        "authorisationType": "finalAuthorisation",
+                        "schemeUniqueTransactionId": "ABCDEFU2B1305"
+                    },
+                    "id": "9ABCDE5ZVFLLGV4B",
+                    "reference": "Your internal reference for the transfer"
+                },
+                "valueDate": "2023-08-11T16:19:35+02:00",
+                "bookingDate": "2023-08-11T16:31:02+02:00",
+                "creationDate": "2023-08-11T16:19:35+02:00",
+                "accountHolder": { "id": "AH00000000000000000000001" },
+                "balanceAccount": { "id": "BA00000000000000000000001" },
+                "balancePlatform": "YOUR_BALANCE_PLATFORM"
+            },
+            "environment": "test",
+            "type": "balancePlatform.transaction.created"
+        };
+        const handler = new TransactionWebhooksHandler(JSON.stringify(json));
+        const transaction = handler.getTransactionNotificationRequestV4();
+        const categoryData = transaction.data.transfer?.categoryData;
+        expect(categoryData).toBeDefined();
+        expect(categoryData instanceof IssuedCard).toBe(true);
+        expect((categoryData as IssuedCard).networkVariant).toBe(IssuedCard.NetworkVariantEnum.MaestroUs);
+        expect((categoryData as IssuedCard).panEntryMode).toBe(IssuedCard.PanEntryModeEnum.Contactless);
+        expect((categoryData as IssuedCard).processingType).toBe(IssuedCard.ProcessingTypeEnum.Pos);
+        expect((categoryData as IssuedCard).authorisationType).toBe("finalAuthorisation");
+    });
+
     it("should deserialize categoryData as PlatformPayment", function (): void {
         const json = {
             "data": {
