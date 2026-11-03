@@ -171,3 +171,34 @@ export const listTransactionsSuccess = {
        }
     }
 };
+
+export const transferReversalReceivedSuccess = {
+    "id" : "1W1UG35U8A9J5ZLG",
+    "amount" : {
+        "value" : 1000,
+        "currency" : "EUR"
+    },
+    "balancePlatform" : "YOUR_BALANCE_PLATFORM",
+    "category" : "bank",
+    "direction" : "outgoing",
+    "status" : "reversalReceived",
+    "type" : "fxSell",
+    "networkReason" : {
+        "code" : "C01",
+        "description" : "ACH correction requested",
+        "namespace" : "usAchCorrectionReasonCode"
+    },
+    "events" : [
+        {
+            "id" : "EVT00000000000000000000001",
+            "status" : "reversalReceived",
+            "type" : "accounting",
+            "modification" : {
+                "id" : "MOD00000000000000000000001",
+                "direction" : "outgoing",
+                "status" : "reversalReceived",
+                "type" : "captureReversal"
+            }
+        }
+    ]
+};
