@@ -17,7 +17,6 @@
  * See the LICENSE file for more info.
  */
 
-import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
 import { IRequest } from "../../typings/requestOptions";
@@ -30,6 +29,7 @@ import { CloudDeviceApiSecuredResponse } from "../../typings/clouddevice/cloudDe
 import { EncryptionCredentialDetails } from "../../security/clouddevice/encryptionCredentialDetails";
 import { NexoSecurityManager } from "../../security/clouddevice/nexoSecurityManager";
 import { NexoSecurityException } from "../../security/clouddevice/nexoSecurityException";
+import requestWithRetries from "./requestWithRetries";
 
 /**
  * Cloud Device API service with encrypted payloads.
@@ -84,9 +84,9 @@ export class EncryptedCloudDeviceApi extends Service {
             .replace("{deviceId}", encodeURIComponent(deviceId));
         const resource = new Resource(this, endpoint);
 
-        const response = await getJsonResponse<CloudDeviceApiSecuredRequest, CloudDeviceApiSecuredResponse>(
+        const response = await requestWithRetries<CloudDeviceApiSecuredRequest, CloudDeviceApiSecuredResponse>(
             resource,
-            securedRequest,
+            JSON.stringify(securedRequest),
             { ...requestOptions, method: "POST" },
         );
 
@@ -139,9 +139,9 @@ export class EncryptedCloudDeviceApi extends Service {
             .replace("{deviceId}", encodeURIComponent(deviceId));
         const resource = new Resource(this, endpoint);
 
-        const response = await getJsonResponse<CloudDeviceApiSecuredRequest, string>(
+        const response = await requestWithRetries<CloudDeviceApiSecuredRequest, string>(
             resource,
-            securedRequest,
+            JSON.stringify(securedRequest),
             { ...requestOptions, method: "POST" },
         );
 
