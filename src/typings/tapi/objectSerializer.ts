@@ -13,7 +13,6 @@ import { CardAcquisitionRequest } from "./cardAcquisitionRequest";
 import { CardAcquisitionResponse } from "./cardAcquisitionResponse";
 import { CardAcquisitionTransaction } from "./cardAcquisitionTransaction";
 import { CardData } from "./cardData";
-import { CardHolderPIN } from "./cardHolderPIN";
 import { CardReaderAPDURequest } from "./cardReaderAPDURequest";
 import { CardReaderAPDUResponse } from "./cardReaderAPDUResponse";
 import { CheckData } from "./checkData";
@@ -32,7 +31,6 @@ import { Geolocation } from "./geolocation";
 import { GetTotalsRequest } from "./getTotalsRequest";
 import { GetTotalsResponse } from "./getTotalsResponse";
 import { HostStatus } from "./hostStatus";
-import { ICCResetData } from "./iCCResetData";
 import { Input } from "./input";
 import { InputData } from "./inputData";
 import { InputRequest } from "./inputRequest";
@@ -76,7 +74,6 @@ import { PaymentResult } from "./paymentResult";
 import { PaymentToken } from "./paymentToken";
 import { PaymentTotals } from "./paymentTotals";
 import { PaymentTransaction } from "./paymentTransaction";
-import { PerformedTransaction } from "./performedTransaction";
 import { Point } from "./point";
 import { PredefinedContent } from "./predefinedContent";
 import { PrintOutput } from "./printOutput";
@@ -98,7 +95,6 @@ import { SaleToPOIResponse } from "./saleToPOIResponse";
 import { SecurityTrailer } from "./securityTrailer";
 import { SensitiveCardData } from "./sensitiveCardData";
 import { SensitiveMobileData } from "./sensitiveMobileData";
-import { SoundContent } from "./soundContent";
 import { StoredValueAccountID } from "./storedValueAccountID";
 import { StoredValueAccountStatus } from "./storedValueAccountStatus";
 import { StoredValueData } from "./storedValueData";
@@ -156,8 +152,6 @@ let enumsMap: Set<string> = new Set<string>([
     "MessageClass",
     "MessageType",
     "OutputFormat",
-    "PINFormat",
-    "PINRequestType",
     "PaymentInstrumentType",
     "PaymentResult.AuthenticationMethodEnum",
     "PaymentType",
@@ -168,8 +162,6 @@ let enumsMap: Set<string> = new Set<string>([
     "Result",
     "ReversalReason",
     "SaleData.CustomerOrderReqEnum",
-    "SoundAction",
-    "SoundFormat",
     "StoredValueAccountID.EntryModeEnum",
     "StoredValueAccountType",
     "StoredValueTransactionType",
@@ -195,7 +187,6 @@ let typeMap: {[index: string]: any} = {
     "CardAcquisitionResponse": CardAcquisitionResponse,
     "CardAcquisitionTransaction": CardAcquisitionTransaction,
     "CardData": CardData,
-    "CardHolderPIN": CardHolderPIN,
     "CardReaderAPDURequest": CardReaderAPDURequest,
     "CardReaderAPDUResponse": CardReaderAPDUResponse,
     "CheckData": CheckData,
@@ -214,7 +205,6 @@ let typeMap: {[index: string]: any} = {
     "GetTotalsRequest": GetTotalsRequest,
     "GetTotalsResponse": GetTotalsResponse,
     "HostStatus": HostStatus,
-    "ICCResetData": ICCResetData,
     "Input": Input,
     "InputData": InputData,
     "InputRequest": InputRequest,
@@ -258,7 +248,6 @@ let typeMap: {[index: string]: any} = {
     "PaymentToken": PaymentToken,
     "PaymentTotals": PaymentTotals,
     "PaymentTransaction": PaymentTransaction,
-    "PerformedTransaction": PerformedTransaction,
     "Point": Point,
     "PredefinedContent": PredefinedContent,
     "PrintOutput": PrintOutput,
@@ -280,7 +269,6 @@ let typeMap: {[index: string]: any} = {
     "SecurityTrailer": SecurityTrailer,
     "SensitiveCardData": SensitiveCardData,
     "SensitiveMobileData": SensitiveMobileData,
-    "SoundContent": SoundContent,
     "StoredValueAccountID": StoredValueAccountID,
     "StoredValueAccountStatus": StoredValueAccountStatus,
     "StoredValueData": StoredValueData,

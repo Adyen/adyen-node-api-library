@@ -12,15 +12,15 @@ export class SensitiveMobileData {
     /**
     * Mobile Subscriber Integrated Service Digital Network (i.e. mobile phone number of the SIM card). Country, National Destination Code, and Subscriber Number.
     */
-    "MSISDN": number;
+    "MSISDN": string;
     /**
     * International Mobile Subscriber Identity. Unique number associated with the mobile phone user, containing the Mobile Country Code (MCC), the Mobile Network Code (MNC), and the Mobile Identification Number (MSIN)
     */
-    "IMSI"?: number;
+    "IMSI"?: string;
     /**
     * International Mobile Equipment Identity. Unique number associated with the mobile phone device.
     */
-    "IMEI"?: number;
+    "IMEI"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -30,19 +30,19 @@ export class SensitiveMobileData {
         {
             "name": "MSISDN",
             "baseName": "MSISDN",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "IMSI",
             "baseName": "IMSI",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "IMEI",
             "baseName": "IMEI",
-            "type": "number",
+            "type": "string",
             "format": ""
         }    ];
 

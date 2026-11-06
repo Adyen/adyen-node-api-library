@@ -20,7 +20,7 @@ export class TransactionTotals {
     /**
     * Identification of the Acquirer.
     */
-    "AcquirerID"?: number;
+    "AcquirerID"?: string;
     /**
     * Identifier of a reconciliation period with a payment or loyalty host.
     */
@@ -72,7 +72,7 @@ export class TransactionTotals {
         {
             "name": "AcquirerID",
             "baseName": "AcquirerID",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {

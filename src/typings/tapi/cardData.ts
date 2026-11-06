@@ -32,7 +32,7 @@ export class CardData {
     /**
     * Country Code attached to the card (3 numerics). If available in the card.
     */
-    "CardCountryCode"?: number;
+    "CardCountryCode"?: string;
     /**
     * Sensitive information related to the payment card, protected by CMS. SensitiveCardData protected by CMS EnvelopedData.
     */
@@ -72,14 +72,14 @@ export class CardData {
         {
             "name": "CardCountryCode",
             "baseName": "CardCountryCode",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "ProtectedCardData",
             "baseName": "ProtectedCardData",
             "type": "string",
-            "format": ""
+            "format": "byte"
         },
         {
             "name": "SensitiveCardData",
