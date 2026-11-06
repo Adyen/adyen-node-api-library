@@ -57,6 +57,10 @@ export class TerminalSettings {
     "receiptOptions"?: ReceiptOptions | null;
     "receiptPrinting"?: ReceiptPrinting | null;
     "refunds"?: Refunds | null;
+    /**
+    * Show the tipping amount calculated from the percentage next to each tipping percentage option on the terminal screen, for example `10 % | 10 EUR` for a 100 EUR payment.
+    */
+    "showCalculatedPercentageTippingAmount"?: boolean | null;
     "signature"?: Signature | null;
     "standalone"?: Standalone | null;
     "storeAndForward"?: StoreAndForward | null;
@@ -177,6 +181,12 @@ export class TerminalSettings {
             "name": "refunds",
             "baseName": "refunds",
             "type": "Refunds | null",
+            "format": ""
+        },
+        {
+            "name": "showCalculatedPercentageTippingAmount",
+            "baseName": "showCalculatedPercentageTippingAmount",
+            "type": "boolean | null",
             "format": ""
         },
         {
