@@ -24,7 +24,7 @@ export class DiagnosisRequest {
     /**
     * Identification of the Acquirer. Present if requesting the diagnosis of these hosts only.
     */
-    "AcquirerID"?: Array<number>;
+    "AcquirerID"?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -46,7 +46,7 @@ export class DiagnosisRequest {
         {
             "name": "AcquirerID",
             "baseName": "AcquirerID",
-            "type": "Array<number>",
+            "type": "Array<string>",
             "format": ""
         }    ];
 

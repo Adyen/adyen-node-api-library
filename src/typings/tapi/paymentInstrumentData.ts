@@ -44,7 +44,7 @@ export class PaymentInstrumentData {
             "name": "ProtectedCardData",
             "baseName": "ProtectedCardData",
             "type": "string",
-            "format": ""
+            "format": "byte"
         },
         {
             "name": "CardData",

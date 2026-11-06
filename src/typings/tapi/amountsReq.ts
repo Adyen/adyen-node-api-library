@@ -61,43 +61,43 @@ export class AmountsReq {
             "name": "RequestedAmount",
             "baseName": "RequestedAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "CashBackAmount",
             "baseName": "CashBackAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "TipAmount",
             "baseName": "TipAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "PaidAmount",
             "baseName": "PaidAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "MinimumAmountToDeliver",
             "baseName": "MinimumAmountToDeliver",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "MaximumCashBackAmount",
             "baseName": "MaximumCashBackAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "MinimumSplitAmount",
             "baseName": "MinimumSplitAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         }    ];
 
     static getAttributeTypeMap() {

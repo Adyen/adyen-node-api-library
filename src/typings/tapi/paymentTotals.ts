@@ -46,7 +46,7 @@ export class PaymentTotals {
             "name": "TransactionAmount",
             "baseName": "TransactionAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         }    ];
 
     static getAttributeTypeMap() {

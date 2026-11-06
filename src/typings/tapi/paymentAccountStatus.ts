@@ -38,7 +38,7 @@ export class PaymentAccountStatus {
             "name": "CurrentBalance",
             "baseName": "CurrentBalance",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "Currency",

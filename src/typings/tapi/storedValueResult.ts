@@ -21,11 +21,11 @@ export class StoredValueResult {
     /**
     * Product code of item purchased with the transaction. Copy.
     */
-    "ProductCode"?: number;
+    "ProductCode"?: string;
     /**
     * Standard product code of item purchased with the transaction. Copy.
     */
-    "EanUpc"?: number;
+    "EanUpc"?: string;
     /**
     * Total amount of the item line.
     */
@@ -51,20 +51,20 @@ export class StoredValueResult {
         {
             "name": "ProductCode",
             "baseName": "ProductCode",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "EanUpc",
             "baseName": "EanUpc",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "ItemAmount",
             "baseName": "ItemAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "Currency",

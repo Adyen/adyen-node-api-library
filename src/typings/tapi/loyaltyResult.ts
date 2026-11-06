@@ -38,7 +38,7 @@ export class LoyaltyResult {
             "name": "CurrentBalance",
             "baseName": "CurrentBalance",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "LoyaltyAcquirerData",

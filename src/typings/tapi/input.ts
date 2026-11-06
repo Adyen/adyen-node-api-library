@@ -19,7 +19,7 @@ export class Input {
     /**
     * The number of the function key which is typed by the Customer on the POI or the Cashier on the Sale Terminal.
     */
-    "FunctionKey"?: number;
+    "FunctionKey"?: string;
     /**
     * The text typed by the Customer on the POI or by the Cashier on the Sale Terminal.
     */
@@ -27,7 +27,7 @@ export class Input {
     /**
     * The digits typed by the Customer on the POI or by the Cashier on the Sale Terminal.
     */
-    "DigitInput"?: number;
+    "DigitInput"?: string;
     /**
     * The text password typed by the Customer on the POI or by the Cashier on the Sale Terminal.
     */
@@ -57,7 +57,7 @@ export class Input {
         {
             "name": "FunctionKey",
             "baseName": "FunctionKey",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
@@ -69,14 +69,14 @@ export class Input {
         {
             "name": "DigitInput",
             "baseName": "DigitInput",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "Password",
             "baseName": "Password",
             "type": "string",
-            "format": ""
+            "format": "byte"
         },
         {
             "name": "MenuEntryNumber",
