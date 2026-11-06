@@ -11,6 +11,8 @@ import { AccelUpdateInfo } from "./accelUpdateInfo";
 import { AffirmUpdateInfo } from "./affirmUpdateInfo";
 import { BcmcUpdateInfo } from "./bcmcUpdateInfo";
 import { CartesBancairesUpdateInfo } from "./cartesBancairesUpdateInfo";
+import { CashAppUpdateInfo } from "./cashAppUpdateInfo";
+import { EbtUpdateInfo } from "./ebtUpdateInfo";
 import { GenericPmWithTdiUpdateInfo } from "./genericPmWithTdiUpdateInfo";
 import { NyceUpdateInfo } from "./nyceUpdateInfo";
 import { PayByBankPlaidUpdateInfo } from "./payByBankPlaidUpdateInfo";
@@ -25,6 +27,7 @@ export class UpdatePaymentMethodInfo {
     "bcmc"?: BcmcUpdateInfo | null;
     "carnet"?: GenericPmWithTdiUpdateInfo | null;
     "cartesBancaires"?: CartesBancairesUpdateInfo | null;
+    "cashapp"?: CashAppUpdateInfo | null;
     /**
     * The list of countries where a payment method is available. By default, all countries supported by the payment method.
     */
@@ -40,6 +43,7 @@ export class UpdatePaymentMethodInfo {
     "customRoutingFlags"?: Array<string>;
     "diners"?: GenericPmWithTdiUpdateInfo | null;
     "discover"?: GenericPmWithTdiUpdateInfo | null;
+    "ebt"?: EbtUpdateInfo | null;
     "eft_directdebit_CA"?: GenericPmWithTdiUpdateInfo | null;
     "eftpos_australia"?: GenericPmWithTdiUpdateInfo | null;
     /**
@@ -107,6 +111,12 @@ export class UpdatePaymentMethodInfo {
             "format": ""
         },
         {
+            "name": "cashapp",
+            "baseName": "cashapp",
+            "type": "CashAppUpdateInfo | null",
+            "format": ""
+        },
+        {
             "name": "countries",
             "baseName": "countries",
             "type": "Array<string>",
@@ -140,6 +150,12 @@ export class UpdatePaymentMethodInfo {
             "name": "discover",
             "baseName": "discover",
             "type": "GenericPmWithTdiUpdateInfo | null",
+            "format": ""
+        },
+        {
+            "name": "ebt",
+            "baseName": "ebt",
+            "type": "EbtUpdateInfo | null",
             "format": ""
         },
         {
