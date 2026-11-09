@@ -10,11 +10,11 @@
 
 export class MidServiceNotificationData {
     /**
-    * Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
+    * Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.  Only returned in webhooks that include the screening results for your merchant account.
     */
     "allowed"?: boolean;
     /**
-    * Indicates whether the payment method is enabled (**true**) or disabled (**false**).
+    * Indicates whether the payment method is enabled (**true**) or disabled (**false**).  Only reliable in webhooks that include the screening results for your merchant account.
     */
     "enabled"?: boolean;
     /**
@@ -30,7 +30,7 @@ export class MidServiceNotificationData {
     */
     "reference"?: string;
     /**
-    * The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. 
+    * The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed.  A webhook with `status` **success** is the last webhook for that payment method.
     */
     "status": MidServiceNotificationData.StatusEnum;
     /**
@@ -42,7 +42,7 @@ export class MidServiceNotificationData {
     */
     "type": string;
     /**
-    * Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
+    * Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**  Only returned in webhooks that include the screening results for your merchant account.
     */
     "verificationStatus"?: MidServiceNotificationData.VerificationStatusEnum;
 
