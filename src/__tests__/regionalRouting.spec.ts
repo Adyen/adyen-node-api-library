@@ -36,6 +36,11 @@ describe("Regional URL templates", () => {
         expect(Config.getRegionalLiveUrl("softposconfig", null)).toBe("https://softposconfig-live.adyen.com");
     });
 
+    test.each(["INVALID", "", "toString"])("rejects invalid region %s with a clear error", (region) => {
+        expect(() => Config.getRegionalLiveUrl("softposconfig", region as RegionEnum))
+            .toThrow(`Invalid region provided: ${region}`);
+    });
+
     test("preserves full URLs in the exported Terminal API map", () => {
         expect(TERMINAL_API_ENDPOINTS_MAP).toEqual({
             EU: "https://terminal-api-live.adyen.com",
