@@ -4,13 +4,6 @@
  */
 export const TERMINAL_API_ENDPOINT_TEST = "https://terminal-api-test.adyen.com";
 
-// Live endpoints for Terminal API
-const TERMINAL_API_ENDPOINT_LIVE = "https://terminal-api-live.adyen.com";
-const TERMINAL_API_ENDPOINT_AU_LIVE = "https://terminal-api-live-au.adyen.com";
-const TERMINAL_API_ENDPOINT_US_LIVE = "https://terminal-api-live-us.adyen.com";
-const TERMINAL_API_ENDPOINT_APSE_LIVE = "https://terminal-api-live-apse.adyen.com";
-
-
 /**
  * Supported environments for the Adyen APIs.
  */
@@ -20,23 +13,22 @@ export enum EnvironmentEnum {
 }
 
 /**
- * Supported Regions for Terminal API integration.
+ * Supported regions for APIs with regional live endpoints.
  */
 export enum RegionEnum {
     EU = "EU",
     AU = "AU",
     US = "US",
-    APSE = "APSE"
+    APSE = "APSE",
+    NEA = "NEA"
 }
 
-/**
- * Maps each region to its Terminal API live endpoint.
- */
-export const TERMINAL_API_ENDPOINTS_MAP: Record<RegionEnum, string> = {
-    [RegionEnum.EU]: TERMINAL_API_ENDPOINT_LIVE,
-    [RegionEnum.AU]: TERMINAL_API_ENDPOINT_AU_LIVE,
-    [RegionEnum.US]: TERMINAL_API_ENDPOINT_US_LIVE,
-    [RegionEnum.APSE]: TERMINAL_API_ENDPOINT_APSE_LIVE
+const REGIONAL_LIVE_URL_TEMPLATES: Record<RegionEnum, string> = {
+    [RegionEnum.EU]: "https://%s-live.adyen.com",
+    [RegionEnum.AU]: "https://%s-live-au.adyen.com",
+    [RegionEnum.US]: "https://%s-live-us.adyen.com",
+    [RegionEnum.APSE]: "https://%s-live-apse.adyen.com",
+    [RegionEnum.NEA]: "https://%s-live-nea.adyen.com"
 };
 
 
@@ -57,7 +49,7 @@ interface ConfigConstructor {
      */
     liveEndpointUrlPrefix?: string;
     /**
-     * The region used to determine the Terminal API live endpoint.
+     * The region used to determine live endpoints for regional APIs.
      * Must be provided for LIVE Terminal API integration.
      */
     region?: RegionEnum;
@@ -88,7 +80,7 @@ class Config {
      */
     public liveEndpointUrlPrefix?: string;
     /**
-     * The region used to determine the Terminal API live endpoint.
+     * The region used to determine live endpoints for regional APIs.
      * Must be provided for LIVE Terminal API integration.
      */
     public region?: RegionEnum;
@@ -136,6 +128,16 @@ class Config {
     }
 
     /**
+     * Forms a live URL for an API that supports regional hosts.
+     * @param apiHostName - API hostname prefix, such as device-api or softposconfig.
+     * @param region - Target region. If not provided, defaults to EU.
+     * @returns The regional live URL, without an API path.
+     */
+    public static getRegionalLiveUrl(apiHostName: string, region?: RegionEnum | null): string {
+        return REGIONAL_LIVE_URL_TEMPLATES[region ?? RegionEnum.EU].replace("%s", apiHostName);
+    }
+
+    /**
      * Returns the Terminal API endpoint for the given region.
      * If the region is not valid, returns the EU endpoint.
      * @param region - The region to get the endpoint for.
@@ -146,5 +148,12 @@ class Config {
     }
 
 }
+
+/**
+ * Maps each region to its Terminal API live endpoint.
+ */
+export const TERMINAL_API_ENDPOINTS_MAP: Record<RegionEnum, string> = Object.fromEntries(
+    Object.values(RegionEnum).map((region) => [region, Config.getRegionalLiveUrl("terminal-api", region)])
+) as Record<RegionEnum, string>;
 
 export default Config;

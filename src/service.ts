@@ -18,13 +18,18 @@
  */
 
 import Client from "./client";
-import Config, { EnvironmentEnum, RegionEnum } from "./config";
+import Config, { EnvironmentEnum } from "./config";
 
 /**
  * Base Service class for all API services.
  * Handles the setup of the endpoint URL for the API requests.
  */
 class Service {
+    private static readonly REGIONAL_API_HOST_NAMES = ["device-api", "softposconfig"];
+    private static readonly REGIONAL_HOST_PATTERN = new RegExp(
+        `^https://(${Service.REGIONAL_API_HOST_NAMES.join("|")})-test\\.adyen\\.com(?=[:/?#]|$)`
+    );
+
     public apiKeyRequired = false;
     public client: Client;
 
@@ -81,12 +86,10 @@ class Service {
                     `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/checkout/`);
         }
 
-        if (url.includes("https://device-api-test.adyen.com")) {
-            if (!config.region || config.region === RegionEnum.EU) {
-                return url.replace("https://device-api-test.adyen.com", "https://device-api-live.adyen.com");
-            }
-            return url.replace("https://device-api-test.adyen.com",
-                    `https://device-api-live-${config.region.toLowerCase()}.adyen.com`);
+        // Only APIs with regional hosts should receive a region suffix.
+        if (Service.REGIONAL_HOST_PATTERN.test(url)) {
+            return url.replace(Service.REGIONAL_HOST_PATTERN, (_host, apiHostName: string) =>
+                Config.getRegionalLiveUrl(apiHostName, config.region));
         }
 
         return url.replace("-test", "-live");
