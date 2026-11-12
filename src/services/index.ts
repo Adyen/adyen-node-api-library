@@ -19,6 +19,7 @@ export { default as Platforms } from "./platforms";
 export { default as PosMobileAPI } from "./posMobile";
 export { default as RecurringAPI } from "./recurring";
 export { default as SessionAuthenticationAPI } from "./sessionAuthentication";
+export { default as SoftPOSConfigurationAPI } from "./softPOSConfiguration";
 export { default as StoredValueAPI } from "./storedValue";
 export { default as TerminalCloudAPI } from "./terminalCloudAPI";
 export { default as TerminalLocalAPI } from "./terminalLocalAPI";
