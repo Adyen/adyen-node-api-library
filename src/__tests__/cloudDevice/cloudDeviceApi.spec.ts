@@ -141,6 +141,42 @@ describe("CloudDeviceApi baseUrl", (): void => {
 });
 
 describe("CloudDeviceApi", (): void => {
+    test("retries an opted-in socket drop with the identical Nexo payload", async (): Promise<void> => {
+        const requestBodies: string[] = [];
+        const endpoint = `/merchants/${merchantAccount}/devices/${deviceId}/sync`;
+        scope
+            .post(endpoint, (body) => {
+                requestBodies.push(JSON.stringify(body));
+                return true;
+            })
+            .replyWithError({ message: "socket hang up" })
+            .post(endpoint, (body) => {
+                requestBodies.push(JSON.stringify(body));
+                return true;
+            })
+            .reply(200, paymentSyncSuccess);
+
+        const request = createCloudDeviceApiPaymentRequest();
+        await cloudDeviceAPI.CloudDeviceApi.sync(merchantAccount, deviceId, request, { retries: 1 });
+
+        expect(requestBodies).toHaveLength(2);
+        expect(requestBodies[1]).toBe(requestBodies[0]);
+        expect(JSON.parse(requestBodies[1]).SaleToPOIRequest.MessageHeader.ServiceID)
+            .toBe(request.SaleToPOIRequest.MessageHeader.ServiceID);
+    });
+
+    test("does not retry an HTTP error", async (): Promise<void> => {
+        const endpoint = `/merchants/${merchantAccount}/devices/${deviceId}/sync`;
+        const requestScope = scope
+            .post(endpoint)
+            .reply(500, { status: 500, message: "server error" });
+
+        const request = createCloudDeviceApiPaymentRequest();
+        await expect(cloudDeviceAPI.CloudDeviceApi.sync(merchantAccount, deviceId, request, { retries: 1 }))
+            .rejects.toThrow();
+        expect(requestScope.isDone()).toBe(true);
+    });
+
     test("should send a sync payment request", async (): Promise<void> => {
         scope
             .post(`/merchants/${merchantAccount}/devices/${deviceId}/sync`)
