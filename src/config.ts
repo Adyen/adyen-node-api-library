@@ -132,9 +132,14 @@ class Config {
      * @param apiHostName - API hostname prefix, such as device-api or softposconfig.
      * @param region - Target region. If not provided, defaults to EU.
      * @returns The regional live URL, without an API path.
+     * @throws Error if the region is invalid.
      */
     public static getRegionalLiveUrl(apiHostName: string, region?: RegionEnum | null): string {
-        return REGIONAL_LIVE_URL_TEMPLATES[region ?? RegionEnum.EU].replace("%s", apiHostName);
+        const effectiveRegion = region ?? RegionEnum.EU;
+        if (!Config.isRegionValid(effectiveRegion)) {
+            throw new Error(`Invalid region provided: ${effectiveRegion}`);
+        }
+        return REGIONAL_LIVE_URL_TEMPLATES[effectiveRegion].replace("%s", apiHostName);
     }
 
     /**
