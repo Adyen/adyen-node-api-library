@@ -7,8 +7,6 @@
  * Do not edit this class manually.
  */
 
-import { LocalTime } from "./localTime";
-
 
 export class BalancePlatformConfiguration {
     /**
@@ -80,7 +78,10 @@ export class BalancePlatformConfiguration {
     * The default [settlement delay](https://docs.adyen.com/platforms/settle-funds/#settlement-delay) for this payout schedule.
     */
     "userSettlementDelay": number;
-    "userSettlementTime": LocalTime;
+    /**
+    * The time when the payout funds are settled in your user\'s transfer instrument. For example, 11:30:00.
+    */
+    "userSettlementTime": string;
     /**
     * The timezone of the `userSettlementTime`.
     */
@@ -202,7 +203,7 @@ export class BalancePlatformConfiguration {
         {
             "name": "userSettlementTime",
             "baseName": "userSettlementTime",
-            "type": "LocalTime",
+            "type": "string",
             "format": ""
         },
         {
