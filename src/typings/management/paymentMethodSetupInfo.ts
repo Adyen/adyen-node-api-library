@@ -12,11 +12,15 @@ import { AffirmInfo } from "./affirmInfo";
 import { AfterpayTouchInfo } from "./afterpayTouchInfo";
 import { AlipayPlusInfo } from "./alipayPlusInfo";
 import { AmexInfo } from "./amexInfo";
+import { AncvInfo } from "./ancvInfo";
 import { ApplePayInfo } from "./applePayInfo";
 import { BcmcInfo } from "./bcmcInfo";
+import { BoncardInfo } from "./boncardInfo";
+import { CarnetInfo } from "./carnetInfo";
 import { CartesBancairesInfo } from "./cartesBancairesInfo";
 import { ClearpayInfo } from "./clearpayInfo";
 import { DinersInfo } from "./dinersInfo";
+import { EbtInfo } from "./ebtInfo";
 import { GenericPmWithTdiInfo } from "./genericPmWithTdiInfo";
 import { GivexInfo } from "./givexInfo";
 import { GooglePayInfo } from "./googlePayInfo";
@@ -28,6 +32,7 @@ import { PayByBankPlaidInfo } from "./payByBankPlaidInfo";
 import { PayMeInfo } from "./payMeInfo";
 import { PayPalInfo } from "./payPalInfo";
 import { PayToInfo } from "./payToInfo";
+import { PixInfo } from "./pixInfo";
 import { PulseInfo } from "./pulseInfo";
 import { SepaDirectDebitInfo } from "./sepaDirectDebitInfo";
 import { SodexoInfo } from "./sodexoInfo";
@@ -49,13 +54,15 @@ export class PaymentMethodSetupInfo {
     "afterpayTouch"?: AfterpayTouchInfo | null;
     "alipayPlus"?: AlipayPlusInfo | null;
     "amex"?: AmexInfo | null;
+    "ancv"?: AncvInfo | null;
     "applePay"?: ApplePayInfo | null;
     "bcmc"?: BcmcInfo | null;
+    "boncard"?: BoncardInfo | null;
     /**
     * The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).
     */
     "businessLineId"?: string;
-    "carnet"?: GenericPmWithTdiInfo | null;
+    "carnet"?: CarnetInfo | null;
     "cartesBancaires"?: CartesBancairesInfo | null;
     "clearpay"?: ClearpayInfo | null;
     /**
@@ -73,6 +80,7 @@ export class PaymentMethodSetupInfo {
     "customRoutingFlags"?: Array<string>;
     "diners"?: DinersInfo | null;
     "discover"?: GenericPmWithTdiInfo | null;
+    "ebt"?: EbtInfo | null;
     "eft_directdebit_CA"?: GenericPmWithTdiInfo | null;
     "eftpos_australia"?: GenericPmWithTdiInfo | null;
     "girocard"?: GenericPmWithTdiInfo | null;
@@ -88,9 +96,11 @@ export class PaymentMethodSetupInfo {
     "mealVoucher_FR"?: MealVoucherFRInfo | null;
     "nyce"?: NyceInfo | null;
     "paybybank_plaid"?: PayByBankPlaidInfo | null;
+    "paybybank_plaid_ca"?: PayByBankPlaidInfo | null;
     "payme"?: PayMeInfo | null;
     "paypal"?: PayPalInfo | null;
     "payto"?: PayToInfo | null;
+    "pix"?: PixInfo | null;
     "pulse"?: PulseInfo | null;
     /**
     * Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
@@ -113,7 +123,7 @@ export class PaymentMethodSetupInfo {
     "ticket"?: TicketInfo | null;
     "twint"?: TwintInfo | null;
     /**
-    * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).
+    * Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  For payment method variant **cartebancaire**, method-specific details are returned in the [`cartesBancaires`](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/paymentMethodSettings#responses-200-cartesBancaires) object of the response.
     */
     "type": PaymentMethodSetupInfo.TypeEnum;
     "valuelink"?: ValuelinkInfo | null;
@@ -158,6 +168,12 @@ export class PaymentMethodSetupInfo {
             "format": ""
         },
         {
+            "name": "ancv",
+            "baseName": "ancv",
+            "type": "AncvInfo | null",
+            "format": ""
+        },
+        {
             "name": "applePay",
             "baseName": "applePay",
             "type": "ApplePayInfo | null",
@@ -170,6 +186,12 @@ export class PaymentMethodSetupInfo {
             "format": ""
         },
         {
+            "name": "boncard",
+            "baseName": "boncard",
+            "type": "BoncardInfo | null",
+            "format": ""
+        },
+        {
             "name": "businessLineId",
             "baseName": "businessLineId",
             "type": "string",
@@ -178,7 +200,7 @@ export class PaymentMethodSetupInfo {
         {
             "name": "carnet",
             "baseName": "carnet",
-            "type": "GenericPmWithTdiInfo | null",
+            "type": "CarnetInfo | null",
             "format": ""
         },
         {
@@ -227,6 +249,12 @@ export class PaymentMethodSetupInfo {
             "name": "discover",
             "baseName": "discover",
             "type": "GenericPmWithTdiInfo | null",
+            "format": ""
+        },
+        {
+            "name": "ebt",
+            "baseName": "ebt",
+            "type": "EbtInfo | null",
             "format": ""
         },
         {
@@ -320,6 +348,12 @@ export class PaymentMethodSetupInfo {
             "format": ""
         },
         {
+            "name": "paybybank_plaid_ca",
+            "baseName": "paybybank_plaid_ca",
+            "type": "PayByBankPlaidInfo | null",
+            "format": ""
+        },
+        {
             "name": "payme",
             "baseName": "payme",
             "type": "PayMeInfo | null",
@@ -335,6 +369,12 @@ export class PaymentMethodSetupInfo {
             "name": "payto",
             "baseName": "payto",
             "type": "PayToInfo | null",
+            "format": ""
+        },
+        {
+            "name": "pix",
+            "baseName": "pix",
+            "type": "PixInfo | null",
             "format": ""
         },
         {
@@ -487,6 +527,7 @@ export namespace PaymentMethodSetupInfo {
         AlipayPlusTruemoney = 'alipay_plus_truemoney',
         AlipayWap = 'alipay_wap',
         Amex = 'amex',
+        Ancv = 'ancv',
         Applepay = 'applepay',
         Avancard = 'avancard',
         AvancardCredit = 'avancard_credit',
@@ -498,9 +539,11 @@ export namespace PaymentMethodSetupInfo {
         Bcmc = 'bcmc',
         Blik = 'blik',
         BlikPos = 'blik_pos',
+        Boncard = 'boncard',
         BrSchemes = 'br_schemes',
         Carnet = 'carnet',
         Cartebancaire = 'cartebancaire',
+        Cashapp = 'cashapp',
         Clearpay = 'clearpay',
         Clicktopay = 'clicktopay',
         Cooper = 'cooper',
@@ -519,6 +562,7 @@ export namespace PaymentMethodSetupInfo {
         DirectdebitGb = 'directdebit_GB',
         Discover = 'discover',
         EbankingFi = 'ebanking_FI',
+        Ebt = 'ebt',
         EftDirectdebitCa = 'eft_directdebit_CA',
         EftposAustralia = 'eftpos_australia',
         Elo = 'elo',
@@ -564,6 +608,7 @@ export namespace PaymentMethodSetupInfo {
         OnlineBankingPl = 'onlineBanking_PL',
         Paybybank = 'paybybank',
         PaybybankPlaid = 'paybybank_plaid',
+        PaybybankPlaidCa = 'paybybank_plaid_ca',
         Payme = 'payme',
         PaymePos = 'payme_pos',
         Paynow = 'paynow',
@@ -573,6 +618,7 @@ export namespace PaymentMethodSetupInfo {
         PersonalCard = 'personal_card',
         PersonalCardCredit = 'personal_card_credit',
         PersonalCardDebit = 'personal_card_debit',
+        Pix = 'pix',
         Pulse = 'pulse',
         Romcard = 'romcard',
         RomcardCredit = 'romcard_credit',
@@ -608,6 +654,7 @@ export namespace PaymentMethodSetupInfo {
         Visadebit = 'visadebit',
         Vpay = 'vpay',
         Wechatpay = 'wechatpay',
-        WechatpayPos = 'wechatpay_pos'
+        WechatpayPos = 'wechatpay_pos',
+        Wero = 'wero'
     }
 }

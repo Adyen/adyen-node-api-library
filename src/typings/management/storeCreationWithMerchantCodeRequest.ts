@@ -33,7 +33,7 @@ export class StoreCreationWithMerchantCodeRequest {
     */
     "merchantId": string;
     /**
-    * The phone number of the store, including \'+\' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
+    * The phone number of the store in [E.164](https://en.wikipedia.org/wiki/E.164) format: a plus sign (`+`), the country code, and the phone number. For example, **+13123456789**.  You can include spaces, hyphens, or brackets, such as **+1 (312) 345-6789**. We reject phone numbers that do not start with `+` and the country code, such as **3123456789** or **0031201234567**.  The phone number can be from a different country than the store address.
     */
     "phoneNumber": string;
     /**

@@ -8,6 +8,8 @@
  */
 
 import { LocalShopperStatement } from "./localShopperStatement";
+import { LocalStoreName } from "./localStoreName";
+import { LocalizedInformationLocalizedAddressInner } from "./localizedInformationLocalizedAddressInner";
 
 
 export class LocalizedInformation {
@@ -15,6 +17,14 @@ export class LocalizedInformation {
     * An array of local shopper statements. Card schemes use this in the bank statement.  For Japan local shopper statements in both ja-Hani and ja-Kana are required.
     */
     "localShopperStatement": Array<LocalShopperStatement>;
+    /**
+    * An array of localized store names. Used for payment method onboarding in Japan.  Possible scripts: **ja-Hani**, **ja-Kana**.
+    */
+    "localStoreName"?: Array<LocalStoreName>;
+    /**
+    * An array of localized addresses. Used for payment method onboarding in Japan.  The `script` of each address selects which fields it carries, so each locale sends the fields its addresses have.  For Japanese stores, both **ja-Hani** and **ja-Kana** addresses are required.
+    */
+    "localizedAddress"?: Array<LocalizedInformationLocalizedAddressInner>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -25,6 +35,18 @@ export class LocalizedInformation {
             "name": "localShopperStatement",
             "baseName": "localShopperStatement",
             "type": "Array<LocalShopperStatement>",
+            "format": ""
+        },
+        {
+            "name": "localStoreName",
+            "baseName": "localStoreName",
+            "type": "Array<LocalStoreName>",
+            "format": ""
+        },
+        {
+            "name": "localizedAddress",
+            "baseName": "localizedAddress",
+            "type": "Array<LocalizedInformationLocalizedAddressInner>",
             "format": ""
         }    ];
 

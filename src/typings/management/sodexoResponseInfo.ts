@@ -12,7 +12,7 @@ export class SodexoResponseInfo {
     /**
     * Sodexo merchantContactPhone
     */
-    "merchantContactPhone": string;
+    "merchantContactPhone"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -39,7 +39,7 @@ export class Store {
     */
     "merchantId"?: string;
     /**
-    * The phone number of the store, including \'+\' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
+    * The phone number of the store, including \'+\' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format.
     */
     "phoneNumber"?: string;
     /**
