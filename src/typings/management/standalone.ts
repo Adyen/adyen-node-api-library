@@ -21,6 +21,10 @@ export class Standalone {
     * Enable standalone mode.
     */
     "enableStandalone"?: boolean;
+    /**
+    * The merchant reference to be sent with every transaction when the terminal is in standalone mode. Used for reconciliation.  This property also accepts one or more variables as input, together with plain text. When this property reaches the terminal, the terminal replaces the variables with the values that apply to it. For the list of allowed variables, see [Configure the merchant reference](https://docs.adyen.com/point-of-sale/standalone/standalone-build/set-up-standalone#configure-merchant-reference). 
+    */
+    "merchantReference"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -43,6 +47,12 @@ export class Standalone {
             "name": "enableStandalone",
             "baseName": "enableStandalone",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "merchantReference",
+            "baseName": "merchantReference",
+            "type": "string",
             "format": ""
         }    ];
 
