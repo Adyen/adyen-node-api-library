@@ -27,7 +27,7 @@ export class ConvertedAmount {
             "name": "AmountValue",
             "baseName": "AmountValue",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "Currency",

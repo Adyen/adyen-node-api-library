@@ -19,11 +19,11 @@ export class ReconciliationRequest {
     /**
     * Identification of the Acquirer. Could be present only if ReconciliationType is AcquirerReconciliation or AcquirerSynchronisation.
     */
-    "AcquirerID"?: Array<number>;
+    "AcquirerID"?: Array<string>;
     /**
     * Identification of the reconciliation period between Sale and POI. Absent if ReconciliationType is not PreviousReconciliation.
     */
-    "POIReconciliationID"?: number;
+    "POIReconciliationID"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -39,13 +39,13 @@ export class ReconciliationRequest {
         {
             "name": "AcquirerID",
             "baseName": "AcquirerID",
-            "type": "Array<number>",
+            "type": "Array<string>",
             "format": ""
         },
         {
             "name": "POIReconciliationID",
             "baseName": "POIReconciliationID",
-            "type": "number",
+            "type": "string",
             "format": ""
         }    ];
 

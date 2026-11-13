@@ -19,7 +19,7 @@ export class POIData {
     /**
     * Identification of the reconciliation period between Sale and POI. If Result is Success.
     */
-    "POIReconciliationID"?: number;
+    "POIReconciliationID"?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,7 +35,7 @@ export class POIData {
         {
             "name": "POIReconciliationID",
             "baseName": "POIReconciliationID",
-            "type": "number",
+            "type": "string",
             "format": ""
         }    ];
 

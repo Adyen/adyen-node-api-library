@@ -16,7 +16,7 @@ export class HostStatus {
     /**
     * Identification of the Acquirer.
     */
-    "AcquirerID": number;
+    "AcquirerID": string;
     /**
     * Indicate if a Host is reachable.
     */
@@ -30,7 +30,7 @@ export class HostStatus {
         {
             "name": "AcquirerID",
             "baseName": "AcquirerID",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {

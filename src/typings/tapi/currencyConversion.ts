@@ -58,19 +58,19 @@ export class CurrencyConversion {
             "name": "Rate",
             "baseName": "Rate",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "Markup",
             "baseName": "Markup",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "Commission",
             "baseName": "Commission",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "Declaration",
