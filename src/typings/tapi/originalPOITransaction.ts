@@ -35,7 +35,7 @@ export class OriginalPOITransaction {
     /**
     * Identification of the Acquirer. Restrict to the Acquirer if present.
     */
-    "AcquirerID"?: number;
+    "AcquirerID"?: string;
     /**
     * Value of an amount.
     */
@@ -80,14 +80,14 @@ export class OriginalPOITransaction {
         {
             "name": "AcquirerID",
             "baseName": "AcquirerID",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "AmountValue",
             "baseName": "AmountValue",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "HostTransactionID",

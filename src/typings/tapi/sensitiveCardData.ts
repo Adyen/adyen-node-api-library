@@ -18,15 +18,15 @@ export class SensitiveCardData {
     /**
     * Primary Account Number.
     */
-    "PAN"?: number;
+    "PAN"?: string;
     /**
     * Card Sequence Number. If EntryMode is File, Keyed, or Manual.
     */
-    "CardSeqNumb"?: number;
+    "CardSeqNumb"?: string;
     /**
     * Date after which the card cannot be used. If EntryMode is File.
     */
-    "ExpiryDate"?: number;
+    "ExpiryDate"?: string;
     /**
     * Magnetic track or magnetic ink characters line. If EntryMode is MagStripe or RFID .
     */
@@ -40,19 +40,19 @@ export class SensitiveCardData {
         {
             "name": "PAN",
             "baseName": "PAN",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "CardSeqNumb",
             "baseName": "CardSeqNumb",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "ExpiryDate",
             "baseName": "ExpiryDate",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {

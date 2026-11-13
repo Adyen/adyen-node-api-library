@@ -19,15 +19,15 @@ export class MobileData {
     /**
     * Identifies the country of a mobile phone operator. If data available.
     */
-    "MobileCountryCode"?: number;
+    "MobileCountryCode"?: string;
     /**
     * Identifies the mobile phone operator inside a country. If data available.
     */
-    "MobileNetworkCode"?: number;
+    "MobileNetworkCode"?: string;
     /**
     * Masked Mobile Subscriber Integrated Service Digital Network. If data available.
     */
-    "MaskedMSISDN"?: number;
+    "MaskedMSISDN"?: string;
     "Geolocation"?: Geolocation | null;
     /**
     * Sensitive information related to the mobile phone, protected by CMS. SensitiveMobileData.
@@ -43,19 +43,19 @@ export class MobileData {
         {
             "name": "MobileCountryCode",
             "baseName": "MobileCountryCode",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "MobileNetworkCode",
             "baseName": "MobileNetworkCode",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
             "name": "MaskedMSISDN",
             "baseName": "MaskedMSISDN",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
@@ -68,7 +68,7 @@ export class MobileData {
             "name": "ProtectedMobileData",
             "baseName": "ProtectedMobileData",
             "type": "string",
-            "format": ""
+            "format": "byte"
         },
         {
             "name": "SensitiveMobileData",

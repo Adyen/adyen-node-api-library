@@ -49,31 +49,31 @@ export class AmountsResp {
             "name": "AuthorizedAmount",
             "baseName": "AuthorizedAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "TotalRebatesAmount",
             "baseName": "TotalRebatesAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "TotalFeesAmount",
             "baseName": "TotalFeesAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "CashBackAmount",
             "baseName": "CashBackAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "TipAmount",
             "baseName": "TipAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         }    ];
 
     static getAttributeTypeMap() {

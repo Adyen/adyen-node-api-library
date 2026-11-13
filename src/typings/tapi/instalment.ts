@@ -98,19 +98,19 @@ export class Instalment {
             "name": "CumulativeAmount",
             "baseName": "CumulativeAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "FirstAmount",
             "baseName": "FirstAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "Charges",
             "baseName": "Charges",
             "type": "number",
-            "format": ""
+            "format": "double"
         }    ];
 
     static getAttributeTypeMap() {
