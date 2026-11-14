@@ -515,4 +515,50 @@ describe("Service", () => {
     });
 
 
+    describe.each<[RegionEnum | undefined, string]>([
+        [undefined, ""],
+        [RegionEnum.EU, ""],
+        [RegionEnum.AU, "-au"],
+        [RegionEnum.US, "-us"],
+        [RegionEnum.APSE, "-apse"]
+    ])("payment endpoint region %s", (liveEndpointRegion, suffix) => {
+        it.each([
+            ["https://pal-test.adyen.com/pal/servlet/Payment/v68", "pal", "/pal/servlet/Payment/v68"],
+            ["https://checkout-test.adyen.com/v71", "checkout", "/checkout/v71"],
+            ["https://checkout-test.adyen.com/possdk/v68", "checkout", "/possdk/v68"]
+        ])("routes %s independently of the Terminal API region", (url, api, path) => {
+            const config = new Config({
+                apiKey: "test_key",
+                environment: EnvironmentEnum.LIVE,
+                liveEndpointUrlPrefix: "mycompany",
+                region: RegionEnum.US,
+                liveEndpointRegion
+            });
+            const service = new TestService(new Client(config));
+            expect(service.testCreateBaseUrl(url)).toBe(
+                `https://mycompany-${api}-live${suffix}.adyenpayments.com${path}`
+            );
+        });
+    });
+
+    it("keeps TEST payment endpoints unchanged with a live endpoint region", () => {
+        const config = new Config({
+            environment: EnvironmentEnum.TEST,
+            liveEndpointRegion: RegionEnum.AU
+        });
+        const service = new TestService(new Client(config));
+        expect(service.testCreateBaseUrl("https://checkout-test.adyen.com/v71"))
+            .toBe("https://checkout-test.adyen.com/v71");
+    });
+
+    it("rejects unsupported live endpoint regions", () => {
+        const config = new Config({
+            environment: EnvironmentEnum.LIVE,
+            liveEndpointUrlPrefix: "mycompany",
+            liveEndpointRegion: "invalid" as RegionEnum
+        });
+        const service = new TestService(new Client(config));
+        expect(() => service.testCreateBaseUrl("https://checkout-test.adyen.com/v71"))
+            .toThrow("Invalid live endpoint region provided: invalid");
+    });
 });  
