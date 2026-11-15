@@ -70,7 +70,7 @@ describe("NexoCrypto", (): void => {
         };
 
         expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
-        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Hmac validation failed");
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Decryption of the SaleToPOISecuredMessage failed");
     });
 
     test("decrypt throws NexoCryptoException on a different-length HMAC", (): void => {
@@ -88,7 +88,74 @@ describe("NexoCrypto", (): void => {
         };
 
         expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
-        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Hmac validation failed");
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Decryption of the SaleToPOISecuredMessage failed");
+    });
+
+    test("decrypt throws NexoCryptoException on bad padding, with the same message as an HMAC failure", (): void => {
+        const nexoCrypto = new NexoCrypto();
+        // 9 bytes of plaintext fit in one AES block with a padding byte of 0x07.
+        const payload = "{\"a\":\"b\"}";
+        const encrypted = NexoCrypto.encrypt(messageHeader, payload, securityKey);
+
+        // The nonce is XORed into the IV, so flipping its last byte flips the last
+        // plaintext byte of the only block. XOR with 0x07 turns the padding byte
+        // into 0x00, which always fails PKCS#7 unpadding.
+        const nonce = Buffer.from(encrypted.SecurityTrailer.Nonce, "base64");
+        nonce[15] ^= 0x07;
+        const badPadding: SaleToPOISecuredMessage = {
+            ...encrypted,
+            SecurityTrailer: { ...encrypted.SecurityTrailer, Nonce: nonce.toString("base64") },
+        };
+
+        const tamperedHmac = Buffer.from(encrypted.SecurityTrailer.Hmac, "base64");
+        tamperedHmac[0] ^= 0xFF;
+        const badHmac: SaleToPOISecuredMessage = {
+            ...encrypted,
+            SecurityTrailer: { ...encrypted.SecurityTrailer, Hmac: tamperedHmac.toString("base64") },
+        };
+
+        const errorOf = (message: SaleToPOISecuredMessage): unknown => {
+            try {
+                nexoCrypto.decrypt(message, securityKey);
+            } catch (e) {
+                return e;
+            }
+            return undefined;
+        };
+        const paddingError = errorOf(badPadding);
+        const hmacError = errorOf(badHmac);
+
+        expect(paddingError).toBeInstanceOf(NexoCryptoException);
+        expect(hmacError).toBeInstanceOf(NexoCryptoException);
+        expect((paddingError as Error).message).toBe((hmacError as Error).message);
+    });
+
+    test("decrypt throws NexoCryptoException when the ciphertext is not a whole number of blocks", (): void => {
+        const nexoCrypto = new NexoCrypto();
+        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "a payload longer than one block" }), securityKey);
+        const blob = Buffer.from(encrypted.NexoBlob, "base64");
+        const truncatedBlob = blob.subarray(0, blob.length - 1);
+        const tampered: SaleToPOISecuredMessage = { ...encrypted, NexoBlob: truncatedBlob.toString("base64") };
+
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
+    });
+
+    test.each([
+        ["empty", 0],
+        ["short", 8],
+        ["long", 32],
+    ])("decrypt throws NexoCryptoException on a %s nonce", (_label: string, length: number): void => {
+        const nexoCrypto = new NexoCrypto();
+        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "data" }), securityKey);
+        const original = Buffer.from(encrypted.SecurityTrailer.Nonce, "base64");
+        const nonce = Buffer.alloc(length);
+        original.copy(nonce, 0, 0, Math.min(length, original.length));
+        const tampered: SaleToPOISecuredMessage = {
+            ...encrypted,
+            SecurityTrailer: { ...encrypted.SecurityTrailer, Nonce: nonce.toString("base64") },
+        };
+
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
     });
 
     test("decrypt throws InvalidSecurityKeyException when Passphrase is missing", (): void => {
