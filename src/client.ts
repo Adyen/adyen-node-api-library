@@ -46,12 +46,11 @@ class Client {
             this.config.terminalApiCloudEndpoint = TERMINAL_API_ENDPOINT_TEST;
         } else if (this.config.environment === EnvironmentEnum.LIVE) {
             // region-based LIVE endpoints
-            if(this.config.region) {
-                if (!Config.isRegionValid(this.config.region)) {
-                    throw new Error(`Invalid region provided: ${this.config.region}`);
-                }
-                this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(this.config.region);  
+            const region = this.config.region ?? RegionEnum.EU;
+            if (!Config.isRegionValid(region)) {
+                throw new Error(`Invalid region provided: ${region}`);
             }
+            this.config.terminalApiCloudEndpoint = Config.getTerminalApiEndpoint(region);
         }
 
         // legacy support for marketPayEndpoint
