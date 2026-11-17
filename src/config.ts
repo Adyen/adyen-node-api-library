@@ -54,6 +54,11 @@ interface ConfigConstructor {
      */
     region?: RegionEnum;
     /**
+     * Data region for LIVE Checkout and PAL endpoints. Defaults to EU.
+     * Independent of the Terminal API region.
+     */
+    liveEndpointRegion?: RegionEnum;
+    /**
      * Whether to redirect upon a 308 response status.
      * Enabled by default.
      */
@@ -85,6 +90,11 @@ class Config {
      */
     public region?: RegionEnum;
     /**
+     * Data region for LIVE Checkout and PAL endpoints. Defaults to EU.
+     * Independent of the Terminal API region.
+     */
+    public liveEndpointRegion?: RegionEnum;
+    /**
      * Whether to redirect upon a 308 response status.
      * Enabled by default.
      */
@@ -105,6 +115,7 @@ class Config {
         if (options.terminalApiLocalEndpoint) this.terminalApiLocalEndpoint = options.terminalApiLocalEndpoint;
         if (options.liveEndpointUrlPrefix) this.liveEndpointUrlPrefix = options.liveEndpointUrlPrefix;
         if (options.region) this.region = options.region;
+        if (options.liveEndpointRegion) this.liveEndpointRegion = options.liveEndpointRegion;
         this.enable308Redirect = options.enable308Redirect ?? true; // enabled by default
 
     }

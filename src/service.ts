@@ -58,6 +58,12 @@ class Service {
             return url.replace("-live", "-test");
         }
 
+        if (config.liveEndpointRegion && !Config.isRegionValid(config.liveEndpointRegion)) {
+            throw new Error(`Invalid live endpoint region provided: ${config.liveEndpointRegion}`);
+        }
+        const regionSuffix = !config.liveEndpointRegion || config.liveEndpointRegion === RegionEnum.EU
+            ? "" : `-${config.liveEndpointRegion.toLowerCase()}`;
+
         // handle LIVE urls
         if (url.includes("/authe/")) {
             return url.replace("https://test.adyen.com/", "https://authe-live.adyen.com/");
@@ -69,7 +75,7 @@ class Service {
                 throw new Error("Live endpoint URL prefix must be provided for LIVE environment.");
             }
             return url.replace("https://pal-test.adyen.com/pal/servlet/",
-                    `https://${this.client.config.liveEndpointUrlPrefix}-pal-live.adyenpayments.com/pal/servlet/`);
+                    `https://${this.client.config.liveEndpointUrlPrefix}-pal-live${regionSuffix}.adyenpayments.com/pal/servlet/`);
         }
 
         if (url.includes("checkout-")) {
@@ -79,11 +85,11 @@ class Service {
             }
             if (url.includes("/possdk/v68")) {
                 return url.replace("https://checkout-test.adyen.com/",
-                  `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/`);
+                  `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live${regionSuffix}.adyenpayments.com/`);
             }
 
             return url.replace("https://checkout-test.adyen.com/",
-                    `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live.adyenpayments.com/checkout/`);
+                    `https://${this.client.config.liveEndpointUrlPrefix}-checkout-live${regionSuffix}.adyenpayments.com/checkout/`);
         }
 
         // Only APIs with regional hosts should receive a region suffix.
