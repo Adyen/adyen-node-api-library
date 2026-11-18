@@ -14,7 +14,7 @@ export class LocalShopperStatement {
     */
     "script": string;
     /**
-    * The text of the local shopper statement in the specified character set.
+    * The localized shopper statement in the specified character set.  * For `ja-Hani` the allowed characters are: Full-width kanji including letters, numbers, and symbols.  * For `ja-Kana` the allowed characters are:     * `Half-width katakana`     * Letters: `a-z`, `A-Z`     * Numbers: `0-9`     * Symbols: `!`, `\"`, `#`, `$`, `%`, `&`, `\'`, `(`, `)`, `*`, `+`, `,`, `-`, `.`, `/`, `:`, `;`, `<`, `=`, `>`, `?`, `@`, `[`, `\\`, `]`, `^`, `_`, `` ` ``, `{`, `|`, `}`, `~`, `｡`, `｢`, `｣`, `､`, `･`, `ｰ` 
     */
     "value": string;
 
