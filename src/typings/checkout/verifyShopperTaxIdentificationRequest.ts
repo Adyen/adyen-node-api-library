@@ -12,11 +12,11 @@ import { ShopperTaxIdentification } from "./shopperTaxIdentification";
 
 export class VerifyShopperTaxIdentificationRequest {
     /**
-    * The merchant account identifier requesting the tax verification.
+    * The merchant account identifier, with which you want to process the transaction.
     */
     "merchantAccount": string;
     /**
-    * Your reference to uniquely identify this shopper, for example user ID or account ID. Used to bind the verification to the shopper context.  > Your reference must not include personally identifiable information (PII), for example name or email address.
+    * Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. Use the same `shopperReference` in `/payments`.  > Your reference must not include personally identifiable information (PII), for example name or email address.
     */
     "shopperReference": string;
     "shopperTaxIdentification": ShopperTaxIdentification;
