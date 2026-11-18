@@ -12,7 +12,7 @@ import { ThreeDSRequestData } from "./threeDSRequestData";
 
 export class AuthenticationData {
     /**
-    * Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don\'t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
+    * Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. For browser-based payments, make sure the payment request also contains complete `browserInfo` and `origin`. Without them, 3D Secure 2 cannot be initiated and the transaction can be authorized without liability shift. * **never**: Don\'t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
     */
     "attemptAuthentication"?: AuthenticationData.AttemptAuthenticationEnum;
     /**

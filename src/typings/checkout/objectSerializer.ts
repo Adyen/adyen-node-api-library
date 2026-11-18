@@ -265,6 +265,8 @@ import { ThreeDSRequestorPriorAuthenticationInfo } from "./threeDSRequestorPrior
 import { ThreeDSecureData } from "./threeDSecureData";
 import { Ticket } from "./ticket";
 import { TokenMandate } from "./tokenMandate";
+import { TokenizedShopperTaxIdentification } from "./tokenizedShopperTaxIdentification";
+import { TokenizedTaxCalculation } from "./tokenizedTaxCalculation";
 import { TravelAgency } from "./travelAgency";
 import { TwintDetails } from "./twintDetails";
 import { UPIPaymentMethod } from "./uPIPaymentMethod";
@@ -799,6 +801,8 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSecureData": ThreeDSecureData,
     "Ticket": Ticket,
     "TokenMandate": TokenMandate,
+    "TokenizedShopperTaxIdentification": TokenizedShopperTaxIdentification,
+    "TokenizedTaxCalculation": TokenizedTaxCalculation,
     "TravelAgency": TravelAgency,
     "TwintDetails": TwintDetails,
     "UPIPaymentMethod": UPIPaymentMethod,

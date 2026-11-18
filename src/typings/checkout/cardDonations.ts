@@ -113,6 +113,10 @@ export class CardDonations {
     */
     "srcTokenReference"?: string;
     /**
+    * When enrolling a new user, this field determines whether to store the shopper\'s card in their Click to Pay profile. When this is set to **True**, the request must include `shopperEmail`, `shopperName`, and `telephoneNumber`.
+    */
+    "storeClickToPayProfile"?: boolean;
+    /**
     * This is the `recurringDetailReference` returned in the response when you created the token.
     */
     "storedPaymentMethodId"?: string;
@@ -278,6 +282,12 @@ export class CardDonations {
             "name": "srcTokenReference",
             "baseName": "srcTokenReference",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "storeClickToPayProfile",
+            "baseName": "storeClickToPayProfile",
+            "type": "boolean",
             "format": ""
         },
         {

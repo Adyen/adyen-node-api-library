@@ -12,7 +12,7 @@ import { TaxIdentificationType } from "./taxIdentificationType";
 
 export class ShopperTaxIdentification {
     /**
-    * The country governing the shopper\'s tax processing. Initially only IN is supported.
+    * The two-letter country code governing the shopper\'s tax processing, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. Supported value: **IN**.
     */
     "taxCountryCode": string;
     /**

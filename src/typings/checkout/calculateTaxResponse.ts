@@ -13,11 +13,11 @@ import { TaxCalculation } from "./taxCalculation";
 export class CalculateTaxResponse {
     "taxCalculation"?: TaxCalculation | null;
     /**
-    * The unique reference for this calculation attempt.
+    * The unique reference for the tax calculation.
     */
     "taxCalculationReference"?: string;
     /**
-    * The opaque, encrypted, and signed token that represents the complete canonical calculation. Required in /payments.
+    * The encrypted and signed token representing the tax calculation. Submit this value as `taxCalculation.taxCalculationToken` in `/payments`.
     */
     "taxCalculationToken"?: string;
 
