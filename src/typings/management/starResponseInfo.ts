@@ -12,9 +12,13 @@ import { TransactionDescriptionResponseInfo } from "./transactionDescriptionResp
 
 export class StarResponseInfo {
     /**
+    * Indicates the processing flow for the payment method. Possible values: - **auth**: If you have not [configured automatic capture](https://docs.adyen.com/online-payments/capture#types-of-capture) for the transaction, you must manually capture the funds.  - **sale**: You do not need to separately capture the funds, because capture happens automatically as part of the transaction, together with authorization. 
+    */
+    "networkProcessingMode"?: StarResponseInfo.NetworkProcessingModeEnum;
+    /**
     * The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have `recurringProcessingModel` **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with `recurringProcessingModel` **CardOnFile** or **UnscheduledCardOnFile**. 
     */
-    "processingType": StarResponseInfo.ProcessingTypeEnum;
+    "processingType"?: StarResponseInfo.ProcessingTypeEnum;
     "transactionDescription"?: TransactionDescriptionResponseInfo | null;
 
     static readonly discriminator: string | undefined = undefined;
@@ -22,6 +26,12 @@ export class StarResponseInfo {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "networkProcessingMode",
+            "baseName": "networkProcessingMode",
+            "type": "StarResponseInfo.NetworkProcessingModeEnum",
+            "format": ""
+        },
         {
             "name": "processingType",
             "baseName": "processingType",
@@ -44,6 +54,10 @@ export class StarResponseInfo {
 }
 
 export namespace StarResponseInfo {
+    export enum NetworkProcessingModeEnum {
+        Auth = 'auth',
+        Sale = 'sale'
+    }
     export enum ProcessingTypeEnum {
         Billpay = 'billpay',
         Ecom = 'ecom',
