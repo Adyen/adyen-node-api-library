@@ -28,7 +28,7 @@ export class BalanceAccountConfigurationRequest {
     /**
     * The frequency of payouts initiated by this payout schedule.  Possible values: * daily * weekdays * weekly * monthly  Default value: The `defaultFrequency` from the balance platform schedule that you are applying.
     */
-    "frequency": BalanceAccountConfigurationRequest.FrequencyEnum;
+    "frequency"?: BalanceAccountConfigurationRequest.FrequencyEnum;
     /**
     * The date of the month or day of the week when payouts are initiated. Allowed only if `frequency` is **monthly** or **weekly**.  Possible values if `frequency` is **monthly**: **[1 - 31]**. * If your specified date happens on a weekend, the payout is initiated on the next business day. * If your specified date (**29**, **30**, or **31**) does not exist in a month, the payout is initiated on the last day of that month.  Possible values if `frequency` is **weekly**: **[1 - 5]**.  Default value: The `defaultFrequencyValue` from the balance platform schedule that you are applying.
     */
