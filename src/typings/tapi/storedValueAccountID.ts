@@ -28,7 +28,7 @@ export class StoredValueAccountID {
     /**
     * Date after which the card cannot be used. If EMV expiry date is present, it overrides Track2 information. Format is MMYY.
     */
-    "ExpiryDate"?: number;
+    "ExpiryDate"?: string;
     "EntryMode": Array<StoredValueAccountID.EntryModeEnum>;
     "IdentificationType": IdentificationType;
     /**
@@ -62,7 +62,7 @@ export class StoredValueAccountID {
         {
             "name": "ExpiryDate",
             "baseName": "ExpiryDate",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {

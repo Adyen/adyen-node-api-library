@@ -54,7 +54,7 @@ export class ReversalResponse {
             "name": "ReversedAmount",
             "baseName": "ReversedAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "PaymentReceipt",

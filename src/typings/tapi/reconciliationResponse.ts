@@ -22,7 +22,7 @@ export class ReconciliationResponse {
     /**
     * Identification of the reconciliation period between Sale and POI. Absent if ReconciliationType is `AcquirerReconciliation`.
     */
-    "POIReconciliationID"?: number;
+    "POIReconciliationID"?: string;
     /**
     * Result of the Sale to POI Reconciliation processing. If `Response.Result` is Success.
     */
@@ -48,7 +48,7 @@ export class ReconciliationResponse {
         {
             "name": "POIReconciliationID",
             "baseName": "POIReconciliationID",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {

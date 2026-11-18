@@ -20,7 +20,7 @@ export class GetTotalsResponse {
     /**
     * Identification of the reconciliation period between Sale and POI.
     */
-    "POIReconciliationID": number;
+    "POIReconciliationID": string;
     /**
     * Result of the Sale to POI Reconciliation processing. If `Response.Result` is Success.
     */
@@ -40,7 +40,7 @@ export class GetTotalsResponse {
         {
             "name": "POIReconciliationID",
             "baseName": "POIReconciliationID",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {
