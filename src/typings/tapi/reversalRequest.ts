@@ -46,7 +46,7 @@ export class ReversalRequest {
             "name": "ReversedAmount",
             "baseName": "ReversedAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "ReversalReason",
