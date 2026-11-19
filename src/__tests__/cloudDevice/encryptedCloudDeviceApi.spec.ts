@@ -95,6 +95,31 @@ afterEach(() => {
 });
 
 describe("EncryptedCloudDeviceApi", () => {
+    test("retries an opted-in socket drop with the identical encrypted Nexo payload", async () => {
+        const requestBodies: string[] = [];
+        const endpoint = `/merchants/${merchantAccount}/devices/${deviceId}/sync`;
+        nock(BASE_URL)
+            .post(endpoint, (body) => {
+                requestBodies.push(JSON.stringify(body));
+                return true;
+            })
+            .replyWithError({ message: "socket hang up" })
+            .post(endpoint, (body) => {
+                requestBodies.push(JSON.stringify(body));
+                return true;
+            })
+            .reply(200, paymentSyncEncryptedSuccess);
+
+        const api = new EncryptedCloudDeviceApi(client, DEFAULT_CREDENTIALS);
+        const request = createCloudDeviceApiPaymentRequest();
+        await api.sync(merchantAccount, deviceId, request, { retries: 1 });
+
+        expect(requestBodies).toHaveLength(2);
+        expect(requestBodies[1]).toBe(requestBodies[0]);
+        expect(JSON.parse(requestBodies[1]).SaleToPOIRequest.MessageHeader.ServiceID)
+            .toBe(request.SaleToPOIRequest.MessageHeader.ServiceID);
+    });
+
     test("sendEncryptedSync - encrypts request and decrypts response", async () => {
         let capturedBody = "";
         nock(BASE_URL)
