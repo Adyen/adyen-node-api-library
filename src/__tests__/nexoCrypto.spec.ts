@@ -13,6 +13,8 @@ const securityKey: SecurityKey = {
     Passphrase: "testPassphrase123",
 };
 
+const GENERIC_DECRYPT_MESSAGE = "Decryption of the SaleToPOISecuredMessage failed";
+
 const messageHeader: MessageHeader = {
     MessageCategory: MessageCategoryType.Payment,
     MessageClass: MessageClassType.Service,
@@ -70,7 +72,7 @@ describe("NexoCrypto", (): void => {
         };
 
         expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
-        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Decryption of the SaleToPOISecuredMessage failed");
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
     });
 
     test("decrypt throws NexoCryptoException on a different-length HMAC", (): void => {
@@ -88,7 +90,7 @@ describe("NexoCrypto", (): void => {
         };
 
         expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
-        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Decryption of the SaleToPOISecuredMessage failed");
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
     });
 
     test("decrypt throws NexoCryptoException on bad padding, with the same message as an HMAC failure", (): void => {
@@ -130,16 +132,6 @@ describe("NexoCrypto", (): void => {
         expect((paddingError as Error).message).toBe((hmacError as Error).message);
     });
 
-    test("decrypt throws NexoCryptoException when the ciphertext is not a whole number of blocks", (): void => {
-        const nexoCrypto = new NexoCrypto();
-        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "a payload longer than one block" }), securityKey);
-        const blob = Buffer.from(encrypted.NexoBlob, "base64");
-        const truncatedBlob = blob.subarray(0, blob.length - 1);
-        const tampered: SaleToPOISecuredMessage = { ...encrypted, NexoBlob: truncatedBlob.toString("base64") };
-
-        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
-    });
-
     test.each([
         ["empty", 0],
         ["short", 8],
@@ -156,6 +148,42 @@ describe("NexoCrypto", (): void => {
         };
 
         expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
+    });
+
+    test("decrypt throws the generic NexoCryptoException for a truncated ciphertext", (): void => {
+        const nexoCrypto = new NexoCrypto();
+        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "a payload longer than one block" }), securityKey);
+        const blob = Buffer.from(encrypted.NexoBlob, "base64");
+        const tampered: SaleToPOISecuredMessage = { ...encrypted, NexoBlob: blob.subarray(0, blob.length - 1).toString("base64") };
+
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
+    });
+
+    test.each([
+        ["NexoBlob", (m: any): void => { delete m.NexoBlob; }],
+        ["SecurityTrailer", (m: any): void => { delete m.SecurityTrailer; }],
+        ["Nonce", (m: any): void => { delete m.SecurityTrailer.Nonce; }],
+        ["Hmac", (m: any): void => { delete m.SecurityTrailer.Hmac; }],
+        ["null NexoBlob", (m: any): void => { m.NexoBlob = null; }],
+    ])("decrypt throws the generic NexoCryptoException when %s is missing", (_label: string, mutate: (m: any) => void): void => {
+        const nexoCrypto = new NexoCrypto();
+        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "data" }), securityKey);
+        const malformed = JSON.parse(JSON.stringify(encrypted));
+        mutate(malformed);
+
+        expect(() => nexoCrypto.decrypt(malformed, securityKey)).toThrow(NexoCryptoException);
+        expect(() => nexoCrypto.decrypt(malformed, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
+    });
+
+    test("decrypt still throws InvalidSecurityKeyException for an invalid key, even with a malformed message", (): void => {
+        const nexoCrypto = new NexoCrypto();
+        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "data" }), securityKey);
+        const malformed = JSON.parse(JSON.stringify(encrypted));
+        delete malformed.NexoBlob;
+
+        expect(() => nexoCrypto.decrypt(malformed, { ...securityKey, Passphrase: "" })).toThrow(InvalidSecurityKeyException);
     });
 
     test("decrypt throws InvalidSecurityKeyException when Passphrase is missing", (): void => {

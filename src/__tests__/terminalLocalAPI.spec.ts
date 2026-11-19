@@ -54,15 +54,9 @@ describe("Terminal Local API", (): void => {
             Passphrase: "p@ssw0rd123456",
         };
 
-        try {
-            await terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey);
-        } catch (e) {
-            if(e instanceof NexoCryptoException) {
-                expect(e.message).toEqual("Decryption of the SaleToPOISecuredMessage failed");
-            } else {
-                fail();
-            }
-            
-        }
+        const result = terminalLocalAPI.request(terminalAPIPaymentRequest, securityKey);
+
+        await expect(result).rejects.toBeInstanceOf(NexoCryptoException);
+        await expect(result).rejects.toHaveProperty("message", "Decryption of the SaleToPOISecuredMessage failed");
     });
 });
