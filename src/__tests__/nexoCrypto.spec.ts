@@ -13,6 +13,8 @@ const securityKey: SecurityKey = {
     Passphrase: "testPassphrase123",
 };
 
+const GENERIC_DECRYPT_MESSAGE = "Decryption of the SaleToPOISecuredMessage failed";
+
 const messageHeader: MessageHeader = {
     MessageCategory: MessageCategoryType.Payment,
     MessageClass: MessageClassType.Service,
@@ -70,7 +72,7 @@ describe("NexoCrypto", (): void => {
         };
 
         expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
-        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Hmac validation failed");
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
     });
 
     test("decrypt throws NexoCryptoException on a different-length HMAC", (): void => {
@@ -88,7 +90,100 @@ describe("NexoCrypto", (): void => {
         };
 
         expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
-        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow("Hmac validation failed");
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
+    });
+
+    test("decrypt throws NexoCryptoException on bad padding, with the same message as an HMAC failure", (): void => {
+        const nexoCrypto = new NexoCrypto();
+        // 9 bytes of plaintext fit in one AES block with a padding byte of 0x07.
+        const payload = "{\"a\":\"b\"}";
+        const encrypted = NexoCrypto.encrypt(messageHeader, payload, securityKey);
+
+        // The nonce is XORed into the IV, so flipping its last byte flips the last
+        // plaintext byte of the only block. XOR with 0x07 turns the padding byte
+        // into 0x00, which always fails PKCS#7 unpadding.
+        const nonce = Buffer.from(encrypted.SecurityTrailer.Nonce, "base64");
+        nonce[15] ^= 0x07;
+        const badPadding: SaleToPOISecuredMessage = {
+            ...encrypted,
+            SecurityTrailer: { ...encrypted.SecurityTrailer, Nonce: nonce.toString("base64") },
+        };
+
+        const tamperedHmac = Buffer.from(encrypted.SecurityTrailer.Hmac, "base64");
+        tamperedHmac[0] ^= 0xFF;
+        const badHmac: SaleToPOISecuredMessage = {
+            ...encrypted,
+            SecurityTrailer: { ...encrypted.SecurityTrailer, Hmac: tamperedHmac.toString("base64") },
+        };
+
+        const errorOf = (message: SaleToPOISecuredMessage): unknown => {
+            try {
+                nexoCrypto.decrypt(message, securityKey);
+            } catch (e) {
+                return e;
+            }
+            return undefined;
+        };
+        const paddingError = errorOf(badPadding);
+        const hmacError = errorOf(badHmac);
+
+        expect(paddingError).toBeInstanceOf(NexoCryptoException);
+        expect(hmacError).toBeInstanceOf(NexoCryptoException);
+        expect((paddingError as Error).message).toBe((hmacError as Error).message);
+    });
+
+    test.each([
+        ["empty", 0],
+        ["short", 8],
+        ["long", 32],
+    ])("decrypt throws NexoCryptoException on a %s nonce", (_label: string, length: number): void => {
+        const nexoCrypto = new NexoCrypto();
+        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "data" }), securityKey);
+        const original = Buffer.from(encrypted.SecurityTrailer.Nonce, "base64");
+        const nonce = Buffer.alloc(length);
+        original.copy(nonce, 0, 0, Math.min(length, original.length));
+        const tampered: SaleToPOISecuredMessage = {
+            ...encrypted,
+            SecurityTrailer: { ...encrypted.SecurityTrailer, Nonce: nonce.toString("base64") },
+        };
+
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
+    });
+
+    test("decrypt throws the generic NexoCryptoException for a truncated ciphertext", (): void => {
+        const nexoCrypto = new NexoCrypto();
+        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "a payload longer than one block" }), securityKey);
+        const blob = Buffer.from(encrypted.NexoBlob, "base64");
+        const tampered: SaleToPOISecuredMessage = { ...encrypted, NexoBlob: blob.subarray(0, blob.length - 1).toString("base64") };
+
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(NexoCryptoException);
+        expect(() => nexoCrypto.decrypt(tampered, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
+    });
+
+    test.each([
+        ["NexoBlob", (m: any): void => { delete m.NexoBlob; }],
+        ["SecurityTrailer", (m: any): void => { delete m.SecurityTrailer; }],
+        ["Nonce", (m: any): void => { delete m.SecurityTrailer.Nonce; }],
+        ["Hmac", (m: any): void => { delete m.SecurityTrailer.Hmac; }],
+        ["null NexoBlob", (m: any): void => { m.NexoBlob = null; }],
+    ])("decrypt throws the generic NexoCryptoException when %s is missing", (_label: string, mutate: (m: any) => void): void => {
+        const nexoCrypto = new NexoCrypto();
+        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "data" }), securityKey);
+        const malformed = JSON.parse(JSON.stringify(encrypted));
+        mutate(malformed);
+
+        expect(() => nexoCrypto.decrypt(malformed, securityKey)).toThrow(NexoCryptoException);
+        expect(() => nexoCrypto.decrypt(malformed, securityKey)).toThrow(GENERIC_DECRYPT_MESSAGE);
+    });
+
+    test("decrypt still throws InvalidSecurityKeyException for an invalid key, even with a malformed message", (): void => {
+        const nexoCrypto = new NexoCrypto();
+        const encrypted = NexoCrypto.encrypt(messageHeader, JSON.stringify({ test: "data" }), securityKey);
+        const malformed = JSON.parse(JSON.stringify(encrypted));
+        delete malformed.NexoBlob;
+
+        expect(() => nexoCrypto.decrypt(malformed, { ...securityKey, Passphrase: "" })).toThrow(InvalidSecurityKeyException);
     });
 
     test("decrypt throws InvalidSecurityKeyException when Passphrase is missing", (): void => {

@@ -65,14 +65,22 @@ class NexoCrypto {
     public decrypt(saleToPoiSecureMessage: SaleToPOISecuredMessage, securityKey: SecurityKey): string {
         NexoCrypto.validateSecurityKey(securityKey);
 
-        const encryptedSaleToPoiMessageByteArray = Buffer.from(saleToPoiSecureMessage.NexoBlob, "base64");
         const derivedKey = NexoDerivedKeyGenerator.deriveKeyMaterial(securityKey.Passphrase);
-        const ivNonce = Buffer.from(saleToPoiSecureMessage.SecurityTrailer.Nonce, "base64");
-        const decryptedSaleToPoiMessageByteArray =
-            NexoCrypto.crypt(encryptedSaleToPoiMessageByteArray, derivedKey, ivNonce, Modes.DECRYPT);
 
-        const receivedHmac = Buffer.from(saleToPoiSecureMessage.SecurityTrailer.Hmac, "base64");
-        this.validateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, derivedKey);
+        let decryptedSaleToPoiMessageByteArray: Buffer;
+        try {
+            const encryptedSaleToPoiMessageByteArray = Buffer.from(saleToPoiSecureMessage.NexoBlob, "base64");
+            const ivNonce = Buffer.from(saleToPoiSecureMessage.SecurityTrailer.Nonce, "base64");
+            const receivedHmac = Buffer.from(saleToPoiSecureMessage.SecurityTrailer.Hmac, "base64");
+
+            decryptedSaleToPoiMessageByteArray =
+                NexoCrypto.crypt(encryptedSaleToPoiMessageByteArray, derivedKey, ivNonce, Modes.DECRYPT);
+            this.validateHmac(receivedHmac, decryptedSaleToPoiMessageByteArray, derivedKey);
+        } catch {
+            // Throw the same error for every failure (nonce, padding, HMAC). A padding error that
+            // can be told apart from an HMAC error is a CBC padding-oracle side channel.
+            throw new NexoCryptoException("Decryption of the SaleToPOISecuredMessage failed");
+        }
 
         return decryptedSaleToPoiMessageByteArray.toString("utf-8");
     }
@@ -89,6 +97,9 @@ class NexoCrypto {
     }
 
     private static crypt(bytes: Buffer, dk: NexoDerivedKey, ivNonce: Buffer, mode: Modes): Buffer {
+        if (ivNonce.length !== NexoEnum.IV_LENGTH) {
+            throw new NexoCryptoException("Invalid IV nonce length");
+        }
         const actualIV = Buffer.alloc(NexoEnum.IV_LENGTH);
         for (let i = 0; i < NexoEnum.IV_LENGTH; i++) {
             actualIV[i] = dk.iv[i] ^ ivNonce[i];
