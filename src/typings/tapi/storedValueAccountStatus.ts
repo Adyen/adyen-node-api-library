@@ -32,7 +32,7 @@ export class StoredValueAccountStatus {
             "name": "CurrentBalance",
             "baseName": "CurrentBalance",
             "type": "number",
-            "format": ""
+            "format": "double"
         }    ];
 
     static getAttributeTypeMap() {

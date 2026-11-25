@@ -22,7 +22,7 @@ export class TransactionConditions {
     /**
     * Identification of the Acquirer. Restrict to these Acquirer if present.
     */
-    "AcquirerID"?: Array<number>;
+    "AcquirerID"?: Array<string>;
     /**
     * The preferred type of payment is a debit transaction rather than a credit transaction.
     */
@@ -60,7 +60,7 @@ export class TransactionConditions {
         {
             "name": "AcquirerID",
             "baseName": "AcquirerID",
-            "type": "Array<number>",
+            "type": "Array<string>",
             "format": ""
         },
         {
