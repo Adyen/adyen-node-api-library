@@ -7,7 +7,6 @@
  * Do not edit this class manually.
  */
 
-
 import getJsonResponse from "../../helpers/getJsonResponse";
 import Service from "../../service";
 import Client from "../../client";
@@ -17,6 +16,7 @@ import Resource from "../resource";
 import { ObjectSerializer } from "../../typings/balancePlatform/objectSerializer";
 import { BalanceSweepConfigurationsResponse } from "../../typings/balancePlatform/models";
 import { CreateSweepConfigurationV2 } from "../../typings/balancePlatform/models";
+import { PayoutSweepExecutions } from "../../typings/balancePlatform/models";
 import { SweepConfigurationV2 } from "../../typings/balancePlatform/models";
 import { UpdateSweepConfigurationV2 } from "../../typings/balancePlatform/models";
 
@@ -124,6 +124,39 @@ export class CustomPayoutSchedulesSweepsApi extends Service {
         );
 
         return ObjectSerializer.deserialize(response, "SweepConfigurationV2");
+    }
+
+    /**
+    * @summary View executions of a custom payout schedule
+    * @param balanceAccountId {@link string } The unique identifier of the balance account.
+    * @param sweepId {@link string } The unique identifier of the sweep configuration.
+    * @param requestOptions {@link IRequest.Options }
+    * @param results {@link string } Contains a comma-separated list of sweep execution results. If included, the response returns only sweep executions with the specified results.  Possible results: - **succeeded**: The sweep payout was completed successfully. - **failed**: The sweep payout was not completed due to an error. - **skipped**: The sweep payout was not triggered as expected.
+    * @param limit {@link number } The number of items returned per page. By default, the response returns 10 items per page.
+    * @param cursor {@link string } The cursor from the &#x60;next&#x60; or &#x60;previous&#x60; pagination link in the previous response.
+    * @return {@link PayoutSweepExecutions }
+    */
+    public async getSweepExecutions(balanceAccountId: string, sweepId: string, results?: string, limit?: number, cursor?: string, requestOptions?: IRequest.Options): Promise<PayoutSweepExecutions> {
+        const endpoint = `${this.baseUrl}/balanceAccounts/{balanceAccountId}/sweeps/{sweepId}/executions`
+            .replace("{" + "balanceAccountId" + "}", encodeURIComponent(String(balanceAccountId)))
+            .replace("{" + "sweepId" + "}", encodeURIComponent(String(sweepId)));
+        const resource = new Resource(this, endpoint);
+        
+        const hasDefinedQueryParams = results ?? limit ?? cursor;
+        if(hasDefinedQueryParams) {
+            if(!requestOptions) requestOptions = {};
+            if(!requestOptions.params) requestOptions.params = {};
+            if(results) requestOptions.params["results"] = results;
+            if(limit) requestOptions.params["limit"] = limit;
+            if(cursor) requestOptions.params["cursor"] = cursor;
+        }
+        const response = await getJsonResponse<string, PayoutSweepExecutions>(
+            resource,
+            "",
+            { ...requestOptions, method: "GET" }
+        );
+
+        return ObjectSerializer.deserialize(response, "PayoutSweepExecutions");
     }
 
     /**
