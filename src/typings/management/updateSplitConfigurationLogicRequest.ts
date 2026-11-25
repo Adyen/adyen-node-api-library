@@ -9,6 +9,7 @@
 
 import { AdditionalCommission } from "./additionalCommission";
 import { Commission } from "./commission";
+import { SplitDcc } from "./splitDcc";
 
 
 export class UpdateSplitConfigurationLogicRequest {
@@ -38,6 +39,7 @@ export class UpdateSplitConfigurationLogicRequest {
     */
     "chargebackCostAllocation"?: UpdateSplitConfigurationLogicRequest.ChargebackCostAllocationEnum;
     "commission": Commission;
+    "dcc"?: SplitDcc | null;
     /**
     * Deducts the interchange fee from specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
     */
@@ -126,6 +128,12 @@ export class UpdateSplitConfigurationLogicRequest {
             "name": "commission",
             "baseName": "commission",
             "type": "Commission",
+            "format": ""
+        },
+        {
+            "name": "dcc",
+            "baseName": "dcc",
+            "type": "SplitDcc | null",
             "format": ""
         },
         {

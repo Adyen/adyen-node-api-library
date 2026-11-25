@@ -57,7 +57,15 @@ export class TerminalSettings {
     "receiptOptions"?: ReceiptOptions | null;
     "receiptPrinting"?: ReceiptPrinting | null;
     "refunds"?: Refunds | null;
+    /**
+    * Show the tipping amount calculated from the percentage next to each tipping percentage option on the terminal screen, for example `10 % | 10 EUR` for a 100 EUR payment.
+    */
+    "showCalculatedPercentageTippingAmount"?: boolean | null;
     "signature"?: Signature | null;
+    /**
+    * Skip the tip confirmation step of the Adyen payment app on the terminal. Set to **true** only if your own app that handles tipping is installed on the same terminal. If your app is not installed on the terminal, set to **false**.
+    */
+    "skipTipConfirmationOnTerminal"?: boolean | null;
     "standalone"?: Standalone | null;
     "storeAndForward"?: StoreAndForward | null;
     "surcharge"?: Surcharge | null;
@@ -180,9 +188,21 @@ export class TerminalSettings {
             "format": ""
         },
         {
+            "name": "showCalculatedPercentageTippingAmount",
+            "baseName": "showCalculatedPercentageTippingAmount",
+            "type": "boolean | null",
+            "format": ""
+        },
+        {
             "name": "signature",
             "baseName": "signature",
             "type": "Signature | null",
+            "format": ""
+        },
+        {
+            "name": "skipTipConfirmationOnTerminal",
+            "baseName": "skipTipConfirmationOnTerminal",
+            "type": "boolean | null",
             "format": ""
         },
         {

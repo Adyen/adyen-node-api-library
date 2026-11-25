@@ -10,7 +10,10 @@
 import { AccelUpdateInfo } from "./accelUpdateInfo";
 import { AffirmUpdateInfo } from "./affirmUpdateInfo";
 import { BcmcUpdateInfo } from "./bcmcUpdateInfo";
+import { BoncardUpdateInfo } from "./boncardUpdateInfo";
 import { CartesBancairesUpdateInfo } from "./cartesBancairesUpdateInfo";
+import { CashAppUpdateInfo } from "./cashAppUpdateInfo";
+import { EbtUpdateInfo } from "./ebtUpdateInfo";
 import { GenericPmWithTdiUpdateInfo } from "./genericPmWithTdiUpdateInfo";
 import { NyceUpdateInfo } from "./nyceUpdateInfo";
 import { PayByBankPlaidUpdateInfo } from "./payByBankPlaidUpdateInfo";
@@ -23,8 +26,10 @@ export class UpdatePaymentMethodInfo {
     "accel"?: AccelUpdateInfo | null;
     "affirm"?: AffirmUpdateInfo | null;
     "bcmc"?: BcmcUpdateInfo | null;
+    "boncard"?: BoncardUpdateInfo | null;
     "carnet"?: GenericPmWithTdiUpdateInfo | null;
     "cartesBancaires"?: CartesBancairesUpdateInfo | null;
+    "cashapp"?: CashAppUpdateInfo | null;
     /**
     * The list of countries where a payment method is available. By default, all countries supported by the payment method.
     */
@@ -40,6 +45,7 @@ export class UpdatePaymentMethodInfo {
     "customRoutingFlags"?: Array<string>;
     "diners"?: GenericPmWithTdiUpdateInfo | null;
     "discover"?: GenericPmWithTdiUpdateInfo | null;
+    "ebt"?: EbtUpdateInfo | null;
     "eft_directdebit_CA"?: GenericPmWithTdiUpdateInfo | null;
     "eftpos_australia"?: GenericPmWithTdiUpdateInfo | null;
     /**
@@ -55,6 +61,7 @@ export class UpdatePaymentMethodInfo {
     "mc"?: GenericPmWithTdiUpdateInfo | null;
     "nyce"?: NyceUpdateInfo | null;
     "paybybank_plaid"?: PayByBankPlaidUpdateInfo | null;
+    "paybybank_plaid_ca"?: PayByBankPlaidUpdateInfo | null;
     "pulse"?: PulseUpdateInfo | null;
     "sepadirectdebit"?: SepaDirectDebitUpdateInfo | null;
     "star"?: StarUpdateInfo | null;
@@ -95,6 +102,12 @@ export class UpdatePaymentMethodInfo {
             "format": ""
         },
         {
+            "name": "boncard",
+            "baseName": "boncard",
+            "type": "BoncardUpdateInfo | null",
+            "format": ""
+        },
+        {
             "name": "carnet",
             "baseName": "carnet",
             "type": "GenericPmWithTdiUpdateInfo | null",
@@ -104,6 +117,12 @@ export class UpdatePaymentMethodInfo {
             "name": "cartesBancaires",
             "baseName": "cartesBancaires",
             "type": "CartesBancairesUpdateInfo | null",
+            "format": ""
+        },
+        {
+            "name": "cashapp",
+            "baseName": "cashapp",
+            "type": "CashAppUpdateInfo | null",
             "format": ""
         },
         {
@@ -140,6 +159,12 @@ export class UpdatePaymentMethodInfo {
             "name": "discover",
             "baseName": "discover",
             "type": "GenericPmWithTdiUpdateInfo | null",
+            "format": ""
+        },
+        {
+            "name": "ebt",
+            "baseName": "ebt",
+            "type": "EbtUpdateInfo | null",
             "format": ""
         },
         {
@@ -211,6 +236,12 @@ export class UpdatePaymentMethodInfo {
         {
             "name": "paybybank_plaid",
             "baseName": "paybybank_plaid",
+            "type": "PayByBankPlaidUpdateInfo | null",
+            "format": ""
+        },
+        {
+            "name": "paybybank_plaid_ca",
+            "baseName": "paybybank_plaid_ca",
             "type": "PayByBankPlaidUpdateInfo | null",
             "format": ""
         },

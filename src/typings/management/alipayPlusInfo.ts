@@ -10,6 +10,18 @@
 
 export class AlipayPlusInfo {
     /**
+    * The name of the company branch. Required for TrueMoney.
+    */
+    "branchName"?: string;
+    /**
+    * The name of your mobile app. Required for TrueMoney.
+    */
+    "merchantMobileAppName"?: string;
+    /**
+    * The description of the product or service. Required for TrueMoney.
+    */
+    "productServiceDescription"?: string;
+    /**
     * The currency used for settlement. Defaults to USD.
     */
     "settlementCurrencyCode"?: string;
@@ -19,6 +31,24 @@ export class AlipayPlusInfo {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "branchName",
+            "baseName": "branchName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "merchantMobileAppName",
+            "baseName": "merchantMobileAppName",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "productServiceDescription",
+            "baseName": "productServiceDescription",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "settlementCurrencyCode",
             "baseName": "settlementCurrencyCode",
