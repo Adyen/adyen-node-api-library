@@ -18,7 +18,7 @@ export class PaymentAcquirerData {
     /**
     * Identification of the Acquirer. Identification of the Acquirer when the POI System is multi-acquirer.
     */
-    "AcquirerID"?: number;
+    "AcquirerID"?: string;
     /**
     * Identification of the Merchant for the Acquirer.
     */
@@ -45,7 +45,7 @@ export class PaymentAcquirerData {
         {
             "name": "AcquirerID",
             "baseName": "AcquirerID",
-            "type": "number",
+            "type": "string",
             "format": ""
         },
         {

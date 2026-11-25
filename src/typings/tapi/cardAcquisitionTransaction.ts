@@ -85,7 +85,7 @@ export class CardAcquisitionTransaction {
             "name": "TotalAmount",
             "baseName": "TotalAmount",
             "type": "number",
-            "format": ""
+            "format": "double"
         },
         {
             "name": "PaymentType",

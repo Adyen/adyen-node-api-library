@@ -103,7 +103,7 @@ export class PaymentResult {
             "name": "ProtectedSignature",
             "baseName": "ProtectedSignature",
             "type": "string",
-            "format": ""
+            "format": "byte"
         },
         {
             "name": "CustomerLanguage",
