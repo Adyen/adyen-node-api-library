@@ -167,12 +167,16 @@ export class PaymentRequest {
     */
     "store"?: string;
     /**
+    * When enrolling a new user, this field determines whether to store the shopper\'s card in their Click to Pay profile. When this is set to **True**, the request must include `shopperEmail`, `shopperName`, and `telephoneNumber`.
+    */
+    "storeClickToPayProfile"?: boolean;
+    /**
     * The shopper\'s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`.
     */
     "telephoneNumber"?: string;
     "threeDS2RequestData"?: ThreeDS2RequestData | null;
     /**
-    * Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.Default: **false**.
+    * Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.
     */
     "threeDSAuthenticationOnly"?: boolean;
     /**
@@ -481,6 +485,12 @@ export class PaymentRequest {
             "name": "store",
             "baseName": "store",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "storeClickToPayProfile",
+            "baseName": "storeClickToPayProfile",
+            "type": "boolean",
             "format": ""
         },
         {
