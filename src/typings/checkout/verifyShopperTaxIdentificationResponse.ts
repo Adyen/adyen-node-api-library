@@ -13,21 +13,21 @@ import { VerifiedShopperTaxIdentification } from "./verifiedShopperTaxIdentifica
 
 export class VerifyShopperTaxIdentificationResponse {
     /**
-    * The human-readable reason for the unsuccessful result.
+    * The human-readable reason for an **INVALID** or **UNKNOWN** verification result.
     */
     "reason"?: string;
     /**
-    * The reason code for the unsuccessful result, when available.
+    * The code for an unsuccessful verification, if available.
     */
     "reasonCode"?: string;
     "result"?: Result;
     /**
-    * The unique reference for the verification attempt.
+    * The unique reference for the verification. Returned only when `result` is **VALID**.
     */
     "taxVerificationReference"?: string;
     "verifiedShopperTaxIdentification"?: VerifiedShopperTaxIdentification | null;
     /**
-    * The opaque, encrypted, and signed token representing the successful verification. Required in /payments.
+    * The encrypted and signed token representing a successful verification. Returned only when `result` is **VALID**. Submit this value as `shopperTaxIdentification.verifiedShopperTaxIdentificationToken` in `/payments` with the same `shopperReference` used for verification.
     */
     "verifiedShopperTaxIdentificationToken"?: string;
 

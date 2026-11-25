@@ -8,8 +8,8 @@
  */
 
 export enum RemittancePurpose {
-    TourProgramme = 'TOUR_PROGRAMME',
-    TravelNonTour = 'TRAVEL_NON_TOUR',
-    Education = 'EDUCATION',
-    Digital = 'DIGITAL'
+    TourProgramme = 'tourProgramme',
+    TravelNonTour = 'travelNonTour',
+    Education = 'education',
+    Digital = 'digital'
 }

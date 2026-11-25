@@ -7,7 +7,6 @@ import { AdditionalData3DSecure } from "./additionalData3DSecure";
 import { AdditionalDataAirline } from "./additionalDataAirline";
 import { AdditionalDataCarRental } from "./additionalDataCarRental";
 import { AdditionalDataCommon } from "./additionalDataCommon";
-import { AdditionalDataLevel23 } from "./additionalDataLevel23";
 import { AdditionalDataLodging } from "./additionalDataLodging";
 import { AdditionalDataOpenInvoice } from "./additionalDataOpenInvoice";
 import { AdditionalDataOpi } from "./additionalDataOpi";
@@ -16,7 +15,6 @@ import { AdditionalDataRetry } from "./additionalDataRetry";
 import { AdditionalDataRisk } from "./additionalDataRisk";
 import { AdditionalDataRiskStandalone } from "./additionalDataRiskStandalone";
 import { AdditionalDataSubMerchant } from "./additionalDataSubMerchant";
-import { AdditionalDataTemporaryServices } from "./additionalDataTemporaryServices";
 import { AdditionalDataWallets } from "./additionalDataWallets";
 import { Address } from "./address";
 import { AffirmDetails } from "./affirmDetails";
@@ -265,6 +263,8 @@ import { ThreeDSRequestorPriorAuthenticationInfo } from "./threeDSRequestorPrior
 import { ThreeDSecureData } from "./threeDSecureData";
 import { Ticket } from "./ticket";
 import { TokenMandate } from "./tokenMandate";
+import { TokenizedShopperTaxIdentification } from "./tokenizedShopperTaxIdentification";
+import { TokenizedTaxCalculation } from "./tokenizedTaxCalculation";
 import { TravelAgency } from "./travelAgency";
 import { TwintDetails } from "./twintDetails";
 import { UPIPaymentMethod } from "./uPIPaymentMethod";
@@ -541,7 +541,6 @@ let typeMap: {[index: string]: any} = {
     "AdditionalDataAirline": AdditionalDataAirline,
     "AdditionalDataCarRental": AdditionalDataCarRental,
     "AdditionalDataCommon": AdditionalDataCommon,
-    "AdditionalDataLevel23": AdditionalDataLevel23,
     "AdditionalDataLodging": AdditionalDataLodging,
     "AdditionalDataOpenInvoice": AdditionalDataOpenInvoice,
     "AdditionalDataOpi": AdditionalDataOpi,
@@ -550,7 +549,6 @@ let typeMap: {[index: string]: any} = {
     "AdditionalDataRisk": AdditionalDataRisk,
     "AdditionalDataRiskStandalone": AdditionalDataRiskStandalone,
     "AdditionalDataSubMerchant": AdditionalDataSubMerchant,
-    "AdditionalDataTemporaryServices": AdditionalDataTemporaryServices,
     "AdditionalDataWallets": AdditionalDataWallets,
     "Address": Address,
     "AffirmDetails": AffirmDetails,
@@ -799,6 +797,8 @@ let typeMap: {[index: string]: any} = {
     "ThreeDSecureData": ThreeDSecureData,
     "Ticket": Ticket,
     "TokenMandate": TokenMandate,
+    "TokenizedShopperTaxIdentification": TokenizedShopperTaxIdentification,
+    "TokenizedTaxCalculation": TokenizedTaxCalculation,
     "TravelAgency": TravelAgency,
     "TwintDetails": TwintDetails,
     "UPIPaymentMethod": UPIPaymentMethod,

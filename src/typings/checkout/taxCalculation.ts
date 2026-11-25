@@ -14,7 +14,7 @@ import { TaxCalculationContext } from "./taxCalculationContext";
 
 export class TaxCalculation {
     /**
-    * The merchant account for which the calculation was made.
+    * The merchant account identifier, with which you want to process the transaction.
     */
     "merchantAccount"?: string;
     "taxCalculationContext"?: TaxCalculationContext | null;
