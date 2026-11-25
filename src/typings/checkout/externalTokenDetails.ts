@@ -30,6 +30,10 @@ export class ExternalTokenDetails {
     */
     "number"?: string;
     /**
+    * When enrolling a new user, this field determines whether to store the shopper\'s card in their Click to Pay profile. When this is set to **True**, the request must include `shopperEmail`, `shopperName`, and `telephoneNumber`.
+    */
+    "storeClickToPayProfile"?: boolean;
+    /**
     * Identifier used to fetch the token from the external service
     */
     "storedPaymentMethodId": string;
@@ -75,6 +79,12 @@ export class ExternalTokenDetails {
             "name": "number",
             "baseName": "number",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "storeClickToPayProfile",
+            "baseName": "storeClickToPayProfile",
+            "type": "boolean",
             "format": ""
         },
         {

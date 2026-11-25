@@ -8,5 +8,5 @@
  */
 
 export enum CalculationType {
-    LrsTcs = 'LRS_TCS'
+    LrsTcs = 'lrsTcs'
 }

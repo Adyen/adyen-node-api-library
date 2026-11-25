@@ -81,7 +81,7 @@ export class DonationPaymentRequest {
     "metadata"?: { [key: string]: string; };
     "mpiData"?: ThreeDSecureData | null;
     /**
-    * > Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.
+    * > Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.  Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.  > If `origin` is missing or incorrect, 3D Secure 2 cannot be initiated and the transaction can be authorized without liability shift. Set this value on your server. If you receive it from the client, validate it first. For more information, see [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/).
     */
     "origin"?: string;
     "paymentMethod"?: DonationPaymentRequestPaymentMethod | null;

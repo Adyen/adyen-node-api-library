@@ -38,6 +38,8 @@ import { Surcharge } from "./surcharge";
 import { ThirdPartyTokenRedundancyInfo } from "./thirdPartyTokenRedundancyInfo";
 import { ThreeDS2RequestFields } from "./threeDS2RequestFields";
 import { ThreeDSecureData } from "./threeDSecureData";
+import { TokenizedShopperTaxIdentification } from "./tokenizedShopperTaxIdentification";
+import { TokenizedTaxCalculation } from "./tokenizedTaxCalculation";
 
 
 export class PaymentRequest {
@@ -153,7 +155,7 @@ export class PaymentRequest {
     */
     "orderReference"?: string;
     /**
-    * > Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.
+    * > Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.  Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.  > If `origin` is missing or incorrect, 3D Secure 2 cannot be initiated and the transaction can be authorized without liability shift. Set this value on your server. If you receive it from the client, validate it first. For more information, see [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/).
     */
     "origin"?: string;
     "paymentMethod": PaymentRequestPaymentMethod;
@@ -221,6 +223,7 @@ export class PaymentRequest {
     * The text to be shown on the shopper\'s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , \' _ - ? + * /_**.
     */
     "shopperStatement"?: string;
+    "shopperTaxIdentification"?: TokenizedShopperTaxIdentification | null;
     "shopperTaxInfo"?: ShopperTaxInfo | null;
     /**
     * The shopper\'s social security number.
@@ -243,6 +246,7 @@ export class PaymentRequest {
     */
     "subMerchants"?: Array<SubMerchantInfo>;
     "surcharge"?: Surcharge | null;
+    "taxCalculation"?: TokenizedTaxCalculation | null;
     /**
     * The shopper\'s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`.
     */
@@ -250,7 +254,7 @@ export class PaymentRequest {
     "thirdPartyTokenRedundancyInfo"?: ThirdPartyTokenRedundancyInfo | null;
     "threeDS2RequestData"?: ThreeDS2RequestFields | null;
     /**
-    * Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorisation.Default: **false**.
+    * Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorization.  Default: **false**.
     *
 	* @deprecated since Adyen Checkout API v69
 	* Use `authenticationData.authenticationOnly` instead.
@@ -645,6 +649,12 @@ export class PaymentRequest {
             "format": ""
         },
         {
+            "name": "shopperTaxIdentification",
+            "baseName": "shopperTaxIdentification",
+            "type": "TokenizedShopperTaxIdentification | null",
+            "format": ""
+        },
+        {
             "name": "shopperTaxInfo",
             "baseName": "shopperTaxInfo",
             "type": "ShopperTaxInfo | null",
@@ -684,6 +694,12 @@ export class PaymentRequest {
             "name": "surcharge",
             "baseName": "surcharge",
             "type": "Surcharge | null",
+            "format": ""
+        },
+        {
+            "name": "taxCalculation",
+            "baseName": "taxCalculation",
+            "type": "TokenizedTaxCalculation | null",
             "format": ""
         },
         {

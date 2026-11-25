@@ -26,6 +26,14 @@ export class CardDetailsRequest {
     */
     "merchantAccount": string;
     /**
+    * Your reference to uniquely identify the shopper that owns the `storedPaymentMethodId`. Required when `storedPaymentMethodId` is provided.
+    */
+    "shopperReference"?: string;
+    /**
+    * The unique identifier of the stored payment method to look up, as returned by [`/storedPaymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/get/storedPaymentMethods). Use this to get the details of a stored card that is not present at charge time.  When provided, `shopperReference` is required and you must not include `cardNumber` or `encryptedCardNumber`.
+    */
+    "storedPaymentMethodId"?: string;
+    /**
     * The card brands you support. This is the [`brands`](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [`/paymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.
     */
     "supportedBrands"?: Array<string>;
@@ -56,6 +64,18 @@ export class CardDetailsRequest {
         {
             "name": "merchantAccount",
             "baseName": "merchantAccount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "shopperReference",
+            "baseName": "shopperReference",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "storedPaymentMethodId",
+            "baseName": "storedPaymentMethodId",
             "type": "string",
             "format": ""
         },

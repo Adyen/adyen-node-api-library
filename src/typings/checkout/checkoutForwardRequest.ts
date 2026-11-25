@@ -31,9 +31,9 @@ export class CheckoutForwardRequest {
     "paymentMethod"?: CheckoutForwardRequestCard | null;
     "request": CheckoutOutgoingForwardRequest;
     /**
-    * Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.
+    * Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. This parameter is required unless the request is for PAN forwarding and `options.tokenize` is false (the default). > Your reference must not include personally identifiable information (PII) such as name or email address.
     */
-    "shopperReference": string;
+    "shopperReference"?: string;
     /**
     * The unique identifier of the token that you want to forward to the third party. This is the `storedPaymentMethodId` you received in the webhook after you created the token.
     */

@@ -8,6 +8,6 @@
  */
 
 export enum SublimitStatus {
-    Exceeded = 'EXCEEDED',
-    NotExceeded = 'NOT_EXCEEDED'
+    Exceeded = 'exceeded',
+    NotExceeded = 'notExceeded'
 }

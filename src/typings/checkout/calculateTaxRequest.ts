@@ -13,7 +13,7 @@ import { TaxableAmount } from "./taxableAmount";
 
 export class CalculateTaxRequest {
     /**
-    * The merchant account identifier requesting the tax calculation.
+    * The merchant account identifier, with which you want to process the transaction.
     */
     "merchantAccount": string;
     "taxCalculationContext": TaxCalculationContext;

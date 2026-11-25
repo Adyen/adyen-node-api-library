@@ -12,11 +12,11 @@ import { TaxIdentificationType } from "./taxIdentificationType";
 
 export class VerifiedShopperTaxIdentification {
     /**
-    * The masked name of the tax identification holder.
+    * The masked name of the tax identification holder. The full name is not returned.
     */
     "maskedName"?: string;
     /**
-    * The country governing the shopper\'s tax processing.
+    * The two-letter country code governing the shopper\'s tax processing, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. Supported value: **IN**.
     */
     "taxCountryCode"?: string;
     "taxIdentificationType"?: TaxIdentificationType;
